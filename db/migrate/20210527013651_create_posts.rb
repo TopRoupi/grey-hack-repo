@@ -7,6 +7,7 @@ class CreatePosts < ActiveRecord::Migration[6.1]
       t.string :title
       t.string :description
       t.string :summary
+      t.string :readme
 
       t.timestamps
     end

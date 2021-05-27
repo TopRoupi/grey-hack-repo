@@ -48,40 +48,23 @@ ActiveRecord::Schema.define(version: 2021_05_27_152239) do
     t.index ["post_id"], name: "index_post_categories_on_post_id"
   end
 
-  create_table "post_scripts", force: :cascade do |t|
-    t.bigint "post_id", null: false
-    t.bigint "game_version_id", null: false
-    t.string "content"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["game_version_id"], name: "index_post_scripts_on_game_version_id"
-    t.index ["post_id"], name: "index_post_scripts_on_post_id"
-  end
-
   create_table "posts", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "title"
     t.string "description"
     t.string "summary"
+    t.string "readme"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
-  create_table "readmes", force: :cascade do |t|
+  create_table "scripts", force: :cascade do |t|
     t.bigint "post_id", null: false
     t.string "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["post_id"], name: "index_readmes_on_post_id"
-  end
-
-  create_table "scripts", force: :cascade do |t|
-    t.bigint "post_script_id", null: false
-    t.string "content"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["post_script_id"], name: "index_scripts_on_post_script_id"
+    t.index ["post_id"], name: "index_scripts_on_post_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -97,9 +80,6 @@ ActiveRecord::Schema.define(version: 2021_05_27_152239) do
   add_foreign_key "comments", "users"
   add_foreign_key "post_categories", "categories"
   add_foreign_key "post_categories", "posts"
-  add_foreign_key "post_scripts", "game_versions"
-  add_foreign_key "post_scripts", "posts"
   add_foreign_key "posts", "users"
-  add_foreign_key "readmes", "posts"
-  add_foreign_key "scripts", "post_scripts"
+  add_foreign_key "scripts", "posts"
 end

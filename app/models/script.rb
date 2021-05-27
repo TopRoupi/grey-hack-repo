@@ -1,3 +1,3 @@
 class Script < ApplicationRecord
-  belongs_to :post_script
+  belongs_to :post
 end
