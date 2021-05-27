@@ -1,0 +1,20 @@
+<div class="flex">
+  <div class="container mx-auto">
+    <div class="max-w-md mx-auto rounded py-7">
+      <div class="text-center">
+        <h1 class="my-3 text-3xl font-semibold text-chestnut-200">
+          <%= yield :title %>
+        </h1>
+        <div class="m-7 text-left">
+          <%= yield %>
+        </div>
+        <div class="text-center text-chestnut-300 mb-7">
+          or
+        </div>
+        <div class="text-center mb-3">
+          <%= render "devise/shared/links" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

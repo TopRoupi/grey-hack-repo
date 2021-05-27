@@ -9,7 +9,7 @@
     <!-- Active: "bg-gray-100", Not Active: "" -->
     <% if current_user %>
       <!-- <a href="#" class="block px&#45;4 py&#45;2 text&#45;sm text&#45;gray&#45;700 hover:bg&#45;gray&#45;200" role="menuitem" tabindex="&#45;1" id="user&#45;menu&#45;item&#45;0">Profile</a> -->
-      <a class="flex px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" href="#">
+      <a class="flex px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" href="<%= new_post_path %>">
         <div class="h-8 w-8 py-2 rounded-full bg-green-700">
           <%= octicon "plus", :height => 16, class: "m-auto fill-current text-white" %>
         </div>
@@ -17,14 +17,12 @@
           Create a new post
         </div>
       </a>
-      <a href="<%=  destroy_user_session_path %>" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" role="menuitem" tabindex="-1" id="user-menu-item-2">
-        Sign out
-      </a>
+      <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" %>
     <% else %>
-      <a href="<%= user_session_path %>" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" role="menuitem" tabindex="-1" id="user-menu-item-0">
+      <a href="<%= user_session_path %>" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">
         Log in
       </a>
-      <a href="<%= new_user_registration_path %>" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" role="menuitem" tabindex="-1" id="user-menu-item-0">
+      <a href="<%= new_user_registration_path %>" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" role="menuitem"">
         Sign up
       </a>
     <% end %>

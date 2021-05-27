@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_27_032907) do
+ActiveRecord::Schema.define(version: 2021_05_27_152239) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "comments", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -30,6 +36,15 @@ ActiveRecord::Schema.define(version: 2021_05_27_032907) do
     t.string "version"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "post_categories", force: :cascade do |t|
+    t.bigint "post_id", null: false
+    t.bigint "category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_post_categories_on_category_id"
+    t.index ["post_id"], name: "index_post_categories_on_post_id"
   end
 
   create_table "post_scripts", force: :cascade do |t|
@@ -69,7 +84,7 @@ ActiveRecord::Schema.define(version: 2021_05_27_032907) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.string "bank"
     t.string "btc"
     t.string "encrypted_password", default: "", null: false
@@ -79,6 +94,8 @@ ActiveRecord::Schema.define(version: 2021_05_27_032907) do
   end
 
   add_foreign_key "comments", "users"
+  add_foreign_key "post_categories", "categories"
+  add_foreign_key "post_categories", "posts"
   add_foreign_key "post_scripts", "game_versions"
   add_foreign_key "post_scripts", "posts"
   add_foreign_key "posts", "users"

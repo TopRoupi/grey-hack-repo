@@ -3,7 +3,7 @@
 class DeviseCreateUsers < ActiveRecord::Migration[6.1]
   def change
     create_table :users do |t|
-      t.string :name
+      t.string :name, null: false, unique: true
       t.string :bank
       t.string :btc
 

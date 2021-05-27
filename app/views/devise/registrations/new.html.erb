@@ -1,29 +1,21 @@
-<h2>Sign up</h2>
+<% content_for :title, "Sign up" %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<%= render "devise/shared/form_card" do %>
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= f.input :name,
+      required: true,
+      autofocus: true,
+      input_html: { autocomplete: "name" }%>
+    <%= f.input :password,
+      required: true,
+      hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+      input_html: { autocomplete: "new-password" } %>
+    <%= f.input :password_confirmation,
+      required: true,
+      input_html: { autocomplete: "new-password" } %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+    <div class="text-right">
+      <%= f.button :submit, "Sign Up", class: "text-white bg-indigo-700 rounded-md focus:bg-indigo-800 focus:outline-none py-2 px-5 cursor-pointer" %>
+    </div>
+  <% end %>
 <% end %>
-
-<%= render "devise/shared/links" %>
