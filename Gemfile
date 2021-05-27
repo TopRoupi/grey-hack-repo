@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 2.7'
 
 gem "view_component", require: "view_component/engine"
 gem "stimulus_reflex", "~> 3.4"
+gem 'devise'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

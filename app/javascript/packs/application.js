@@ -13,3 +13,5 @@ Turbolinks.start()
 ActiveStorage.start()
 
 import "controllers"
+
+require("stylesheets/application.scss")
