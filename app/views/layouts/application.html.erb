@@ -13,6 +13,8 @@
 
   <body class="bg-beaver-900">
     <%= render(Layout::NavBar::Component.new()) %>
-    <%= yield %>
+    <div class="container max-w-5xl mx-4 mb-8">
+      <%= yield %>
+    </div>
   </body>
 </html>

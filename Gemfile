@@ -22,6 +22,7 @@ gem "hiredis"
 gem "view_component", "~> 2.26.1"
 gem "stimulus_reflex", "~> 3.4"
 gem "devise"
+gem "octicons_helper"
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -35,7 +36,7 @@ end
 
 group :development do
   gem "web-console", ">= 4.1.0"
-  gem "rack-mini-profiler", "~> 2.0"
+  # gem "rack-mini-profiler", "~> 2.0"
   gem "listen", "~> 3.3"
   gem "spring"
 end
