@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "test_helper"
 
 class PostsControllerTest < ActionDispatch::IntegrationTest
@@ -16,8 +18,8 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create post" do
-    assert_difference('Post.count') do
-      post posts_url, params: { post: { description: @post.description, summary: @post.summary, title: @post.title, user_id: @post.user_id } }
+    assert_difference("Post.count") do
+      post posts_url, params: {post: {description: @post.description, summary: @post.summary, title: @post.title, user_id: @post.user_id}}
     end
 
     assert_redirected_to post_url(Post.last)
@@ -34,12 +36,12 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update post" do
-    patch post_url(@post), params: { post: { description: @post.description, summary: @post.summary, title: @post.title, user_id: @post.user_id } }
+    patch post_url(@post), params: {post: {description: @post.description, summary: @post.summary, title: @post.title, user_id: @post.user_id}}
     assert_redirected_to post_url(@post)
   end
 
   test "should destroy post" do
-    assert_difference('Post.count', -1) do
+    assert_difference("Post.count", -1) do
       delete post_url(@post)
     end
 
