@@ -1,0 +1,2 @@
+class GameVersion < ApplicationRecord
+end

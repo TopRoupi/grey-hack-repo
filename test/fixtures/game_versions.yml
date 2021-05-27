@@ -1,9 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  post_script: one
-  content: MyString
+  version: MyString
 
 two:
-  post_script: two
-  content: MyString
+  version: MyString

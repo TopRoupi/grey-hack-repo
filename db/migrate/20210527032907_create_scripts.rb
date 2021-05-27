@@ -1,10 +1,7 @@
-# frozen_string_literal: true
-
 class CreateScripts < ActiveRecord::Migration[6.1]
   def change
     create_table :scripts do |t|
-      t.belongs_to :post, null: false, foreign_key: true
-      t.string :version
+      t.belongs_to :post_script, null: false, foreign_key: true
       t.string :content
 
       t.timestamps

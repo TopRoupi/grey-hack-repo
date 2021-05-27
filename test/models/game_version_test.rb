@@ -1,6 +1,6 @@
 require "test_helper"
 
-class ScriptTest < ActiveSupport::TestCase
+class GameVersionTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
