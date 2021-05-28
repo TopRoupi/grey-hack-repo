@@ -1,24 +1,19 @@
-<p id="notice"><%= notice %></p>
+<div class="text-center text-3xl font-semibold">
+  <%= @post.title.capitalize %>
+</div>
 
-<p>
-  <strong>User:</strong>
-  <%= @post.user_id %>
-</p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @post.description %>
-</p>
-
-<p>
-  <strong>Summary:</strong>
+<div class="text-beaver-300 text-center">
   <%= @post.summary %>
-</p>
+</div>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<% if @post.readme %>
+  <div>
+    <%= @post.readme %>
+  </div>
+<% end %>
+
+<div class="w-full rounded-xl py-4 px-4 bg-beaver-850 mt-4">
+  <code>
+    <%= @post.scripts.first.content %>
+  </code>
+</div>
