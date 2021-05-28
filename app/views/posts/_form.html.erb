@@ -1,14 +1,27 @@
 <%= simple_form_for(post) do |f| %>
-  <%= f.input :title %>
-  <%= f.input :summary %>
-  <%= f.input :readme %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <%= f.error_notification %>
+  <% if post.errors[:scripts].length != 0 %>
+    <% post.errors[:scripts].each do |error| %>
+      <%= "post #{error}" %>
+    <% end %>
+  <% end %>
+
+  <div class="flex flex-wrap overflow-hidden sm:-mx-3">
+    <div class="w-full overflow-hidden sm:w-1/2 sm:my-3 sm:px-3">
+      <%= f.input :title %>
+    </div>
+    <div class="w-full overflow-hidden sm:w-1/2  sm:my-3 sm:px-3">
+      <%= f.association :category, prompt: "Select a category", collection: Category.all %>
+    </div>
+  </div>
+  <%= f.input :summary, as: :text%>
+  <%# <%= f.input :readme, as: :text, label: "Readme (optional)"%>
   <p>scripts</p>
   <%= f.simple_fields_for(:scripts) do |ff| %>
-    <%= ff.input :content %>
+    <%= ff.input :content, as: :text%>
   <% end %>
-  <%= f.button :submit %>
+  <div class="text-right">
+    <%= f.button :submit %>
+  </div>
 <% end %>
-
-<%= alert %>
-<%= notice %>
-<%= post.errors.to_h %>
