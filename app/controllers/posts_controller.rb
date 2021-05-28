@@ -14,8 +14,8 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    @post = Post.new
-    @script = Script.new post: @post
+    @post = Post.new user: current_user
+    @post.scripts.build
   end
 
   # GET /posts/1/edit
@@ -25,6 +25,8 @@ class PostsController < ApplicationController
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
+    @post.user = current_user
+    @post.scripts.build
 
     respond_to do |format|
       if @post.save
@@ -68,6 +70,6 @@ class PostsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def post_params
-    params.require(:post).permit(:user_id, :title, :description, :summary)
+    params.require(:post).permit(:user_id, :title, :summary, :readme, scripts_attributes: [:content])
   end
 end
