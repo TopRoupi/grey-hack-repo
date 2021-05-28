@@ -4,3 +4,8 @@
 <%= render(Overview::Categories::Component.new(categories: Category.last(3))) %>
 
 <div class="text-center text-3xl font-semibold text-beaver-300 mt-6"> Newest Posts </div>
+
+<br>
+<% Post.last(10).each do |post| %>
+  <%= render(Overview::PostCard::Component.new(post: post)) %>
+<% end %>

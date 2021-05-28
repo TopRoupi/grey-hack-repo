@@ -1,0 +1,13 @@
+<a href="<%= post_path @post %>" class="rounded-lg bg-beaver-800 w-full px-4 py-3 mb-4 block">
+  <div class="flex items-end">
+    <span class="font-semibold text-xl">
+      <%= @post.title.capitalize %>
+    </span>
+    <div class="text-beaver-300 ml-1">
+      from <%= @post.user.name %>
+    </div>
+  </div>
+  <div class="text-beaver-300">
+    <%= @post.summary %>
+  </div>
+</a>
