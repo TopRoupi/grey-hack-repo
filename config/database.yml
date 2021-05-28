@@ -82,5 +82,4 @@ test:
 production:
   <<: *default
   database: grey_repo_production
-  username: grey_repo
-  password: <%= ENV['GREY_REPO_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
