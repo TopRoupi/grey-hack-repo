@@ -2,7 +2,12 @@
   <%= @post.title.capitalize %>
 </div>
 
-<div class="text-beaver-300 text-center">
+<div class="text-center flex justify-center">
+  <%= @post.category.name %>
+  <%= octicon @post.category.icon, height: 16, class: "fill-current self-end mb-1 ml-2" %>
+</div>
+
+<div class="text-beaver-300 text-center mt-3">
   <%= @post.summary %>
 </div>
 
