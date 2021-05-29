@@ -16,4 +16,3 @@ end
 class ActionController::TestCase
   Devise::Test::ControllerHelpers
 end
-

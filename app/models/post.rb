@@ -14,8 +14,8 @@ class Post < ApplicationRecord
   has_many :post_categories
   has_many :scripts, dependent: :destroy
 
-  validates :title, presence: true, length: {minimum:3}
-  validates :summary, presence: true, length: {minimum:10}
+  validates :title, presence: true, length: {minimum: 3}
+  validates :summary, presence: true, length: {minimum: 10}
 
   validates_with PostValidator
 

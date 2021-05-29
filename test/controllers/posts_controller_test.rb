@@ -69,7 +69,6 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
       get edit_post_url(@post)
       assert_response :success
-
     end
 
     should "not get edit of ramdom posts" do
@@ -78,7 +77,6 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
       get edit_post_url(@post)
       assert_redirected_to :root
     end
-
 
     should "update its own posts" do
       @post = create :post, user: @user
