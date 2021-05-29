@@ -6,7 +6,7 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.last(10).with_rich_text_content
+    @posts = Post.last(10)
   end
 
   # GET /posts/1 or /posts/1.json

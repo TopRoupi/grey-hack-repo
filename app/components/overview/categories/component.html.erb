@@ -1,10 +1,10 @@
 <div class="flex justify-center">
   <% @categories.each_with_index do |category, index| %>
-    <div class="bg-beaver-800 py-4 text-white text-beaver-300  rounded-lg w-full flex flex-col justify-center md:flex-row <%= "ml-5" unless index == 0 %>">
-      <%= octicon category.icon, width: 70, class: "fill-current m-auto md:m-0 md:mr-6" %>
-      <div class="mt-4 text-center text-2xl text-beaver-400 font-semibold">
+    <a href="#" class="bg-beaver-800 hover:bg-beaver-700 py-4 text-white text-beaver-300  rounded-lg w-full flex flex-col justify-center md:flex-row <%= "ml-5" unless index == 0 %>">
+      <%= octicon category.icon, width: 55, class: "fill-current m-auto md:m-0 md:mr-6" %>
+      <div class="my-auto text-center text-2xl text-beaver-400 font-semibold">
         <%= category.name %>
       </div>
-    </div>
+    </a>
   <% end %>
 </div>
