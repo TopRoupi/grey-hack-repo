@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
   before_action :set_post, only: %i[edit update destroy]
 
   # GET /posts or /posts.json
@@ -65,11 +66,12 @@ class PostsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_post
-    @post = current_user.posts.find(params[:id])
+    @post = Post.find(params[:id])
+    redirect_to :root if @post.user != current_user
   end
 
   # Only allow a list of trusted parameters through.
   def post_params
-    params.require(:post).permit(:user_id, :title, :category_id, :summary, :readme, scripts_attributes: [:content, :id])
+    params.require(:post).permit(:title, :category_id, :summary, :readme, scripts_attributes: [:content, :id])
   end
 end
