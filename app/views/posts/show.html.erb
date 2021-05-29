@@ -17,8 +17,6 @@
   </div>
 <% end %>
 
-<div class="w-full rounded-xl py-4 px-4 bg-beaver-850 mt-4">
-  <pre>
-<%= @post.scripts.first.content %>
-  </pre>
+<div class="w-full rounded-xl py-4 px-4 bg-beaver-850 mt-4 overflow-x-auto">
+<%== @post.scripts.last.highlighted_content %>
 </div>

@@ -33,4 +33,5 @@
 /node_modules
 /yarn-error.log
 yarn-debug.log*
+source.src
 .yarn-integrity

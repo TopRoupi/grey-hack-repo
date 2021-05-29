@@ -10,11 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_28_022708) do
+ActiveRecord::Schema.define(version: 2021_05_29_053102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "timescaledb"
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -67,6 +66,8 @@ ActiveRecord::Schema.define(version: 2021_05_28_022708) do
     t.string "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "highlighted_content"
+    t.string "old_content"
     t.index ["post_id"], name: "index_scripts_on_post_id"
   end
 
