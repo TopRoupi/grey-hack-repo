@@ -13,6 +13,7 @@ class Post < ApplicationRecord
   belongs_to :category # , through: :post_categories
   has_many :post_categories
   has_many :scripts, dependent: :destroy
+  has_rich_text :readme
 
   validates :title, presence: true, length: {minimum: 3}
   validates :summary, presence: true, length: {minimum: 10}

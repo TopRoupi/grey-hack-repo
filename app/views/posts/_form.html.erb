@@ -6,6 +6,7 @@
       <%= "post #{error}" %>
     <% end %>
   <% end %>
+  <%= post.errors.to_h %>
 
   <div class="flex flex-wrap overflow-hidden sm:-mx-3">
     <div class="w-full overflow-hidden sm:w-1/2 sm:my-3 sm:px-3">
@@ -15,9 +16,12 @@
       <%= f.association :category, prompt: "Select a category", collection: Category.all %>
     </div>
   </div>
+
   <%= f.input :summary, as: :text%>
-  <%# <%= f.input :readme, as: :text, label: "Readme (optional)"%>
+  <%= f.input :readme, as: :rich_text_area, label: "Readme (optional)", input_html: {class: "border-beaver-850"}%>
+
   <p>scripts</p>
+
   <%= f.simple_fields_for(:scripts) do |ff| %>
     <%= ff.input :content, as: :text%>
   <% end %>

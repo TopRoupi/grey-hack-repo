@@ -15,3 +15,6 @@ ActiveStorage.start()
 import "controllers"
 
 require("stylesheets/application.scss")
+
+require("trix")
+require("@rails/actiontext")
