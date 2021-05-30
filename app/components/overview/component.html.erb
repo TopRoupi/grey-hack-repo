@@ -1,11 +1,9 @@
 <br>
-<%= render(Overview::Categories::Component.new(categories: @categories.first(3))) %>
-<br>
-<%= render(Overview::Categories::Component.new(categories: @categories.last(3))) %>
+<%= render(Categories::Grid::Component.new(categories: @categories)) %>
 
 <div class="text-center text-3xl font-semibold text-beaver-300 mt-6"> Newest Posts </div>
 
 <br>
 <% @posts.each do |post| %>
-  <%= render(Overview::PostCard::Component.new(post: post)) %>
+  <%= render(Posts::Card::Component.new(post: post)) %>
 <% end %>

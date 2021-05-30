@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   get "posts", to: "home#index"
+  get "categories/:id", to: "categories#show", as: "category"
 end

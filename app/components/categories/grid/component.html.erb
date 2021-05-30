@@ -1,0 +1,5 @@
+<div class="flex flex-wrap -mx-2 overflow-hidden">
+  <% @categories.each do |category| %>
+    <%= render(Categories::Card::Component.new(category: category, link: @categories.length != 1)) %>
+  <% end %>
+</div>

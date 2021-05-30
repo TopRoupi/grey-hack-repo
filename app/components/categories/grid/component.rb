@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Overview::Categories::Component < ApplicationComponent
+class Categories::Grid::Component < ApplicationComponent
   def initialize(categories:)
     @categories = categories
   end

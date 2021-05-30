@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Overview::PostCard::Component < ApplicationComponent
+class Posts::Card::Component < ApplicationComponent
   def initialize(post:)
     @post = post
   end
