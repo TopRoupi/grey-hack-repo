@@ -7,7 +7,7 @@
   <%= octicon @post.category.icon, height: 16, class: "fill-current self-end mb-1 ml-2" %>
 </div>
 
-<div class="text-beaver-300 text-center mt-3">
+<div class="text-beaver-300 text-center mt-3 mb-10">
   <%= @post.summary %>
 </div>
 
@@ -17,6 +17,6 @@
   </div>
 <% end %>
 
-<div class="w-full rounded-xl py-4 px-4 bg-beaver-850 mt-4 overflow-x-auto">
+<div class="w-full mt-10 rounded-xl py-4 px-4 bg-beaver-850 mt-4 overflow-x-auto">
 <%== @post.scripts.last.highlighted_content %>
 </div>
