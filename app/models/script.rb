@@ -3,7 +3,7 @@
 class Script < ApplicationRecord
   belongs_to :post
 
-  validates :content, presence: true, length: {minimum: 10}
+  validates :content, presence: true, length: {minimum: 10, maximum: 80_000}
 
   after_commit :set_highlighted_content, on: [:create, :update]
 

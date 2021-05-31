@@ -15,8 +15,9 @@ class Post < ApplicationRecord
   has_many :scripts, dependent: :destroy
   has_rich_text :readme
 
-  validates :title, presence: true, length: {minimum: 3}
-  validates :summary, presence: true, length: {minimum: 10}
+  validates :title, presence: true, length: {minimum: 3, maximum: 32}
+  validates :summary, presence: true, length: {minimum: 6, maximum: 230}
+  validates :readme, length: {maximum: 50_000}
 
   validates_with PostValidator
 
