@@ -21,6 +21,7 @@ gem "view_component", "~> 2.26.1"
 gem "stimulus_reflex", "~> 3.4"
 gem "devise"
 gem "octicons_helper"
+gem "friendly_id", "~> 5.4.0"
 
 # Use Active Storage variant
 gem "image_processing", "~> 1.2"
