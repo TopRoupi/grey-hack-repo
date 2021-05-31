@@ -12,4 +12,10 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
     get category_path @category
     assert_response :success
   end
+
+  test "categories_path should return a path with friendly_id" do
+    @category.name = "pedra"
+    @category.save
+    assert_includes category_path(@category), "pedra"
+  end
 end
