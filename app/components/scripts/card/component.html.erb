@@ -1,0 +1,11 @@
+<div class="w-full mt-10 rounded-xl py-4 px-4 bg-beaver-850 mt-4 overflow-x-auto"
+     data-controller="scripts--card--component">
+  <button class="float-right border px-3 py-1 rounded-md border-beaver-400 hover:bg-beaver-700 focus:outline-none focus:ring-2"
+          data-action="click->scripts--card--component#copy"
+          data-id="<%= @script.id %>">
+          Copy
+  </button>
+  <div data-scripts--card--component-target="source">
+    <%== @script.highlighted_content %>
+  </div>
+</div>

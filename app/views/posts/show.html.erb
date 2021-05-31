@@ -17,6 +17,4 @@
   </div>
 <% end %>
 
-<div class="w-full mt-10 rounded-xl py-4 px-4 bg-beaver-850 mt-4 overflow-x-auto">
-<%== @post.scripts.last.highlighted_content %>
-</div>
+<%= render(Scripts::Card::Component.new(script: Script.last)) %>
