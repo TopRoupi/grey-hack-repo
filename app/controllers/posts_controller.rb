@@ -11,7 +11,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
-    @post = Post.find(params[:id])
+    @post = Post.eager_load(:user, :category, :scripts).with_rich_text_readme.find(params[:id])
   end
 
   # GET /posts/new

@@ -17,4 +17,4 @@
   </div>
 <% end %>
 
-<%= render(Scripts::Card::Component.new(script: Script.last)) %>
+<%= render(Scripts::Card::Component.new(script: @post.scripts.last)) %>

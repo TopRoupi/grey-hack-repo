@@ -7,5 +7,6 @@
   </button>
   <div data-scripts--card--component-target="source">
     <%== @script.highlighted_content %>
+    <%= "refresh this page if this script didn't updated yet" if @script.highlighted_content.blank?%>
   </div>
 </div>
