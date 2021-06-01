@@ -1,0 +1,4 @@
+<div class="flex justify-start">
+  <%= render(Users::PostsBox::CategoriesList::Component.new(user: @user, categories: Category.all)) %>
+  <%= render(Users::PostsBox::PostsList::Component.new(user: @user, posts: @posts)) %>
+</div>

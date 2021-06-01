@@ -1,0 +1,19 @@
+<div id="<%= dom_id(@user, "posts_box_categories") %>" class="w-24 -mx-2 -mt-2 md:w-40">
+  <div
+    data-reflex="click->Users::PostsBox::ComponentReflex#change"
+    class="w-full cursor-pointer"
+    data-category="all"
+    data-user="<%= @user.id %>">
+    <%= render(Categories::Card::Component.new(category: :all, link: nil, small: true, active: @active_tab == :all)) %>
+  </div>
+
+  <% Category.all.each do |category| %>
+    <div
+      data-reflex="click->Users::PostsBox::ComponentReflex#change"
+      class="w-full cursor-pointer"
+      data-category="<%= category.id %>"
+      data-user="<%= @user.id %>">
+      <%= render(Categories::Card::Component.new(category: category, link: nil, small: true, active: @active_tab == category)) %>
+    </div>
+  <% end %>
+</div>

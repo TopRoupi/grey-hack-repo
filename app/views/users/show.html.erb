@@ -1,13 +1,2 @@
-<div class="flex justify-start">
-  <div class="w-24 -mx-2 -mt-2 md:w-40">
-    <%= render(Categories::Card::Component.new(category: :all, link: nil, small: true, active: true)) %>
-    <% Category.all.each do |category| %>
-      <%= render(Categories::Card::Component.new(category: category, link: category_path(category), small: true)) %>
-    <% end %>
-  </div>
-  <div class="bg-beaver-850 w-full rounded-lg mx-2 overflow-y-auto p-1">
-    <% @user.posts.each do |post| %>
-      <%= render(Posts::Card::Component.new(post: post)) %>
-    <% end %>
-  </div>
-</div>
+<%= render(Users::PostsBox::Component.new(user: @user)) %>
+

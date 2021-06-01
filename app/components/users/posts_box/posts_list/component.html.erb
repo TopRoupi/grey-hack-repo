@@ -1,0 +1,5 @@
+<div id="<%= dom_id(@user, "posts_box_list") %>" class="bg-beaver-850 w-full rounded-lg mx-2 overflow-y-auto pt-3 -pb-3 px-2">
+  <% @posts.each do |post| %>
+    <%= render(Posts::Card::Component.new(post: post)) %>
+  <% end %>
+</div>
