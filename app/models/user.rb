@@ -8,6 +8,8 @@ class User < ApplicationRecord
   friendly_id :name
 
   validates :name, length: {maximum: 16, minimum: 3}, presence: true, uniqueness: true, format: {with: /(^[\d\w-]*$)/, message: "name can only include letters numbers and _ -"}
-  validates :password, length: {minimum: 6, maximum: 32}, presence: true
+  # validates :password, length: {minimum: 6, maximum: 32}, presence: true
+  validates :btc, length: {minimum: 2, maximum: 32}
+  validates :bank, length: {is: 8}
   has_many :posts
 end

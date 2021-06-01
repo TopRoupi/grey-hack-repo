@@ -1,2 +1,23 @@
-<%= render(Users::PostsBox::Component.new(user: @user)) %>
+<div class="flex justify-center items-start mb-5">
+  <img class="h-20 w-20 rounded-full ml-2" src="/assets/user.png" alt="">
+  <div class="flex ml-2 flex-col">
+    <span class="font-semibold text-lg"><%= @user.name %></span>
+    <div class="flex">
+      <div class="flex flex-col">
+        <% if @user.btc %>
+          <span class="mr-3">BTC: <%= @user.btc %></span>lFRHzcoF
+        <% end %>
+        <% if @user.bank %>
+          <span class="mr-3">bank: <%= @user.bank %></span>
+        <% end %>
+      </div>
+      <span>total posts: <%= @user.posts.count %></span>
+    </div>
+  </div>
+</div>
 
+<div class="block text-center text-2xl font-semibold mb-5">
+  <%= @user.name.capitalize %>'s posts
+</div>
+
+<%= render(Users::PostsBox::Component.new(user: @user)) %>
