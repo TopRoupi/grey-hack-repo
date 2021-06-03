@@ -1,6 +1,8 @@
 class Users::PostsBox::ComponentReflex < ApplicationReflex
   def change
     @user = User.find(element.dataset[:user])
+    puts(current_user.name) if current_user
+    puts(@user.name)
 
     if element.dataset[:category] == "all"
       @category = :all
@@ -13,6 +15,7 @@ class Users::PostsBox::ComponentReflex < ApplicationReflex
     morph(dom_id(@user, "posts_box_categories"),
       render(Users::PostsBox::CategoriesList::Component.new(user: @user, categories: Category.all, active_tab: @category)))
     morph(dom_id(@user, "posts_box_list"),
+      # render(Posts::Card::Component.new(post: @posts.first)))
       render(Users::PostsBox::PostsList::Component.new(user: @user, posts: @posts)))
   end
 end
