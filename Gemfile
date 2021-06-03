@@ -17,8 +17,8 @@ gem "jbuilder", "~> 2.7"
 
 gem "redis", "~> 4.0", require: ["redis", "redis/connection/hiredis"]
 gem "hiredis"
-gem "view_component", "~> 2.26.1"
-gem "stimulus_reflex", "~> 3.4"
+gem "view_component"
+gem "stimulus_reflex", "~> 3.5.0-pre1"
 gem "devise"
 gem "octicons_helper"
 gem "friendly_id", "~> 5.4.0"

@@ -12,7 +12,7 @@
     "language-greyscript": "https://github.com/Elec0/language-greyscript",
     "postcss": "^7",
     "stimulus": "^2.0.0",
-    "stimulus_reflex": "3.4.1",
+    "stimulus_reflex": "3.5.0-pre1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "tailwindcss-stimulus-components": "^2.1.2",
     "trix": "^1.2.0",
