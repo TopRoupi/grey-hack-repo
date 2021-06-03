@@ -29,6 +29,8 @@ gem "image_processing", "~> 1.2"
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.4", require: false
 
+gem "aws-sdk-s3", require: false
+
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
   gem "factory_bot_rails"

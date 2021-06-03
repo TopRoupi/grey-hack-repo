@@ -18,3 +18,5 @@ require("stylesheets/application.scss")
 
 require("trix")
 require("@rails/actiontext")
+
+import "../trix-editor-overrides"
