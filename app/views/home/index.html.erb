@@ -1,1 +1,19 @@
-<%= render(Overview::Component.new()) %>
+<%# <%= render(Overview::Component.new()) %>
+
+<button data-reflex="click->Example#test">Test</button>
+
+<br>
+view_component rendered by the view:
+<%= render(Posts::Card::Component.new(post: Post.first)) %>
+
+<br>
+view_component rendered by reflex:
+<div id="render_here">
+</div>
+
+<br>
+current_user id : <%= current_user.id if current_user %>
+<br>
+<%= link_to "login", new_user_session_path %>
+<br>
+<%= link_to "logout", destroy_user_session_path, method: :delete %> 
