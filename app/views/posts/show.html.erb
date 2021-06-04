@@ -1,3 +1,9 @@
+<% unless @post.readme.embeds_attachments.blank? %>
+  <%= url_for @post.readme.embeds_attachments.last %>
+  <%= rails_blob_path @post.readme.embeds_attachments.last %>
+<% end %>
+
+
 <div class="text-center text-3xl font-semibold">
   <%= @post.title.capitalize %>
 </div>
