@@ -1,6 +1,5 @@
 <% content_for :title, "Log In" %>
 
-
 <%= render "devise/shared/form_card" do %>
   <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <%= f.input :name,
