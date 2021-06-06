@@ -1,6 +1,8 @@
 module.exports = {
   purge: [
     "./app/**/*.html.erb",
+    "./app/components/**/*.rb",
+    "./app/components/**/**/*.rb",
     "./config/initializers/*.rb",
     "./app/helpers/**/*.rb",
     "./app/javascript/**/*.js",
