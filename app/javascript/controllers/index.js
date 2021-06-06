@@ -16,7 +16,7 @@ application.load(
     definitionsFromContext(context_components)
   )
 )
-StimulusReflex.initialize(application, { consumer, controller, isolate: true })
+StimulusReflex.initialize(application, { controller, isolate: true })
 StimulusReflex.debug = process.env.RAILS_ENV === 'development'
 
 import { Alert, Dropdown } from "tailwindcss-stimulus-components"
