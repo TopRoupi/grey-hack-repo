@@ -15,6 +15,12 @@
   <body class="bg-beaver-900 text-white">
     <%= render(Layout::NavBar::Component.new()) %>
     <div class="container max-w-5xl mx-auto mb-8 px-4">
+      <% if alert %>
+        <%= render(Layout::Alert::Component.new(alert, type: :error)) %>
+      <% end %>
+      <% if notice %>
+        <%= render(Layout::Alert::Component.new(notice, type: :info)) %>
+      <% end %>
       <%= yield %>
     </div>
   </body>
