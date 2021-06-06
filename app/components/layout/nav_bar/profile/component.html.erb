@@ -5,7 +5,7 @@
       <img class="h-8 w-8 rounded-full" src="<%= current_user ? current_user.avatar : "/assets/user.png" %>" alt="">
     </button>
   </div>
-  <div class="origin-top-right hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1" data-dropdown-target="menu">
+  <div class="origin-top-right z-50 hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1" data-dropdown-target="menu">
     <!-- Active: "bg-gray-100", Not Active: "" -->
     <% if current_user %>
       <a href="<%= user_path current_user %>" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" role="menuitem" tabindex="-1" id="user-menu-item-0">

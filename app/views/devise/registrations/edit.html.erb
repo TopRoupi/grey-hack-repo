@@ -1,4 +1,6 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="text-center">
+  <h2 class="text-2xl mb-4">Edit <%= resource_name.to_s.humanize %></h2>
+</div>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.error_notification %>
@@ -36,7 +38,7 @@
                 input_html: { autocomplete: "current-password" } %>
   </div>
 
-  <div class="form-actions">
+  <div class="form-actions text-right">
     <%= f.button :submit, "Update" %>
   </div>
 <% end %>

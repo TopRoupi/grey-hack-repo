@@ -7,7 +7,7 @@ Category.create name: "Tools", icon: "tools"
 Category.create name: "Utils", icon: "terminal"
 Category.create name: "Others", icon: "number"
 
-user = User.create name: "user", password: "123456"
+user = User.create name: "user", password: "123456", email: "aaaaaa@aaaaaa"
 
 Category.all.each do |category|
   20.times do
