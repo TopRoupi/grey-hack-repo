@@ -1,3 +1,4 @@
+
 <div class="text-center text-3xl font-semibold">
   <%= @post.title.capitalize %>
 </div>
@@ -5,6 +6,10 @@
 <div class="text-center flex justify-center">
   <%= @post.category.name %>
   <%= octicon @post.category.icon, height: 16, class: "fill-current self-end mb-1 ml-2" %>
+  <a href="<%= user_path @post.user %>" class="hover:underline text-center ml-2 flex justify-center items-center text-blue-400">
+    from <%= @post.user.name %>
+  <img class="h-4 w-4 rounded-full ml-2" src="<%= @post.user.avatar ? @post.user.avatar : "/assets/user.png" %>" alt="">
+  </a>
 </div>
 
 <div class="text-beaver-300 text-center mt-3">
@@ -19,8 +24,4 @@
 
 <%= render(Scripts::Card::Component.new(script: @post.scripts.last)) %>
 
-<a href="<%= user_path @post.user %>" class="hover:underline text-center mt-10 mb-10 flex justify-center items-center text-blue-400">
-  from <%= @post.user.name %>
-  <img class="h-8 w-8 rounded-full ml-2" src="/assets/user.png" alt="">
-</a>
 

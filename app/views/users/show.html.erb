@@ -1,5 +1,5 @@
 <div class="flex justify-center items-start mb-5">
-  <img class="h-20 w-20 rounded-full ml-2" src="<%= current_user ? current_user.avatar : "/assets/user.png" %>" alt="">
+  <img class="h-20 w-20 rounded-full ml-2" src="<%= @user.avatar ? @user.avatar : "/assets/user.png" %>" alt="">
   <div class="flex ml-2 flex-col">
     <span class="font-semibold text-lg"><%= @user.name %></span>
     <div class="flex">
