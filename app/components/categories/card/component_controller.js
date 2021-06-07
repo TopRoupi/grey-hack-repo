@@ -4,8 +4,6 @@ export default class extends ApplicationController {
   static targets = ["icon"]
 
   connect() {
-    console.log(this.element)
-    console.log(this.iconTarget)
     this.element.onmouseenter = () => {this.shake()}
   }
 
