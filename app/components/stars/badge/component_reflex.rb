@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Stars::Badge::ComponentReflex < ApplicationReflex
   def star
     starable_id = element.dataset["starable-id"]

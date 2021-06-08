@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Users::PostsBox::ComponentReflex < ApplicationReflex
   def change
     @user = User.find(element.dataset[:user])

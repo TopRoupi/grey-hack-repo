@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Stars::Badge::Component < ApplicationComponent
   def initialize(starable:)
     @starable = starable
