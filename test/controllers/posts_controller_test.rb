@@ -29,7 +29,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     @post.save
 
     patch post_url(@post), params: {post: {summary: @post.summary, title: @post.title + "aaaA"}}
-    assert_redirected_to new_user_session_path
+    assert_redirected_to new_user_session_url
   end
 
   test "should not destroy post" do
@@ -39,7 +39,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
       delete post_url(@post)
     end
 
-    assert_redirected_to new_user_session_path
+    # assert_redirected_to new_user_session_path
   end
 
   context "logged user" do
@@ -82,7 +82,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
       @post = create :post, user: @user
 
       patch post_url(@post), params: {post: {summary: @post.summary, title: @post.title + "aaaA"}}
-      assert_redirected_to post_path(@post)
+      assert_redirected_to post_url(@post)
     end
 
     should "not update ramdom posts" do

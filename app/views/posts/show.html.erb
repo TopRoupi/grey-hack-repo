@@ -1,6 +1,7 @@
 
-<div class="text-center text-3xl font-semibold">
+<div class="flex justify-center text-3xl font-semibold items-end">
   <%= @post.title.capitalize %>
+  <%= render(Stars::Badge::Component.new(starable: @post)) %>
 </div>
 
 <div class="text-center flex justify-center">

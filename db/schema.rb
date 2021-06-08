@@ -10,11 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_06_172715) do
+ActiveRecord::Schema.define(version: 2021_06_07_231913) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "timescaledb"
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -110,6 +109,16 @@ ActiveRecord::Schema.define(version: 2021_06_06_172715) do
     t.index ["post_id"], name: "index_scripts_on_post_id"
   end
 
+  create_table "stars", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "starable_type", null: false
+    t.bigint "starable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["starable_type", "starable_id"], name: "index_stars_on_starable"
+    t.index ["user_id"], name: "index_stars_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
     t.string "bank"
@@ -131,4 +140,5 @@ ActiveRecord::Schema.define(version: 2021_06_06_172715) do
   add_foreign_key "posts", "categories"
   add_foreign_key "posts", "users"
   add_foreign_key "scripts", "posts"
+  add_foreign_key "stars", "users"
 end

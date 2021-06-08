@@ -11,5 +11,7 @@ class User < ApplicationRecord
   # validates :password, length: {minimum: 6, maximum: 32}, presence: true
   validates :btc, length: {minimum: 2, maximum: 32, allow_blank: true}
   validates :bank, length: {is: 8, allow_blank: true}
+
   has_many :posts
+  has_many :stars
 end

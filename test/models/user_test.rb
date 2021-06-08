@@ -66,14 +66,14 @@ class UserTest < ActiveSupport::TestCase
     refute_empty @user.errors[:password]
   end
 
-  test "valid with a password of length 32" do
-    @user.password = "a" * 32
+  test "valid with a password of length 128" do
+    @user.password = "a" * 128
     @user.valid?
     assert_empty @user.errors[:password]
   end
 
-  test "invalid with a password of length 33" do
-    @user.password = "a" * 33
+  test "invalid with a password of length 129" do
+    @user.password = "a" * 129
     @user.valid?
     refute_empty @user.errors[:password]
   end

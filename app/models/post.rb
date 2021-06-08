@@ -14,6 +14,7 @@ class Post < ApplicationRecord
   has_many :post_categories
   has_many :scripts, dependent: :destroy
   has_rich_text :readme
+  has_many :stars, as: :starable
 
   validates :title, presence: true, length: {minimum: 3, maximum: 32}
   validates :summary, presence: true, length: {minimum: 6, maximum: 230}
