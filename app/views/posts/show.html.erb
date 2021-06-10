@@ -9,7 +9,7 @@
   <%= octicon @post.category.icon, height: 16, class: "fill-current self-end mb-1 ml-2" %>
   <a href="<%= user_path @post.user %>" class="hover:underline text-center ml-2 flex justify-center items-center text-blue-400">
     from <%= @post.user.name %>
-  <img class="h-4 w-4 rounded-full ml-2" src="<%= @post.user.avatar ? @post.user.avatar : "/assets/user.png" %>" alt="">
+  <img class="h-4 w-4 rounded-full ml-2" src="<%= user_avatar(@post.user) %>" alt="">
   </a>
 </div>
 
@@ -24,5 +24,3 @@
 <% end %>
 
 <%= render(Scripts::Card::Component.new(script: @post.scripts.last)) %>
-
-

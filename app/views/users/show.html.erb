@@ -1,5 +1,5 @@
 <div class="flex justify-center items-start mb-5">
-  <img class="h-20 w-20 rounded-full ml-2" src="<%= @user.avatar ? @user.avatar : "/assets/user.png" %>" alt="">
+  <img class="h-20 w-20 rounded-full ml-2" src="<%= user_avatar(@user) %>" alt="">
   <div class="flex ml-2 flex-col">
     <span class="font-semibold text-lg"><%= @user.name %></span>
     <div class="flex">
@@ -21,3 +21,11 @@
 </div>
 
 <%= render(Users::PostsBox::Component.new(user: @user)) %>
+
+<div class="block text-center text-2xl font-semibold mb-5 mt-5">
+  <%= @user.name.capitalize %>'s stars
+</div>
+
+<% @user.stars.each do |star| %>
+  <%= render(Posts::Card::Component.new(post: star.starable)) %>
+<% end %>
