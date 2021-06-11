@@ -1,7 +1,7 @@
 <% content_for :title, "Log In" %>
 
 <%= render "devise/shared/form_card" do %>
-  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: "false" }) do |f| %>
     <%= f.input :name,
       required: true,
       autofocus: true,

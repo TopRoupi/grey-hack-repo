@@ -31,6 +31,9 @@ gem "bootsnap", ">= 1.4.4", require: false
 
 gem "aws-sdk-s3", require: false
 
+gem "hotwire-rails", "~> 0.1.3"
+gem "simple_form", "~> 5.1"
+
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
   gem "factory_bot_rails"
@@ -57,4 +60,3 @@ end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem "simple_form", "~> 5.1"
