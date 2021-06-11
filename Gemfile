@@ -58,3 +58,5 @@ end
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "simple_form", "~> 5.1"
+
+gem "hotwire-rails", "~> 0.1.3"

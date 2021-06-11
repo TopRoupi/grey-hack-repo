@@ -4,19 +4,19 @@
 // that code so it'll be compiled.
 
 import Rails from "@rails/ujs"
-import Turbolinks from "turbolinks"
+import { Turbo, cable } from "@hotwired/turbo-rails"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
 Rails.start()
-Turbolinks.start()
 ActiveStorage.start()
 
-import "controllers"
-
 require("stylesheets/application.scss")
-
 require("trix")
 require("@rails/actiontext")
 
 import "../trix-editor-overrides"
+
+window.Turbo = Turbo
+
+import "controllers"
