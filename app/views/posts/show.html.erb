@@ -24,3 +24,11 @@
 <% end %>
 
 <%= render(Scripts::Card::Component.new(script: @post.scripts.last)) %>
+<br>
+<div class="text-2xl text-center block">
+  Post's comments
+</div>
+<br>
+<%= render(Comments::List::Component.new(commentable: @post)) %>
+<br>
+<%= render(Comments::Form::Component.new()) %>

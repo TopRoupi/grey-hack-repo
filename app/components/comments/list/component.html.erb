@@ -1,0 +1,5 @@
+<div id="<%= dom_id @commentable, "comments" %>" >
+  <% @comments.each do |comment| %>
+    <%= render(Comments::Card::Component.new(comment: comment)) %>
+  <% end %>
+</div>

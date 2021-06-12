@@ -1,0 +1,11 @@
+<div class="flex justify-center mb-2">
+  <img class="rounded-full h-12 w-12 mt-3" src="<%= helpers.user_avatar @comment.user %>">
+  <div class="w-96 ml-2 overflow-x-hidden">
+    <div class="block text-sm text-chestnut-400">
+      <%= @comment.user.name %>
+    </div>
+    <pre>
+<%= @comment.content %>
+    </pre>
+  </div>
+</div>
