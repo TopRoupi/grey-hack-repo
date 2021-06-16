@@ -1,11 +1,19 @@
 <div class="flex justify-center mb-2">
   <img class="rounded-full h-12 w-12 mt-3" src="<%= helpers.user_avatar @comment.user %>">
   <div class="w-96 ml-2 overflow-x-hidden">
-    <div class="block text-sm text-chestnut-400">
+    <div class="flex text-sm text-chestnut-400">
       <%= @comment.user.name %>
+      <div class="ml-auto">
+        <span class="hover:underline cursor-pointer text-blue-400 mr-2">
+          edit
+        </span>
+        <span class="hover:underline cursor-pointer text-red-400" data-reflex="click->Comments::Form::ComponentReflex#destroy" data-comment_id="<%= @comment.id %>">
+          delete
+        </span>
+      </div>
     </div>
-    <pre>
-<%= @comment.content %>
-    </pre>
+    <div>
+      <%= @comment.content %>
+    </div>
   </div>
 </div>
