@@ -1,14 +1,15 @@
-<div id="<%= dom_id(@comment) %>"
-     class="flex justify-center"
-     data-controller="comments--form--component"
-     data-comments--form--component-target="form">
-  <img class="rounded-full h-12 w-12 mt-3" src="<%= helpers.current_user_avatar %>">
-  <div class="w-96 ml-2">
-    <%= simple_form_for(@comment, url: request.url) do |f| %>
-      <%= f.input :content, label: "Comment", as: :text, wrapper_html: { class: "mb-none" }, input_html: {data: {"comments--form--component-target": "input"}} %>
-      <div class="text-right">
-        <%= f.button :submit, data: {action: "click->comments--form--component#create"} %>
-      </div>
-    <% end %>
+<div id="<%= dom_id(@comment) %>">
+  <div class="flex justify-center"
+       data-controller="comments--form--component"
+       data-comments--form--component-target="form">
+    <img class="rounded-full h-12 w-12 mt-3" src="<%= helpers.current_user_avatar %>">
+    <div class="w-96 ml-2">
+      <%= simple_form_for(@comment, url: request.url) do |f| %>
+        <%= f.input :content, label: "Comment", as: :text, wrapper_html: { class: "mb-none" }, input_html: {data: {"comments--form--component-target": "input"}} %>
+        <div class="text-right">
+          <%= f.button :submit, data: {action: "click->comments--form--component##{@comment.created_at ? "update" : "create"}", "comment-id": @comment.id} %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

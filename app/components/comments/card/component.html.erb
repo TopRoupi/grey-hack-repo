@@ -1,13 +1,17 @@
-<div class="flex justify-center mb-2">
+<div id="<%= dom_id @comment %>" class="flex justify-center mb-2">
   <img class="rounded-full h-12 w-12 mt-3" src="<%= helpers.user_avatar @comment.user %>">
   <div class="w-96 ml-2 overflow-x-hidden">
     <div class="flex text-sm text-chestnut-400">
       <%= @comment.user.name %>
       <div class="ml-auto">
-        <span class="hover:underline cursor-pointer text-blue-400 mr-2">
+        <span class="hover:underline cursor-pointer text-blue-400 mr-2"
+              data-reflex="click->Comments::Form::ComponentReflex#edit"
+              data-comment-id="<%= @comment.id %>">
           edit
         </span>
-        <span class="hover:underline cursor-pointer text-red-400" data-reflex="click->Comments::Form::ComponentReflex#destroy" data-comment_id="<%= @comment.id %>">
+        <span class="hover:underline cursor-pointer text-red-400"
+              data-reflex="click->Comments::Form::ComponentReflex#destroy"
+              data-comment-id="<%= @comment.id %>">
           delete
         </span>
       </div>
@@ -15,5 +19,10 @@
     <div>
       <%= @comment.content %>
     </div>
+    <% if @comment.updated_at != @comment.created_at %>
+      <div class="text-sm text-beaver-400">
+        modified
+      </div>
+    <% end %>
   </div>
 </div>

@@ -15,6 +15,15 @@ export default class extends ApplicationController {
     event.target.disabled = true
   }
 
+  update(event) {
+    event.preventDefault()
+    this.stimulate(
+      'Comments::Form::ComponentReflex#update', event.target
+    )
+    event.target.disabled = true
+  }
+
+
   createSuccess(element, reflex, noop, reflexId) {
     var error_hint = this.formTarget.querySelector('.error')
     if(error_hint == null) {
