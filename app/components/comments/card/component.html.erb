@@ -3,18 +3,20 @@
   <div class="w-96 ml-2 overflow-x-hidden">
     <div class="flex text-sm text-chestnut-400">
       <%= @comment.user.name %>
-      <div class="ml-auto">
-        <span class="hover:underline cursor-pointer text-blue-400 mr-2"
-              data-reflex="click->Comments::Form::ComponentReflex#edit"
-              data-comment-id="<%= @comment.id %>">
-          edit
-        </span>
-        <span class="hover:underline cursor-pointer text-red-400"
-              data-reflex="click->Comments::Form::ComponentReflex#destroy"
-              data-comment-id="<%= @comment.id %>">
-          delete
-        </span>
-      </div>
+      <% if current_user && current_user == @comment.user %>
+        <div class="ml-auto">
+          <span class="hover:underline cursor-pointer text-blue-400 mr-2"
+            data-reflex="click->Comments::Form::ComponentReflex#edit"
+            data-comment-id="<%= @comment.id %>">
+            edit
+          </span>
+          <span class="hover:underline cursor-pointer text-red-400"
+            data-reflex="click->Comments::Form::ComponentReflex#destroy"
+            data-comment-id="<%= @comment.id %>">
+            delete
+          </span>
+        </div>
+      <% end %>
     </div>
     <div>
       <%= @comment.content %>

@@ -1,10 +1,11 @@
-<div data-controller="categories--card--component" class="my-2 px-2 <%= @ongrid ? "w-1/3" : "w-full" %> overflow-hidden">
+<div data-controller="categories--card--component"
+  class="my-2 px-2 <%= @ongrid ? "w-1/3" : "w-full" %> overflow-hidden">
 <!-- pure go horse i will do this properly later :v  -->
   <a
     <% if @link %>
       href="<%= @link %>"
     <% end %>
-    class="<%= @active ? "bg-beaver-850" : "bg-beaver-800 hover:bg-beaver-700" %> <%= @small ? "py-2 justify-start md:pl-3" : "py-4 justify-center" %> text-white text-beaver-300 rounded-lg w-full flex flex-col hover:text-white text-beaver-400 md:flex-row items-center"
+    class="<%= @active ? "bg-beaver-850" : " bg-gradient-to-r from-beaver-800 to-beaver-850" %> <%= @small ? "py-2 justify-start md:pl-3" : "py-4 justify-center" %> text-white text-beaver-300 rounded-lg w-full flex flex-col hover:text-white text-beaver-300 md:flex-row items-center"
     >
     <%= octicon @icon, width: @small ? 24 : 55, class: "fill-current #{ @small ? "mr-0 md:mr-2" : "m-auto md:m-0 md:mr-6"}", data: {"categories--card--component-target": "icon"} %>
     <div class="my-auto text-center <%= @small ? "text-md" : "text-2xl" %>  font-semibold">

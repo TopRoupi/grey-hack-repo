@@ -1,3 +1,7 @@
+<% if @categories.length > 1 %>
+  <div class="text-center text-3xl font-semibold text-beaver-300 mt-2 mb-4"> Categories </div>
+<% end %>
+
 <%= render(Categories::Grid::Component.new(categories: @categories)) %>
 
 <div class="text-center text-3xl font-semibold text-beaver-300 mt-2 mb-4"> Newest Posts </div>

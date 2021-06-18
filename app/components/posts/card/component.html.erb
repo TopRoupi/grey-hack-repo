@@ -1,25 +1,30 @@
 <div class="flex <%= "flex-col sm:flex-row" if current_user && @post.user == current_user %>">
-  <a href="<%= post_path @post %>" class="bg-beaver-800 hover:bg-beaver-700 w-full px-4 py-3 block <%= (current_user && @post.user == current_user) ? "sm:rounded-r-none mb-0 sm:mb-4 rounded-t-lg sm:rounded-lg" : "mb-4 rounded-lg" %>">
-    <div class="flex items-center sm:items-end flex-col sm:flex-row mb-1">
-      <span class="font-semibold text-xl">
-        <%= @post.title.capitalize %>
-      </span>
-      <div class="text-beaver-300 ml-1">
-        from <%= @post.user.name %>
-      </div>
-      <div class="ml-3 flex">
-        <%= @post.category.name %>
-        <%= octicon @post.category.icon, height:16, class: "fill-current ml-2 self-end mb-1" %>
-      </div>
-    </div>
-    <div class="text-beaver-300 text-center sm:text-left">
-      <%= @post.summary %>
-    </div>
+  <a href="<%= post_path @post %>"
+     class="bg-beaver-800 hover:bg-beaver-700 w-full px-4 py-3 block <%= (current_user && @post.user == current_user) ? "sm:rounded-r-none mb-0 sm:mb-4 rounded-t-lg sm:rounded-lg" : "mb-4 rounded-lg" %>">
+     <div class="flex items-center sm:items-end flex-col sm:flex-row mb-1">
+       <span class="font-semibold text-xl">
+         <%= @post.title.capitalize %>
+       </span>
+       <div class="text-beaver-300 ml-1">
+         from <%= @post.user.name %>
+       </div>
+       <div class="ml-3 flex">
+         <%= @post.category.name %>
+         <%= octicon @post.category.icon, height:16, class: "fill-current ml-2 self-end mb-1" %>
+       </div>
+       <div>
+         <%= render(Stars::Badge::Component.new(starable: @post, transparent: true, visual: true)) %>
+       </div>
+     </div>
+     <div class="text-beaver-300 text-center sm:text-left">
+       <%= @post.summary %>
+     </div>
   </a>
   <% if current_user && @post.user == current_user %>
     <div class="flex justify-between">
-      <a href="<%= edit_post_path @post %>" class="mb-4 bg-denim-600 hover:bg-denim-500 flex w-full sm:w-auto items-center justify-center rounded-bl-lg sm:rounded-none px-2">
-        <%= octicon "pencil", height:20, class: "fill-current" %>
+      <a href="<%= edit_post_path @post %>"
+         class="mb-4 bg-denim-600 hover:bg-denim-500 flex w-full sm:w-auto items-center justify-center rounded-bl-lg sm:rounded-none px-2">
+         <%= octicon "pencil", height:20, class: "fill-current" %>
       </a>
       <%= link_to @post, method: :delete, class: "mb-4 bg-red-900 hover:bg-red-700 rounded-br-lg h-10 sm:h-auto sm:rounded-r-xl flex w-full sm:w-auto items-center justify-center px-2", data: { confirm: 'Are you sure?' } do %>
         <%= octicon "trash", height:20, class: "fill-current" %>
