@@ -1,0 +1,40 @@
+<% link = pagy_link_proc(pagy) %>
+<% def link_class(bg="bg-beaver-700 hover:bg-beaver-600") "px-2 py-2 w-12 justify-center font-medium flex items-center #{bg}" end %>
+<% link_disabled = "bg-beaver-800" %>
+<% link_active = "bg-beaver-500" %>
+
+<div class="flex justify-center">
+  <% if pagy.prev %>
+    <%= link_to "?page=#{pagy.prev}", class: "rounded-l-md #{link_class}" do %>
+      <%= octicon "arrow-left", class: "fill-current" %>
+    <% end %>
+  <% else %>
+    <div class="rounded-l-md <%= link_class link_disabled %>">
+      <%= octicon "arrow-left", class: "fill-current" %>
+    </div>
+  <% end %>
+
+  <% pagy.series.each do |item| %>
+    <% if item.is_a? Integer %>
+      <%= link_to item, "?page=#{item}", class: link_class %>
+    <% elsif item.is_a? String %>
+      <div class="<%= link_class link_active %>">
+        <%== item %>
+      </div>
+    <% elsif item == :gap %>
+      <div class="<%= link_class link_disabled %>">
+        <%== pagy_t("pagy.nav.gap") %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <% if pagy.next %>
+    <%= link_to "?page=#{pagy.next}", class: "rounded-r-md #{link_class}" do %>
+      <%= octicon "arrow-right", class: "fill-current" %>
+    <% end %>
+  <% else %>
+    <div class="rounded-r-md <%= link_class link_disabled %>">
+      <%= octicon "arrow-right", class: "fill-current" %>
+    </div>
+  <% end %>
+</div>
