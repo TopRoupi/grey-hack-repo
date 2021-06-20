@@ -10,7 +10,8 @@ class Stars::Badge::Component < ApplicationComponent
 
   def stared?
     if current_user
-      current_user.stars.where(starable: @starable).count == 1
+      # current_user.stars.where(starable: @starable).count == 1
+      @stars.any? { |s| s.user == current_user }
     else
       false
     end

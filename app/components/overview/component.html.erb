@@ -9,3 +9,5 @@
 <% @posts.each do |post| %>
   <%= render(Posts::Card::Component.new(post: post)) %>
 <% end %>
+
+<%== helpers.pagy_nav(@pagy) if @pagy %>
