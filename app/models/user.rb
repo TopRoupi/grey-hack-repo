@@ -14,5 +14,6 @@ class User < ApplicationRecord
 
   has_many :posts
   has_many :stars
+  has_many :starable_posts, through: :stars, source: "starable", source_type: "Post"
   has_many :comments
 end

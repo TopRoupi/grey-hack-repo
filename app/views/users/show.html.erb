@@ -26,6 +26,6 @@
   <%= @user.name.capitalize %>'s stars
 </div>
 
-<% @user.stars.each do |star| %>
-  <%= render(Posts::Card::Component.new(post: star.starable)) %>
+<% @user.starable_posts.eager.order('"stars_posts"."created_at"': :desc).each do |post| %>
+  <%= render(Posts::Card::Component.new(post: post)) %>
 <% end %>

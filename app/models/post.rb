@@ -24,4 +24,7 @@ class Post < ApplicationRecord
   validates_with PostValidator
 
   accepts_nested_attributes_for :scripts
+
+  scope :eager, -> { eager_load(:category, :user, stars: [:user]) }
+  scope :asc, -> { order(updated_at: :desc) }
 end
