@@ -1,0 +1,10 @@
+<a class="<%= @class %>"
+  <% if @reflex %>
+     data-reflex="click->Pagy::ComponentReflex#paginate"
+     data-page="<%= @page %>"
+  <% else %>
+     href="?page=<%= @page %>"
+  <% end %>
+   >
+   <%= content %>
+</a>

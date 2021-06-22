@@ -10,4 +10,4 @@
   <%= render(Posts::Card::Component.new(post: post)) %>
 <% end %>
 
-<%= render(partial: "pagy/nav", locals: { pagy: @pagy }) if @pagy %>
+<%= render(Pagy::Component.new(pagy: @pagy, reflex: true)) if @pagy %>
