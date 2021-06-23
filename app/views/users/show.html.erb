@@ -20,7 +20,7 @@
   <%= @user.name.capitalize %>'s posts
 </div>
 
-<%= render(Users::PostsBox::Component.new(user: @user)) %>
+<%= render(Users::PostsBox::Component.new(user: @user, posts: @posts, pagy: @pagy, active_tab: @category)) %>
 
 <div class="block text-center text-2xl font-semibold mb-5 mt-5">
   <%= @user.name.capitalize %>'s stars
