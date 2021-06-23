@@ -3,6 +3,6 @@
 class CategoriesController < ApplicationController
   def show
     @category = Category.friendly.find(params[:id])
-    @posts = Post.eager.asc.where(category: @category)
+    @pagy, @posts = pagy Post.eager.asc.where(category: @category)
   end
 end
