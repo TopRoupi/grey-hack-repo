@@ -1,6 +1,6 @@
 <div class="flex justify-center">
   <% if @pagy.prev %>
-    <%= render(link.new(page: @pagy.prev, reflex: @reflex, class: "rounded-l-md #{link_class}")) do %>
+    <%= render(link.new(page: @pagy.prev, reflex: @reflex, class: "rounded-l-md #{link_class}", link: @link)) do %>
       <%= octicon "arrow-left", class: "fill-current" %>
     <% end %>
   <% else %>
@@ -11,7 +11,7 @@
 
   <% @pagy.series.each do |item| %>
     <% if item.is_a? Integer %>
-      <%= render(link.new(page: item, reflex: @reflex, class: link_class)) do %>
+      <%= render(link.new(page: item, reflex: @reflex, class: link_class, link: @link)) do %>
         <%= item %>
       <% end %>
     <% elsif item.is_a? String %>
@@ -26,7 +26,7 @@
   <% end %>
 
   <% if @pagy.next %>
-    <%= render(link.new(page: @pagy.next, reflex: @reflex, class: "rounded-r-md #{link_class}")) do %>
+    <%= render(link.new(page: @pagy.next, reflex: @reflex, class: "rounded-r-md #{link_class}", link: @link)) do %>
       <%= octicon "arrow-right", class: "fill-current" %>
     <% end %>
   <% else %>

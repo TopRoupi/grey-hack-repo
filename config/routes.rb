@@ -8,5 +8,6 @@ Rails.application.routes.draw do
 
   get "posts", to: "home#index"
   get "users/:id", to: "users#show", as: "user"
+  get "users/:id/posts", to: "users#posts", as: "user_posts"
   get "categories/:id", to: "categories#show", as: "category"
 end

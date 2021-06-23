@@ -2,8 +2,9 @@
   <% if @reflex %>
      data-reflex="click-><%= @reflex %>"
      data-page="<%= @page %>"
-  <% else %>
-     href="?page=<%= @page %>"
+   <% else %>
+    <%# todo: just dont ? %>
+     href="<%= @link.blank? ? "?" : @link + "&" %>page=<%= @page %>"
   <% end %>
    >
    <%= content %>

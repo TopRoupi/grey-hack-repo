@@ -20,7 +20,9 @@
   <%= @user.name.capitalize %>'s posts
 </div>
 
-<%= render(Users::PostsBox::Component.new(user: @user, posts: @posts, pagy: @pagy, active_tab: @category)) %>
+<turbo-frame id="user_posts" src="<%= user_posts_path @user %>">
+  loading posts
+</turbo-frame>
 
 <div class="block text-center text-2xl font-semibold mb-5 mt-5">
   <%= @user.name.capitalize %>'s stars
