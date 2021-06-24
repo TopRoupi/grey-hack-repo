@@ -10,8 +10,11 @@ class Comments::Form::ComponentReflex < ApplicationReflex
     @comment.commentable = @commentable
 
     if @comment.save
-      update_comments_box
       update_comment_form
+
+      cable_ready
+        .insert_adjacent_html(selector: dom_id(@commentable, "comments"), html: render(Comments::Card::Component.new(comment: @comment), layout: false))
+        .broadcast
     else
       update_comment_form(comment: @comment)
     end
@@ -19,12 +22,16 @@ class Comments::Form::ComponentReflex < ApplicationReflex
 
   def destroy
     @comment.destroy
-    update_comments_box
+    cable_ready
+      .remove(selector: dom_id(@comment))
+      .broadcast
   end
 
   def update
     if @comment.update(comment_params)
-      update_comments_box
+      cable_ready
+        .morph(selector: dom_id(@comment), html: render(Comments::Card::Component.new(comment: @comment), layout: false))
+        .broadcast
     else
       update_comment_form(form: @comment, comment: @comment)
     end
