@@ -2,5 +2,6 @@
   <% @posts.each do |post| %>
     <%= render(Posts::Card::Component.new(post: post)) %>
   <% end %>
-  <%= render(Pagy::Component.new(pagy: @pagy, link: @link)) %>
+
+  <%= render(Pagy::Component.new(pagy: @pagy)) %>
 </div>
