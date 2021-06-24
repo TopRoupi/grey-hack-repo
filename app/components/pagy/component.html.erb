@@ -1,37 +1,15 @@
-<div class="flex justify-center">
-  <% if @pagy.prev %>
-    <%= render(link.new(page: @pagy.prev, reflex: @reflex, class: "rounded-l-md #{link_class}", link: @link)) do %>
-      <%= octicon "arrow-left", class: "fill-current" %>
-    <% end %>
-  <% else %>
-    <div class="rounded-l-md <%= link_class link_disabled %>">
-      <%= octicon "arrow-left", class: "fill-current" %>
-    </div>
+<%= render Layout::LinkGroup::Component.new(@pagy.series.length + 2) do |c| %>
+  <% c.link(link: path_to(request.url, page: @pagy.prev), disabled: @pagy.prev.nil?) do %>
+    <%= octicon "arrow-left", class: "fill-current" %>
   <% end %>
 
   <% @pagy.series.each do |item| %>
-    <% if item.is_a? Integer %>
-      <%= render(link.new(page: item, reflex: @reflex, class: link_class, link: @link)) do %>
-        <%= item %>
-      <% end %>
-    <% elsif item.is_a? String %>
-      <div class="<%= link_class link_active %>">
-        <%== item %>
-      </div>
-    <% elsif item == :gap %>
-      <div class="<%= link_class link_disabled %>">
-        <%== pagy_t("pagy.nav.gap") %>
-      </div>
+    <% c.link(link: path_to(request.url, page: item), disabled: item == :gap, active: item.is_a?(String)) do %>
+      <%== item == :gap ? pagy_t("pagy.nav.gap") : item %>
     <% end %>
   <% end %>
 
-  <% if @pagy.next %>
-    <%= render(link.new(page: @pagy.next, reflex: @reflex, class: "rounded-r-md #{link_class}", link: @link)) do %>
-      <%= octicon "arrow-right", class: "fill-current" %>
-    <% end %>
-  <% else %>
-    <div class="rounded-r-md <%= link_class link_disabled %>">
-      <%= octicon "arrow-right", class: "fill-current" %>
-    </div>
+  <% c.link(link: path_to(request.url, page: @pagy.next), disabled: @pagy.next.nil?) do %>
+    <%= octicon "arrow-right", class: "fill-current" %>
   <% end %>
-</div>
+<% end %>

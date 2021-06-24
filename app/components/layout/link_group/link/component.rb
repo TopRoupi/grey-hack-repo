@@ -1,8 +1,8 @@
-class Pagy::Link::Component < ApplicationComponent
+class Layout::LinkGroup::Link::Component < ApplicationComponent
   def initialize(options)
     @reflex = options[:reflex]
     @class = options[:class]
-    @page = options[:page]
     @link = options[:link]
+    @name = options[:name]
   end
 end

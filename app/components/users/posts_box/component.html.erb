@@ -1,4 +1,4 @@
 <turbo-frame id="user_posts" class="flex justify-start">
   <%= render(Users::PostsBox::CategoriesList::Component.new(user: @user, categories: Category.all, active_tab: @active_tab)) %>
-  <%= render(Users::PostsBox::PostsList::Component.new(user: @user, posts: @posts, pagy: @pagy, link: user_path(@user, category: @active_tab))) %>
+  <%= render(Users::PostsBox::PostsList::Component.new(user: @user, posts: @posts, pagy: @pagy)) %>
 </turbo-frame>

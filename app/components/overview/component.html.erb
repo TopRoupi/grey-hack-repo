@@ -1,10 +1,16 @@
 <% if @categories.length > 1 %>
-  <div class="text-center text-3xl font-semibold text-beaver-300 mt-2 mb-4"> Categories </div>
+  <div class="text-center text-3xl text-beaver-300 mt-2 mb-4"> Categories </div>
 <% end %>
 
 <%= render(Categories::Grid::Component.new(categories: @categories)) %>
 
-<div class="text-center text-3xl font-semibold text-beaver-300 mt-2 mb-4"> Newest Posts </div>
+<div class="mt-7 mb-6">
+  <%= render Layout::LinkGroup::Component.new(2) do |c| %>
+    <% c.link(name: "Newest", link: "?filter=newest", active: params[:filter] == "newest") %>
+    <% c.link(name: "Popular", link: "?filter=popular", active: params[:filter] == "popular") %>
+  <% end %>
+</div>
+
 
 <turbo-frame id="posts">
   <% @posts.each do |post| %>

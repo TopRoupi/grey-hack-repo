@@ -1,8 +1,7 @@
 class Pagy::Component < ApplicationComponent
-  def initialize(pagy:, link: "", reflex: false)
+  def initialize(pagy:, reflex: false)
     @pagy = pagy
     @reflex = reflex
-    @link = link
   end
 
   def link_class(bg = "bg-beaver-700 hover:bg-beaver-600 cursor-pointer")

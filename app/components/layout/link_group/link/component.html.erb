@@ -1,0 +1,11 @@
+<a class="<%= @class %>"
+  <% if @link %>
+     href="<%= @link %>"
+  <% end %>
+     >
+  <% if @name %>
+    <%= @name %>
+  <% else %>
+    <%= content %>
+  <% end %>
+</a>
