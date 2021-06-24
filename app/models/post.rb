@@ -25,7 +25,7 @@ class Post < ApplicationRecord
 
   accepts_nested_attributes_for :scripts
 
-  default_scope -> { eager.asc }
+  # default_scope -> { eager.asc }
   scope :eager, -> { eager_load(:category, :user, stars: [:user]) }
-  scope :asc, -> { order(updated_at: :desc) }
+  scope :asc, -> { order(created_at: :desc) }
 end

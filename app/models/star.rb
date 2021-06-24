@@ -2,5 +2,5 @@
 
 class Star < ApplicationRecord
   belongs_to :user
-  belongs_to :starable, polymorphic: true
+  belongs_to :starable, polymorphic: true, counter_cache: true
 end
