@@ -58,7 +58,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
       @script = @post.scripts.first
 
       assert_difference("Post.count") do
-        post posts_url, params: {post: {summary: @post.summary, readme: @post.readme, title: @post.title, category_id: @post.category_id, scripts_attributes: {"0": {content: @script.content}}}}
+        post posts_url, params: {post: {summary: @post.summary, readme: @post.readme, title: @post.title, category_id: @post.category_id, scripts_attributes: {"0": {name: @script.name, content: @script.content}}}}
       end
 
       assert_redirected_to post_url(Post.last)

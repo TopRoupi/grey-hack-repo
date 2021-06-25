@@ -22,6 +22,7 @@
   <p>scripts</p>
 
   <%= f.simple_fields_for(:scripts) do |ff| %>
+    <%= ff.input :name %>
     <%= ff.input :content, as: :text%>
   <% end %>
   <div class="text-right">

@@ -20,4 +20,18 @@ class ScriptTest < ActiveSupport::TestCase
     @script.valid?
     refute_empty @script.errors[:content]
   end
+
+  # name
+
+  test "invalid without a name" do
+    @script.name = nil
+    @script.valid?
+    refute_empty @script.errors[:name]
+  end
+
+  test "invalid with a name of length 25" do
+    @script.name = "a" * 25
+    @script.valid?
+    refute_empty @script.errors[:name]
+  end
 end
