@@ -1,8 +1,13 @@
 # frozen_string_literal: true
 
 class CategoriesController < ApplicationController
+  include SortablePosts
+
   def show
     @category = Category.friendly.find(params[:id])
-    @pagy, @posts = pagy Post.eager.asc.where(category: @category)
+
+    set_posts
+
+    @pagy, @posts = pagy @posts.where(category: @category)
   end
 end

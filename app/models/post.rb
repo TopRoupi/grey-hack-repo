@@ -28,4 +28,7 @@ class Post < ApplicationRecord
   # default_scope -> { eager.asc }
   scope :eager, -> { eager_load(:category, :user, stars: [:user]) }
   scope :asc, -> { order(created_at: :desc) }
+  scope :week, -> { where({created_at: (1.week.ago)..Time.now}) }
+  scope :month, -> { where({created_at: (1.month.ago)..Time.now}) }
+  scope :year, -> { where({created_at: (1.year.ago)..Time.now}) }
 end

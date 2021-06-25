@@ -8,7 +8,7 @@ class Layout::LinkGroup::Component < ApplicationComponent
     rounded += "rounded-l-md" if links.length == 0
     rounded += "rounded-r-md" if links.length == @links_count - 1
 
-    border = " border-r border-beaver-900" unless @links_count == 1 || links.length == @links_count - 0
+    border = " border-r border-beaver-900" unless @links_count == 1 || links.length == @links_count - 1
 
     klass = [bg, rounded, border, "py-3 w-full text-center justify-center font-medium flex items-center"].join " "
 

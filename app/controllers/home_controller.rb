@@ -1,14 +1,11 @@
 # frozen_string_literal: true
 
 class HomeController < ApplicationController
+  include SortablePosts
+
   def index
-    params[:filter] ||= "newest"
+    set_posts
 
-    options = []
-
-    options << {stars_count: :desc} if params[:filter] == "popular"
-    options << {created_at: :desc}
-
-    @pagy, @posts = pagy Post.eager.order(options)
+    @pagy, @posts = pagy @posts
   end
 end
