@@ -1,8 +1,12 @@
-<% if @categories.length > 1 %>
-  <div class="text-center text-3xl mt-2 mb-4"> Categories </div>
-<% end %>
+<div class="text-center font-semibold text-3xl mt-2 mb-4">
+  <%= @categories.size > 1 ? "Categories" : "Category" %>
+</div>
 
 <%= render(Categories::Grid::Component.new(categories: @categories)) %>
+
+<% if @categories.size == 1 %>
+  <%= @categories.first.description %>
+<% end %>
 
 <turbo-frame id="posts">
   <div class="mt-7 mb-6">

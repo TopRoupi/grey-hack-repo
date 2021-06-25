@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_24_171918) do
+ActiveRecord::Schema.define(version: 2021_06_25_120742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 2021_06_24_171918) do
     t.string "icon"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "description"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -107,6 +108,7 @@ ActiveRecord::Schema.define(version: 2021_06_24_171918) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "highlighted_content"
     t.string "old_content"
+    t.string "name"
     t.index ["post_id"], name: "index_scripts_on_post_id"
   end
 

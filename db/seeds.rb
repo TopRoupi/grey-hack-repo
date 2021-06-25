@@ -1,11 +1,8 @@
 # frozen_string_literal: true
 
-Category.create name: "Hacking", icon: "cpu"
-Category.create name: "Snippets", icon: "code"
-Category.create name: "Viruses", icon: "bug"
-Category.create name: "Tools", icon: "tools"
-Category.create name: "Utils", icon: "terminal"
-Category.create name: "Others", icon: "number"
+Category.create name: "Scripts", icon: "file", description: "one file scripts, usually simple command line programs that provides some quality of life improvements, exemple: improved version of commands that already exists in the game"
+Category.create name: "Programs", icon: "terminal", description: "programs with one or more files that do complex things, example: games, hacking tools, network mapping etc"
+Category.create name: "Modules", icon: "code-square", description: "code snippets that can be imported in your program to speed development"
 
 user = User.create name: "user", password: "123456", email: "aaaaaa@aaaaaa"
 
