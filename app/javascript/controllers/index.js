@@ -19,6 +19,7 @@ application.load(
 StimulusReflex.initialize(application, { consumer, controller, isolate: true })
 StimulusReflex.debug = process.env.RAILS_ENV === 'development'
 
-import { Alert, Dropdown } from "tailwindcss-stimulus-components"
+import { Alert, Dropdown, Modal } from "tailwindcss-stimulus-components"
 application.register('dropdown', Dropdown)
 application.register('alert', Alert)
+application.register('modal', Modal)

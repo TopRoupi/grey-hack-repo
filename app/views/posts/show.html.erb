@@ -1,4 +1,3 @@
-
 <div class="flex justify-center text-3xl font-semibold items-end">
   <%= @post.title.capitalize %>
   <%= render(Stars::Badge::Component.new(starable: @post)) %>
@@ -23,8 +22,20 @@
   </div>
 <% end %>
 
-<%= render(Scripts::Card::Component.new(script: @post.scripts.last)) %>
+<div class="text-center text-2xl mb-4">
+  Files
+</div>
+
+<%= render(Layout::LinkGroup::Component.new(@post.scripts.size, :vertical)) do |c| %>
+  <% @post.scripts.each_with_index do |script, index| %>
+    <% c.link(disabled: false, html_class: {bg: "", container: ""} ) do %>
+      <%= render(Scripts::Card::Component.new(script: @post.scripts.last, first: index == 0, last: index == @post.scripts.size - 1)) %>
+    <% end %>
+  <% end %>
+<% end %>
+
 <br>
+
 <div class="text-2xl text-center block">
   Post's comments
 </div>

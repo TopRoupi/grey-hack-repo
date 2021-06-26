@@ -1,4 +1,4 @@
-<div class="flex w-full">
+<div class="flex <%= "flex-col" if @vertical %> w-full">
   <% links.each do |link| %>
     <%= link %>
   <% end %>

@@ -3,7 +3,8 @@ import ApplicationController from '../../../javascript/controllers/application_c
 export default class extends ApplicationController {
   static targets = [ "source" ]
 
-  copy() {
+  copy(event) {
+    event.target.parentNode.parentNode.children[0].click()
     if (document.selection) { // IE
         var range = document.body.createTextRange();
         range.moveToElementText(this.sourceTarget);

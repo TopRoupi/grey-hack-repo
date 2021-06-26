@@ -1,12 +1,37 @@
-<div class="w-full mt-10 rounded-xl py-4 px-4 bg-beaver-850 mt-4 overflow-x-auto max-h-screen"
-     data-controller="scripts--card--component">
-  <button class="float-right border px-3 py-1 rounded-md border-beaver-400 hover:bg-beaver-700 focus:outline-none focus:ring-2"
-          data-action="click->scripts--card--component#copy"
-          data-id="<%= @script.id %>">
-          Copy
-  </button>
-  <div data-scripts--card--component-target="source">
-    <%== @script.highlighted_content %>
-    <%= "refresh this page if this script didn't updated yet" if @script.highlighted_content.blank?%>
+<div class="flex w-full justify-start" data-controller="modal" data-modal-allow-background-close="true">
+  <div class="flex w-full p-3 cursor-pointer <%= "rounded-tl-md" if @first %> <%= "rounded-bl-md" if @last %> bg-beaver-800 hover:bg-beaver-700 items-center" data-action="click->modal#open">
+    <%= octicon "file", height: 20, class: "fill-current mr-2" %>
+    <%= @script.name %>
+
+    <div class="ml-auto text-beaver-400">
+      chars: <%= @script.content.size %>
+    </div>
+  </div>
+
+  <div class="ml-auto" data-controller="scripts--card--component">
+    <div class="p-3 border-l cursor-pointer bg-beaver-800 <%= "rounded-tr-md" if @first %> <%= "rounded-br-md" if @last %> hover:bg-beaver-700 border-beaver-850"
+         data-action="click->scripts--card--component#copy">
+      Copy
+    </div>
+    <div data-modal-target="container" data-action="click->modal#closeBackground keyup@window->modal#closeWithKeyboard" class="hidden animated fadeIn fixed inset-0 overflow-y-auto flex justify-center" style="z-index: 9999;">
+      <div class="w-full mt-auto mb-auto relative mx-2 bg-beaver-900 rounded">
+        <div class="flex justify-end items-center flex-wrap mb-2 mt-2 mr-2">
+          <button class="bg-beaver-800 hover:bg-beaver-700 text-white font-bold py-2 px-2 rounded" data-action="click->modal#close">
+            <%= octicon "x", height: 16, class: "fill-current" %>
+          </button>
+        </div>
+
+        <div class="text-left" data-scripts--card--component-target="source">
+          <%== @script.highlighted_content %>
+          <%= "refresh this page if this script didn't updated yet" if @script.highlighted_content.blank?%>
+        </div>
+
+        <div class="flex justify-end items-center flex-wrap mt-2 mb-2 mr-2">
+          <button class="bg-beaver-800 hover:bg-beaver-700 text-white font-bold py-2 px-4 rounded" data-action="click->modal#close">Close</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+
