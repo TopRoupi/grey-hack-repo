@@ -23,3 +23,7 @@ import { Alert, Dropdown, Modal } from "tailwindcss-stimulus-components"
 application.register('dropdown', Dropdown)
 application.register('alert', Alert)
 application.register('modal', Modal)
+
+import NestedForm from "stimulus-rails-nested-form"
+
+application.register("nested-form", NestedForm)

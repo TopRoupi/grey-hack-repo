@@ -7010,6 +7010,11 @@ static-extend@^0.1.1:
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.5.0.tgz#161c7dac177659fd9811f43771fa99381478628c"
   integrity sha1-Fhx9rBd2Wf2YEfQ3cfqZOBR4Yow=
 
+stimulus-rails-nested-form@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/stimulus-rails-nested-form/-/stimulus-rails-nested-form-3.0.0.tgz#1822c0a723df405afa49afca641af455bcd97057"
+  integrity sha512-+vopm+ATiq34n5SJgZXEhq+/7qCq7c8E1gqe0iOoTcttK3kkhmUbd7GfoQ1SZjyZ7Or0XqVgBR931yhxK6RzjA==
+
 stimulus@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/stimulus/-/stimulus-2.0.0.tgz#713c8b91a72ef90914b90955f0e705f004403047"

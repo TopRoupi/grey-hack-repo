@@ -1,31 +1,47 @@
-<%= simple_form_for(post) do |f| %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-  <%= f.error_notification %>
-  <% if post.errors[:scripts].length != 0 %>
-    <% post.errors[:scripts].each do |error| %>
-      <%= "post #{error}" %>
+<div data-controller="nested-form" nested-form-wrapper-selector-value=".nested-form-wrapper">
+  <%= simple_form_for(post) do |f| %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+    <%= f.error_notification %>
+    <% if post.errors[:scripts].length != 0 %>
+      <% post.errors[:scripts].each do |error| %>
+        <%= "post #{error}" %>
+      <% end %>
     <% end %>
-  <% end %>
 
-  <div class="flex flex-wrap overflow-hidden sm:-mx-3">
-    <div class="w-full overflow-hidden sm:w-1/2 sm:my-3 sm:px-3">
-      <%= f.input :title %>
+    <div class="flex flex-wrap overflow-hidden sm:-mx-3">
+      <div class="w-full overflow-hidden sm:w-1/2 sm:my-3 sm:px-3">
+        <%= f.input :title %>
+      </div>
+      <div class="w-full overflow-hidden sm:w-1/2  sm:my-3 sm:px-3">
+        <%= f.association :category, prompt: "Select a category", collection: Category.all %>
+      </div>
     </div>
-    <div class="w-full overflow-hidden sm:w-1/2  sm:my-3 sm:px-3">
-      <%= f.association :category, prompt: "Select a category", collection: Category.all %>
+
+    <%= f.input :summary, as: :text%>
+    <%= f.input :readme, as: :rich_text_area, label: "Readme (optional)", input_html: {class: "border-beaver-850"}%>
+
+    <div class="text-center text-2xl mb-4">
+      Scripts
     </div>
-  </div>
 
-  <%= f.input :summary, as: :text%>
-  <%= f.input :readme, as: :rich_text_area, label: "Readme (optional)", input_html: {class: "border-beaver-850"}%>
+    <template data-nested-form-target="template">
+      <%= f.simple_fields_for(:scripts, Script.new, child_index: 'NEW_RECORD') do |ff| %>
+        <%= render "script_form", f: ff %>
+      <% end %>
+    </template>
 
-  <p>scripts</p>
+    <%= f.simple_fields_for(:scripts) do |ff| %>
+      <%= render "script_form", f: ff %>
+    <% end %>
 
-  <%= f.simple_fields_for(:scripts) do |ff| %>
-    <%= ff.input :name %>
-    <%= ff.input :content, as: :text%>
+    <div data-nested-form-target="target"></div>
+
+    <button type="button" data-action="nested-form#add">
+      Add script
+    </button>
+
+    <div class="text-right">
+      <%= f.button :submit %>
+    </div>
   <% end %>
-  <div class="text-right">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+</div>

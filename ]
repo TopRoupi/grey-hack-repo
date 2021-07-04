@@ -1,0 +1,10 @@
+<div class="nested-form-wrapper rounded bg-beaver-850 p-3" data-new-record="<%= f.object.new_record? %>" >
+  <%= f.input :name %>
+  <%= f.input :content, as: :text%>
+
+  <button class="text-red-600 flex justify-end" type="button" data-action="nested-form#remove">
+    Remove script
+  </button>
+
+  <%= f.input :_destroy, as: :hidden %>
+</div>

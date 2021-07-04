@@ -21,7 +21,7 @@
           </button>
         </div>
 
-        <div class="text-left" data-scripts--card--component-target="source">
+        <div class="text-left overflow-x-auto w-full" style="background-color: #1d1f21;" data-scripts--card--component-target="source">
           <%== @script.highlighted_content %>
           <%= "refresh this page if this script didn't updated yet" if @script.highlighted_content.blank?%>
         </div>
