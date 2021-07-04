@@ -23,7 +23,7 @@ class Post < ApplicationRecord
 
   validates_with PostValidator
 
-  accepts_nested_attributes_for :scripts
+  accepts_nested_attributes_for :scripts, reject_if: :all_blank, allow_destroy: true
 
   # default_scope -> { eager.asc }
   scope :eager, -> { eager_load(:category, :user, stars: [:user]) }
