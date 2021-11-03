@@ -3,14 +3,14 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "2.7.2"
+ruby "3.0.0"
 
-gem "rails", "~> 6.1.3", ">= 6.1.3.2"
+gem "rails", "~> 7.0.0.alpha2"
+
 gem "pg", "~> 1.1"
 gem "puma", "~> 5.0"
-gem "sass-rails", ">= 6"
-gem "webpacker", "~> 5.0"
-gem "turbolinks", "~> 5"
+gem 'sass-rails'
+gem "turbo-rails", ">= 0.7.11"
 gem "jbuilder", "~> 2.7"
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -19,12 +19,16 @@ gem "redis", "~> 4.0", require: ["redis", "redis/connection/hiredis"]
 gem "hiredis"
 gem "view_component"
 gem "stimulus_reflex", "~> 3.5.0-pre1"
-gem "devise"
+# gem "devise"
+gem "devise", github: "strobilomyces/devise", branch: "patch-1"
 gem "octicons_helper"
 gem "friendly_id", "~> 5.4.0"
 
 # Use Active Storage variant
 gem "image_processing", "~> 1.2"
+
+gem "jsbundling-rails"
+gem 'cssbundling-rails'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.4", require: false

@@ -1,29 +1,25 @@
 // Load all the controllers within this directory and all subdirectories. 
 // Controller files must be named *_controller.js.
 
-import { Application } from "stimulus"
-import { definitionsFromContext } from "stimulus/webpack-helpers"
-
+import { application } from "./application"
 import StimulusReflex from 'stimulus_reflex'
 import consumer from '../channels/consumer'
-import controller from '../controllers/application_controller'
+import controller from './application_controller'
+import CableReady from 'cable_ready'
 
-const application = Application.start()
-const context = require.context("controllers", true, /_controller\.js$/)
-const context_components = require.context("../../components", true, /_controller.js$/)
-application.load(
-  definitionsFromContext(context).concat(
-    definitionsFromContext(context_components)
-  )
-)
+// TODO fix these comoponents not working
+
+// import { Alert, Dropdown, Modal } from "tailwindcss-stimulus-components"
+// application.register('dropdown', Dropdown)
+// application.register('alert', Alert)
+// application.register('modal', Modal)
+
+import NestedForm from "stimulus-rails-nested-form"
+application.register("nested-form", NestedForm)
+
+application.consumer = consumer
+
 StimulusReflex.initialize(application, { consumer, controller, isolate: true })
 StimulusReflex.debug = process.env.RAILS_ENV === 'development'
 
-import { Alert, Dropdown, Modal } from "tailwindcss-stimulus-components"
-application.register('dropdown', Dropdown)
-application.register('alert', Alert)
-application.register('modal', Modal)
-
-import NestedForm from "stimulus-rails-nested-form"
-
-application.register("nested-form", NestedForm)
+CableReady.initialize({ consumer })
