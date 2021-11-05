@@ -18,7 +18,7 @@ gem "jbuilder", "~> 2.7"
 gem "redis", "~> 4.0", require: ["redis", "redis/connection/hiredis"]
 gem "hiredis"
 gem "view_component"
-gem "stimulus_reflex", "~> 3.5.0-pre1"
+gem "stimulus_reflex", "~> 3.5.0-pre7"
 # gem "devise"
 gem "devise", github: "strobilomyces/devise", branch: "patch-1"
 gem "octicons_helper"
@@ -28,7 +28,7 @@ gem "friendly_id", "~> 5.4.0"
 gem "image_processing", "~> 1.2"
 
 gem "jsbundling-rails"
-gem 'cssbundling-rails'
+gem "cssbundling-rails"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.4", require: false

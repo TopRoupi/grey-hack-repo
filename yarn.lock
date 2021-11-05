@@ -67,10 +67,10 @@
   resolved "https://registry.yarnpkg.com/@rails/actioncable/-/actioncable-6.1.4.tgz#c3c5a9f8302c429af9722b6c50ab48049016d2a3"
   integrity sha512-0LmSKJTuo2dL6BQ+9xxLnS9lbkyfz2mBGeBnQ2J7o9Bn0l0q+ZC6VuoZMZZXPvABI4QT7Nfknv5WhfKYL+boew==
 
-"@rails/actiontext@^6.1.3-2":
-  version "6.1.4"
-  resolved "https://registry.yarnpkg.com/@rails/actiontext/-/actiontext-6.1.4.tgz#ed8c7d2b68d66205301f4538ce65d04c48031f6b"
-  integrity sha512-KG+VCofmfZAhW1x1xFxMC2sZtvwbx+XX0Y+dzeBFjKU1jZMM0RNytJf5EiuHtD9fL71zz6/nMT7FjwOFenSA7Q==
+"@rails/actiontext@^6.1.4-1":
+  version "6.1.4-1"
+  resolved "https://registry.yarnpkg.com/@rails/actiontext/-/actiontext-6.1.4-1.tgz#c75fbeeb7860c2f508150ad003c0c0d0c97c7584"
+  integrity sha512-dS7AdkJtSyuX2PXipCTNOKEg5G/ftwS+FmM5+8Zxbo35tgs08hfYFPh0muoj5eEkshwV67kEEV/iHgX8PMLh4w==
   dependencies:
     "@rails/activestorage" "^6.0.0"
 
@@ -1302,7 +1302,7 @@ stimulus-rails-nested-form@^3.0.0:
   resolved "https://registry.yarnpkg.com/stimulus-rails-nested-form/-/stimulus-rails-nested-form-3.0.0.tgz#1822c0a723df405afa49afca641af455bcd97057"
   integrity sha512-+vopm+ATiq34n5SJgZXEhq+/7qCq7c8E1gqe0iOoTcttK3kkhmUbd7GfoQ1SZjyZ7Or0XqVgBR931yhxK6RzjA==
 
-stimulus_reflex@^3.5.0-pre2:
+stimulus_reflex@^3.5.0-pre7:
   version "3.5.0-pre7"
   resolved "https://registry.yarnpkg.com/stimulus_reflex/-/stimulus_reflex-3.5.0-pre7.tgz#62d896c1e5c8439c6d38e43c365df52ed7d8add4"
   integrity sha512-kybrqIqWn/EuYt4l4k5c4ZrKLOPHKNKjCN4u4zWvq58Cg7q+aXmXes602RPS8PO/zieq9xTuiVLzrEax1ATsiQ==
@@ -1422,7 +1422,7 @@ to-regex-range@^5.0.1:
   dependencies:
     is-number "^7.0.0"
 
-trix@^1.2.0:
+trix@^1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/trix/-/trix-1.3.1.tgz#ccce8d9e72bf0fe70c8c019ff558c70266f8d857"
   integrity sha512-BbH6mb6gk+AV4f2as38mP6Ucc1LE3OD6XxkZnAgPIduWXYtvg2mI3cZhIZSLqmMh9OITEpOBCCk88IVmyjU7bA==

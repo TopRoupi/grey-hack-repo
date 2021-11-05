@@ -25,6 +25,6 @@ application.register("nested-form", NestedForm)
 application.consumer = consumer
 
 StimulusReflex.initialize(application, { controller, isolate: true })
-StimulusReflex.debug = true
+// StimulusReflex.debug = true
 
 CableReady.initialize({ consumer })
