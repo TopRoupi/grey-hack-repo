@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Pagy::Component < ApplicationComponent
   def initialize(pagy:, reflex: false)
     @pagy = pagy

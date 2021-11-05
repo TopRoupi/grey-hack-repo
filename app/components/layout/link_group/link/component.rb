@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Layout::LinkGroup::Link::Component < ApplicationComponent
   def initialize(options)
     @reflex = options[:reflex]

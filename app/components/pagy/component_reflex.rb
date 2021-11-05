@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Pagy::ComponentReflex < ApplicationReflex
   def paginate
     page = element.dataset[:page].to_i
