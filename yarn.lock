@@ -23,7 +23,7 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@hotwired/stimulus@>=3.0.0", "@hotwired/stimulus@npm:@hotwired/stimulus", "stimulus@npm:@hotwired/stimulus":
+"@hotwired/stimulus@>=3.0.0", "@hotwired/stimulus@^3.0.0", "stimulus@npm:@hotwired/stimulus":
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/@hotwired/stimulus/-/stimulus-3.0.1.tgz#141f15645acaa3b133b7c247cad58ae252ffae85"
   integrity sha512-oHsJhgY2cip+K2ED7vKUNd2P+BEswVhrCYcJ802DSsblJFv7mPFVk3cQKvm2vHgHeDVdnj7oOKrBbzp1u8D+KA==
@@ -1297,10 +1297,10 @@ spark-md5@^3.0.0:
   resolved "https://registry.yarnpkg.com/spark-md5/-/spark-md5-3.0.2.tgz#7952c4a30784347abcee73268e473b9c0167e3fc"
   integrity sha512-wcFzz9cDfbuqe0FZzfi2or1sgyIrsDwmPwfZC4hiNidPdPINjeUwNfv5kldczoEAcjl9Y1L3SM7Uz2PUEQzxQw==
 
-stimulus-rails-nested-form@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/stimulus-rails-nested-form/-/stimulus-rails-nested-form-3.0.0.tgz#1822c0a723df405afa49afca641af455bcd97057"
-  integrity sha512-+vopm+ATiq34n5SJgZXEhq+/7qCq7c8E1gqe0iOoTcttK3kkhmUbd7GfoQ1SZjyZ7Or0XqVgBR931yhxK6RzjA==
+stimulus-rails-nested-form@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/stimulus-rails-nested-form/-/stimulus-rails-nested-form-4.0.0.tgz#cb9295a70081b6e1b9b05250533b1f92a9902d3b"
+  integrity sha512-nE2dM0glgjBvUq/gzORJ+94wITOijoYMZWIrkXSNNH8BpELwH8zg9fuad0X+ZBrhjQrYuNW2R0zLgX69oIzMvw==
 
 stimulus_reflex@^3.5.0-pre7:
   version "3.5.0-pre7"
