@@ -11,6 +11,7 @@
     "esbuild": "^0.13.3",
     "highlights": "^3.1.4",
     "language-greyscript": "https://github.com/Elec0/language-greyscript",
+    "mrujs": "^0.6.0",
     "postcss": "^8.3.11",
     "stimulus": "npm:@hotwired/stimulus",
     "stimulus-rails-nested-form": "^4.0.0",

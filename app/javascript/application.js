@@ -15,4 +15,8 @@ import "@rails/actiontext"
 
 import "./trix-editor-overrides"
 
+import mrujs from "mrujs"
+
 window.Turbo = Turbo
+
+mrujs.start()
