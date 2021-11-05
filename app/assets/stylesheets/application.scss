@@ -14,7 +14,8 @@
  *= require_self
  */
 
-@import "./actiontext.scss";
+@import "./atom-dark-syntax.css";
+@import "./atom-monokai-syntax.css";
 
 //simple_form input for rich_text_area hight
 trix-editor.form-control {

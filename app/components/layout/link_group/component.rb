@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Layout::LinkGroup::Component < ApplicationComponent
   renders_many :links, ->(link: nil, name: nil, disabled: link.nil?, active: false, html_class: {}) do
     bg = html_class[:bg] || "bg-beaver-800 hover:bg-beaver-700"
