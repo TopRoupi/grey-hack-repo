@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Script < ApplicationRecord
-  belongs_to :post
+  belongs_to :scriptable, polymorphic: true
 
   validates :content, presence: true, length: {minimum: 10, maximum: 80_000}
   validates :name, presence: true, length: {minimum: 2, maximum: 24}
