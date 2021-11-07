@@ -22,17 +22,7 @@
   </div>
 <% end %>
 
-<div class="text-center text-2xl mb-4">
-  Files
-</div>
-
-<%= render(Layout::LinkGroup::Component.new(@post.scripts.size, :vertical)) do |c| %>
-  <% @post.scripts.order(:id).each_with_index do |script, index| %>
-    <% c.link(disabled: false, html_class: {bg: "", container: ""} ) do %>
-      <%= render(Scripts::Card::Component.new(script: script, first: index == 0, last: index == @post.scripts.size - 1)) %>
-    <% end %>
-  <% end %>
-<% end %>
+<%= render(Fileables::List::Component.new(fileable: @post)) %>
 
 <br>
 

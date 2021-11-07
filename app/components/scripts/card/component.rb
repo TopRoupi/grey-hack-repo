@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
 class Scripts::Card::Component < ApplicationComponent
-  def initialize(script:, first: false, last: false)
+  def initialize(script:)
     @script = script
-
-    @first = first
-    @last = last
   end
 end

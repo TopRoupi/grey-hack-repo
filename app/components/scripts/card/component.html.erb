@@ -1,5 +1,5 @@
 <div class="flex w-full justify-start" data-controller="modal" data-modal-allow-background-close="true">
-  <div class="flex w-full p-3 cursor-pointer <%= "rounded-tl-md" if @first %> <%= "rounded-bl-md" if @last %> bg-beaver-800 hover:bg-beaver-700 items-center" data-action="click->modal#open">
+  <div class="flex w-full p-3 cursor-pointer bg-beaver-800 hover:bg-beaver-700 items-center" data-action="click->modal#open">
     <%= octicon "file", height: 20, class: "fill-current mr-2" %>
     <%= @script.name %>
 
@@ -9,7 +9,7 @@
   </div>
 
   <div class="ml-auto" data-controller="scripts--card--component">
-    <div class="p-3 border-l cursor-pointer bg-beaver-800 <%= "rounded-tr-md" if @first %> <%= "rounded-br-md" if @last %> hover:bg-beaver-700 border-beaver-850"
+    <div class="p-3 border-l cursor-pointer bg-beaver-800 hover:bg-beaver-700 border-beaver-850"
          data-action="click->scripts--card--component#copy">
       Copy
     </div>
