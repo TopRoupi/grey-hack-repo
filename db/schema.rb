@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_06_223422) do
+ActiveRecord::Schema.define(version: 2021_11_07_110655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,15 @@ ActiveRecord::Schema.define(version: 2021_11_06_223422) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "folders", force: :cascade do |t|
+    t.string "foldable_type", null: false
+    t.bigint "foldable_id", null: false
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["foldable_type", "foldable_id"], name: "index_folders_on_foldable"
   end
 
   create_table "game_versions", force: :cascade do |t|

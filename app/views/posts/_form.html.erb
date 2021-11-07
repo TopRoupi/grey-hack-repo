@@ -2,9 +2,9 @@
   <%= simple_form_for(post) do |f| %>
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
     <%= f.error_notification %>
-    <% if post.errors[:scripts].length != 0 %>
-      <% post.errors[:scripts].each do |error| %>
-        <%= "post #{error}" %>
+    <% if post.errors[:files].length != 0 %>
+      <% post.errors[:files].each do |error| %>
+        <%= "post files #{error}" %>
       <% end %>
     <% end %>
 
