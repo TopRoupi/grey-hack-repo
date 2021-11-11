@@ -1,16 +1,21 @@
-<!-- <div class="text&#45;center text&#45;2xl mb&#45;4"> -->
-<!--   Files -->
-<!-- </div> -->
+<% if @depth == 0 %>
+<div class="bg-beaver-850 p-3 w-full rounded-t-md">
+</div>
+<% end %>
 
+
+<div class="bg-beaver-850">
 <% @fileable.folders.each do |folder| %>
-  <%= render(Folders::Card::Component.new(folder: folder)) %>
+  <%= render(Fileables::List::Item::Component.new(file: folder, depth: @depth)) %>
   <%= render(Fileables::List::Component.new(fileable: folder, depth: @depth + 1)) %>
 <% end %>
 
-<%= render(Layout::LinkGroup::Component.new(@fileable.scripts.size, :vertical)) do |c| %>
-  <% @fileable.scripts.order(:id).each do |script| %>
-    <% c.link(disabled: false, html_class: {bg: "", container: ""} ) do %>
-      <%= render(Scripts::Card::Component.new(script: script)) %>
-    <% end %>
-  <% end %>
+<% @fileable.scripts.order(:id).each do |script| %>
+    <%= render(Fileables::List::Item::Component.new(file: script, depth: @depth)) %>
+<% end %>
+</div>
+
+<% if @depth == 0 %>
+<div class="bg-beaver-850 p-3 w-full rounded-b-md" style="margin-top: -1px">
+</div>
 <% end %>
