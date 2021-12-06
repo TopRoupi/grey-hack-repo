@@ -1,37 +1,34 @@
-<div class="flex w-full justify-start" data-controller="modal" data-modal-allow-background-close="true">
-  <div class="flex w-full p-3 cursor-pointer bg-beaver-800 hover:bg-beaver-700 items-center" data-action="click->modal#open">
-    <%= octicon "file", height: 20, class: "fill-current mr-2" %>
-    <%= @script.name %>
+<%= render(Layout::Modal::Component.new(class: "w-full", disabled: @edit)) do |c| %>
+  <% c.button(class: "w-full flex justify-start") do %>
+    <div class="flex w-full p-3 cursor-pointer bg-beaver-800 hover:bg-beaver-700 items-center">
+      <%= octicon "file", height: 20, class: "fill-current mr-2" %>
+      <%= @script.name %>
 
-    <div class="ml-auto text-beaver-400">
-      chars: <%= @script.content.size %>
+      <% if @edit && @script.invalid? %>
+        <span class="text-red-400 ml-2">
+          invalid
+        </span>
+      <% end %>
+
+      <% if @script.content %>
+        <div class="ml-auto text-beaver-400">
+          chars: <%= @script.content.size %>
+        </div>
+      <% end %>
     </div>
-  </div>
-
-  <div class="ml-auto" data-controller="scripts--card--component">
-    <div class="p-3 border-l cursor-pointer bg-beaver-800 hover:bg-beaver-700 border-beaver-850"
-         data-action="click->scripts--card--component#copy">
-      Copy
-    </div>
-    <div data-modal-target="container" data-action="click->modal#closeBackground keyup@window->modal#closeWithKeyboard" class="hidden animated fadeIn fixed inset-0 overflow-y-auto flex justify-center" style="z-index: 9999;">
-      <div class="w-full mt-auto mb-auto relative mx-2 bg-beaver-900 rounded">
-        <div class="flex justify-end items-center flex-wrap mb-2 mt-2 mr-2">
-          <button class="bg-beaver-800 hover:bg-beaver-700 text-white font-bold py-2 px-2 rounded" data-action="click->modal#close">
-            <%= octicon "x", height: 16, class: "fill-current" %>
-          </button>
-        </div>
-
-        <div class="text-left overflow-x-auto w-full" style="background-color: #1d1f21;" data-scripts--card--component-target="source">
-          <%== @script.highlighted_content %>
-          <%= "refresh this page if this script didn't updated yet" if @script.highlighted_content.blank?%>
-        </div>
-
-        <div class="flex justify-end items-center flex-wrap mt-2 mb-2 mr-2">
-          <button class="bg-beaver-800 hover:bg-beaver-700 text-white font-bold py-2 px-4 rounded" data-action="click->modal#close">Close</button>
-        </div>
+    <% if @edit %>
+      <div class="p-3 border-l cursor-pointer info_bg border-beaver-850">
+        Edit
       </div>
-    </div>
-  </div>
-</div>
+      <div class="p-3 border-l cursor-pointer danger_bg border-beaver-850">
+        Delete
+      </div>
+    <% end %>
+  <% end %>
 
+  <% c.body do %>
+    <%== @script.highlighted_content %>
+    <%= "refresh this page if this script didn't updated yet" if @script.highlighted_content.blank?%>
+  <% end %>
+<% end %>
 

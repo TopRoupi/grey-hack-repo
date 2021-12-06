@@ -6,7 +6,7 @@
 <div class="text-center flex justify-center">
   <%= @post.category.name %>
   <%= octicon @post.category.icon, height: 16, class: "fill-current self-end mb-1 ml-2" %>
-  <a href="<%= user_path @post.user %>" class="hover:underline text-center ml-2 flex justify-center items-center text-blue-400">
+  <a href="<%= user_path @post.user %>" class="link text-center ml-2 flex justify-center items-center">
     from <%= @post.user.name %>
   <img class="h-4 w-4 rounded-full ml-2" src="<%= user_avatar(@post.user) %>" alt="">
   </a>

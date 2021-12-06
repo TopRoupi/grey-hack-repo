@@ -25,10 +25,10 @@
     <div class="flex justify-between">
       <a href="<%= edit_post_path @post %>"
          data-turbo-frame="_top"
-         class="mb-4 bg-denim-600 hover:bg-denim-500 flex w-full sm:w-auto items-center justify-center rounded-bl-lg sm:rounded-none px-2">
+         class="mb-4 info_bg flex w-full sm:w-auto items-center justify-center rounded-bl-lg sm:rounded-none px-2">
          <%= octicon "pencil", height:20, class: "fill-current" %>
       </a>
-      <%= link_to @post, method: :delete, class: "mb-4 bg-red-900 hover:bg-red-700 rounded-br-lg h-10 sm:h-auto sm:rounded-r-xl flex w-full sm:w-auto items-center justify-center px-2", data: { confirm: 'Are you sure?', turbo_frame: "_top" } do %>
+      <%= link_to @post, method: :delete, class: "mb-4 danger_bg rounded-br-lg h-10 sm:h-auto sm:rounded-r-xl flex w-full sm:w-auto items-center justify-center px-2", data: { confirm: 'Are you sure?', turbo_frame: "_top" } do %>
         <%= octicon "trash", height:20, class: "fill-current" %>
       <% end %>
     </div>

@@ -1,3 +1,4 @@
+
 <% if @depth == 0 %>
 <div class="bg-beaver-850 p-3 w-full rounded-t-md">
 </div>
@@ -10,12 +11,14 @@
   <%= render(Fileables::List::Component.new(fileable: folder, depth: @depth + 1)) %>
 <% end %>
 
-<% @fileable.scripts.order(:id).each do |script| %>
-    <%= render(Fileables::List::Item::Component.new(file: script, depth: @depth)) %>
+<% @fileable.scripts.each do |script| %>
+    <%= render(Fileables::List::Item::Component.new(file: script, depth: @depth, edit: @edit)) %>
 <% end %>
 </div>
 
 <% if @depth == 0 %>
-<div class="bg-beaver-850 p-3 w-full rounded-b-md" style="margin-top: -1px">
-</div>
+  <div class="bg-beaver-850 p-3 w-full rounded-b-md" style="margin-top: -1px">
+    <span class="link" data-reflex="click->PostFormReflex#add_script">Add script</span>
+  </div>
 <% end %>
+

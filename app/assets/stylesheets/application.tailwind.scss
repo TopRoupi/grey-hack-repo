@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.info_bg {
+  @apply bg-denim-600 hover:bg-denim-500
+}
+
+.danger_bg {
+  @apply bg-red-900 hover:bg-red-700
+}
+
+.link {
+  @apply hover:underline text-blue-400 cursor-pointer
+}

@@ -21,24 +21,11 @@
     <%= f.input :readme, as: :rich_text_area, label: "Readme (optional)", input_html: {class: "border-beaver-850"}%>
 
     <div class="text-center text-2xl mb-4">
-      Scripts
+      Post's Files
     </div>
 
-    <template data-nested-form-target="template">
-      <%= f.simple_fields_for(:scripts, Script.new, child_index: 'NEW_RECORD') do |ff| %>
-        <%= render "script_form", f: ff %>
-      <% end %>
-    </template>
-
-    <%= f.simple_fields_for(:scripts) do |ff| %>
-      <%= render "script_form", f: ff %>
-    <% end %>
-
-    <div data-nested-form-target="target"></div>
-
-    <button type="button" data-action="nested-form#add">
-      Add script
-    </button>
+    <%= render(Fileables::List::Component.new(fileable: @post, edit: true)) %>
+    <br>
 
     <div class="text-right">
       <%= f.button :submit %>
