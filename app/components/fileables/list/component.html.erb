@@ -1,24 +1,26 @@
+<div id="<%= dom_id @fileable, "fileable" %>">
+  <% if @depth == 0 %>
+    <div class="bg-beaver-850 p-3 w-full rounded-t-md">
+    </div>
+  <% end %>
 
-<% if @depth == 0 %>
-<div class="bg-beaver-850 p-3 w-full rounded-t-md">
-</div>
-<% end %>
 
+  <div class="bg-beaver-850">
+    <% @fileable.folders.each do |folder| %>
+      <%= render(Fileables::List::Item::Component.new(file: folder, depth: @depth)) %>
+      <%= render(Fileables::List::Component.new(fileable: folder, depth: @depth + 1)) %>
+    <% end %>
 
-<div class="bg-beaver-850">
-<% @fileable.folders.each do |folder| %>
-  <%= render(Fileables::List::Item::Component.new(file: folder, depth: @depth)) %>
-  <%= render(Fileables::List::Component.new(fileable: folder, depth: @depth + 1)) %>
-<% end %>
-
-<% @fileable.scripts.each do |script| %>
-    <%= render(Fileables::List::Item::Component.new(file: script, depth: @depth, edit: @edit)) %>
-<% end %>
-</div>
-
-<% if @depth == 0 %>
-  <div class="bg-beaver-850 p-3 w-full rounded-b-md" style="margin-top: -1px">
-    <span class="link" data-reflex="click->PostFormReflex#add_script">Add script</span>
+    <% @fileable.scripts.each do |script| %>
+      <%= render(Fileables::List::Item::Component.new(file: script, depth: @depth, edit: @edit)) %>
+    <% end %>
   </div>
-<% end %>
 
+  <% if @depth == 0 %>
+    <div class="bg-beaver-850 p-3 w-full rounded-b-md" style="margin-top: -1px">
+      <% if @edit %>
+        <span class="link" data-reflex="click->Fileables::List::ComponentReflex#add_script">Add script</span>
+      <% end %>
+    </div>
+  <% end %>
+</div>
