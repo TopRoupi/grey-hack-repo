@@ -11,7 +11,10 @@
       <%= render(Fileables::List::Component.new(fileable: folder, depth: @depth + 1)) %>
     <% end %>
 
-    <% @fileable.scripts.each do |script| %>
+    <% @fileable.scripts.each_with_index do |script, i| %>
+      <%= i %>
+      <%= script.object_id %>
+      <span class="link" data-reflex="click->Fileables::List::ComponentReflex#remove_script" data-index="<%= i %>">remove script</span>
       <%= render(Fileables::List::Item::Component.new(file: script, depth: @depth, edit: @edit)) %>
     <% end %>
   </div>
