@@ -21,6 +21,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    @post = session.fetch(:forms, {}).fetch("Post_#{params[:id]}", @post)
   end
 
   # POST /posts or /posts.json
@@ -30,9 +31,12 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
+        session[:forms]&.delete "Post"
         format.html { redirect_to @post, notice: "Post was successfully created." }
         format.json { render :show, status: :created, location: @post }
       else
+        session[:forms] ||= {}
+        session[:forms]["Post"] = @post
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end

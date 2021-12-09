@@ -415,9 +415,9 @@ dlv@^1.1.3:
   integrity sha512-+HlytyjlPKnIG8XuRG8WvmBP8xs8P71y+SKKS6ZXWoEgLuePxtDoUEiH7WkdePWrQ5JBpE6aoVqfZfJUQkjXwA==
 
 electron-to-chromium@^1.3.896:
-  version "1.4.12"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.12.tgz#5f73d1278c6205fc41d7a0ebd75563046b77c5d8"
-  integrity sha512-zjfhG9Us/hIy8AlQ5OzfbR/C4aBv1Dg/ak4GX35CELYlJ4tDAtoEcQivXvyBdqdNQ+R6PhlgQqV8UNPJmhkJog==
+  version "1.4.14"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.14.tgz#b0aa41fbfbf2eff8c2c6f7a871c03075250f8956"
+  integrity sha512-RsGkAN9JEAYMObS72kzUsPPcPGMqX1rBqGuXi9aa4TBKLzICoLf+DAAtd0fVFzrniJqYzpby47gthCUoObfs0Q==
 
 emissary@^1:
   version "1.3.3"
@@ -1003,10 +1003,10 @@ modern-normalize@^1.1.0:
   resolved "https://registry.yarnpkg.com/morphdom/-/morphdom-2.6.1.tgz#e868e24f989fa3183004b159aed643e628b4306e"
   integrity sha512-Y8YRbAEP3eKykroIBWrjcfMw7mmwJfjhqdpSvoqinu8Y702nAwikpXcNFDiIkyvfCLxLM9Wu95RZqo4a9jFBaA==
 
-mrujs@^0.6.0:
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/mrujs/-/mrujs-0.6.1.tgz#14ce9f1dccb8691009ef145b0aeff81a366bf988"
-  integrity sha512-EnYvPvXhWYc2RW7v8XciJy3QCFh/wjU6xORtlULiJ8CjgYC9xFPl0Ako/CymOq47HjsOXInGVWfobrwVD+jCRw==
+mrujs@^0.7.0:
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/mrujs/-/mrujs-0.7.2.tgz#24245004241d621870ce359bd1647fd84e0da62b"
+  integrity sha512-k6zHbDn9xImDdVIOAbGDqfbLahh1LjeP1RhNNyuO05ZPKHrpoCTsZsV9ODGMKRtCbxG9Bj9wFE0R2QIqxz4hWA==
   dependencies:
     morphdom ">=2.6.0 <3.0.0"
 

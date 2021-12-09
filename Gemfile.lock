@@ -7,9 +7,9 @@ GIT
       i18n (>= 1.8.11, < 2)
 
 GIT
-  remote: https://github.com/strobilomyces/devise.git
-  revision: fa4852e754cacb5210144e1196705ef8797aaf20
-  branch: patch-1
+  remote: https://github.com/heartcombo/devise
+  revision: 9f5b83750eef89710b8f2f1e0969c308023e2f05
+  branch: main
   specs:
     devise (4.8.0)
       bcrypt (~> 3.0)

@@ -1,6 +1,6 @@
 <%= render(Layout::Modal::Component.new(class: "w-full", disabled: @edit)) do |c| %>
   <% c.button(class: "w-full flex justify-start") do %>
-    <div class="flex w-full p-3 cursor-pointer bg-beaver-800 hover:bg-beaver-700 items-center">
+    <div class="flex w-full p-3 <%= params[:edit_file] == @script ? "bg-beaver-700" : "bg-beaver-800" %> <%= "hover:bg-beaver-700 cursor-pointer" unless @edit %> items-center">
       <%= octicon "file", height: 20, class: "fill-current mr-2" %>
       <%= @script.name %>
 
@@ -17,11 +17,16 @@
       <% end %>
     </div>
     <% if @edit %>
-      <div class="p-3 border-l cursor-pointer info_bg border-beaver-850">
+      <div class="p-3 border-l cursor-pointer info_bg border-beaver-850"
+           data-reflex="click->Fileables::List::ComponentReflex#<%= params[:edit_file] == @script ? "close_form" : "edit_file" %>"
+           data-index="<%= @index %>">
         Edit
       </div>
-      <div class="p-3 border-l cursor-pointer danger_bg border-beaver-850">
-        Delete
+
+      <div class="p-3 border-l cursor-pointer danger_bg border-beaver-850"
+           data-reflex="click->Fileables::List::ComponentReflex#remove_file"
+           data-index="<%= @index %>">
+           Delete
       </div>
     <% end %>
   <% end %>

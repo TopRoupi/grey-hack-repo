@@ -14,7 +14,7 @@ class Post < ApplicationRecord
   validates :summary, presence: true, length: {minimum: 6, maximum: 230}
   validates :readme, length: {maximum: 50_000}
 
-  accepts_nested_attributes_for :scripts, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :scripts, allow_destroy: true
 
   # default_scope -> { eager.asc }
   scope :eager, -> { eager_load(:category, :user, stars: [:user]) }

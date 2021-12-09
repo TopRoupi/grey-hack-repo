@@ -12,10 +12,7 @@
     <% end %>
 
     <% @fileable.scripts.each_with_index do |script, i| %>
-      <%= i %>
-      <%= script.object_id %>
-      <span class="link" data-reflex="click->Fileables::List::ComponentReflex#remove_script" data-index="<%= i %>">remove script</span>
-      <%= render(Fileables::List::Item::Component.new(file: script, depth: @depth, edit: @edit)) %>
+      <%= render(Fileables::List::Item::Component.new(file: script, depth: @depth, edit: @edit, index: i)) %>
     <% end %>
   </div>
 
@@ -23,6 +20,7 @@
     <div class="bg-beaver-850 p-3 w-full rounded-b-md" style="margin-top: -1px">
       <% if @edit %>
         <span class="link" data-reflex="click->Fileables::List::ComponentReflex#add_script">Add script</span>
+        <span class="link float-right" data-reflex="click->Fileables::List::ComponentReflex#update">Update</span>
       <% end %>
     </div>
   <% end %>

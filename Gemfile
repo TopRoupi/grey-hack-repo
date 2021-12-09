@@ -20,7 +20,7 @@ gem "hiredis"
 gem "view_component"
 gem "stimulus_reflex", "~> 3.5.0-pre7"
 # gem "devise"
-gem "devise", github: "strobilomyces/devise", branch: "patch-1"
+gem "devise", git: "https://github.com/heartcombo/devise", branch: "main"
 gem "octicons_helper"
 gem "friendly_id", "~> 5.4.0"
 
