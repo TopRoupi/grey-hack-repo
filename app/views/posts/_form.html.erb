@@ -18,29 +18,33 @@
     </div>
 
     <%= f.input :summary, as: :text%>
-    <%= f.input :readme, as: :rich_text_area, label: "Readme (optional)", input_html: {class: "border-beaver-850"}%>
-
-    <div class="text-center text-2xl mb-4">
-      Scripts
+    <div id="trix_editor" data-reflex-permanent>
+      <%= f.input :readme, as: :rich_text_area, label: "Readme (optional)", input_html: {class: "border-beaver-850"}%>
     </div>
 
-    <template data-nested-form-target="template">
-      <%= f.simple_fields_for(:scripts, Script.new, child_index: 'NEW_RECORD') do |ff| %>
-        <%= render "script_form", f: ff %>
-      <% end %>
-    </template>
+    <div class="text-center text-2xl mb-4">
+      Post's Files
+    </div>
+
+    <%= render(Fileables::List::Component.new(fileable: @post, edit: true)) %>
+    <br>
 
     <%= f.simple_fields_for(:scripts) do |ff| %>
-      <%= render "script_form", f: ff %>
+      <div class="<%= "hidden" unless ff.object == params[:edit_file] %>">
+        <%= render "script_form", f: ff %>
+      </div>
     <% end %>
 
-    <div data-nested-form-target="target"></div>
-
-    <button type="button" data-action="nested-form#add">
-      Add script
-    </button>
-
-    <div class="text-right">
+    <div class="flex justify-end">
+      <% if session[:forms] %>
+        <% if params[:action] == "edit" && session[:forms]["Post_#{@post.id}"] || params[:action] == "new" && session[:forms]["Post"] %>
+          <div class="text-white bg-red-700 rounded-md focus:bg-red-800 focus:outline-none py-2 px-5 cursor-pointer mr-2"
+               data-form="<%= params[:action] == "edit" ? "Post_#{@post.id}" : "Post" %>"
+               data-reflex="click->FormsReflex#discard_session_form">
+            Discard changes
+          </div>
+        <% end %>
+      <% end %>
       <%= f.button :submit %>
     </div>
   <% end %>

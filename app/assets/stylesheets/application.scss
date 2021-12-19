@@ -13,30 +13,3 @@
  *= require_tree .
  *= require_self
  */
-
-@import "./atom-dark-syntax.css";
-@import "./atom-monokai-syntax.css";
-
-//simple_form input for rich_text_area hight
-trix-editor.form-control {
-  height: auto;
-}
-
-.trix-button {
-  background: #6b4d56 !important;
-  border-color: #3d262d !important;
-}
-
-.trix-button-group {
-  border-color: #3d262d !important;
-}
-
-.trix-button-group .trix-button:first-child {
-  border-bottom-left-radius: 3px;
-  border-top-left-radius: 3px;
-}
-
-.trix-button-group .trix-button:last-child {
-  border-bottom-right-radius: 3px;
-  border-top-right-radius: 3px;
-}

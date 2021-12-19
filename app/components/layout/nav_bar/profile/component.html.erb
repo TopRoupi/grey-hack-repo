@@ -14,21 +14,30 @@
       <a href="<%= edit_user_registration_path %>" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" role="menuitem" tabindex="-1" id="user-menu-item-0">
         Settings
       </a>
-      <a class="flex px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" href="<%= new_post_path %>">
-        <div class="h-8 w-8 py-2 rounded-full bg-green-700">
-          <%= octicon "plus", :height => 16, class: "m-auto fill-current text-white" %>
+      <div class="block w-full border-b my-1"></div>
+      <div class="block text-center px-4 py-2 text-sm text-gray-700">
+        Posts
+      </div>
+      <% if session[:forms] && session[:forms]["Post"] %>
+        <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" href="<%= new_post_path %>">
+          Continue to write post
+        </a>
+        <div class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 cursor-pointer" data-reflex="click->FormsReflex#dicard_session_forms">
+          Discard changes
         </div>
-        <div class="ml-2 my-auto">
+      <% else %>
+        <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" href="<%= new_post_path %>">
           Create a new post
-        </div>
-      </a>
+        </a>
+      <% end %>
+      <div class="block w-full border-b my-1"></div>
       <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" %>
     <% else %>
       <a href="<%= user_session_path %>" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">
         Log in
       </a>
       <a href="<%= new_user_registration_path %>" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" role="menuitem"">
-        Sign up
+      Sign up
       </a>
     <% end %>
   </div>

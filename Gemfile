@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.0.0"
 
-gem "rails", "~> 7.0.0.alpha2"
+gem "rails", "~> 7.0.0.rc1"
 
 gem "pg", "~> 1.1"
 gem "puma", "~> 5.0"
@@ -20,23 +20,24 @@ gem "hiredis"
 gem "view_component"
 gem "stimulus_reflex", "~> 3.5.0-pre7"
 # gem "devise"
-gem "devise", github: "strobilomyces/devise", branch: "patch-1"
+gem "devise", git: "https://github.com/heartcombo/devise", branch: "main"
 gem "octicons_helper"
 gem "friendly_id", "~> 5.4.0"
 
 # Use Active Storage variant
 gem "image_processing", "~> 1.2"
 
-gem "jsbundling-rails"
-gem "cssbundling-rails"
-
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.4", require: false
 
 gem "aws-sdk-s3", require: false
 
+gem "jsbundling-rails"
+gem "cssbundling-rails"
+
 gem "hotwire-rails", "~> 0.1.3"
 gem "simple_form", "~> 5.1"
+gem "pagy", "~> 4.9"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
@@ -64,4 +65,3 @@ end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem "pagy", "~> 4.9"

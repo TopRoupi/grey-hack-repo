@@ -1,7 +1,7 @@
 <div style="margin-bottom: 1px">
 <% if type == "Script" %>
   <div style="padding-left: <%= @depth * 30 %>px">
-    <%= render(Scripts::Card::Component.new(script: @file)) %>
+    <%= render(Scripts::Card::Component.new(script: @file, edit: @edit, index: @index)) %>
   </div>
 <% else %>
   <%= render(Folders::Card::Component.new(folder: @file)) %>

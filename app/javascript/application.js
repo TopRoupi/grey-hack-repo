@@ -19,4 +19,6 @@ import mrujs from "mrujs"
 
 window.Turbo = Turbo
 
-mrujs.start()
+mrujs.start({
+  maskLinkMethods: false
+})
