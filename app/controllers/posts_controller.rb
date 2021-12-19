@@ -47,9 +47,12 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
+        session[:forms]&.delete "Post_#{@post.id}"
         format.html { redirect_to @post, notice: "Post was successfully updated." }
         format.json { render :show, status: :ok, location: @post }
       else
+        session[:forms] ||= {}
+        session[:forms]["Post_#{@post.id}"] = @post
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
