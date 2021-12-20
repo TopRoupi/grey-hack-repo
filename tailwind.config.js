@@ -1,10 +1,14 @@
 module.exports = {
-  // mode: 'jit',
-  // purge: [
-  // './app/views/**/*.html.erb',
-  // './app/helpers/**/*.rb',
-  // './app/javascript/**/*.js'
-  // ]
+  mode: 'jit',
+  purge: [
+  './app/**/*.html.erb',
+  './config/initializers/*.rb',
+  './app/components/**/*.rb',
+  './app/components/**/**/*.rb',
+  './node_modules/tailwindcss-stimulus-components/**/*.js',
+  './app/helpers/**/*.rb',
+  './app/javascript/**/*.js'
+  ],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
