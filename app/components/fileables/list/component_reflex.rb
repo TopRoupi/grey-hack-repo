@@ -3,7 +3,9 @@
 class Fileables::List::ComponentReflex < ApplicationReflex
   before_reflex do
     puts "aaaaaaaaaaaaaaaaaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-    puts params
+    puts params[:post]
+    puts Fileable.strong_params params[:post]
+    puts Fileable.get_params_depth params[:post]
     session[:forms] ||= {}
     if params[:action] == "edit"
       @form = "Post_#{params[:id]}"
@@ -63,6 +65,14 @@ class Fileables::List::ComponentReflex < ApplicationReflex
     index = index.to_i
 
     @fileable.folders[index].scripts.build
+  end
+
+  def add_folder_folder
+    index = element.dataset[:index]
+    index = index.split("_")[1]
+    index = index.to_i
+
+    @fileable.folders[index].folders.build
   end
 
   def close_form

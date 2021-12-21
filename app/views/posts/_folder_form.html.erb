@@ -6,4 +6,9 @@
   <%= f.simple_fields_for(:scripts) do |ff| %>
     <%= render "script_form", f: ff %>
   <% end %>
+
+
+  <%= f.simple_fields_for(:folders) do |ff| %>
+    <%= render "folder_form", f: ff %>
+  <% end %>
 </div>

@@ -21,6 +21,11 @@
          Add_script
     </div>
     <div class="p-3 border-l cursor-pointer info_bg border-beaver-850"
+         data-reflex="click->Fileables::List::ComponentReflex#add_folder_folder"
+         data-index="<%= @index %>">
+         Add_folder
+    </div>
+    <div class="p-3 border-l cursor-pointer info_bg border-beaver-850"
           data-reflex="click->Fileables::List::ComponentReflex#<%= params[:edit_file] == @folder ? "close_form" : "edit_file" %>"
           data-index="<%= @index %>">
       Edit

@@ -8,7 +8,7 @@
   <div class="bg-beaver-850">
     <% @fileable.folders.each_with_index do |folder, i| %>
       <%= render(Fileables::List::Item::Component.new(file: folder, depth: @depth, edit: @edit, index: "folder_#{i}")) %>
-      <%= render(Fileables::List::Component.new(fileable: folder, depth: @depth + 1)) %>
+      <%= render(Fileables::List::Component.new(fileable: folder, depth: @depth + 1, edit: @edit)) %>
     <% end %>
 
     <% @fileable.scripts.each_with_index do |script, i| %>
