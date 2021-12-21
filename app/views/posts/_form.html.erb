@@ -35,6 +35,10 @@
       </div>
     <% end %>
 
+    <%= f.simple_fields_for(:folders) do |ff| %>
+      <%= render "folder_form", f: ff %>
+    <% end %>
+
     <div class="flex justify-end">
       <% if session[:forms] %>
         <% if params[:action] == "edit" && session[:forms]["Post_#{@post.id}"] || params[:action] == "new" && session[:forms]["Post"] %>

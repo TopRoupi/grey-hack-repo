@@ -14,6 +14,9 @@ module Fileable
     has_many :folders, as: :foldable, dependent: :destroy
 
     validates_with FileableValidator
+
+    accepts_nested_attributes_for :scripts, allow_destroy: true
+    accepts_nested_attributes_for :folders, allow_destroy: true
   end
 
   def has_script?

@@ -4,7 +4,7 @@
     <%= render(Scripts::Card::Component.new(script: @file, edit: @edit, index: @index)) %>
   </div>
 <% else %>
-  <%= render(Folders::Card::Component.new(folder: @file)) %>
+  <%= render(Folders::Card::Component.new(folder: @file, edit: @edit, index: @index)) %>
 <% end %>
 </div>
 

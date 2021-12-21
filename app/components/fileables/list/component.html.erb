@@ -6,13 +6,13 @@
 
 
   <div class="bg-beaver-850">
-    <% @fileable.folders.each do |folder| %>
-      <%= render(Fileables::List::Item::Component.new(file: folder, depth: @depth)) %>
+    <% @fileable.folders.each_with_index do |folder, i| %>
+      <%= render(Fileables::List::Item::Component.new(file: folder, depth: @depth, edit: @edit, index: "folder_#{i}")) %>
       <%= render(Fileables::List::Component.new(fileable: folder, depth: @depth + 1)) %>
     <% end %>
 
     <% @fileable.scripts.each_with_index do |script, i| %>
-      <%= render(Fileables::List::Item::Component.new(file: script, depth: @depth, edit: @edit, index: i)) %>
+      <%= render(Fileables::List::Item::Component.new(file: script, depth: @depth, edit: @edit, index: "script_#{i}")) %>
     <% end %>
   </div>
 
@@ -20,6 +20,7 @@
     <div class="bg-beaver-850 p-3 w-full rounded-b-md" style="margin-top: -1px">
       <% if @edit %>
         <span class="link" data-reflex="click->Fileables::List::ComponentReflex#add_script">Add script</span>
+        <span class="link" data-reflex="click->Fileables::List::ComponentReflex#add_folder">Add folder</span>
         <span class="link float-right" data-reflex="click->Fileables::List::ComponentReflex#update">Update</span>
       <% end %>
     </div>

@@ -3,6 +3,7 @@
     <div class="flex w-full p-3 <%= params[:edit_file] == @script ? "bg-beaver-700" : "bg-beaver-800" %> <%= "hover:bg-beaver-700 cursor-pointer" unless @edit %> items-center">
       <%= octicon "file", height: 20, class: "fill-current mr-2" %>
       <%= @script.name %>
+      <%= @index %>
 
       <% if @edit && @script.invalid? %>
         <span class="text-red-400 ml-2">

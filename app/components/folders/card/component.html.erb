@@ -1,12 +1,36 @@
 <div class="flex w-full justify-start">
-  <div class="flex w-full p-3 cursor-pointer bg-beaver-800 hover:bg-beaver-700 items-center">
+  <div class="flex w-full p-3 <%= params[:edit_file] == @folder ? "bg-beaver-700" : "bg-beaver-800" %> <%= "hover:bg-beaver-700 cursor-pointer" unless @edit %> items-center">
     <%= octicon "file-directory", height: 20, class: "fill-current mr-2" %>
     <%= @folder.name %>
+    <%= @index %>
+
+    <% if @edit && @folder.invalid? %>
+      <span class="text-red-400 ml-2">
+        invalid
+      </span>
+    <% end %>
 
     <div class="ml-auto text-beaver-400">
       files: <%= @folder.scripts.count %>
     </div>
   </div>
+  <% if @edit %>
+    <div class="p-3 border-l cursor-pointer info_bg border-beaver-850"
+         data-reflex="click->Fileables::List::ComponentReflex#add_folder_script"
+         data-index="<%= @index %>">
+         Add_script
+    </div>
+    <div class="p-3 border-l cursor-pointer info_bg border-beaver-850"
+          data-reflex="click->Fileables::List::ComponentReflex#<%= params[:edit_file] == @folder ? "close_form" : "edit_file" %>"
+          data-index="<%= @index %>">
+      Edit
+    </div>
+    <div class="p-3 border-l cursor-pointer danger_bg border-beaver-850"
+          data-reflex="click->Fileables::List::ComponentReflex#remove_file"
+          data-index="<%= @index %>">
+          Delete
+    </div>
+  <% end %>
 </div>
 
 
