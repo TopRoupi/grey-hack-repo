@@ -26,6 +26,23 @@ module Fileable
     folders.select { |f| f.has_script? }.any?
   end
 
+  def children_index_table(table = {})
+    index = table.size
+    table[index] = self
+    index += 1
+
+    scripts.each do |script|
+      table[index] = script
+      index += 1
+    end
+
+    folders.each do |folder|
+      table = folder.children_index_table(table)
+    end
+
+    table
+  end
+
   def self.strong_params(params)
     depth = get_params_depth(params)
     [
@@ -35,26 +52,21 @@ module Fileable
   end
 
   class << self
-    # private
+    private
 
     def get_params_depth(params, depth = 0)
-      puts "aaaaaaAAA"
-      puts params
       if params["folders_attributes"]
         return get_params_depth(params["folders_attributes"], depth)
       end
 
       params = params.to_unsafe_hash if params.instance_of? ActionController::Parameters
-      folders_children = params.map do |index, attributes|
+      params.map do |index, attributes|
         if attributes["folders_attributes"]
           get_params_depth(attributes["folders_attributes"], depth) + 1
         else
           0
         end
-      end
-      puts folders_children
-
-      folders_children.max
+      end.max
     end
 
     def script_strong_params

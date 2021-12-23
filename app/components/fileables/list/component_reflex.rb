@@ -1,23 +1,8 @@
 # frozen_string_literal: true
 
 class Fileables::List::ComponentReflex < ApplicationReflex
-  before_reflex do
-    puts "aaaaaaaaaaaaaaaaaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-    puts params[:post]
-    puts Fileable.strong_params params[:post]
-    puts Fileable.get_params_depth params[:post]
-    session[:forms] ||= {}
-    if params[:action] == "edit"
-      @form = "Post_#{params[:id]}"
-      post = Post.find(params[:id])
-      post.attributes = controller.send(:post_params)
-      session[:forms][@form] = post
-    else
-      @form = "Post"
-      session[:forms][@form] = Post.new(controller.send(:post_params))
-    end
-    @fileable = session[:forms][@form]
-  end
+  before_reflex :set_session_form
+  before_reflex :set_index_table, only: [:edit_file, :remove_file, :add_folder_script, :add_folder_folder]
 
   after_reflex do
     session[:forms][@form] = @fileable
@@ -32,52 +17,56 @@ class Fileables::List::ComponentReflex < ApplicationReflex
   end
 
   def edit_file
-    index = element.dataset[:index]
-    type, index = index.split("_")
-    index = index.to_i
-
-    case type
-    when "script"
-      params[:edit_file] = @fileable.scripts[index]
-    when "folder"
-      params[:edit_file] = @fileable.folders[index]
-    end
+    params[:edit_file] = @selected_file
   end
 
   def remove_file
-    index = element.dataset[:index]
-    type, index = index.split("_")
-    index = index.to_i
-
-    case type
-    when "script"
-      removed_script = @fileable.scripts[index]
-      @fileable.scripts.delete(removed_script)
-    when "folder"
-      removed_folder = @fileable.folders[index]
-      @fileable.folders.delete(removed_folder)
+    case @selected_file.class.to_s
+    when "Script"
+      @selected_parent.scripts.delete(@selected_file)
+    when "Folder"
+      @selected_parent.folders.delete(@selected_file)
     end
   end
 
   def add_folder_script
-    index = element.dataset[:index]
-    index = index.split("_")[1]
-    index = index.to_i
-
-    @fileable.folders[index].scripts.build
+    @selected_file.scripts.build
   end
 
   def add_folder_folder
-    index = element.dataset[:index]
-    index = index.split("_")[1]
-    index = index.to_i
-
-    @fileable.folders[index].folders.build
-  end
-
-  def close_form
+    @selected_file.folders.build
   end
 
   def update
+  end
+
+  private
+
+  def set_session_form
+    session[:forms] ||= {}
+
+    if params[:action] == "edit"
+      @form = "Post_#{params[:id]}"
+      post = Post.find(params[:id])
+      post.attributes = controller.send(:post_params)
+      session[:forms][@form] = post
+    else
+      @form = "Post"
+      session[:forms][@form] = Post.new(controller.send(:post_params))
+    end
+
+    @fileable = session[:forms][@form]
+  end
+
+  def set_index_table
+    @index_table = @fileable.children_index_table
+
+    index = element.dataset[:index]
+    @parent, @index = index.split("_")
+    @parent = @parent.to_i
+    @index = @index.to_i
+
+    @selected_file = @index_table[@index]
+    @selected_parent = @index_table[@parent]
   end
 end

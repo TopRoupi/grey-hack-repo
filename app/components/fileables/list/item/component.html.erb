@@ -1,10 +1,10 @@
 <div style="margin-bottom: 1px">
-<% if type == "Script" %>
-  <div style="padding-left: <%= @depth * 30 %>px">
-    <%= render(Scripts::Card::Component.new(script: @file, edit: @edit, index: @index)) %>
+  <div style="padding-left: <%= @depth > 0 ? 30 : 0 %>px">
+    <% if type == "Script" %>
+      <%= render(Scripts::Card::Component.new(script: @file, edit: @edit, index: @index)) %>
+    <% else %>
+      <%= render(Folders::Card::Component.new(folder: @file, edit: @edit, index: @index)) %>
+    <% end %>
   </div>
-<% else %>
-  <%= render(Folders::Card::Component.new(folder: @file, edit: @edit, index: @index)) %>
-<% end %>
 </div>
 
