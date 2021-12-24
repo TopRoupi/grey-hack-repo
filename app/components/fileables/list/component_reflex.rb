@@ -37,6 +37,9 @@ class Fileables::List::ComponentReflex < ApplicationReflex
     @selected_file.folders.build
   end
 
+  def close_form
+  end
+
   def update
   end
 

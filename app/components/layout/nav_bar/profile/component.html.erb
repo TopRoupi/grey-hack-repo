@@ -1,44 +1,25 @@
-<div class="ml-3 relative" data-controller="dropdown">
-  <div>
-    <button type="button" class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-beaver-500" id="user-menu-button" aria-expanded="false" aria-haspopup="true" data-action="click->dropdown#toggle click@window->dropdown#hide" data-dropdown-target="button">
-      <span class="sr-only">Open user menu</span>
-      <img class="h-8 w-8 rounded-full" src="<%= helpers.current_user_avatar %>" alt="">
-    </button>
-  </div>
-  <div class="origin-top-right z-50 hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1" data-dropdown-target="menu">
-    <!-- Active: "bg-gray-100", Not Active: "" -->
+<%= render(Layout::Dropdown::Component.new()) do |c| %>
+  <% c.button(tag: :button, type: "button", class: "bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-beaver-500") do %>
+    <span class="sr-only">Open user menu</span>
+    <img class="h-8 w-8 rounded-full" src="<%= helpers.current_user_avatar %>" alt="">
+  <% end %>
+  <% c.menu(direction: :left) do |cc| %>
     <% if current_user %>
-      <a href="<%= user_path current_user %>" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" role="menuitem" tabindex="-1" id="user-menu-item-0">
-        Profile
-      </a>
-      <a href="<%= edit_user_registration_path %>" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" role="menuitem" tabindex="-1" id="user-menu-item-0">
-        Settings
-      </a>
-      <div class="block w-full border-b my-1"></div>
-      <div class="block text-center px-4 py-2 text-sm text-gray-700">
-        Posts
-      </div>
+      <% cc.item(tag: :a, href: user_path(current_user)) { "Profile" } %>
+      <% cc.item(tag: :a, href: edit_user_registration_path) { "Settings" } %>
+      <% cc.item(type: :separator) %>
+      <% cc.item(type: :header) { "Posts" } %>
       <% if session[:forms] && session[:forms]["Post"] %>
-        <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" href="<%= new_post_path %>">
-          Continue to write post
-        </a>
-        <div class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 cursor-pointer" data-reflex="click->FormsReflex#dicard_session_forms">
-          Discard changes
-        </div>
+        <% cc.item(tag: :a, href: new_post_path) { "Continue to write post" } %>
+        <% cc.item(tag: :div, data: {reflex: "click->FormsReflex#dicard_session_forms"}) { "Discard changes" } %>
       <% else %>
-        <a class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" href="<%= new_post_path %>">
-          Create a new post
-        </a>
+        <% cc.item(tag: :a, href: new_post_path) { "Create a new post" } %>
       <% end %>
-      <div class="block w-full border-b my-1"></div>
-      <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" %>
+      <% cc.item(type: :separator) %>
+      <% cc.item(tag: :a, href: destroy_user_session_path, data: { method: "delete" }) { "Sign out" } %>
     <% else %>
-      <a href="<%= user_session_path %>" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200">
-        Log in
-      </a>
-      <a href="<%= new_user_registration_path %>" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200" role="menuitem"">
-      Sign up
-      </a>
+      <% cc.item(tag: :a, href: user_session_path) { "Log in" } %>
+      <% cc.item(tag: :a, href: new_user_registration_path) { "Sign up" } %>
     <% end %>
-  </div>
-</div>
+  <% end %>
+<% end %>

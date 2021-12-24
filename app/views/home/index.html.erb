@@ -1,2 +1,10 @@
+<%= render(Layout::Dropdown::Component.new()) do |c| %>
+  <% c.button do %>
+    lol
+  <% end %>
+  <% c.menu do %>
+    lol
+  <% end %>
+<% end %>
 <%= render(Overview::Component.new(posts: @posts, pagy: @pagy)) %>
 

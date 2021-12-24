@@ -6,7 +6,7 @@
 
   <div class="flex" style="padding-left: <%= @depth > 1 ? 30 : 0 %>px">
     <% if @depth > 0 && (!@fileable.scripts.empty? || !@fileable.folders.empty?) %>
-      <div class="border border-beaver-700"></div>
+      <div class="border border-beaver-700" style="margin-bottom: 24px"></div>
     <% end %>
     <div class="bg-beaver-850 w-full">
       <% @fileable.folders.each do |folder| %>

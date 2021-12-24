@@ -1,5 +1,8 @@
-<div style="margin-bottom: 1px">
-  <div style="padding-left: <%= @depth > 0 ? 30 : 0 %>px">
+<div class="flex" style="margin-bottom: 1px">
+  <% if @depth > 0 %>
+    <div class="border border-beaver-700 self-center" style="width: 30px; height: 0px"></div>
+  <% end %>
+  <div class="w-full">
     <% if type == "Script" %>
       <%= render(Scripts::Card::Component.new(script: @file, edit: @edit, index: @index)) %>
     <% else %>
