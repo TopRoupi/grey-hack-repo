@@ -14,28 +14,24 @@
     </div>
   </div>
   <% if @edit %>
-    <div class="p-3 whitespace-nowrap border-l cursor-pointer info_bg border-beaver-850"
-         data-reflex="click->Fileables::List::ComponentReflex#add_folder_script"
-         data-index="<%= @index %>">
-         Add script
-    </div>
-    <div class="p-3 whitespace-nowrap border-l cursor-pointer info_bg border-beaver-850"
-         data-reflex="click->Fileables::List::ComponentReflex#add_folder_folder"
-         data-index="<%= @index %>">
-         Add folder
-    </div>
-    <div class="p-3 whitespace-nowrap border-l cursor-pointer bg-beaver-800 hover:bg-beaver-700 border-beaver-850">
-         Add file
-    </div>
+    <%= render(Layout::Dropdown::Component.new(class: "inline-block  relative")) do |c| %>
+      <% c.button(class: "p-3 whitespace-nowrap border-l cursor-pointer bg-beaver-700 hover:bg-beaver-600 border-beaver-850") do %>
+        Add file
+      <% end %>
+      <% c.menu do |cc| %>
+        <% cc.item(data: {reflex: "click->Fileables::List::ComponentReflex#add_folder_file", index: @index, type: "script"}) { "Add script" } %>
+        <% cc.item(data: {reflex: "click->Fileables::List::ComponentReflex#add_folder_file", index: @index, type: "folder"}) { "Add folder" } %>
+      <% end %>
+    <% end %>
     <div class="p-3 border-l cursor-pointer info_bg border-beaver-850"
-          data-reflex="click->Fileables::List::ComponentReflex#<%= params[:edit_file] == @folder ? "close_form" : "edit_file" %>"
-          data-index="<%= @index %>">
+      data-reflex="click->Fileables::List::ComponentReflex#<%= params[:edit_file] == @folder ? "close_form" : "edit_file" %>"
+      data-index="<%= @index %>">
       Edit
     </div>
     <div class="p-3 border-l cursor-pointer danger_bg border-beaver-850"
-          data-reflex="click->Fileables::List::ComponentReflex#remove_file"
-          data-index="<%= @index %>">
-          Delete
+      data-reflex="click->Fileables::List::ComponentReflex#remove_file"
+      data-index="<%= @index %>">
+      Delete
     </div>
   <% end %>
 </div>

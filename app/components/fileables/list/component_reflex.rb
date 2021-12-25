@@ -2,18 +2,20 @@
 
 class Fileables::List::ComponentReflex < ApplicationReflex
   before_reflex :set_session_form
-  before_reflex :set_index_table, only: [:edit_file, :remove_file, :add_folder_script, :add_folder_folder]
+  before_reflex :set_index_table, only: [:edit_file, :remove_file, :add_folder_file]
 
   after_reflex do
     session[:forms][@form] = @fileable
   end
 
-  def add_script
-    @fileable.scripts.build
-  end
+  def add_file
+    type = element.dataset[:type]
 
-  def add_folder
-    @fileable.folders.build
+    if type == "folder"
+      @fileable.folders.build
+    else
+      @fileable.scripts.build
+    end
   end
 
   def edit_file
@@ -29,12 +31,14 @@ class Fileables::List::ComponentReflex < ApplicationReflex
     end
   end
 
-  def add_folder_script
-    @selected_file.scripts.build
-  end
+  def add_folder_file
+    type = element.dataset[:type]
 
-  def add_folder_folder
-    @selected_file.folders.build
+    if type == "folder"
+      @selected_file.folders.build
+    else
+      @selected_file.scripts.build
+    end
   end
 
   def close_form
