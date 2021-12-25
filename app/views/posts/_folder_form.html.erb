@@ -1,8 +1,16 @@
 <div class="<%= "hidden" unless f.object == params[:edit_file] %>">
   <div class="nested-form-wrapper rounded bg-beaver-850 p-3 mb-3">
     <%= f.input :name %>
-    <%= f.input :content, as: :text%>
 
     <%= f.input :_destroy, as: :hidden %>
   </div>
 </div>
+
+<%= f.simple_fields_for(:scripts) do |ff| %>
+  <%= render "script_form", f: ff %>
+<% end %>
+
+
+<%= f.simple_fields_for(:folders) do |ff| %>
+  <%= render "folder_form", f: ff %>
+<% end %>

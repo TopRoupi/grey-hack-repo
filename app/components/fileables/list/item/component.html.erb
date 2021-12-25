@@ -1,10 +1,13 @@
-<div style="margin-bottom: 1px">
-<% if type == "Script" %>
-  <div style="padding-left: <%= @depth * 30 %>px">
-    <%= render(Scripts::Card::Component.new(script: @file, edit: @edit, index: @index)) %>
+<div class="flex" style="margin-bottom: 1px">
+  <% if @depth > 0 %>
+    <div class="border border-beaver-700 self-center" style="width: 30px; height: 0px"></div>
+  <% end %>
+  <div class="w-full">
+    <% if type == "Script" %>
+      <%= render(Scripts::Card::Component.new(script: @file, edit: @edit, index: @index)) %>
+    <% else %>
+      <%= render(Folders::Card::Component.new(folder: @file, edit: @edit, index: @index)) %>
+    <% end %>
   </div>
-<% else %>
-  <%= render(Folders::Card::Component.new(folder: @file)) %>
-<% end %>
 </div>
 
