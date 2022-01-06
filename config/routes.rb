@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   get "posts", to: "home#index"
   get "users/:id", to: "users#show", as: "user"
   get "categories/:id", to: "categories#show", as: "category"
+  get "scripts/:id", to: "scripts#show", as: "script"
 end

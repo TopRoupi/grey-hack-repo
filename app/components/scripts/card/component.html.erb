@@ -1,39 +1,42 @@
-<%= render(Layout::Modal::Component.new(class: "w-full", disabled: @edit)) do |c| %>
-  <% c.button(class: "w-full flex justify-start") do %>
-    <div class="flex w-full p-3 <%= params[:edit_file] == @script ? "bg-beaver-700" : "bg-beaver-800" %> <%= "hover:bg-beaver-700 cursor-pointer" unless @edit %> items-center">
-      <%= octicon "file", height: 20, class: "fill-current mr-2" %>
-      <%= @script.name %>
+<div class="w-full">
+  <div class="flex w-full justify-start">
+    <%= render(Layout::Modal::Component.new(class: "w-full", disabled: @edit)) do |c| %>
+      <% c.button(class: "flex w-full p-3 #{params[:edit_file] == @script ? 'bg-beaver-700' : 'bg-beaver-800'} #{'hover:bg-beaver-700 cursor-pointer' unless @edit} items-center") do %>
+        <%= octicon "file", height: 20, class: "fill-current mr-2" %>
+        <%= @script.name %>
 
-      <% if @edit && @script.invalid? %>
-        <span class="text-red-400 ml-2">
-          invalid
-        </span>
-      <% end %>
+        <% if @edit && @script.invalid? %>
+          <span class="text-red-400 ml-2">
+            invalid
+          </span>
+        <% end %>
 
-      <% if @script.content %>
-        <div class="ml-auto text-beaver-400">
-          chars: <%= @script.content.size %>
-        </div>
+        <% if @script.content %>
+          <div class="ml-auto text-beaver-400">
+            chars: <%= @script.content.size %>
+          </div>
+        <% end %>
       <% end %>
-    </div>
+      <% c.body do %>
+        <%== @script.highlighted_content %>
+        <%= "refresh this page if this script didn't updated yet" if @script.highlighted_content.blank?%>
+      <% end %>
+    <% end %>
+    <% unless @edit %>
+      <%= render(Scripts::Card::CopyButton::Component.new(script: @script)) %>
+    <% end %>
     <% if @edit %>
       <div class="p-3 border-l cursor-pointer info_bg border-beaver-850"
-           data-reflex="click->Fileables::List::ComponentReflex#<%= params[:edit_file] == @script ? "close_form" : "edit_file" %>"
-           data-index="<%= @index %>">
+        data-reflex="click->Fileables::List::ComponentReflex#<%= params[:edit_file] == @script ? "close_form" : "edit_file" %>"
+        data-index="<%= @index %>">
         Edit
       </div>
 
       <div class="p-3 border-l cursor-pointer danger_bg border-beaver-850"
-           data-reflex="click->Fileables::List::ComponentReflex#remove_file"
-           data-index="<%= @index %>">
-           Delete
+        data-reflex="click->Fileables::List::ComponentReflex#remove_file"
+        data-index="<%= @index %>">
+        Delete
       </div>
     <% end %>
-  <% end %>
-
-  <% c.body do %>
-    <%== @script.highlighted_content %>
-    <%= "refresh this page if this script didn't updated yet" if @script.highlighted_content.blank?%>
-  <% end %>
-<% end %>
-
+  </div>
+</div>

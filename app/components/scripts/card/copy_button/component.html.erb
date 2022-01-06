@@ -1,3 +1,9 @@
-<div class="p-3 border-l cursor-pointer bg-beaver-800 hover:bg-beaver-700 border-beaver-850">
-  Copy
+<div class="p-3 border-l cursor-pointer bg-beaver-800 hover:bg-beaver-700 border-beaver-850"
+      data-controller="scripts--card--copy--component"
+      data-action="click->scripts--card--copy--component#copy_script_to_clipboard"
+      data-scripts--card--copy--component-url-value="<%= script_url(@script, format: :json) %>"
+      data-message="<%= @script.name %> copied to clipboard"
+      data-type="success"
+      >
+      Copy
 </div>
