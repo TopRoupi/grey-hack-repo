@@ -1,7 +1,7 @@
-<div class="w-full">
+<%= render(Layout::Toggle::Component.new(class: "w-full")) do |c| %>
   <div class="flex w-full justify-start">
-    <%= render(Layout::Modal::Component.new(class: "w-full", disabled: @edit)) do |c| %>
-      <% c.button(class: "flex w-full p-3 #{params[:edit_file] == @script ? 'bg-beaver-700' : 'bg-beaver-800'} #{'hover:bg-beaver-700 cursor-pointer' unless @edit} items-center") do %>
+    <div class="w-full">
+      <%= render(c.toggle(tag: :button, class: "flex w-full p-3 #{params[:edit_file] == @script ? 'bg-beaver-700' : 'bg-beaver-800'} #{'hover:bg-beaver-700 cursor-pointer' unless @edit} items-center")) do %>
         <%= octicon "file", height: 20, class: "fill-current mr-2" %>
         <%= @script.name %>
 
@@ -17,11 +17,7 @@
           </div>
         <% end %>
       <% end %>
-      <% c.body do %>
-        <%== @script.highlighted_content %>
-        <%= "refresh this page if this script didn't updated yet" if @script.highlighted_content.blank?%>
-      <% end %>
-    <% end %>
+    </div>
     <% unless @edit %>
       <%= render(Scripts::Card::CopyButton::Component.new(script: @script)) %>
     <% end %>
@@ -39,4 +35,9 @@
       </div>
     <% end %>
   </div>
-</div>
+  <%= render(c.toggleable(class: "w-full overflow-x-auto bg-beaver-1000")) do %>
+    <%== @script.highlighted_content %>
+    <%= "refresh this page if this script didn't updated yet" if @script.highlighted_content.blank?%>
+  <% end %>
+<% end %>
+

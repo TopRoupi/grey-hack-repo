@@ -13,11 +13,12 @@ application.register("scripts--card--copy--component", ScriptsCardCopyComponent 
 
 import AvatarPreview from "./avatar_preview_controller"
 application.register("avatar-preview", AvatarPreview)
-import { Alert, Dropdown, Modal } from "tailwindcss-stimulus-components"
+import { Alert, Dropdown, Modal, Toggle } from "tailwindcss-stimulus-components"
 
 application.register('dropdown', Dropdown)
 application.register('alert', Alert)
 application.register('modal', Modal)
+application.register('toggle', Toggle)
 
 import NestedForm from "stimulus-rails-nested-form"
 application.register("nested-form", NestedForm)

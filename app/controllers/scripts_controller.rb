@@ -2,6 +2,7 @@ class ScriptsController < ApplicationController
   before_action :set_script, only: [:show]
 
   def show
+    sleep 1
   end
 
   private
