@@ -22,17 +22,17 @@
       <%= render(Scripts::Card::CopyButton::Component.new(script: @script)) %>
     <% end %>
     <% if @edit %>
-      <div class="p-3 border-l cursor-pointer info_bg border-beaver-850"
+      <button class="p-3 border-l cursor-pointer info_bg border-beaver-850"
         data-reflex="click->Fileables::List::ComponentReflex#<%= params[:edit_file] == @script ? "close_form" : "edit_file" %>"
         data-index="<%= @index %>">
         Edit
-      </div>
+      </button>
 
-      <div class="p-3 border-l cursor-pointer danger_bg border-beaver-850"
+      <button class="p-3 border-l cursor-pointer danger_bg border-beaver-850"
         data-reflex="click->Fileables::List::ComponentReflex#remove_file"
         data-index="<%= @index %>">
         Delete
-      </div>
+      </button>
     <% end %>
   </div>
   <%= render(c.toggleable(class: "w-full overflow-x-auto bg-beaver-1000")) do %>

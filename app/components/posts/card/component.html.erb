@@ -27,9 +27,11 @@
          data-turbo-frame="_top"
          class="mb-4 info_bg flex w-full sm:w-auto items-center justify-center rounded-bl-lg sm:rounded-none px-2">
          <%= octicon "pencil", height:20, class: "fill-current" %>
+         <span class="sr-only">Edit</span>
       </a>
-      <%= link_to @post, class: "mb-4 danger_bg rounded-br-lg h-10 sm:h-auto sm:rounded-r-xl flex w-full sm:w-auto items-center justify-center px-2", data: { turbo_method: :delete, confirm: 'Are you sure?', turbo_frame: "_top" } do %>
+      <%= link_to @post, class: "mb-4 danger_bg rounded-br-lg h-10 sm:h-auto sm:rounded-r-xl flex w-full sm:w-auto items-center justify-center px-2", data: { turbo_method: :delete, turbo_confirm: 'Are you sure?', turbo_frame: "_top" } do %>
         <%= octicon "trash", height:20, class: "fill-current" %>
+        <span class="sr-only">Destroy</span>
       <% end %>
     </div>
   <% end %>
