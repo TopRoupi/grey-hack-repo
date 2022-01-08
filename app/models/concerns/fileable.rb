@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FileableValidator < ActiveModel::Validator
   def validate(record)
     unless record.has_script?

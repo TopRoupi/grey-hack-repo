@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ScriptsController < ApplicationController
   before_action :set_script, only: [:show]
 
