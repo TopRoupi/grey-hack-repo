@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.0.0"
 
-gem "rails", "~> 7.0.0"
+gem "rails", "~> 7.0.1"
 
 gem "pg", "~> 1.1"
 gem "puma", "~> 5.0"
@@ -18,9 +18,9 @@ gem "jbuilder", "~> 2.7"
 gem "redis", "~> 4.0", require: ["redis", "redis/connection/hiredis"]
 gem "hiredis"
 gem "view_component"
-gem "stimulus_reflex", "~> 3.5.0-pre7"
-# gem "devise"
-gem "devise", git: "https://github.com/heartcombo/devise", branch: "main"
+gem "stimulus_reflex", "~> 3.5.0-pre8"
+gem "devise"
+# gem "devise", git: "https://github.com/heartcombo/devise", branch: "main"
 gem "octicons_helper"
 gem "friendly_id", "~> 5.4.0"
 
