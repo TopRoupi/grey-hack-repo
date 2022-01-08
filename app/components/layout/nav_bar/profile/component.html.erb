@@ -16,7 +16,7 @@
         <% cc.item(tag: :a, href: new_post_path) { "Create a new post" } %>
       <% end %>
       <% cc.item(type: :separator) %>
-      <% cc.item(tag: :a, href: destroy_user_session_path, data: { method: "delete" }) { "Sign out" } %>
+      <% cc.item(tag: :a, href: destroy_user_session_path, data: { turbo_method: "delete" }) { "Sign out" } %>
     <% else %>
       <% cc.item(tag: :a, href: user_session_path) { "Log in" } %>
       <% cc.item(tag: :a, href: new_user_registration_path) { "Sign up" } %>
