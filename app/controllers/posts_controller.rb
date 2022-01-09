@@ -73,7 +73,7 @@ class PostsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_post
     @post = Post.find(params[:id])
-    redirect_to :root if @post.user != current_user
+    redirect_to :root, alert: "action not permitted" if @post.user != current_user
   end
 
   # Only allow a list of trusted parameters through.

@@ -5,9 +5,11 @@ class UsersController < ApplicationController
     @user = User.friendly.find(params[:id])
     @category = params[:category] || "all"
     if @category == "all"
-      @pagy, @posts = pagy @user.posts.eager.asc.all, items: 5
+      @category_pagy, @posts = pagy @user.posts.eager.asc.all, items: 5, page_param: "cpage"
     else
-      @pagy, @posts = pagy @user.posts.eager.asc.where(category_id: @category), items: 5
+      @category_pagy, @posts = pagy @user.posts.eager.asc.where(category_id: @category), items: 5
     end
+
+    @stars_pagy, @starred_posts = pagy(@user.starable_posts.eager.order('"stars_posts"."created_at"': :desc), items: 5)
   end
 end

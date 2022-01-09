@@ -1,3 +1,5 @@
+<% title @user.name %>
+
 <div class="flex justify-center items-start mb-5">
   <img class="h-20 w-20 rounded-full ml-2" src="<%= user_avatar(@user) %>" alt="">
   <div class="flex ml-2 flex-col">
@@ -20,12 +22,16 @@
   <%= @user.name.capitalize %>'s posts
 </div>
 
-<%= render(Users::PostsBox::Component.new(user: @user, posts: @posts, pagy: @pagy, active_tab: @category)) %>
+<%= render(Users::PostsBox::Component.new(user: @user, posts: @posts, pagy: @category_pagy, active_tab: @category)) %>
 
 <div class="block text-center text-2xl font-semibold mb-5 mt-5">
   <%= @user.name.capitalize %>'s stars
 </div>
 
-<% @user.starable_posts.eager.order('"stars_posts"."created_at"': :desc).each do |post| %>
-  <%= render(Posts::Card::Component.new(post: post)) %>
-<% end %>
+<turbo-frame id="starred_posts">
+  <% @starred_posts.each do |post| %>
+    <%= render(Posts::Card::Component.new(post: post)) %>
+  <% end %>
+
+  <%= render(Pagy::Component.new(pagy: @stars_pagy)) if @stars_pagy %>
+</turbo-frame>

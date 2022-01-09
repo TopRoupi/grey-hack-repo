@@ -37,7 +37,9 @@ gem "cssbundling-rails"
 
 gem "hotwire-rails", "~> 0.1.3"
 gem "simple_form", "~> 5.1"
-gem "pagy", "~> 4.9"
+gem "pagy"
+
+gem "meta-tags"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]

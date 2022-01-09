@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>GreyRepo</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="icon" href="/assets/icon.ico">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
+    <%= display_meta_tags(default_meta_tags) %>
 
     <%# <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
