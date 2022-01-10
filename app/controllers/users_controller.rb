@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   def show
     @user = User.friendly.find(params[:id])
     @category = params[:category] || "all"
+
     if @category == "all"
       @category_pagy, @posts = pagy @user.posts.eager.asc.all, items: 5, page_param: "cpage"
     else
