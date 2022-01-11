@@ -183,6 +183,7 @@ GEM
       digest
       net-protocol
       timeout
+    newrelic_rpm (8.2.0)
     nio4r (2.5.8)
     nokogiri (1.13.0)
       mini_portile2 (~> 2.7.0)
@@ -330,6 +331,7 @@ DEPENDENCIES
   jsbundling-rails
   listen (~> 3.3)
   meta-tags
+  newrelic_rpm
   octicons_helper
   pagy
   pg (~> 1.1)
