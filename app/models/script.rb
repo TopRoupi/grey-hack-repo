@@ -9,6 +9,6 @@ class Script < ApplicationRecord
   after_commit :set_highlighted_content, on: [:create, :update]
 
   def set_highlighted_content
-    HighlightJob.perform_later(self) unless content == old_content
+    HighlightJob.perform_later(self) unless Digest::SHA256.digest(content) == old_content
   end
 end
