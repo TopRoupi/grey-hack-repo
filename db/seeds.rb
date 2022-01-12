@@ -6,10 +6,14 @@ Category.create name: "Modules", icon: "code-square", description: "code snippet
 
 user = User.create name: "user", password: "123456", email: "aaaaaa@aaaaaa"
 
+user.confirmed_at = Time.now
+
+user.save
+
 Category.all.each do |category|
   20.times do
     post = Post.new title: "test title #{category.name}", summary: "test post summary 123", category: category, user: user
-    post.scripts << Script.new(content: 'print("lol"')
+    post.scripts << Script.new(name: "script", content: 'print("lol"')
     post.save
   end
 end

@@ -7,5 +7,6 @@ FactoryBot.define do
     bank { Faker::Lorem.characters(number: 8) }
     email { Faker::Lorem.characters(number: 8) + "@mail.com" }
     btc { Faker::Lorem.characters(number: 10) }
+    confirmed_at { Time.now }
   end
 end

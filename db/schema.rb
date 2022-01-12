@@ -14,13 +14,12 @@ ActiveRecord::Schema.define(version: 2022_01_10_070034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "timescaledb"
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
     t.string "record_type", null: false
-    t.bigint "record_id", null: false
+    t.integer "record_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
