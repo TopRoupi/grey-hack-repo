@@ -4,7 +4,7 @@ class FileJobTest < ActiveJob::TestCase
   test "set files attachment after create" do
     post = create(:post)
     assert_enqueued_jobs 1, only: FileJob
-    perform_enqueued_jobs
+    perform_enqueued_jobs only: FileJob
     assert_performed_jobs 1, only: FileJob
     post.reload
 
@@ -13,9 +13,7 @@ class FileJobTest < ActiveJob::TestCase
 
   test "set files attachment after update" do
     post = create(:post)
-    assert_enqueued_jobs 1, only: FileJob
     perform_enqueued_jobs
-    assert_performed_jobs 1, only: FileJob
     post.reload
 
     post_old_files = post.files_attachment
@@ -23,7 +21,7 @@ class FileJobTest < ActiveJob::TestCase
     post.scripts.first.content = "new content...."
     post.save
     assert_enqueued_jobs 1, only: FileJob
-    perform_enqueued_jobs
+    perform_enqueued_jobs only: FileJob
     assert_performed_jobs 2, only: FileJob
     post.reload
 

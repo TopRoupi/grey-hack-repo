@@ -339,6 +339,7 @@ DEPENDENCIES
   rails (~> 7.0.1)
   rails_12factor
   redis (~> 4.0)
+  rubyzip
   sass-rails
   selenium-webdriver
   shoulda-context

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Post < ApplicationRecord
+  attr_accessor :updated
+
   include Fileable
 
   belongs_to :user
@@ -25,6 +27,6 @@ class Post < ApplicationRecord
   after_commit :set_files, on: [:update, :create]
 
   def set_files
-    FileJob.perform_later(self)
+    FileJob.perform_later(self) unless @updated
   end
 end
