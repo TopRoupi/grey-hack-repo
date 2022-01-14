@@ -31,6 +31,10 @@
 
 <%= render(Fileables::List::Component.new(fileable: @post)) %>
 
+<% if @post.files_attachment %>
+  <%= link_to "download files", rails_blob_path(@post.files_attachment, disposition: 'attachment') %>
+<% end %>
+
 <br>
 
 <div class="text-2xl text-center block mt-20">
