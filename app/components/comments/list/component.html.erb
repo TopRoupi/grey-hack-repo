@@ -1,4 +1,9 @@
 <div id="<%= dom_id @commentable, "comments" %>" >
+  <% if @comments.empty? %>
+    <div class="m-auto block w-96 my-10 rounded text-center text-beaver-400">
+      This <%= @commentable.class.to_s.downcase %> does not have comments.
+    </div>
+  <% end %>
   <% @comments.each do |comment| %>
     <%= render(Comments::Card::Component.new(comment: comment)) %>
   <% end %>

@@ -2,6 +2,8 @@
 
 class Stars::Badge::ComponentReflex < ApplicationReflex
   def star
+    return send_alert("Not logged in", :error) if current_user.nil?
+
     starable_id = element.dataset["starable-id"]
     starable_type = element.dataset["starable_type"]
 

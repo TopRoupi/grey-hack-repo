@@ -1,15 +1,21 @@
-<div id="<%= dom_id(@comment) %>">
-  <div class="flex justify-center"
-       data-controller="comments--form--component"
-       data-comments--form--component-target="form">
-    <img class="rounded-full h-12 w-12 mt-3" src="<%= helpers.current_user_avatar %>">
-    <div class="w-96 ml-2">
-      <%= simple_form_for(@comment, url: request.url) do |f| %>
-        <%= f.input :content, label: "Comment", as: :text, wrapper_html: { class: "mb-none" }, input_html: {data: {"comments--form--component-target": "input"}} %>
-        <div class="text-right">
-          <%= f.button :submit, data: {action: "click->comments--form--component##{@comment.created_at ? "update" : "create"}", "comment-id": @comment.id} %>
-        </div>
-      <% end %>
+<% if current_user %>
+  <div id="<%= dom_id(@comment) %>">
+    <div class="flex justify-center"
+         data-controller="comments--form--component"
+         data-comments--form--component-target="form">
+      <img class="rounded-full h-12 w-12 mt-3" src="<%= helpers.current_user_avatar %>">
+      <div class="w-96 ml-2">
+        <%= simple_form_for(@comment, url: request.url) do |f| %>
+          <%= f.input :content, label: "Comment", as: :text, wrapper_html: { class: "mb-none" }, input_html: {data: {"comments--form--component-target": "input"}} %>
+          <div class="text-right">
+            <%= f.button :submit, data: {action: "click->comments--form--component##{@comment.created_at ? "update" : "create"}", "comment-id": @comment.id} %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
+<% else %>
+  <div class="block m-auto bg-beaver-800 py-10 text-beaver-200 rounded text-center" style="width: 450px">
+    You need to log in to write a comment.
+  </div>
+<% end %>

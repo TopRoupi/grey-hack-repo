@@ -1,23 +1,21 @@
 <%= render(Layout::Toggle::Component.new(class: "w-full")) do |c| %>
   <div class="flex w-full justify-start">
-    <div class="w-full">
-      <%= render(c.toggle(tag: :button, class: "flex w-full p-3 #{params[:edit_file] == @script ? 'bg-beaver-700' : 'bg-beaver-800'} #{'hover:bg-beaver-700 cursor-pointer' unless @edit} items-center")) do %>
-        <%= octicon "file", height: 20, class: "fill-current mr-2" %>
-        <%= @script.name %>
+    <%= render(c.toggle(tag: @edit ? :div : :button, class: "flex w-full p-3 #{params[:edit_file] == @script ? 'bg-beaver-700' : 'bg-beaver-800'} #{'hover:bg-beaver-700 cursor-pointer' unless @edit} items-center")) do %>
+      <%= octicon "file", height: 20, class: "fill-current mr-2" %>
+      <%= @script.name %>
 
-        <% if @edit && @script.invalid? %>
-          <span class="text-red-400 ml-2">
-            invalid
-          </span>
-        <% end %>
-
-        <% if @script.content %>
-          <div class="ml-auto text-beaver-400">
-            chars: <%= @script.content.size %>
-          </div>
-        <% end %>
+      <% if @edit && @script.invalid? %>
+        <span class="text-red-400 ml-2">
+          invalid
+        </span>
       <% end %>
-    </div>
+
+      <% if @script.content %>
+        <div class="ml-auto text-beaver-400">
+          chars: <%= @script.content.size %>
+        </div>
+      <% end %>
+    <% end %>
     <% unless @edit %>
       <%= render(Scripts::Card::CopyButton::Component.new(script: @script)) %>
     <% end %>
@@ -35,9 +33,11 @@
       </button>
     <% end %>
   </div>
-  <%= render(c.toggleable(class: "w-full overflow-x-auto bg-beaver-1000")) do %>
-    <%== @script.highlighted_content %>
-    <%= "refresh this page if this script didn't updated yet" if @script.highlighted_content.blank?%>
+  <% unless @edit %>
+    <%= render(c.toggleable(class: "w-full overflow-x-auto bg-beaver-1000")) do %>
+      <%== @script.highlighted_content %>
+      <%= "refresh this page if this script didn't updated yet" if @script.highlighted_content.blank?%>
+    <% end %>
   <% end %>
 <% end %>
 

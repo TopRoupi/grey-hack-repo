@@ -32,7 +32,9 @@
 <%= render(Fileables::List::Component.new(fileable: @post)) %>
 
 <% if @post.files_attachment %>
-  <%= link_to "download files", rails_blob_path(@post.files_attachment, disposition: 'attachment') %>
+  <div class="flex justify-end">
+    <%= link_to "download files", rails_blob_path(@post.files_attachment, disposition: "attachment"), class: "bg-green-700 hover:bg-green-600 p-2 rounded mt-6" %>
+  </div>
 <% end %>
 
 <br>
@@ -43,4 +45,8 @@
 <br>
 <%= render(Comments::List::Component.new(commentable: @post)) %>
 <br>
+
+<% if current_user %>
+<% end %>
 <%= render(Comments::Form::Component.new()) %>
+
