@@ -4,12 +4,16 @@ class FileJob < ApplicationJob
   def perform(fileable)
     @files_path = "tmp/#{fileable.title}.zip"
 
+    clear_files
+
     Zip::File.open(@files_path, create: true) do |zipfile|
       create_files(zipfile, fileable, only_content: true)
     end
 
     fileable.updated = true
     fileable.files.attach(io: File.open(@files_path), filename: "#{fileable.title}.zip")
+
+    clear_files
   end
 
   private
