@@ -26,7 +26,10 @@ https://greyrepo.xyz
 
 in development there is no other configuration required other than the database.yml in /config
 
-in production aws s3 configs in /config/storage.yml and mailer provider in /config/enviroments/production.rb are required
+in production
+aws s3 configs in /config/storage.yml
+mailer provider and session_cache_store in /config/enviroments/production.rb
+action cable redis in /config/cable.yml
 
 
 * Database setup
@@ -69,3 +72,4 @@ add search
 maybe add a better way to rank posts popularity by downloads/scripts copies/views
 
 add notifications when a user posts a comment in one of your scripts
+

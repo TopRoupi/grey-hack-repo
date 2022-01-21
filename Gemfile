@@ -44,6 +44,8 @@ gem "meta-tags"
 
 gem "newrelic_rpm"
 
+gem "redis-session-store"
+
 gem "rubyzip", require: "zip"
 
 group :development, :test do
