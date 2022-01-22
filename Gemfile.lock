@@ -190,8 +190,12 @@ GEM
       octicons (= 16.2.0)
       railties
     orm_adapter (0.5.0)
+    ostruct (0.5.3)
     pagy (5.7.6)
     pg (1.2.3)
+    pg_search (2.3.6)
+      activerecord (>= 5.2)
+      activesupport (>= 5.2)
     public_suffix (4.0.6)
     puma (5.5.2)
       nio4r (~> 2.0)
@@ -279,8 +283,6 @@ GEM
       rails (>= 5.2)
       redis
     strscan (3.0.1)
-    textacular (5.5.1)
-      activerecord (>= 5.0, < 7.1)
     thor (1.2.1)
     thread-local (1.1.0)
     tilt (2.0.10)
@@ -331,8 +333,10 @@ DEPENDENCIES
   meta-tags
   newrelic_rpm
   octicons_helper
+  ostruct (~> 0.5.3)
   pagy
   pg (~> 1.1)
+  pg_search
   puma (~> 5.0)
   rails (~> 7.0.1)
   rails_12factor
@@ -345,7 +349,6 @@ DEPENDENCIES
   simple_form (~> 5.1)
   spring
   stimulus_reflex (~> 3.5.0.pre.pre8)
-  textacular (~> 5.0)
   turbo-rails (~> 0.5.9)
   tzinfo-data
   view_component

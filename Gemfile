@@ -18,6 +18,7 @@ gem "jbuilder", "~> 2.7"
 gem "redis", "~> 4.0", require: ["redis", "redis/connection/hiredis"]
 gem "hiredis"
 gem "view_component"
+gem "ostruct", "~> 0.5.3" # delete this after stimulus_reflex gets updated from pre8
 gem "stimulus_reflex", "~> 3.5.0-pre8"
 gem "devise"
 # gem "devise", git: "https://github.com/heartcombo/devise", branch: "main"

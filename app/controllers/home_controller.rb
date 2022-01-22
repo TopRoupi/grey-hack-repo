@@ -6,6 +6,8 @@ class HomeController < ApplicationController
   def index
     set_posts
 
+    @posts = @posts.search(params[:query]["title"]) if params[:query]
+
     @pagy, @posts = pagy @posts
   end
 end

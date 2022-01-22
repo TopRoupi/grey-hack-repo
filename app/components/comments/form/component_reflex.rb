@@ -45,7 +45,7 @@ class Comments::Form::ComponentReflex < ApplicationReflex
 
   def set_commentable
     # todo: make it work with other commentable types
-    @commentable = Post.find(params[:id])
+    @commentable = Post.friendly.find(params[:id])
   end
 
   def set_comment

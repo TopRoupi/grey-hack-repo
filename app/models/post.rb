@@ -20,6 +20,11 @@ class Post < ApplicationRecord
   validates :readme, length: {maximum: 50_000}
 
   # default_scope -> { eager.asc }
+  scope :search, ->(query) {
+    query = sanitize_sql_like(query)
+    where(arel_table[:title].matches("%#{query}%"))
+      .or(where(arel_table[:summary].matches("%#{query}%")))
+  }
   scope :eager, -> { eager_load(:category, :user, stars: [:user]) }
   scope :asc, -> { order(created_at: :desc) }
   scope :week, -> { where({created_at: (1.week.ago)..Time.now}) }

@@ -8,11 +8,16 @@
   <%= @categories.first.description %>
 <% end %>
 
+<%= simple_form_for(:query, url: request.url, method: :get, html: {class: "mt-5", data: {reflex: "submit->SearchPostReflex#search"}}) do |f| %>
+  <%= f.input :title, input_html: { value: params[:query] && params[:query]["title"], class: "!rounded-none !rounded-r" }, wrapper_html: { class: "flex" }, label_html: { class: "bg-beaver-700 !mb-0 !text-white flex rounded-l px-2 items-center !text-base" }, required: false, label: "Search" %>
+<% end %>
+
 <turbo-frame id="posts">
   <div class="mt-7 mb-6">
-    <%= render Layout::LinkGroup::Component.new(2) do |c| %>
-      <% c.link(name: "Newest", link: "?sort=newest", active: params[:sort] == "newest") %>
-      <% c.link(name: "Popular", link: "?sort=popular", active: params[:sort] == "popular") %>
+    <%= render Layout::LinkGroup::Component.new(3) do |c| %>
+      <% c.link(name: "Newest", link: path_to(request.url, sort: "newest"), active: params[:sort] == "newest") %>
+      <% c.link(name: "Oldest", link: path_to(request.url, sort: "oldest"), active: params[:sort] == "oldest") %>
+      <% c.link(name: "Popular", link: path_to(request.url, sort: "popular"), active: params[:sort] == "popular") %>
     <% end %>
   </div>
 
