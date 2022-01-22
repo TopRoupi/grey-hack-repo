@@ -134,10 +134,6 @@ GEM
     globalid (1.0.0)
       activesupport (>= 5.0)
     hiredis (0.6.3)
-    hotwire-rails (0.1.3)
-      rails (>= 6.0.0)
-      stimulus-rails
-      turbo-rails
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.1)
@@ -276,8 +272,6 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    stimulus-rails (1.0.2)
-      railties (>= 6.0.0)
     stimulus_reflex (3.5.0.pre8)
       cable_ready (= 5.0.0.pre8)
       nokogiri
@@ -285,6 +279,8 @@ GEM
       rails (>= 5.2)
       redis
     strscan (3.0.1)
+    textacular (5.5.1)
+      activerecord (>= 5.0, < 7.1)
     thor (1.2.1)
     thread-local (1.1.0)
     tilt (2.0.10)
@@ -328,7 +324,6 @@ DEPENDENCIES
   faker!
   friendly_id (~> 5.4.0)
   hiredis
-  hotwire-rails (~> 0.1.3)
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
   jsbundling-rails
@@ -350,6 +345,7 @@ DEPENDENCIES
   simple_form (~> 5.1)
   spring
   stimulus_reflex (~> 3.5.0.pre.pre8)
+  textacular (~> 5.0)
   turbo-rails (~> 0.5.9)
   tzinfo-data
   view_component

@@ -4,6 +4,7 @@ class Post < ApplicationRecord
   attr_accessor :updated
 
   include Fileable
+  extend FriendlyId
 
   belongs_to :user
   belongs_to :category # , through: :post_categories
@@ -12,6 +13,7 @@ class Post < ApplicationRecord
   has_many :stars, as: :starable, dependent: :destroy
   has_many :comments, as: :commentable
   has_one_attached :files
+  friendly_id :title, use: :slugged
 
   validates :title, presence: true, length: {minimum: 3, maximum: 32}
   validates :summary, presence: true, length: {minimum: 6, maximum: 230}

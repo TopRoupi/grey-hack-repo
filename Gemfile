@@ -36,14 +36,11 @@ gem "aws-sdk-s3", require: false
 gem "jsbundling-rails"
 gem "cssbundling-rails"
 
-gem "hotwire-rails", "~> 0.1.3"
 gem "simple_form", "~> 5.1"
 gem "pagy"
 
 gem "meta-tags"
-
 gem "newrelic_rpm"
-
 gem "redis-session-store"
 
 gem "rubyzip", require: "zip"
