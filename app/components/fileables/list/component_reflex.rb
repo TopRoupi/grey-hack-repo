@@ -54,7 +54,7 @@ class Fileables::List::ComponentReflex < ApplicationReflex
 
     if params[:action] == "edit"
       @form = "Post_#{params[:id]}"
-      post = Post.find(params[:id])
+      post = Post.friendly.find(params[:id])
       post.attributes = controller.send(:post_params)
       session[:forms][@form] = post
     else
