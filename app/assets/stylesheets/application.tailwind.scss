@@ -18,3 +18,6 @@
   @apply w-full px-3 py-2 rounded-md focus:outline-none focus:ring bg-beaver-800 text-white placeholder-beaver-500 border-beaver-700 focus:ring-beaver-700 focus:border-beaver-700
 }
 
+.trix-content a {
+  @apply hover:underline text-blue-400 cursor-pointer
+}

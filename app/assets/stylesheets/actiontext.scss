@@ -53,3 +53,15 @@ trix-editor.form-control {
   border-bottom-right-radius: 3px;
   border-top-right-radius: 3px;
 }
+
+.trix-content pre {
+  background-color: transparent;
+}
+
+.trix-content ul {
+  list-style: disc;
+}
+
+.trix-content ol {
+  list-style: decimal;
+}
