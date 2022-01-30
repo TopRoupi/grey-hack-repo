@@ -3,6 +3,9 @@ import StimulusReflex from 'stimulus_reflex'
 import consumer from '../channels/consumer'
 import controller from './application_controller'
 import CableReady from 'cable_ready'
+import debounced from  'debounced'
+
+debounced.initialize()
 
 import CommentsFormComponent from "../../components/comments/form/component_controller.js"
 import CategoriesCardComponent from "../../components/categories/card/component_controller.js"
