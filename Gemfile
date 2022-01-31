@@ -49,8 +49,8 @@ gem "rubyzip", require: "zip"
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
   gem "factory_bot_rails"
-  gem "shoulda-context"
   gem "faker", git: "https://github.com/faker-ruby/faker.git", branch: "master"
+  gem "rails-controller-testing"
 end
 
 group :development do

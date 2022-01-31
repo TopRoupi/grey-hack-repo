@@ -4,11 +4,7 @@ Category.create name: "Scripts", icon: "file", description: "one file scripts, u
 Category.create name: "Programs", icon: "terminal", description: "programs with one or more files that do complex things, example: games, hacking tools, network mapping etc"
 Category.create name: "Modules", icon: "code-square", description: "code snippets that can be imported in your program to speed development"
 
-user = User.create name: "user", password: "123456", email: "aaaaaa@aaaaaa"
-
-user.confirmed_at = Time.now
-
-user.save
+user = User.create name: "user", password: "123456", email: "aaaaaa@aaaaaa", confirmed_at: Time.now
 
 Category.all.each do |category|
   20.times do

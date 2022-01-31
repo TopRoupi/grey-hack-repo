@@ -14,6 +14,7 @@ class Post < ApplicationRecord
   has_many :comments, as: :commentable
   has_one_attached :files
   friendly_id :title, use: :slugged
+  enum visibility: [:public, :not_listed, :private], _suffix: true
 
   validates :title, presence: true, length: {minimum: 3, maximum: 32}
   validates :summary, presence: true, length: {minimum: 6, maximum: 230}

@@ -4,8 +4,6 @@ ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
 
-require "shoulda/context"
-
 class ActiveSupport::TestCase
   parallelize(workers: :number_of_processors)
 

@@ -3,57 +3,72 @@
 require "test_helper"
 
 class PostsControllerTest < ActionDispatch::IntegrationTest
-  setup do
-    @post = build :post
-  end
-
-  test "should get index" do
-    get posts_url
-    assert_response :success
-  end
-
-  test "should show post" do
-    @post.save
-    get post_url(@post)
-    assert_response :success
-  end
-
-  test "not get edit" do
-    @post.save
-
-    get edit_post_url(@post)
-    assert_response :redirect
-  end
-
-  test "should not update post" do
-    @post.save
-
-    patch post_url(@post), params: {post: {summary: @post.summary, title: @post.title + "aaaA"}}
-    assert_redirected_to new_user_session_url
-  end
-
-  test "should not destroy post" do
-    @post.save
-
-    assert_difference("Post.count", 0) do
-      delete post_url(@post)
+  class GuestUser < ActionDispatch::IntegrationTest
+    setup do
+      @post = build :post
     end
 
-    # assert_redirected_to new_user_session_path
+    test "should get index" do
+      get posts_url
+      assert_response :success
+    end
+
+    test "should only show visible posts on get index" do
+      public_post = create :post
+      not_listed_post = create :post, visibility: :not_listed
+      private_post = create :post, visibility: :private
+
+      get posts_url
+      posts = assigns(:posts)
+
+      assert_includes posts, public_post
+      refute_includes posts, not_listed_post
+      refute_includes posts, private_post
+    end
+
+    test "should show post" do
+      @post.save
+      get post_url(@post)
+      assert_response :success
+    end
+
+    test " should not get edit" do
+      @post.save
+
+      get edit_post_url(@post)
+      assert_response :redirect
+    end
+
+    test "should not update post" do
+      @post.save
+
+      patch post_url(@post), params: {post: {summary: @post.summary, title: @post.title + "aaaA"}}
+      assert_redirected_to new_user_session_url
+    end
+
+    test "should not destroy post" do
+      @post.save
+
+      assert_difference("Post.count", 0) do
+        delete post_url(@post)
+      end
+
+      # assert_redirected_to new_user_session_path
+    end
   end
 
-  context "logged user" do
+  class LoggedUser < ActionDispatch::IntegrationTest
     setup do
       @user = create :user
       sign_in @user
     end
 
-    should "get new" do
+    test " should get new" do
       get new_post_url
       assert_response :success
     end
 
-    should "create post" do
+    test "should create post" do
       @post = build :post, category: create(:category)
       @script = @post.scripts.first
 
@@ -64,35 +79,35 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
       assert_redirected_to post_url(Post.last)
     end
 
-    should "get edit of its own posts" do
+    test "should get edit of its own posts" do
       @post = create :post, user: @user
 
       get edit_post_url(@post)
       assert_response :success
     end
 
-    should "not get edit of ramdom posts" do
+    test "should not get edit of ramdom posts" do
       @post = create :post
 
       get edit_post_url(@post)
       assert_redirected_to :root
     end
 
-    should "update its own posts" do
+    test "should update its own posts" do
       @post = create :post, user: @user
 
       patch post_url(@post), params: {post: {summary: @post.summary, title: @post.title + "aaaA"}}
       assert_redirected_to post_url(@post)
     end
 
-    should "not update ramdom posts" do
+    test "should not update ramdom posts" do
       @post = create :post
 
       patch post_url(@post), params: {post: {summary: @post.summary, title: @post.title + "aaaA"}}
       assert_redirected_to :root
     end
 
-    should "destroy its own post" do
+    test "should destroy its own post" do
       @post = create :post, user: @user
 
       assert_difference("Post.count", -1) do
@@ -102,7 +117,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
       # assert_redirected_to posts_url
     end
 
-    should "not destroy ramdom post" do
+    test "should not destroy ramdom post" do
       @post = create :post
 
       assert_difference("Post.count", 0) do
