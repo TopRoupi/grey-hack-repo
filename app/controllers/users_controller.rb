@@ -5,8 +5,17 @@ class UsersController < ApplicationController
     @user = User.friendly.find(params[:id])
     @category = params[:category] || "all"
 
-    @posts = @user.posts.eager.asc.all.public_visibility
-    @posts = @posts.where(category_id: @category) if @category != "all"
+    made_up_categories = ["all", "private", "public", "not_listed"]
+
+    @posts = @user.posts.eager.asc
+    @posts = @posts.where(category_id: @category) unless made_up_categories.include?(@category)
+    if current_user && current_user == @user
+      @posts = @posts.private_visibility if @category == "private"
+      @posts = @posts.not_listed_visibility if @category == "not_listed"
+      @posts = @posts.public_visibility if @category != "private" && @category != "not_listed"
+    else
+      @posts = @posts.public_visibility
+    end
 
     @category_pagy, @posts = pagy @posts, items: 5, page_param: "cpage"
 

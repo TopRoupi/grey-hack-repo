@@ -1,7 +1,7 @@
-<div id="<%= dom_id(@user, "posts_box_categories") %>" class="w-24 -mx-2 -mt-2 md:w-40">
-  <%= render(Categories::Card::Component.new(category: :all, link: user_path(@user), small: true, active: @active_tab == "all")) %>
+<div id="<%= dom_id(@user, "posts_box_categories") %>" class="w-full flex mx-0 md:w-40 md:block md:-mx-2 <%= "md:-mt-2" if @remove_top_margin %>">
+  <%= render(Categories::Card::Component.new(category: :all, link: user_path(@user), small: true, active: @active_tab == "all")) if @render_all_tab %>
 
-  <% Category.all.each do |category| %>
-    <%= render(Categories::Card::Component.new(category: category, link: user_path(@user, category: category.id), small: true, active: @active_tab == category.id.to_s)) %>
+  <% @categories.each do |category| %>
+    <%= render(Categories::Card::Component.new(category: category, link: user_path(@user, category: category.id), small: true, active: @active_tab == category.id.to_s, style: @highlighted ? ["bg-gradient-to-r from-indigo-700 to-indigo-900", "bg-indigo-700"] : nil)) %>
   <% end %>
 </div>
