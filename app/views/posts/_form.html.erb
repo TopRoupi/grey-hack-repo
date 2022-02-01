@@ -8,9 +8,11 @@
       <% end %>
     <% end %>
 
+    <%= f.input :title %>
+
     <div class="flex flex-wrap overflow-hidden sm:-mx-3">
       <div class="w-full overflow-hidden sm:w-1/2 sm:my-3 sm:px-3">
-        <%= f.input :title %>
+        <%= f.input :visibility, as: :select, prompt: "Select a visibility option", collection: Post.visibilities.keys %>
       </div>
       <div class="w-full overflow-hidden sm:w-1/2  sm:my-3 sm:px-3">
         <%= f.association :category, prompt: "Select a category", collection: Category.all %>

@@ -32,6 +32,15 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
       assert_response :success
     end
 
+    test "should not show private posts" do
+      @post.visibility = :private
+      @post.save
+
+      get post_url(@post)
+
+      assert_redirected_to :root
+    end
+
     test " should not get edit" do
       @post.save
 
@@ -61,6 +70,22 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     setup do
       @user = create :user
       sign_in @user
+    end
+
+    test "should not show private posts of other users" do
+      private_post = create :post, visibility: :private
+
+      get post_url(private_post)
+
+      assert_redirected_to :root
+    end
+
+    test "should show ownned private posts" do
+      private_post = create :post, visibility: :private, user: @user
+
+      get post_url(private_post)
+
+      assert_response :success
     end
 
     test " should get new" do

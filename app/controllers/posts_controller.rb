@@ -2,7 +2,7 @@
 
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-  before_action :set_post, only: %i[edit update destroy]
+  before_action :set_post, only: [:edit, :update, :destroy]
 
   # GET /posts or /posts.json
   def index
@@ -12,6 +12,8 @@ class PostsController < ApplicationController
   # GET /posts/1 or /posts/1.json
   def show
     @post = Post.eager_load(:user, :category, :scripts, :stars, comments: [:user]).with_rich_text_readme.friendly.find(params[:id])
+
+    redirect_to :root, alert: "action not permitted" if @post.private_visibility? && @post.user != current_user
   end
 
   # GET /posts/new
@@ -84,6 +86,7 @@ class PostsController < ApplicationController
         :category_id,
         :summary,
         :readme,
+        :visibility,
         Fileable.strong_params(params[:post])
       ].flatten
     )
