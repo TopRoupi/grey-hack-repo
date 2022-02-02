@@ -1,0 +1,12 @@
+<a href="<%= post_path @post %>"
+    data-turbo-frame="_top"
+    class="bg-beaver-800 hover:bg-beaver-700 px-2 py-0 inline-block rounded-lg !text-white hover:!no-underline">
+    <div class="flex items-center sm:items-end flex-col sm:flex-row mb-1">
+      <span class="font-semibold">
+        <%= @post.title.capitalize %>
+      </span>
+      <div class="text-beaver-300 ml-3">
+        from <%= @post.user.name %>
+      </div>
+    </div>
+</a>

@@ -3,6 +3,7 @@
 class Post < ApplicationRecord
   attr_accessor :updated
 
+  include ActionText::Attachable
   include Fileable
   extend FriendlyId
 

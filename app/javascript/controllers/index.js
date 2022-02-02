@@ -15,16 +15,16 @@ application.register("categories--card--component", CategoriesCardComponent)
 application.register("scripts--card--copy--component", ScriptsCardCopyComponent )
 
 import AvatarPreview from "./avatar_preview_controller"
+import Attachments from "./attachments_controller"
 application.register("avatar-preview", AvatarPreview)
+application.register("attachments", Attachments)
+
 import { Alert, Dropdown, Modal, Toggle } from "tailwindcss-stimulus-components"
 
 application.register('dropdown', Dropdown)
 application.register('alert', Alert)
 application.register('modal', Modal)
 application.register('toggle', Toggle)
-
-import NestedForm from "stimulus-rails-nested-form"
-application.register("nested-form", NestedForm)
 
 application.consumer = consumer
 

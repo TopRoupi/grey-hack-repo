@@ -1,55 +1,64 @@
-<div data-controller="nested-form" nested-form-wrapper-selector-value=".nested-form-wrapper">
-  <%= simple_form_for(post) do |f| %>
-    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-    <%= f.error_notification %>
-    <% if post.errors[:files].length != 0 %>
-      <% post.errors[:files].each do |error| %>
-        <%= "post files #{error}" %>
+<%= simple_form_for(post, html: {data: {controller: "attachments"}}) do |f| %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <%= f.error_notification %>
+  <% if post.errors[:files].length != 0 %>
+    <% post.errors[:files].each do |error| %>
+      <%= "post files #{error}" %>
+    <% end %>
+  <% end %>
+
+  <%= f.input :title %>
+
+  <div class="flex flex-wrap overflow-hidden sm:-mx-3">
+    <div class="w-full overflow-hidden sm:w-1/2 sm:my-3 sm:px-3">
+      <%= f.input :visibility, as: :select, prompt: "Select a visibility option", collection: Post.visibilities.keys %>
+    </div>
+    <div class="w-full overflow-hidden sm:w-1/2  sm:my-3 sm:px-3">
+      <%= f.association :category, prompt: "Select a category", collection: Category.all %>
+    </div>
+  </div>
+
+  <%= f.input :summary, as: :text%>
+  <div id="trix_editor" data-reflex-permanent>
+    <%= f.input :readme, as: :rich_text_area, label: "Readme (optional)", input_html: {class: "border-beaver-850 !bg-beaver-900", data: {attachments_target: "editor"}}%>
+
+    <%= render(Layout::Dropdown::Component.new()) do |c| %>
+      <% c.button(tag: :button, type: "button", class: "bg-gray-800") do %>
+        attach post
       <% end %>
-    <% end %>
-
-    <%= f.input :title %>
-
-    <div class="flex flex-wrap overflow-hidden sm:-mx-3">
-      <div class="w-full overflow-hidden sm:w-1/2 sm:my-3 sm:px-3">
-        <%= f.input :visibility, as: :select, prompt: "Select a visibility option", collection: Post.visibilities.keys %>
-      </div>
-      <div class="w-full overflow-hidden sm:w-1/2  sm:my-3 sm:px-3">
-        <%= f.association :category, prompt: "Select a category", collection: Category.all %>
-      </div>
-    </div>
-
-    <%= f.input :summary, as: :text%>
-    <div id="trix_editor" data-reflex-permanent>
-      <%= f.input :readme, as: :rich_text_area, label: "Readme (optional)", input_html: {class: "border-beaver-850"}%>
-    </div>
-
-    <div class="text-center text-2xl mb-4">
-      Post's Files
-    </div>
-
-    <%= render(Fileables::List::Component.new(fileable: @post, edit: true)) %>
-    <br>
-
-    <%= f.simple_fields_for(:scripts) do |ff| %>
-      <%= render "script_form", f: ff %>
-    <% end %>
-
-    <%= f.simple_fields_for(:folders) do |ff| %>
-      <%= render "folder_form", f: ff %>
-    <% end %>
-
-    <div class="flex justify-end">
-      <% if session[:forms] %>
-        <% if params[:action] == "edit" && session[:forms]["Post_#{@post.id}"] || params[:action] == "new" && session[:forms]["Post"] %>
-          <div class="text-white bg-red-700 rounded-md focus:bg-red-800 focus:outline-none py-2 px-5 cursor-pointer mr-2"
-               data-form="<%= params[:action] == "edit" ? "Post_#{@post.id}" : "Post" %>"
-               data-reflex="click->FormsReflex#discard_session_form">
-               Discard changes
-          </div>
+      <% c.menu() do |cc| %>
+        <% Post.all.each do |post| %>
+          <% cc.item(tag: :div, data: {action: "click->attachments#attach", post_id: post.id}) { post.title } %>
         <% end %>
       <% end %>
-      <%= f.button :submit %>
-    </div>
+    <% end %>
+  </div>
+
+  <div class="text-center text-2xl mb-4">
+    Post's Files
+  </div>
+
+  <%= render(Fileables::List::Component.new(fileable: @post, edit: true)) %>
+  <br>
+
+  <%= f.simple_fields_for(:scripts) do |ff| %>
+    <%= render "script_form", f: ff %>
   <% end %>
-</div>
+
+  <%= f.simple_fields_for(:folders) do |ff| %>
+    <%= render "folder_form", f: ff %>
+  <% end %>
+
+  <div class="flex justify-end">
+    <% if session[:forms] %>
+      <% if params[:action] == "edit" && session[:forms]["Post_#{@post.id}"] || params[:action] == "new" && session[:forms]["Post"] %>
+        <div class="text-white bg-red-700 rounded-md focus:bg-red-800 focus:outline-none py-2 px-5 cursor-pointer mr-2"
+          data-form="<%= params[:action] == "edit" ? "Post_#{@post.id}" : "Post" %>"
+          data-reflex="click->FormsReflex#discard_session_form">
+          Discard changes
+        </div>
+      <% end %>
+    <% end %>
+    <%= f.button :submit %>
+  </div>
+<% end %>

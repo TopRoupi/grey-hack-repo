@@ -15,7 +15,6 @@
     "language-greyscript": "https://github.com/Elec0/language-greyscript",
     "postcss": "^8.3.11",
     "stimulus": "npm:@hotwired/stimulus",
-    "stimulus-rails-nested-form": "^4.0.0",
     "stimulus_reflex": "^3.5.0-pre8",
     "tailwind-scrollbar": "^1.3.1",
     "tailwindcss": "^2.2.17",
