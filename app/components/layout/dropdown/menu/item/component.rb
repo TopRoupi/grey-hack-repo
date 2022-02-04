@@ -14,6 +14,6 @@ class Layout::Dropdown::Menu::Item::Component < ApplicationComponent
     when :header
       "cursor-default block text-center px-4 py-2 text-sm text-gray-700 select-none"
     end
-    sys_params[:class] ||= klass
+    sys_params[:class] = "#{klass} #{sys_params[:class]}"
   end
 end

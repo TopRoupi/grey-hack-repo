@@ -2,14 +2,15 @@ import ApplicationController from './application_controller'
 import Trix from 'trix'
 
 export default class extends ApplicationController {
-  static targets = ['editor'];
+  static targets = ['editor', 'input'];
 
   connect() {
-    console.log(this.editorTarget.editor)
+    console.log(this.inputTarget)
+    console.log(this.inputTarget.value)
   }
 
   attach(event) {
-    const { postId } = event.target.dataset;
+    const postId = this.inputTarget.value;
 
     fetch(`/posts/${postId}.json`)
       .then(response => response.json())

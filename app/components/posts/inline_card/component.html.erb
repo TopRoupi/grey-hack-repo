@@ -8,5 +8,10 @@
       <div class="text-beaver-300 ml-3">
         from <%= @post.user.name %>
       </div>
+      <% if @post.private_visibility? %>
+        <div class="text-red-500 ml-3">
+          PRIVATE
+        </div>
+      <% end %>
     </div>
 </a>

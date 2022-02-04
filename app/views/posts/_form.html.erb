@@ -23,13 +23,14 @@
     <%= f.input :readme, as: :rich_text_area, label: "Readme (optional)", input_html: {class: "border-beaver-850 !bg-beaver-900", data: {attachments_target: "editor"}}%>
 
     <%= render(Layout::Dropdown::Component.new()) do |c| %>
-      <% c.button(tag: :button, type: "button", class: "bg-gray-800") do %>
+      <% c.button(tag: :button, type: "button", class: "px-3 py-2 rounded bg-beaver-800") do %>
         attach post
       <% end %>
-      <% c.menu() do |cc| %>
-        <% Post.all.each do |post| %>
-          <% cc.item(tag: :div, data: {action: "click->attachments#attach", post_id: post.id}) { post.title } %>
-        <% end %>
+      <% c.menu do |cc| %>
+        <div class="text-black px-2 py-2">
+          <input class="w-full border rounded py-2 px-2" data-attachments-target="input" type="text" placeholder="Enter a post id"></input>
+        </div>
+        <% cc.item(tag: :button, class: "w-full", data: { action: "click->attachments#attach" }) { "Attach" } %>
       <% end %>
     <% end %>
   </div>
