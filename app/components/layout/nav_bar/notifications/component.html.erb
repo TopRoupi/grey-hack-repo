@@ -1,0 +1,11 @@
+<%= render(Layout::Dropdown::Component.new()) do |c| %>
+  <% c.button(tag: :button, type: "button", class: "flex p-2 mr-4 rounded-md hover:bg-beaver-700 focus:bg-beaver-700") do %>
+    <%= octicon "bell", class: "fill-current", height: 20 %>
+  <% end %>
+  <% c.menu(direction: :left) do |cc| %>
+    <% current_user.notifications.each do |notification| %>
+      <% notification = notification.to_notification %>
+      <% cc.item(tag: :a, href: polymorphic_path(notification.params[:comment].commentable)) { notification.message } %>
+    <% end %>
+  <% end %>
+<% end %>
