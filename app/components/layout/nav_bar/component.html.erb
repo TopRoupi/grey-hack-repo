@@ -33,13 +33,12 @@
         </a>
         <div class="hidden sm:block sm:ml-6">
           <div class="flex space-x-4">
-            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
             <%= render(Layout::NavBar::Links::Component.new())%>
           </div>
         </div>
       </div>
       <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-        <!-- Profile dropdown -->
+        <%= render(Layout::NavBar::Notifications::Component.new(user: current_user)) if current_user %>
         <%= render(Layout::NavBar::Profile::Component.new()) %>
       </div>
     </div>

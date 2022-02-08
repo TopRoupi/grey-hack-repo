@@ -43,6 +43,7 @@ gem "pagy"
 gem "meta-tags"
 gem "newrelic_rpm"
 gem "redis-session-store"
+gem "noticed"
 
 gem "rubyzip", require: "zip"
 

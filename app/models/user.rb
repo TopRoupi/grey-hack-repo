@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable, :rememberable, :validatable, :confirmable, :recoverable
   extend FriendlyId
+  has_many :notifications, as: :recipient
+
+  devise :database_authenticatable, :registerable, :rememberable, :validatable, :confirmable, :recoverable
   friendly_id :name
 
   validates :name, length: {maximum: 16, minimum: 3}, presence: true, uniqueness: true, format: {with: /(^[\d\w-]*$)/, message: "name can only include letters numbers and _ -"}
