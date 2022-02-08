@@ -1,11 +1,36 @@
 <%= render(Layout::Dropdown::Component.new()) do |c| %>
-  <% c.button(tag: :button, type: "button", class: "flex p-2 mr-4 rounded-md hover:bg-beaver-700 focus:bg-beaver-700") do %>
-    <%= octicon "bell", class: "fill-current", height: 20 %>
+  <% c.button(tag: :button, type: "button", class: "flex p-2 mr-4 rounded-md hover:bg-beaver-700 focus:bg-beaver-700", id: "notifications_button") do %>
+    <%= octicon "#{@notifications.empty? ? "bell" : "bell-fill"}", class: "fill-current", height: 20 %>
   <% end %>
-  <% c.menu(direction: :left) do |cc| %>
-    <% current_user.notifications.each do |notification| %>
-      <% notification = notification.to_notification %>
-      <% cc.item(tag: :a, href: polymorphic_path(notification.params[:comment].commentable)) { notification.message } %>
+  <% c.menu(direction: :left, id: "notifications_menu") do |cc| %>
+    <% cc.item(type: :header) { "Notifications" } %>
+    <% cc.item(type: :separator) %>
+    <% if @notifications.empty? %>
+      <% cc.item(tag: :div, class: "hover:bg-transparent cursor-auto text-center !text-gray-400") { "Empty" } %>
+    <% else %>
+      <% @notifications.each do |notification| %>
+        <% cc.item(tag: :div, class: "hover:bg-transparent cursor-auto") { notification.message } %>
+        <% cc.item(tag: :div, class: "flex hover:bg-transparent !p-0") do %>
+          <a href="<%= polymorphic_path(notification.params[:comment].commentable) %>"
+            class="w-full py-2 text-center border-r hover:bg-gray-200">
+            Open
+          </a>
+          <button class="w-full py-2 hover:bg-gray-200"
+            data-id="<%= notification.record.id %>"
+            data-reflex="click->NotificationsReflex#dismiss"
+            data-reflex-root="#notifications_menu #notifications_button">
+            Dismiss
+          </button>
+        <% end %>
+      <% end %>
+      <% cc.item(type: :separator) %>
+      <% cc.item(
+        tag: :div,
+        class: "text-center",
+        data: {
+          reflex: "click->NotificationsReflex#dismiss_all",
+          reflex_root: "#notifications_menu #notifications_button"
+        }) { "Dismiss all" } %>
     <% end %>
   <% end %>
 <% end %>
