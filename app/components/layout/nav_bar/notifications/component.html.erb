@@ -6,11 +6,11 @@
     <% cc.item(type: :header) { "Notifications" } %>
     <% cc.item(type: :separator) %>
     <% if @notifications.empty? %>
-      <% cc.item(tag: :div, class: "hover:bg-transparent cursor-auto text-center !text-gray-400") { "Empty" } %>
+      <% cc.item(tag: :div, class: "hover:!bg-transparent cursor-auto text-center !text-gray-400") { "Empty" } %>
     <% else %>
       <% @notifications.each do |notification| %>
-        <% cc.item(tag: :div, class: "hover:bg-transparent cursor-auto") { notification.message } %>
-        <% cc.item(tag: :div, class: "flex hover:bg-transparent !p-0") do %>
+        <% cc.item(tag: :div, class: "hover:!bg-transparent cursor-auto") { notification.message } %>
+        <% cc.item(tag: :div, class: "flex hover:!bg-transparent !p-0") do %>
           <a href="<%= polymorphic_path(notification.params[:comment].commentable) %>"
             class="w-full py-2 text-center border-r hover:bg-gray-200">
             Open
