@@ -18,10 +18,6 @@ class Pagy::Component < ApplicationComponent
     "bg-beaver-500"
   end
 
-  def link
-    Pagy::Link::Component
-  end
-
   def render?
     @pagy.pages > 1
   end

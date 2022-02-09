@@ -26,10 +26,10 @@ https://greyrepo.xyz
 
 in development there is no other configuration required other than the database.yml in /config
 
-in production
-aws s3 configs in /config/storage.yml
-mailer provider and session_cache_store in /config/enviroments/production.rb
-action cable redis in /config/cable.yml
+- in production
+- aws s3 configs in /config/storage.yml
+- mailer provider and session_cache_store in /config/enviroments/production.rb
+- action cable redis in /config/cable.yml
 
 
 * Database setup
@@ -53,9 +53,8 @@ action cable redis in /config/cable.yml
     bundle exec magic_frozen_string_literal .
   ```
 
-# todo list (in no particular order)
 
-add privacy scopes (public private not_listed) to post.
+# todo list (in no particular order)
 
 add import feature to post scripts, upload a folder/zip in your computer and convert its .src files into a Fileable.
 
@@ -67,9 +66,5 @@ add a banks repo system.
 
 add a ips repo system.
 
-add search
-
 maybe add a better way to rank posts popularity by downloads/scripts copies/views
-
-add notifications when a user posts a comment in one of your scripts
 
