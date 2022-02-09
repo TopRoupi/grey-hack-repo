@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-
 class Users::PostsBox::Component < ApplicationComponent
   def initialize(user:, posts:, pagy:, active_tab: :all)
     @user = user

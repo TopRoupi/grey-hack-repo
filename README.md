@@ -5,10 +5,10 @@
 scripts repository for the [greyhack](https://store.steampowered.com/app/605230/Grey_Hack/) game
 
 # Repo website
+
 https://greyrepo.xyz
 
 # REQUIREMENTS
-
 
 * Ruby version
 
@@ -24,12 +24,13 @@ https://greyrepo.xyz
 
 * Configuration
 
-in development there is no other configuration required other than the database.yml in /config
+  in development there is no other configuration required other than the database.yml in /config
 
-- in production
-- aws s3 configs in /config/storage.yml
-- mailer provider and session_cache_store in /config/enviroments/production.rb
-- action cable redis in /config/cable.yml
+  in production
+
+  - aws s3 configs in /config/storage.yml
+  - mailer provider and session_cache_store in /config/enviroments/production.rb
+  - action cable redis in /config/cable.yml
 
 
 * Database setup
@@ -53,6 +54,13 @@ in development there is no other configuration required other than the database.
     bundle exec magic_frozen_string_literal .
   ```
 
+* backup database
+
+  ```sh
+    PGPASSWORD=PASSWORD pg_dump -F c -v -h HOSTNAME -U USERNAME -p PORT -d DATABASE -f backup.psql
+
+    PGPASSWORD=PASSWORD pg_restore -c -C -F c -v -U USERNAME -h HOSTNAME -p PORT -d DATABASE backup.psql
+  ```
 
 # todo list (in no particular order)
 

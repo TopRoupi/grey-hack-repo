@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # To deliver this notification:
 #
 # CommentNotification.with(post: @post).deliver_later(current_user)
