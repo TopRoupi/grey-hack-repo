@@ -3,6 +3,7 @@
 class Fileables::List::ComponentReflex < ApplicationReflex
   before_reflex :set_session_form
   before_reflex :set_index_table, only: [:edit_file, :remove_file, :add_folder_file]
+  before_reflex :set_selected_file, only: [:edit_file, :remove_file, :add_folder_file]
 
   after_reflex do
     session[:forms][@form] = @fileable
@@ -16,6 +17,14 @@ class Fileables::List::ComponentReflex < ApplicationReflex
     else
       @fileable.scripts.build
     end
+  end
+
+  def add_build
+    @fileable.builds.build name: "build"
+  end
+
+  def remove_build
+    @fileable.builds.delete @fileable.builds[element.dataset[:index].to_i]
   end
 
   def edit_file
@@ -72,7 +81,9 @@ class Fileables::List::ComponentReflex < ApplicationReflex
     @parent, @index = index.split("_")
     @parent = @parent.to_i
     @index = @index.to_i
+  end
 
+  def set_selected_file
     @selected_file = @index_table[@index]
     @selected_parent = @index_table[@parent]
   end

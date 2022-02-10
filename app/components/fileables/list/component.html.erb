@@ -1,9 +1,4 @@
 <div>
-  <% if @depth == 0 %>
-    <div class="bg-beaver-850 p-3 w-full rounded-t-md">
-    </div>
-  <% end %>
-
   <div class="flex" style="padding-left: <%= @depth > 1 ? 30 : 0 %>px">
     <% if @depth > 0 && (!@fileable.scripts.empty? || !@fileable.folders.empty?) %>
       <div class="border border-beaver-700" style="margin-bottom: 24px; <%= "height: 25px" unless @fileable.scripts.size + @fileable.folders.size > 1 %>"></div>

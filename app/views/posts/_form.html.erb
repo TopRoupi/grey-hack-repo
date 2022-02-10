@@ -39,15 +39,20 @@
     Post's Files
   </div>
 
-  <%= render(Fileables::List::Component.new(fileable: @post, edit: true)) %>
+  <%= render(Posts::BuildsCard::Component.new(post: @post, edit: true)) %>
   <br>
 
-  <%= f.simple_fields_for(:scripts) do |ff| %>
-    <%= render "script_form", f: ff %>
-  <% end %>
+  <%= f.simple_fields_for(:builds) do |ff| %>
+    <%= ff.input :name %>
+    <%= ff.input :_destroy, as: :hidden %>
 
-  <%= f.simple_fields_for(:folders) do |ff| %>
-    <%= render "folder_form", f: ff %>
+    <%= ff.simple_fields_for(:folders) do |fff| %>
+      <%= render("folder_form", locals: {f: fff}) %>
+    <% end %>
+
+    <%= ff.simple_fields_for(:scripts) do |fff| %>
+      <%= render("script_form", locals: {f: fff}) %>
+    <% end %>
   <% end %>
 
   <div class="flex justify-end">

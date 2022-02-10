@@ -81,14 +81,13 @@ class PostsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def post_params
     params.require(:post).permit(
-      [
-        :title,
-        :category_id,
-        :summary,
-        :readme,
-        :visibility,
-        Fileable.strong_params(params[:post])
-      ].flatten
+      :title,
+      :category_id,
+      :summary,
+      :readme,
+      :visibility,
+      {builds_attributes: [:name, :_destroy]},
+      Fileable.strong_params(params[:post])
     )
   end
 end

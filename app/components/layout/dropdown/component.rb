@@ -16,6 +16,6 @@ class Layout::Dropdown::Component < ApplicationComponent
     @tag = tag
     @sys_params[:data] ||= {}
     @sys_params[:data][:controller] = "dropdown"
-    @sys_params[:class] ||= "inline-block leading-none relative"
+    @sys_params[:class] ||= "inline-block relative"
   end
 end

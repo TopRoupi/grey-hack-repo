@@ -1,21 +1,22 @@
 # frozen_string_literal: true
 
 class Post < ApplicationRecord
-  attr_accessor :updated
+  attr_accessor :updated # required to prevent the set_files/Filejob from infinite looping
 
   include ActionText::Attachable
-  include Fileable
   extend FriendlyId
 
   belongs_to :user
-  belongs_to :category # , through: :post_categories
-  has_many :post_categories
+  belongs_to :category
   has_rich_text :readme
   has_many :stars, as: :starable, dependent: :destroy
   has_many :comments, as: :commentable
+  has_many :builds
   has_one_attached :files
-  friendly_id :title, use: :slugged
   enum visibility: [:public, :not_listed, :private], _suffix: true
+  friendly_id :title, use: :slugged
+
+  accepts_nested_attributes_for :builds, allow_destroy: true
 
   validates :title, presence: true, length: {minimum: 3, maximum: 32}
   validates :summary, presence: true, length: {minimum: 6, maximum: 230}
