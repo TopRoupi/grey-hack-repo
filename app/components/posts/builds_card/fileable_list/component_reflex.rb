@@ -1,30 +1,34 @@
 # frozen_string_literal: true
 
-class Fileables::List::ComponentReflex < ApplicationReflex
+class Posts::BuildsCard::FileableList::ComponentReflex < ApplicationReflex
   before_reflex :set_session_form
   before_reflex :set_index_table, only: [:edit_file, :remove_file, :add_folder_file]
   before_reflex :set_selected_file, only: [:edit_file, :remove_file, :add_folder_file]
 
   after_reflex do
-    session[:forms][@form] = @fileable
+    session[:forms][@form_key] = @post
   end
 
   def add_file
     type = element.dataset[:type]
 
     if type == "folder"
-      @fileable.folders.build
+      @selected_build.folders.build
     else
-      @fileable.scripts.build
+      @selected_build.scripts.build
     end
   end
 
   def add_build
-    @fileable.builds.build name: "build"
+    @post.builds.build name: "build"
   end
 
   def remove_build
-    @fileable.builds.delete @fileable.builds[element.dataset[:index].to_i]
+    @post.builds.delete @post.builds[element.dataset[:index].to_i]
+  end
+
+  def edit_build
+    params[:edit_file] = @post.builds[element.dataset[:index].to_i]
   end
 
   def edit_file
@@ -62,20 +66,22 @@ class Fileables::List::ComponentReflex < ApplicationReflex
     session[:forms] ||= {}
 
     if params[:action] == "edit"
-      @form = "Post_#{params[:id]}"
+      @form_key = "Post_#{params[:id]}"
       post = Post.friendly.find(params[:id])
       post.attributes = controller.send(:post_params)
-      session[:forms][@form] = post
+      session[:forms][@form_key] = post
     else
-      @form = "Post"
-      session[:forms][@form] = Post.new(controller.send(:post_params))
+      @form_key = "Post"
+      session[:forms][@form_key] = Post.new(controller.send(:post_params))
     end
 
-    @fileable = session[:forms][@form]
+    @post = session[:forms][@form_key]
+    @selected_build_index = session[:selected_build]
+    @selected_build = @post.builds[@selected_build_index]
   end
 
   def set_index_table
-    @index_table = @fileable.children_index_table
+    @index_table = @selected_build.children_index_table
 
     index = element.dataset[:index]
     @parent, @index = index.split("_")

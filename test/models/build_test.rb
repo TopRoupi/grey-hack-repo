@@ -1,7 +1,8 @@
 require "test_helper"
 
 class BuildTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  setup do
+    @build = build :build
+  end
+
 end

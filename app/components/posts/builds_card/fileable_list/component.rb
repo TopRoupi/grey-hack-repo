@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Fileables::List::Component < ApplicationComponent
+class Posts::BuildsCard::FileableList::Component < ApplicationComponent
   def initialize(fileable:, depth: 0, edit: false, index_table: nil)
     @fileable = fileable
     @depth = depth

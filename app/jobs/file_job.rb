@@ -3,32 +3,32 @@
 class FileJob < ApplicationJob
   queue_as :default
 
-  def perform(fileable)
-    @files_path = "tmp/#{fileable.title}.zip"
+  def perform(build, file_name: "scripts")
+    @files_path = "tmp/#{file_name}.zip"
 
     clear_files
 
     Zip::File.open(@files_path, create: true) do |zipfile|
-      create_files(zipfile, fileable, only_content: true)
+      create_files(zipfile, build, only_content: true)
     end
 
-    fileable.updated = true
-    fileable.files.attach(io: File.open(@files_path), filename: "#{fileable.title}.zip")
+    build.updated = true
+    build.files.attach(io: File.open(@files_path), filename: "#{file_name}.zip")
 
     clear_files
   end
 
   private
 
-  def create_files(zipfile, fileable, file_name: nil, path: nil, only_content: false)
+  def create_files(zipfile, build, file_name: nil, path: nil, only_content: false)
     files_path = [path, file_name].compact.join("/")
     zipfile.mkdir(files_path) unless only_content
 
-    fileable.folders.each do |folder|
+    build.folders.each do |folder|
       create_files(zipfile, folder, file_name: folder.name, path: files_path.empty? ? nil : files_path)
     end
 
-    fileable.scripts.each do |script|
+    build.scripts.each do |script|
       script_path = if files_path.empty?
         script.name
       else

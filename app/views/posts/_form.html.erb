@@ -43,15 +43,20 @@
   <br>
 
   <%= f.simple_fields_for(:builds) do |ff| %>
-    <%= ff.input :name %>
-    <%= ff.input :_destroy, as: :hidden %>
+    <div class="<%= "hidden" unless ff.object == params[:edit_file] %>">
+      <div class="nested-form-wrapper rounded bg-beaver-850 p-3 mb-3">
+        <%= ff.input :name %>
+
+        <%= ff.input :_destroy, as: :hidden %>
+      </div>
+    </div>
 
     <%= ff.simple_fields_for(:folders) do |fff| %>
-      <%= render("folder_form", locals: {f: fff}) %>
+      <%= render("folder_form", f: fff) %>
     <% end %>
 
     <%= ff.simple_fields_for(:scripts) do |fff| %>
-      <%= render("script_form", locals: {f: fff}) %>
+      <%= render("script_form", f: fff) %>
     <% end %>
   <% end %>
 

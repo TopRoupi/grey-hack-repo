@@ -11,7 +11,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
-    @post = Post.eager_load(:user, :category, :scripts, :stars, comments: [:user]).with_rich_text_readme.friendly.find(params[:id])
+    @post = Post.eager_load(:user, :category, :stars, builds: [:scripts], comments: [:user]).with_rich_text_readme.friendly.find(params[:id])
 
     redirect_to :root, alert: "action not permitted" if @post.private_visibility? && @post.user != current_user
   end
@@ -80,14 +80,21 @@ class PostsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def post_params
+    selected_build_index = session[:selected_build] || 0
+    selected_build_params = params[:post][:builds_attributes][selected_build_index.to_s]
+    selected_build_strong_params = Fileable.strong_params(selected_build_params) if selected_build_params
+
     params.require(:post).permit(
       :title,
       :category_id,
       :summary,
       :readme,
       :visibility,
-      {builds_attributes: [:name, :_destroy]},
-      Fileable.strong_params(params[:post])
+      {builds_attributes: [
+        :name,
+        :_destroy,
+        selected_build_strong_params
+      ].flatten}
     )
   end
 end

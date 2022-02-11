@@ -3,30 +3,34 @@
 require "test_helper"
 
 class FileJobTest < ActiveJob::TestCase
+  setup do
+    @build = build(:post).builds.first
+  end
+
   test "set files attachment after create" do
-    post = create(:post)
+    @build.save
     assert_enqueued_jobs 1, only: FileJob
     perform_enqueued_jobs only: FileJob
     assert_performed_jobs 1, only: FileJob
-    post.reload
+    @build.reload
 
-    refute_nil post.files_attachment
+    refute_nil @build.files_attachment
   end
 
   test "set files attachment after update" do
-    post = create(:post)
+    @build.save
     perform_enqueued_jobs
-    post.reload
+    @build.reload
 
-    post_old_files = post.files_attachment
+    build_old_files = @build.files_attachment
 
-    post.scripts.first.content = "new content...."
-    post.save
+    @build.scripts.first.content = "new content...."
+    @build.save
     assert_enqueued_jobs 1, only: FileJob
     perform_enqueued_jobs only: FileJob
     assert_performed_jobs 2, only: FileJob
-    post.reload
+    @build.reload
 
-    refute_equal post.files_attachment, post_old_files
+    refute_equal @build.files_attachment, build_old_files
   end
 end

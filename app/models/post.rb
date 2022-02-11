@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Post < ApplicationRecord
-  attr_accessor :updated # required to prevent the set_files/Filejob from infinite looping
-
   include ActionText::Attachable
   extend FriendlyId
 
@@ -11,8 +9,7 @@ class Post < ApplicationRecord
   has_rich_text :readme
   has_many :stars, as: :starable, dependent: :destroy
   has_many :comments, as: :commentable
-  has_many :builds
-  has_one_attached :files
+  has_many :builds, dependent: :destroy
   enum visibility: [:public, :not_listed, :private], _suffix: true
   friendly_id :title, use: :slugged
 
@@ -33,10 +30,4 @@ class Post < ApplicationRecord
   scope :week, -> { where({created_at: (1.week.ago)..Time.now}) }
   scope :month, -> { where({created_at: (1.month.ago)..Time.now}) }
   scope :year, -> { where({created_at: (1.year.ago)..Time.now}) }
-
-  after_commit :set_files, on: [:update, :create]
-
-  def set_files
-    FileJob.perform_later(self) unless @updated
-  end
 end
