@@ -29,13 +29,7 @@
   Files
 </div>
 
-<%= render(Fileables::List::Component.new(fileable: @post)) %>
-
-<% if @post.files_attachment %>
-  <div class="flex justify-end">
-    <%= link_to "download files", rails_blob_path(@post.files_attachment, disposition: "attachment"), class: "bg-green-700 hover:bg-green-600 p-2 rounded mt-6" %>
-  </div>
-<% end %>
+<%= render(Posts::BuildsCard::Component.new(post: @post)) %>
 
 <br>
 

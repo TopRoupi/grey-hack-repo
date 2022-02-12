@@ -11,5 +11,11 @@
       <% end %>
     <% end %>
     <button class="link ml-auto" data-reflex="click->Posts::BuildsCard::FileableList::ComponentReflex#add_build">Add build</button>
+  <% else %>
+    <% @builds.each_with_index do |build, index| %>
+      <button class="mr-2 <%= "text-yellow-200" if build == @selected %>">
+        <%= build.name %>
+      </button>
+    <% end %>
   <% end %>
 </div>
