@@ -19,17 +19,17 @@
         Add file
       <% end %>
       <% c.menu do |cc| %>
-        <% cc.item(data: {reflex: "click->Fileables::List::ComponentReflex#add_folder_file", index: @index, type: "script"}) { "Add script" } %>
-        <% cc.item(data: {reflex: "click->Fileables::List::ComponentReflex#add_folder_file", index: @index, type: "folder"}) { "Add folder" } %>
+        <% cc.item(data: {reflex: "click->Posts::BuildsCard::FileableList::ComponentReflex#add_folder_file", index: @index, type: "script"}) { "Add script" } %>
+        <% cc.item(data: {reflex: "click->Posts::BuildsCard::FileableList::ComponentReflex#add_folder_file", index: @index, type: "folder"}) { "Add folder" } %>
       <% end %>
     <% end %>
     <div class="p-3 border-l cursor-pointer info_bg border-beaver-850"
-      data-reflex="click->Fileables::List::ComponentReflex#<%= params[:edit_file] == @folder ? "close_form" : "edit_file" %>"
+      data-reflex="click->Posts::BuildsCard::FileableList::ComponentReflex#<%= params[:edit_file] == @folder ? "close_form" : "edit_file" %>"
       data-index="<%= @index %>">
       Edit
     </div>
     <div class="p-3 border-l cursor-pointer danger_bg border-beaver-850"
-      data-reflex="click->Fileables::List::ComponentReflex#remove_file"
+      data-reflex="click->Posts::BuildsCard::FileableList::ComponentReflex#remove_file"
       data-index="<%= @index %>">
       Delete
     </div>

@@ -1,21 +1,19 @@
 # frozen_string_literal: true
 
 class Post < ApplicationRecord
-  attr_accessor :updated
-
   include ActionText::Attachable
-  include Fileable
   extend FriendlyId
 
   belongs_to :user
-  belongs_to :category # , through: :post_categories
-  has_many :post_categories
+  belongs_to :category
   has_rich_text :readme
   has_many :stars, as: :starable, dependent: :destroy
   has_many :comments, as: :commentable
-  has_one_attached :files
-  friendly_id :title, use: :slugged
+  has_many :builds, dependent: :destroy
   enum visibility: [:public, :not_listed, :private], _suffix: true
+  friendly_id :title, use: :slugged
+
+  accepts_nested_attributes_for :builds, allow_destroy: true
 
   validates :title, presence: true, length: {minimum: 3, maximum: 32}
   validates :summary, presence: true, length: {minimum: 6, maximum: 230}
@@ -32,10 +30,4 @@ class Post < ApplicationRecord
   scope :week, -> { where({created_at: (1.week.ago)..Time.now}) }
   scope :month, -> { where({created_at: (1.month.ago)..Time.now}) }
   scope :year, -> { where({created_at: (1.year.ago)..Time.now}) }
-
-  after_commit :set_files, on: [:update, :create]
-
-  def set_files
-    FileJob.perform_later(self) unless @updated
-  end
 end

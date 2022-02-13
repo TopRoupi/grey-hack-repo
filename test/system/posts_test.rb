@@ -6,8 +6,8 @@ class PostsTest < ApplicationSystemTestCase
   setup do
     @user = create :user
     sign_in @user
-    create :category, name: "Tools"
-    @post = build :post
+    @category = create :category, name: "Tools"
+    @post = build :post, category: @category
   end
 
   test "visiting the index" do
@@ -21,13 +21,15 @@ class PostsTest < ApplicationSystemTestCase
     click_on "Create a new post"
 
     fill_in "Title", with: @post.title
-    select("Tools", from: "Category")
     fill_in "Summary", with: @post.summary
     find("trix-editor").click.set(@post.readme)
+    click_on "Main build"
+    click_on "select"
     click_on "Add script"
     click_on "Edit"
     fill_in "Name", with: "script"
     fill_in "Content", with: "script content ..........."
+    select("Tools", from: "Category")
     click_on "Create Post"
 
     assert_text "Post was successfully created"

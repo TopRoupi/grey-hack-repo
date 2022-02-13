@@ -1,0 +1,22 @@
+<div class="bg-beaver-850 flex p-3 w-full rounded-t-md">
+    <% @builds.each_with_index do |build, index| %>
+      <%= render(Layout::Dropdown::Component.new(disabled: !@edit)) do |c| %>
+        <% c.button(tag: :button, type: :button, class: button_classes(build), data: button_data_attributes(build, index)) do %>
+          <%= build.name %>
+          <% if !build.valid? %>
+            <span class="ml-2 !text-red-400">invalid</span>
+          <% end %>
+        <% end %>
+        <% if @edit %>
+          <% c.menu do |cc| %>
+            <% cc.item(tag: :button, data: {reflex: "click->Posts::BuildsCard::FileableList::ComponentReflex#remove_build", index: index}) { "remove" } %>
+            <% cc.item(tag: :button, data: {reflex: "click->Posts::BuildsCard::ComponentReflex#select", index: index}) { "select" } %>
+            <% cc.item(tag: :button, data: {reflex: "click->Posts::BuildsCard::FileableList::ComponentReflex#edit_build", index: index}) { "edit" } %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <% if @edit %>
+      <button class="link ml-auto" data-reflex="click->Posts::BuildsCard::FileableList::ComponentReflex#add_build">Add build</button>
+    <% end %>
+</div>

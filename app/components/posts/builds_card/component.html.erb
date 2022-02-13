@@ -1,0 +1,8 @@
+<%= render(Posts::BuildsCard::BuildSelector::Component.new(builds: @post.builds, edit: @edit, selected_build: @selected_build)) %>
+<%= render(Posts::BuildsCard::FileableList::Component.new(fileable: @selected_build, edit: @edit)) if @selected_build %>
+
+<% if @selected_build && @selected_build.files_attachment && !@edit %>
+  <div class="flex justify-end">
+    <%= link_to "Download #{@selected_build.name} files", rails_blob_path(@selected_build.files_attachment, disposition: "attachment"), class: "bg-green-700 hover:bg-green-600 p-2 rounded mt-6" %>
+  </div>
+<% end %>

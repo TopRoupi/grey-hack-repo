@@ -44,41 +44,4 @@ module Fileable
 
     table
   end
-
-  def self.strong_params(params)
-    depth = get_params_depth(params)
-    [
-      {scripts_attributes: script_strong_params},
-      {folders_attributes: folder_strong_params(depth)}
-    ]
-  end
-
-  class << self
-    private
-
-    def get_params_depth(params, depth = 0)
-      if params["folders_attributes"]
-        return get_params_depth(params["folders_attributes"], depth)
-      end
-
-      params = params.to_unsafe_hash if params.instance_of? ActionController::Parameters
-      params.map do |index, attributes|
-        if attributes["folders_attributes"]
-          get_params_depth(attributes["folders_attributes"], depth) + 1
-        else
-          0
-        end
-      end.max
-    end
-
-    def script_strong_params
-      [:id, :name, :content, :_destroy]
-    end
-
-    def folder_strong_params(depth = 0)
-      params = [:id, :name, :_destroy, scripts_attributes: script_strong_params]
-      params << {folders_attributes: folder_strong_params(depth - 1)} if depth > 0
-      params
-    end
-  end
 end

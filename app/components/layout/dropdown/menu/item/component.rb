@@ -8,7 +8,7 @@ class Layout::Dropdown::Menu::Item::Component < ApplicationComponent
     @tag = tag
     klass = case type
     when :link
-      "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 cursor-pointer"
+      "block px-4 w-full text-left py-2 text-sm text-gray-700 hover:bg-gray-200 cursor-pointer"
     when :separator
       "block w-full border-b my-1"
     when :header
