@@ -30,7 +30,7 @@
         <div class="text-black px-2 py-2">
           <input class="w-full border rounded py-2 px-2" data-attachments-target="input" type="text" placeholder="Enter a post id"></input>
         </div>
-        <% cc.item(tag: :button, class: "w-full", data: { action: "click->attachments#attach" }) { "Attach" } %>
+        <% cc.item(tag: :div, class: "text-center", data: { action: "click->attachments#attach" }) { "Attach" } %>
       <% end %>
     <% end %>
   </div>
@@ -62,9 +62,9 @@
 
   <div class="flex justify-end">
     <% if session[:forms] %>
-      <% if params[:action] == "edit" && session[:forms]["Post_#{@post.id}"] || params[:action] == "new" && session[:forms]["Post"] %>
+      <% if params[:action] == "edit" && session[:forms]["Post_#{@post.friendly_id}"] || params[:action] == "new" && session[:forms]["Post"] %>
         <div class="text-white bg-red-700 rounded-md focus:bg-red-800 focus:outline-none py-2 px-5 cursor-pointer mr-2"
-          data-form="<%= params[:action] == "edit" ? "Post_#{@post.id}" : "Post" %>"
+          data-form="<%= params[:action] == "edit" ? "Post_#{@post.friendly_id}" : "Post" %>"
           data-reflex="click->FormsReflex#discard_session_form">
           Discard changes
         </div>

@@ -95,10 +95,11 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
     test "should create post" do
       @post = build :post, category: create(:category)
-      @script = @post.scripts.first
+      @build = @post.builds.first
+      @script = @build.scripts.first
 
       assert_difference("Post.count") do
-        post posts_url, params: {post: {summary: @post.summary, readme: @post.readme, title: @post.title, category_id: @post.category_id, scripts_attributes: {"0": {name: @script.name, content: @script.content}}}}
+        post posts_url, params: {post: {summary: @post.summary, readme: @post.readme, title: @post.title, category_id: @post.category_id, builds_attributes: {"0": {name: @build.name, scripts_attributes: {"0": {name: @script.name, content: @script.content}}}}}}
       end
 
       assert_redirected_to post_url(Post.last)
@@ -139,7 +140,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         delete post_url(@post)
       end
 
-      # assert_redirected_to posts_url
+      assert_redirected_to root_path
     end
 
     test "should not destroy ramdom post" do

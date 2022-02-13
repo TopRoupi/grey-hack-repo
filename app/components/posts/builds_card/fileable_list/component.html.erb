@@ -18,7 +18,7 @@
   <% if @depth == 0 %>
     <div class="bg-beaver-850 flex p-3 w-full rounded-b-md" style="margin-top: -1px">
       <% if @edit %>
-        <button class="link" data-reflex="click->Posts::BuildsCard::FileableList::ComponentReflex#add_file" data-type="script">Add script</button>
+        <button class="link mr-2" data-reflex="click->Posts::BuildsCard::FileableList::ComponentReflex#add_file" data-type="script">Add script</button>
         <button class="link" data-reflex="click->Posts::BuildsCard::FileableList::ComponentReflex#add_file" data-type="folder">Add folder</button>
         <button class="link ml-auto" data-reflex="click->Posts::BuildsCard::FileableList::ComponentReflex#update">Update</button>
       <% end %>

@@ -1,4 +1,8 @@
-<%= content_tag(@tag, @sys_params) do %>
+<% if @disabled %>
   <%= button %>
-  <%= menu %>
+<% else %>
+  <%= content_tag(@tag, @sys_params) do %>
+    <%= button %>
+    <%= menu %>
+  <% end %>
 <% end %>

@@ -6,6 +6,6 @@ class Build < ApplicationRecord
   after_commit :set_files, on: [:update, :create]
 
   def set_files
-    FileJob.perform_later(self) unless @updated
+    FileJob.perform_later(self, file_name: "#{post.title} | #{name}") unless @updated
   end
 end

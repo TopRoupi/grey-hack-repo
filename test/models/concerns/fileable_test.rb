@@ -74,35 +74,36 @@ class FileableTest < ActiveSupport::TestCase
     assert_equal expected_result, @fileable.children_index_table
   end
 
-  test "Fileable.strong_params should return params list given the fileable params" do
-    params = {
-      "title" => "",
-      "category_id" => "1",
-      "summary" => "",
-      "readme" => "",
-      "folders_attributes" => {
-        "0" => {
-          "name" => "",
-          "_destroy" => "false",
-          "scripts_attributes" => {
-            "0" => {"name" => "", "content" => "", "_destroy" => "false"}
-          },
-          "folders_attributes" => {"0" => {"name" => "", "_destroy" => "false"}}
-        }
-      }
-    }
-
-    expected_result = [
-      {scripts_attributes: [:id, :name, :content, :_destroy]},
-      {folders_attributes: [
-        :id,
-        :name,
-        :_destroy,
-        {scripts_attributes: [:id, :name, :content, :_destroy]},
-        {folders_attributes: [:id, :name, :_destroy, {scripts_attributes: [:id, :name, :content, :_destroy]}]}
-      ]}
-    ]
-
-    assert_equal expected_result, Fileable.strong_params(params)
-  end
+  # TODO: move it to a proper place, and refactor
+  # test "Fileable.strong_params should return params list given the fileable params" do
+  #   params = {
+  #     "title" => "",
+  #     "category_id" => "1",
+  #     "summary" => "",
+  #     "readme" => "",
+  #     "folders_attributes" => {
+  #       "0" => {
+  #         "name" => "",
+  #         "_destroy" => "false",
+  #         "scripts_attributes" => {
+  #           "0" => {"name" => "", "content" => "", "_destroy" => "false"}
+  #         },
+  #         "folders_attributes" => {"0" => {"name" => "", "_destroy" => "false"}}
+  #       }
+  #     }
+  #   }
+  #
+  #   expected_result = [
+  #     {scripts_attributes: [:id, :name, :content, :_destroy]},
+  #     {folders_attributes: [
+  #       :id,
+  #       :name,
+  #       :_destroy,
+  #       {scripts_attributes: [:id, :name, :content, :_destroy]},
+  #       {folders_attributes: [:id, :name, :_destroy, {scripts_attributes: [:id, :name, :content, :_destroy]}]}
+  #     ]}
+  #   ]
+  #
+  #   assert_equal expected_result, Fileable.strong_params(params)
+  # end
 end

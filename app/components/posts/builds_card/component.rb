@@ -8,6 +8,6 @@ class Posts::BuildsCard::Component < ApplicationComponent
 
   def before_render
     @selected_index = session[:selected_build]
-    @selected = @post.builds[@selected_index] if @selected_index
+    @selected_build = @post.builds[@selected_index] if @selected_index
   end
 end

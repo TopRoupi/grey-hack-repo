@@ -18,7 +18,7 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    @post = session.fetch(:forms, {}).fetch("Post", Post.new)
+    @post = session.fetch(:forms, {}).fetch("Post", Post.new(builds: [Build.new(name: "Main build")]))
   end
 
   # GET /posts/1/edit
@@ -89,7 +89,7 @@ class PostsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def post_params
-    folder_attributes_base = [:name, :_destroy, scripts_attributes: [:name, :content, :_destroy]]
+    folder_attributes_base = [:id, :name, :_destroy, scripts_attributes: [:id, :name, :content, :_destroy]]
     folders = []
 
     if params[:post][:builds_attributes]
@@ -109,9 +109,10 @@ class PostsController < ApplicationController
       :readme,
       :visibility,
       {builds_attributes: [
+        :id,
         :name,
         :_destroy,
-        scripts_attributes: [:name, :content, :_destroy],
+        scripts_attributes: [:id, :name, :content, :_destroy],
         folders_attributes: folders
       ]}
     )

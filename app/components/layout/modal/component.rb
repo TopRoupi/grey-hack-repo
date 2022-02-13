@@ -2,7 +2,7 @@
 
 class Layout::Modal::Component < ApplicationComponent
   renders_one :button, lambda { |**kwargs|
-    unless @disabled
+    if !@disabled
       kwargs[:data] ||= {}
       kwargs[:data][:action] = "click->modal#open"
     end
