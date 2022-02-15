@@ -44,17 +44,21 @@ module ApplicationHelper
       "#{key}=#{value}"
     end
 
-    options = options.join "&"
+    options = options.join("&")
 
     "#{path}?#{options}"
   end
 
   def path_params(path)
-    _, path_options = path.split "?"
+    _, path_options = path.split("?")
 
     if path_options
-      path_options = path_options.split "&"
-      path_options.map { |param| param.split "=" }.to_h
+      path_options = path_options.split("&")
+      path_options.map do |param|
+        key, value = param.split("=")
+        value ||= ""
+        [key, value]
+      end.to_h
     end
   end
 end

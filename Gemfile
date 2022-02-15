@@ -14,38 +14,34 @@ gem "turbo-rails", "~> 0.5.9"
 gem "jbuilder", "~> 2.7"
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
-gem "redis", "~> 4.0", require: ["redis", "redis/connection/hiredis"]
-gem "hiredis"
-gem "view_component"
-gem "ostruct", "~> 0.5.3" # delete this after stimulus_reflex gets updated from pre8
-gem "stimulus_reflex", "~> 3.5.0-pre8"
-gem "devise"
-# gem "devise", git: "https://github.com/heartcombo/devise", branch: "main"
-gem "octicons_helper"
-gem "friendly_id", "~> 5.4.0"
-
 # Use Active Storage variant
 gem "image_processing", "~> 1.2"
-
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.4", require: false
-
-# gem "aws-sdk-s3", require: false
-gem "aws-sdk-s3", require: false
-
-gem "jsbundling-rails"
-gem "cssbundling-rails"
-
+# Active storage provider
+gem "aws-sdk-s3", "~> 1.112"
+# Stimulus Reflex
+gem "redis", "~> 4.0", require: ["redis", "redis/connection/hiredis"]
+gem "hiredis", "~> 0.6.3"
+gem "redis-session-store", "~> 0.11.4"
+gem "ostruct", "~> 0.5.3" # delete this after stimulus_reflex gets updated from pre8
+gem "stimulus_reflex", "~> 3.5.0-pre8"
+# front end gems
+gem "view_component", "~> 2.49"
 gem "simple_form", "~> 5.1"
-gem "pagy"
-
-gem "meta-tags"
-gem "newrelic_rpm"
-gem "redis-session-store"
-gem "noticed"
-
-gem "rubyzip", require: "zip"
+gem "meta-tags", "~> 2.16"
+gem "octicons_helper", "~> 16.3"
+gem "pagy", "~> 5.10"
+# back end gems
+gem "devise", "~> 4.8"
+gem "noticed", "~> 1.5"
+gem "friendly_id", "~> 5.4.0"
+gem "rubyzip", "~> 2.3", require: "zip" # required by FileJob
+# assets bundling
+gem "jsbundling-rails", "~> 1.0"
+gem "cssbundling-rails", "~> 1.0"
+# apm provider
+gem "newrelic_rpm", "~> 8.4"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
@@ -65,10 +61,6 @@ group :test do
   gem "capybara", ">= 3.26"
   gem "selenium-webdriver"
   gem "webdrivers"
-end
-
-group :production do
-  gem "rails_12factor"
 end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]

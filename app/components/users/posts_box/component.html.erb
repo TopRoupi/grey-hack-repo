@@ -6,7 +6,7 @@
                                                               active_tab: @active_tab,
                                                               remove_top_margin: false,
                                                               render_all_tab: false,
-                                                              highlighted: true)) if current_user%>
+                                                              highlighted: true)) if current_user == @user %>
   </div>
   <%= render(Users::PostsBox::PostsList::Component.new(user: @user, posts: @posts, pagy: @pagy)) %>
 </turbo-frame>
