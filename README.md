@@ -31,6 +31,7 @@ https://www.greyrepo.xyz
   - aws s3 configs in /config/storage.yml
   - mailer provider and session_cache_store in /config/enviroments/production.rb
   - action cable redis in /config/cable.yml
+  - sidekiq redis in /config/initializers/sidekiq.rb
 
 
 * Database setup

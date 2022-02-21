@@ -1,0 +1,12 @@
+development:
+  :concurrency: 5
+
+production:
+  :concurrency: 5
+
+:max_retries: 1
+
+:queues:
+  - default
+  - greyrepo_production_default
+  - greyrepo_development_default
