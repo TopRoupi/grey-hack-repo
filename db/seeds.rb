@@ -9,7 +9,9 @@ user = User.create name: "user", password: "123456", email: "aaaaaa@aaaaaa", con
 Category.all.each do |category|
   20.times do
     post = Post.new title: "test title #{category.name}", summary: "test post summary 123", category: category, user: user
-    post.scripts << Script.new(name: "script", content: 'print("lol"')
+    build = Build.new(name: "Main build")
+    build.scripts << Script.new(name: "script", content: 'print("lol"')
+    post.builds = build
     post.save
   end
 end
