@@ -13,7 +13,7 @@ https://greyrepo.xyz
 * Ruby version
 
   ```
-  3.1.0
+  3.1.1
   ```
 
 * System dependencies
