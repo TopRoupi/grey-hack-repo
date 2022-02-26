@@ -15,7 +15,7 @@
   </div>
   <% if @edit %>
     <%= render(Layout::Dropdown::Component.new(class: "inline-block  relative")) do |c| %>
-      <% c.button(class: "p-3 whitespace-nowrap border-l cursor-pointer bg-beaver-700 hover:bg-beaver-600 border-beaver-850") do %>
+      <% c.button(class: "p-3 whitespace-nowrap border-l cursor-pointer button_primary border-beaver-850") do %>
         Add file
       <% end %>
       <% c.menu do |cc| %>
@@ -23,12 +23,12 @@
         <% cc.item(data: {reflex: "click->Posts::BuildsCard::FileableList::ComponentReflex#add_folder_file", index: @index, type: "folder"}) { "Add folder" } %>
       <% end %>
     <% end %>
-    <div class="p-3 border-l cursor-pointer info_bg border-beaver-850"
+    <div class="p-3 border-l cursor-pointer button_info border-beaver-850"
       data-reflex="click->Posts::BuildsCard::FileableList::ComponentReflex#<%= params[:edit_file] == @folder ? "close_form" : "edit_file" %>"
       data-index="<%= @index %>">
       Edit
     </div>
-    <div class="p-3 border-l cursor-pointer danger_bg border-beaver-850"
+    <div class="p-3 border-l cursor-pointer button_danger border-beaver-850"
       data-reflex="click->Posts::BuildsCard::FileableList::ComponentReflex#remove_file"
       data-index="<%= @index %>">
       Delete

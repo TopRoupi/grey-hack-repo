@@ -20,13 +20,13 @@
       <%= render(Scripts::Card::CopyButton::Component.new(script: @script)) %>
     <% end %>
     <% if @edit %>
-      <button class="p-3 border-l cursor-pointer info_bg border-beaver-850"
+      <button class="p-3 border-l cursor-pointer button_info border-beaver-850"
         data-reflex="click->Posts::BuildsCard::FileableList::ComponentReflex#<%= params[:edit_file] == @script ? "close_form" : "edit_file" %>"
         data-index="<%= @index %>">
         Edit
       </button>
 
-      <button class="p-3 border-l cursor-pointer danger_bg border-beaver-850"
+      <button class="p-3 border-l cursor-pointer button_danger border-beaver-850"
         data-reflex="click->Posts::BuildsCard::FileableList::ComponentReflex#remove_file"
         data-index="<%= @index %>">
         Delete

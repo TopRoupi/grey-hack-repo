@@ -2,12 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-.info_bg {
+.button_info {
   @apply bg-denim-600 hover:bg-denim-500
 }
 
-.danger_bg {
+.button_danger {
   @apply bg-red-900 hover:bg-red-700
+}
+
+.button_primary {
+  @apply bg-beaver-700 hover:bg-beaver-600
+}
+
+.button_secondary {
+  @apply bg-beaver-800 hover:bg-beaver-700
 }
 
 .link {

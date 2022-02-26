@@ -9,14 +9,14 @@
         <% end %>
         <% if @edit %>
           <% c.menu do |cc| %>
-            <% cc.item(tag: :button, data: {reflex: "click->Posts::BuildsCard::FileableList::ComponentReflex#remove_build", index: index}) { "remove" } %>
-            <% cc.item(tag: :button, data: {reflex: "click->Posts::BuildsCard::ComponentReflex#select", index: index}) { "select" } %>
-            <% cc.item(tag: :button, data: {reflex: "click->Posts::BuildsCard::FileableList::ComponentReflex#edit_build", index: index}) { "edit" } %>
+            <% cc.item(tag: :button, data: reflex_attributes(:remove, index: index)) { "remove" } %>
+            <% cc.item(tag: :button, data: reflex_attributes(:select, index: index)) { "select" } %>
+            <% cc.item(tag: :button, data: reflex_attributes(:edit, index: index)) { "edit" } %>
           <% end %>
         <% end %>
       <% end %>
     <% end %>
     <% if @edit %>
-      <button class="link ml-auto" data-reflex="click->Posts::BuildsCard::FileableList::ComponentReflex#add_build">Add build</button>
+      <%= content_tag(:button, class: "link ml-auto", data: reflex_attributes(:add)) { "Add build" } %>
     <% end %>
 </div>

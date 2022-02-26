@@ -18,9 +18,19 @@ class Posts::BuildsCard::BuildSelector::Component < ApplicationComponent
   def button_data_attributes(build, index)
     attributes = {}
     if !@edit && build != @selected_build
-      attributes[:reflex] = "click->Posts::BuildsCard::ComponentReflex#select"
+      attributes[:reflex] = "click->Posts::BuildsCard::BuildSelector::ComponentReflex#select"
       attributes[:index] = index.to_s
     end
     attributes
+  end
+
+  def reflex_attributes(action, index: nil)
+    actions_attributes = {
+      remove: {reflex: "click->Posts::BuildsCard::FileableList::ComponentReflex#remove_build", index: index},
+      select: {reflex: "click->Posts::BuildsCard::BuildSelector::ComponentReflex#select", index: index},
+      edit: {reflex: "click->Posts::BuildsCard::FileableList::ComponentReflex#edit_build", index: index},
+      add: {reflex: "click->Posts::BuildsCard::FileableList::ComponentReflex#add_build"}
+    }
+    actions_attributes[action]
   end
 end
