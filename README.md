@@ -6,7 +6,7 @@ scripts repository for the [greyhack](https://store.steampowered.com/app/605230/
 
 # Repo website
 
-https://greyrepo.xyz
+https://www.greyrepo.xyz
 
 # REQUIREMENTS
 
