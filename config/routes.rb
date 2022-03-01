@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get "npc_decipher", to: "npc_decipher#index"
+  get "npc_decipher", to: "npc_decipher#index", as: "npc_decipher"
   resources :posts, except: [:index]
   devise_for :users, controllers: {session: "users/sessions"}
   get "home/index"
