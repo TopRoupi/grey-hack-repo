@@ -16,8 +16,10 @@ application.register("scripts--card--copy--component", ScriptsCardCopyComponent 
 
 import AvatarPreview from "./avatar_preview_controller"
 import Attachments from "./attachments_controller"
+import Decipher from "./decipher_controller"
 application.register("avatar-preview", AvatarPreview)
 application.register("attachments", Attachments)
+application.register("decipher", Decipher)
 
 import { Alert, Dropdown, Modal, Toggle } from "tailwindcss-stimulus-components"
 
