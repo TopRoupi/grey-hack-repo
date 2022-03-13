@@ -8,7 +8,7 @@ class Post < ApplicationRecord
   belongs_to :category
   has_rich_text :readme
   has_many :stars, as: :starable, dependent: :destroy
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, dependent: :destroy
   has_many :builds, dependent: :destroy
   enum visibility: [:public, :not_listed, :private], _suffix: true
   friendly_id :title, use: :slugged

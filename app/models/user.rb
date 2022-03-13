@@ -12,8 +12,8 @@ class User < ApplicationRecord
   validates :btc, length: {minimum: 2, maximum: 32, allow_blank: true}
   validates :bank, length: {is: 8, allow_blank: true}
 
-  has_many :posts
-  has_many :stars
+  has_many :posts, dependent: :destroy
+  has_many :stars, dependent: :destroy
   has_many :starable_posts, through: :stars, source: "starable", source_type: "Post"
-  has_many :comments
+  has_many :comments, dependent: :destroy
 end

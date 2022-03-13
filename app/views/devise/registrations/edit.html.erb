@@ -38,8 +38,14 @@
                 input_html: { autocomplete: "current-password" } %>
   </div>
 
+
   <div class="form-actions text-right">
     <%= f.button :submit, "Update" %>
   </div>
 <% end %>
 
+<%= link_to "Cancel my account",
+  registration_path(current_user),
+  class: "text-red-600",
+  data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }
+%>
