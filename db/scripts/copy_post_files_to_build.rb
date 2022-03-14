@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "rubygems"
 
 Post.all.each do |post|

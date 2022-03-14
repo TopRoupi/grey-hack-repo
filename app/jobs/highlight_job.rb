@@ -6,7 +6,7 @@ class HighlightJob < ApplicationJob
   def perform(script)
     @file_path = "tmp/source#{script.id}.src"
     clear_files
-    File.open(@file_path, "w+") { |file| file.write(script.content) }
+    File.write(@file_path, script.content)
     script.highlighted_content = `./highlight #{@file_path}`
     script.old_content = Digest::SHA256.digest(script.content)
     script.save

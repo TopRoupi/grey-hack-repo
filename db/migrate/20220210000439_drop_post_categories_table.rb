@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DropPostCategoriesTable < ActiveRecord::Migration[7.0]
   def change
     drop_table :post_categories do |t|
