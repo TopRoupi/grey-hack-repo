@@ -28,18 +28,19 @@ module Fileable
     folders.select { |f| f.has_script? }.any?
   end
 
-  def children_index_table(table = {})
+  def children_index_table(table = {}, parent = nil, &parser)
     index = table.size
-    table[index] = self
+    table[index] = parser ? parser.call(self, parent) : self
+    parent = index
     index += 1
 
     scripts.each do |script|
-      table[index] = script
+      table[index] = parser ? parser.call(script, parent) : script
       index += 1
     end
 
     folders.each do |folder|
-      table = folder.children_index_table(table)
+      table = folder.children_index_table(table, parent, &parser)
     end
 
     table

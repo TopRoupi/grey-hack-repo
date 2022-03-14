@@ -6,3 +6,11 @@
     <%= link_to "Download #{@selected_build.name} files", rails_blob_path(@selected_build.files_attachment, disposition: "attachment"), class: "bg-green-700 hover:bg-green-600 p-2 rounded mt-6" %>
   </div>
 <% end %>
+
+<% if !@edit %>
+  <p>
+    export string:
+  </p>
+
+  <%= @export_string %>
+<% end %>
