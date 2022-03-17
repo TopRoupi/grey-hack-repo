@@ -9,5 +9,6 @@ FactoryBot.define do
     end
 
     name { "folder" }
+    scripts { [build(:script, scriptable: nil)] }
   end
 end

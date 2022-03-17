@@ -10,9 +10,11 @@ debounced.initialize()
 import CommentsFormComponent from "../../components/comments/form/component_controller.js"
 import CategoriesCardComponent from "../../components/categories/card/component_controller.js"
 import ScriptsCardCopyComponent from "../../components/scripts/card/copy_button/component_controller.js"
+import PostsBuildSelectorComponent from "../../components/posts/builds_card/build_selector/component_controller.js"
 application.register("comments--form--component", CommentsFormComponent)
 application.register("categories--card--component", CategoriesCardComponent)
 application.register("scripts--card--copy--component", ScriptsCardCopyComponent )
+application.register("posts--build-selector--component", PostsBuildSelectorComponent )
 
 import AvatarPreview from "./avatar_preview_controller"
 import Attachments from "./attachments_controller"

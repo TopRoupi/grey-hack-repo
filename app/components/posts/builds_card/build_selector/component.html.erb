@@ -17,6 +17,7 @@
       <% end %>
     <% end %>
     <% if @edit %>
-      <%= content_tag(:button, class: "link ml-auto", data: reflex_attributes(:add)) { "Add build" } %>
+      <%= content_tag(:button, class: "link ml-auto", data: {controller: "posts--build-selector--component", action: "click->posts--build-selector--component#import_string"}) { "Import build" } %>
+      <%= content_tag(:button, class: "link ml-2", data: reflex_attributes(:add)) { "Add build" } %>
     <% end %>
 </div>

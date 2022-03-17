@@ -8,7 +8,6 @@ export default class extends ApplicationController {
   }
 
   deciphe() {
-    console.log("a")
     this.stimulate(
       'DecipherReflex#deciphe', this.inputTarget.value
     )

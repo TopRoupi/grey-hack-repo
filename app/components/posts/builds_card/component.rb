@@ -12,16 +12,6 @@ class Posts::BuildsCard::Component < ApplicationComponent
 
     return if @selected_build.nil? || @edit
 
-    @export_string = @selected_build.children_index_table do |obj, parent|
-      output = {}
-      output["parent"] = parent.to_s
-      output["type"] = obj.instance_of?(Script) ? "script" : "folder"
-      output["name"] = obj.name
-      output["content"] = obj.content if obj.respond_to? :content
-
-      output.map do |key, value|
-        [key, value.gsub("\"", "\"\"")]
-      end.to_h
-    end.to_json.gsub("\\\"", "\"")
+    @export_string = @selected_build.export_string
   end
 end

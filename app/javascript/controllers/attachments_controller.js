@@ -4,11 +4,6 @@ import Trix from 'trix'
 export default class extends ApplicationController {
   static targets = ['editor', 'input'];
 
-  connect() {
-    console.log(this.inputTarget)
-    console.log(this.inputTarget.value)
-  }
-
   attach(event) {
     const postId = this.inputTarget.value;
 
