@@ -1,1 +1,1 @@
-# See https://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
+Sitemap: https://www.greyrepo.xyz/sitemap.xml

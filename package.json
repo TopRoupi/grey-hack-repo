@@ -1,6 +1,7 @@
 {
   "name": "grey-repo",
   "private": true,
+  "version": "1.0.0",
   "dependencies": {
     "@hotwired/stimulus": "npm:@hotwired/stimulus",
     "@hotwired/turbo-rails": "^7.1.0",

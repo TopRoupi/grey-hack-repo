@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   authenticate :user, ->(user) { user.admin? } do
     mount Sidekiq::Web => "/sidekiq"
   end
+
+  get "/sitemap.xml", to: "sitemap#index", format: "xml", as: :sitemap
 end
