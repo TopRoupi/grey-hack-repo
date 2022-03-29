@@ -1,0 +1,7 @@
+<div id="<%= dom_id(@user, "posts_box_categories") %>" class="w-full block mx-0 md:w-40 md:-mx-2 <%= "md:-mt-2" if @remove_top_margin %>">
+  <%= render(Categories::Card::Component.new(category: :all, href: user_path(@user), small: true, active: @active_tab == "all")) if @render_all_tab %>
+
+  <% @categories.each do |category| %>
+    <%= render(Categories::Card::Component.new(category: category, href: user_path(@user, category: category.id), small: true, active: @active_tab == category.id.to_s, style: @highlighted ? ["bg-gradient-to-r from-indigo-600 to-indigo-800", "bg-indigo-600"] : nil)) %>
+  <% end %>
+</div>

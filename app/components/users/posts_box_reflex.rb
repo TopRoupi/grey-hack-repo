@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Users::PostsBox::ComponentReflex < ApplicationReflex
+class Users::PostsBoxReflex < ApplicationReflex
   def change
     @user = User.find(element.dataset[:user])
 
@@ -13,8 +13,8 @@ class Users::PostsBox::ComponentReflex < ApplicationReflex
     end
 
     morph(dom_id(@user, "posts_box_categories"),
-      render(Users::PostsBox::CategoriesList::Component.new(user: @user, categories: Category.all, active_tab: @category)))
+      render(Users::CategoriesList.new(user: @user, categories: Category.all, active_tab: @category)))
     morph(dom_id(@user, "posts_box_list"),
-      render(Users::PostsBox::PostsList::Component.new(user: @user, posts: @posts)))
+      render(Users::PostsList.new(user: @user, posts: @posts)))
   end
 end

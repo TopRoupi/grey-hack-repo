@@ -2,7 +2,7 @@
 
 module UsersHelper
   def user_avatar(user)
-    user.avatar || default_avatar
+    user&.avatar || default_avatar
   end
 
   def current_user_avatar

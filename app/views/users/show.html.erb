@@ -22,7 +22,7 @@
   <%= @user.name.capitalize %>'s posts
 </div>
 
-<%= render(Users::PostsBox::Component.new(user: @user, posts: @posts, pagy: @category_pagy, active_tab: @category)) %>
+<%= render(Users::PostsBox.new(user: @user, current_user: current_user, posts: @posts, pagy: @category_pagy, active_tab: @category)) %>
 
 <div class="block text-center text-2xl font-semibold mb-5 mt-5">
   <%= @user.name.capitalize %>'s stars
@@ -30,7 +30,7 @@
 
 <turbo-frame id="starred_posts">
   <% @starred_posts.each do |post| %>
-    <%= render(Posts::Card::Component.new(post: post)) %>
+    <%= render(Posts::Card::Component.new(current_user: current_user, post: post)) %>
   <% end %>
 
   <%= render(Pagy::Component.new(pagy: @stars_pagy)) if @stars_pagy %>

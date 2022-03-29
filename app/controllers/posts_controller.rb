@@ -11,7 +11,11 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
-    @post = Post.eager_load(:user, :category, :stars, builds: [:scripts], comments: [:user]).with_rich_text_readme.friendly.find(params[:id])
+    @post = Post
+      .includes(:user, :category, stars: [:user], builds: [:scripts, :folders, files_attachment: :blob], comments: [:user])
+      .with_rich_text_readme
+      .friendly
+      .find(params[:id])
 
     redirect_to :root, alert: "action not permitted" if @post.private_visibility? && @post.user != current_user
   end

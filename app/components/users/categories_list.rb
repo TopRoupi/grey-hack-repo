@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Users::PostsBox::CategoriesList::Component < ApplicationComponent
+class Users::CategoriesList < ApplicationComponent
   def initialize(user:, categories:, active_tab: :all, render_all_tab: true, remove_top_margin: true, highlighted: nil)
     @categories = categories
     @user = user

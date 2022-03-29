@@ -16,6 +16,6 @@ class Stars::Badge::ComponentReflex < ApplicationReflex
       star.first.destroy
     end
 
-    morph dom_id(starable, "star_badge"), render(Stars::Badge::Component.new(starable: starable.reload))
+    morph dom_id(starable, "star_badge"), render(Stars::Badge::Component.new(starable: starable.reload, user: current_user))
   end
 end

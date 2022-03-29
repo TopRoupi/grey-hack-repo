@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class Overview::Component < ApplicationComponent
-  def initialize(categories: Category.all, posts: nil, pagy: nil)
+  def initialize(current_user:, posts:, categories: Category.all, pagy: nil)
+    @current_user = current_user
     @categories = categories
     @pagy = pagy
-    @posts = posts || Post.eager.order(updated_at: :desc)
+    @posts = posts
   end
 end

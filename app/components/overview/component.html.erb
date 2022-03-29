@@ -33,7 +33,7 @@
   <% end %>
 
   <% @posts.each do |post| %>
-    <%= render(Posts::Card::Component.new(post: post)) %>
+    <%= render(Posts::Card::Component.new(post: post, current_user: @current_user)) %>
   <% end %>
 
   <%= render(Pagy::Component.new(pagy: @pagy)) if @pagy %>

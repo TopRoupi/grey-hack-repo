@@ -15,7 +15,7 @@
   </head>
 
   <body class="bg-beaver-900 text-white">
-    <%= render(Layout::NavBar::Component.new()) %>
+    <%= render(Layout::NavBar::Component.new(current_user: current_user)) %>
     <div class="container max-w-5xl mx-auto mb-8 px-4">
       <div id="flash-messages">
         <% if alert %>
