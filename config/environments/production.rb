@@ -66,7 +66,7 @@ Rails.application.configure do
       expire_after: 1.year,
       ttl: 1.year,
       key_prefix: "app:session:",
-      url: ENV["REDIS_URL_BLUE"]
+      url: ENV["REDIS_URL_RED"]
     }
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
