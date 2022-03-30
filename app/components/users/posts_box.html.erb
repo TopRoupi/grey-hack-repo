@@ -1,4 +1,4 @@
-<turbo-frame id="user_posts" class="flex flex-col md:flex-row  justify-start">
+<turbo-frame id="user_posts">
   <div class="pr-0 md:pr-2">
     <%= render(Users::CategoriesList.new(user: @user, categories: @categories, active_tab: @active_tab)) %>
     <%= render(Users::CategoriesList.new(user: @user,

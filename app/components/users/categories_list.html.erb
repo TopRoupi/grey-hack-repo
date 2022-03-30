@@ -1,4 +1,4 @@
-<div id="<%= dom_id(@user, "posts_box_categories") %>" class="w-full block mx-0 md:w-40 sm:flex md:block md:-mx-2  <%= "md:-mt-2" if @remove_top_margin %>">
+<div id="<%= dom_id(@user, "posts_box_categories") %>" class="w-full block mx-0 sm:flex md:flex  <%= "md:-mt-2" if @remove_top_margin %>">
   <%= render(Categories::Card::Component.new(category: :all, href: user_path(@user), small: true, active: @active_tab == "all")) if @render_all_tab %>
 
   <% @categories.each do |category| %>

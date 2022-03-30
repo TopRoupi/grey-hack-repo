@@ -8,7 +8,7 @@ class Categories::Card::Component < ApplicationComponent
     @tag = tag
     @sys_params[:data] ||= {}
     @sys_params[:data][:controller] = "categories--card--component"
-    @sys_params[:class] = "my-2 mx-2 #{active ? @active_style : @style} #{@small ? "!mx-0 sm:!mx-2 md:!mx-0 py-2 justify-start pl-3 sm:pl-0 md:pl-3" : "py-4 justify-center"} rounded-lg w-full flex flex-row hover:text-white text-beaver-300 sm:flex-col md:flex-row items-center"
+    @sys_params[:class] = "my-2 mx-2 #{active ? @active_style : @style} #{@small ? "!mx-0 sm:!mx-2 md:!mx-2 py-2 justify-start pl-3 sm:pl-0 md:pl-3" : "py-4 justify-center"} rounded-lg w-full flex flex-row hover:text-white text-beaver-300 sm:flex-col md:flex-row items-center"
     @category = category
 
     if category == :all

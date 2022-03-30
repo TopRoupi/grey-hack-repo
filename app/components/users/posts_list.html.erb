@@ -1,5 +1,5 @@
 <div  id="<%= dom_id(@user, "posts_box_list") %>"
-      class="bg-beaver-850 w-full rounded-lg mx-0 md:mx-2 pt-3 pb-3 px-2">
+      class="bg-beaver-850 w-full rounded-lg mx-0 pt-3 pb-3 px-2">
   <turbo-frame id="post-link">
     <% @posts.each do |post| %>
       <%= render(Posts::Card::Component.new(post: post, current_user: @current_user)) %>
