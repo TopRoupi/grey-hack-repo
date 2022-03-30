@@ -267,16 +267,6 @@ GEM
     ruby-vips (2.1.4)
       ffi (~> 1.12)
     rubyzip (2.3.2)
-    sass-rails (6.0.0)
-      sassc-rails (~> 2.1, >= 2.1.1)
-    sassc (2.4.0)
-      ffi (~> 1.9)
-    sassc-rails (2.1.2)
-      railties (>= 4.0.0)
-      sassc (>= 2.0)
-      sprockets (> 3.0)
-      sprockets-rails
-      tilt
     selenium-webdriver (4.1.0)
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
@@ -305,7 +295,6 @@ GEM
     strscan (3.0.1)
     thor (1.2.1)
     thread-local (1.1.0)
-    tilt (2.0.10)
     timeout (0.2.0)
     turbo-rails (0.5.12)
       rails (>= 6.0.0)
@@ -366,11 +355,11 @@ DEPENDENCIES
   redis (~> 4.0)
   redis-session-store (~> 0.11.4)
   rubyzip (~> 2.3)
-  sass-rails
   selenium-webdriver
   sidekiq (~> 6.4)
   simple_form (~> 5.1)
   spring
+  sprockets-rails
   stimulus_reflex (~> 3.5.0.pre.pre8)
   turbo-rails (~> 0.5.9)
   tzinfo-data
