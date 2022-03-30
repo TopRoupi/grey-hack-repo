@@ -21,4 +21,9 @@ class UsersController < ApplicationController
 
     @stars_pagy, @starred_posts = pagy(@user.starable_posts.eager.order('"stars_posts"."created_at"': :desc).public_visibility, items: 5)
   end
+
+  def posts
+    show
+    render(Users::PostsBox.new(user: @user, current_user: current_user, posts: @posts, pagy: @category_pagy, active_tab: @category), layout: false)
+  end
 end

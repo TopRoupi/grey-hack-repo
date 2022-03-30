@@ -1,6 +1,6 @@
 module.exports = {
   mode: 'jit',
-  purge: [
+  content: [
     './app/**/*.html.erb',
     './config/initializers/*.rb',
     './app/components/**/*.rb',
