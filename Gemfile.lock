@@ -281,6 +281,14 @@ GEM
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2)
+    sentry-rails (5.2.1)
+      railties (>= 5.0)
+      sentry-ruby-core (~> 5.2.1)
+    sentry-ruby (5.2.1)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      sentry-ruby-core (= 5.2.1)
+    sentry-ruby-core (5.2.1)
+      concurrent-ruby
     sidekiq (6.4.1)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
@@ -368,6 +376,8 @@ DEPENDENCIES
   rubyzip (~> 2.3)
   sass-rails
   selenium-webdriver
+  sentry-rails (~> 5.2)
+  sentry-ruby (~> 5.2)
   sidekiq (~> 6.4)
   simple_form (~> 5.1)
   spring

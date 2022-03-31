@@ -66,3 +66,6 @@ end
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "sidekiq", "~> 6.4"
+
+gem "sentry-ruby", "~> 5.2"
+gem "sentry-rails", "~> 5.2"
