@@ -1,4 +1,4 @@
 web: DB_POOL=5 bin/rails server -p 3000
 worker: DB_POOL=5 bundle exec sidekiq -C config/sidekiq.yml
-css: yarn build:css --watch
 js: yarn build --watch
+css: bin/rails tailwindcss:watch

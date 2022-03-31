@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   mode: 'jit',
   content: [
@@ -140,9 +142,10 @@ module.exports = {
       }
     }
   },
-  variants: {
-    extend: {},
-  },
   plugins: [
-    require('tailwind-scrollbar')],
+    require('tailwind-scrollbar'),
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/typography'),
+  ],
 }
