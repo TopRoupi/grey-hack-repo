@@ -5,6 +5,6 @@
     </div>
   <% end %>
   <% @comments.each do |comment| %>
-    <%= render(Comments::Card::Component.new(comment: comment)) %>
+    <%= render(Comments::Card::Component.new(user: @user, comment: comment)) %>
   <% end %>
 </div>

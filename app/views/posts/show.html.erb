@@ -37,7 +37,7 @@
   Post's comments
 </div>
 <br>
-<%= render(Comments::List::Component.new(commentable: @post)) %>
+<%= render(Comments::List::Component.new(user: current_user, commentable: @post)) %>
 <br>
 
 <%= render(Comments::Form::Component.new(user: current_user)) %>

@@ -8,5 +8,6 @@ FactoryBot.define do
     title { Faker::Lorem.characters(number: 15) }
     summary { Faker::Lorem.characters(number: 50) }
     readme { Faker::Lorem.characters(number: 200) }
+    comments { [build(:comment, commentable: nil)] }
   end
 end
