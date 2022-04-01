@@ -1,5 +1,6 @@
 Sentry.init do |config|
   config.environment = Rails.env
+  config.release = "greyrepo@1.0.0"
   config.dsn = Rails.application.credentials[:sentry_dsn]
   config.breadcrumbs_logger = [:active_support_logger, :http_logger]
   config.enabled_environments = %w[production]
