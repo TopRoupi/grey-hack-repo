@@ -1,19 +1,20 @@
 import ApplicationController from '../../../../javascript/controllers/application_controller'
 
 export default class extends ApplicationController {
+  static targets = ["name", "string"]
+
   connect() {
     super.connect()
   }
 
   import_string(event) {
     event.preventDefault()
-    let export_string = prompt("export string:")
-    let build_name = prompt("build name:")
-    event.target.setAttribute("data-string", export_string)
-    event.target.setAttribute("data-name", build_name)
+    var string = this.stringTarget.value
+    var name = this.nameTarget.value
     this.stimulate(
-      'Posts::BuildsCard::FileableList::ComponentReflex#import_build', event.target
+      'Posts::BuildsCard::FileableList::ComponentReflex#import_build', {"string": string, "name": name}
     )
-    event.target.disabled = true
+    //close modal
+    document.getElementById("close-modal").click()
   }
 }

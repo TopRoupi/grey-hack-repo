@@ -17,7 +17,18 @@
       <% end %>
     <% end %>
     <% if @edit %>
-      <%= content_tag(:button, class: "link ml-auto", data: {controller: "posts--build-selector--component", action: "click->posts--build-selector--component#import_string"}) { "Import build" } %>
+<%= render(Layout::Modal::Component.new(class: "ml-auto flex items-center")) do |c| %>
+  <% c.button(class: "link ml-auto") { "Import build" } %>
+  <% c.body(data: {controller: "posts--build-selector--component"}) do %>
+    <p>build name: </p>
+    <input class="p-2 mt-2 bg-beaver-850 border-beaver-700 border rounded w-full" data-posts--build-selector--component-target="name">
+    </input>
+    <p>export string: </p>
+    <textarea class="h-20 p-2 mt-2 bg-beaver-850 border-beaver-700 border rounded w-full" data-posts--build-selector--component-target="string"></textarea>
+    <button class="button_secondary font-bold py-2 px-4 rounded float-right mt-5" data-action="click->posts--build-selector--component#import_string">Import</button>
+  <% end %>
+<% end %>
       <%= content_tag(:button, class: "link ml-2", data: reflex_attributes(:add)) { "Add build" } %>
     <% end %>
 </div>
+

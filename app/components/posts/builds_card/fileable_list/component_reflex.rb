@@ -31,8 +31,12 @@ class Posts::BuildsCard::FileableList::ComponentReflex < ApplicationReflex
     params[:edit_file] = @post.builds[element.dataset[:index].to_i]
   end
 
-  def import_build
-    @post.builds << Build.parse_string(element.dataset[:string], element.dataset[:name])
+  def import_build(params)
+    string = params["string"]
+    name = params["name"]
+    string = string.delete("\n")
+    string = string.gsub("\\...n", "\\n")
+    @post.builds << Build.parse_string(string, name)
   end
 
   def edit_file

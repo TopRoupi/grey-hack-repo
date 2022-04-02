@@ -20,10 +20,12 @@ class Build < ApplicationRecord
       output[:content] = obj.content if obj.respond_to? :content
 
       output
-    end.to_json
+    end.to_json.gsub("\\n", "\\...n")
   end
 
   def self.parse_string(string, name = nil)
+    string = string.delete("\n")
+    string = string.gsub("\\...n", "\\n")
     obj = JSON.parse(string)
     build = new(name: name || obj["0"]["name"])
 

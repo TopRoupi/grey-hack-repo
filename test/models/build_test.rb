@@ -7,7 +7,7 @@ class BuildTest < ActiveSupport::TestCase
     setup do
       @build = build :build
       @build.folders << build(:folder)
-      @build.scripts.first.content = "print(\"hello\")"
+      @build.scripts.first.content = "print(\"hello\")\nexit(\"bye\")"
       build_folder = @build.folders.first
       @build_export_table = {
         "0": {
@@ -19,7 +19,7 @@ class BuildTest < ActiveSupport::TestCase
           parent: "0",
           type: "script",
           name: @build.scripts.first.name,
-          content: "print(\"hello\")"
+          content: "print(\"hello\")\nexit(\"bye\")"
         },
         "2": {
           parent: "0",
@@ -32,7 +32,7 @@ class BuildTest < ActiveSupport::TestCase
           name: build_folder.scripts.first.name,
           content: build_folder.scripts.first.content
         }
-      }.to_json
+      }.to_json.gsub("\\n", "\\...n")
     end
 
     test "#export_string should return valid export_string" do
@@ -40,7 +40,9 @@ class BuildTest < ActiveSupport::TestCase
     end
 
     test "#parse_string should return a valid build object" do
-      assert_equal Build.parse_string(@build_export_table).export_string, @build.export_string
+      string = @build_export_table
+      string = string[0..20] << "\n" + string[20..-1]
+      assert_equal Build.parse_string(string).export_string, @build.export_string
     end
   end
 end
