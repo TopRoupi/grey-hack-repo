@@ -1,4 +1,4 @@
-<%= render(Layout::Toggle::Component.new(class: "w-full")) do |c| %>
+<%= render(Layout::Toggle.new(class: "w-full")) do |c| %>
   <div class="flex w-full justify-start">
     <%= render(c.toggle(tag: @edit ? :div : :button, class: "flex w-full p-3 #{params[:edit_file] == @script ? 'bg-beaver-700' : 'bg-beaver-800'} #{'hover:bg-beaver-700 cursor-pointer' unless @edit} items-center")) do %>
       <%= octicon "file", height: 20, class: "fill-current mr-2" %>

@@ -1,0 +1,15 @@
+<%= render Layout::LinkGroup.new(@pagy.series.length + 2) do |c| %>
+  <% c.link(link: path_to(request.url, @pagy.vars[:page_param] => @pagy.prev), disabled: @pagy.prev.nil?) do %>
+    <%= octicon "arrow-left", class: "fill-current" %>
+  <% end %>
+
+  <% @pagy.series.each do |item| %>
+    <% c.link(link: path_to(request.url, @pagy.vars[:page_param] => item), disabled: item == :gap, active: item.is_a?(String)) do %>
+      <%== item == :gap ? pagy_t("pagy.nav.gap") : item %>
+    <% end %>
+  <% end %>
+
+  <% c.link(link: path_to(request.url, @pagy.vars[:page_param] => @pagy.next), disabled: @pagy.next.nil?) do %>
+    <%= octicon "arrow-right", class: "fill-current" %>
+  <% end %>
+<% end %>

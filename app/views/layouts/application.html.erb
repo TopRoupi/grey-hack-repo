@@ -18,10 +18,10 @@
     <div class="container max-w-5xl mx-auto mb-8 px-4">
       <div id="flash-messages">
         <% if alert %>
-          <%= render(Layout::Alert::Component.new(alert, type: :error)) %>
+          <%= render(Layout::Alert.new(alert, type: :error)) %>
         <% end %>
         <% if notice %>
-          <%= render(Layout::Alert::Component.new(notice, type: :info)) %>
+          <%= render(Layout::Alert.new(notice, type: :info)) %>
         <% end %>
       </div>
       <%= yield %>

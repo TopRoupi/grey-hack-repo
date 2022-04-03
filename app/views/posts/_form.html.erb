@@ -22,7 +22,7 @@
   <div id="trix_editor" data-reflex-permanent>
     <%= f.input :readme, as: :rich_text_area, label: "Readme (optional)", input_html: {class: "border-beaver-850 !bg-beaver-900", data: {attachments_target: "editor"}}%>
 
-    <%= render(Layout::Dropdown::Component.new()) do |c| %>
+    <%= render(Layout::Dropdown.new()) do |c| %>
       <% c.button(tag: :button, type: "button", class: "px-3 py-2 rounded bg-beaver-800") do %>
         attach post
       <% end %>

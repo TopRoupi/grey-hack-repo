@@ -14,7 +14,7 @@
     </div>
   </div>
   <% if @edit %>
-    <%= render(Layout::Dropdown::Component.new(class: "inline-block  relative")) do |c| %>
+    <%= render(Layout::Dropdown.new(class: "inline-block  relative")) do |c| %>
       <% c.button(class: "p-3 whitespace-nowrap border-l cursor-pointer button_primary border-beaver-850") do %>
         Add file
       <% end %>

@@ -30,8 +30,8 @@
 
 <turbo-frame id="starred_posts">
   <% @starred_posts.each do |post| %>
-    <%= render(Posts::Card::Component.new(current_user: current_user, post: post)) %>
+    <%= render(Posts::Card.new(current_user: current_user, post: post)) %>
   <% end %>
 
-  <%= render(Pagy::Component.new(pagy: @stars_pagy)) if @stars_pagy %>
+  <%= render(Pagination.new(pagy: @stars_pagy)) if @stars_pagy %>
 </turbo-frame>

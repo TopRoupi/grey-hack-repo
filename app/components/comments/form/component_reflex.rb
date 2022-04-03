@@ -13,7 +13,7 @@ class Comments::Form::ComponentReflex < ApplicationReflex
       update_comment_form
 
       cable_ready
-        .insert_adjacent_html(selector: dom_id(@commentable, "comments"), html: render(Comments::Card::Component.new(comment: @comment), layout: false))
+        .insert_adjacent_html(selector: dom_id(@commentable, "comments"), html: render(Comments::Card.new(user: current_user, comment: @comment), layout: false))
         .broadcast
     else
       update_comment_form(comment: @comment)
@@ -30,7 +30,7 @@ class Comments::Form::ComponentReflex < ApplicationReflex
   def update
     if @comment.update(comment_params)
       cable_ready
-        .morph(selector: dom_id(@comment), html: render(Comments::Card::Component.new(comment: @comment), layout: false))
+        .morph(selector: dom_id(@comment), html: render(Comments::Card.new(user: current_user, comment: @comment), layout: false))
         .broadcast
     else
       update_comment_form(form: @comment, comment: @comment)
@@ -53,11 +53,11 @@ class Comments::Form::ComponentReflex < ApplicationReflex
   end
 
   def update_comments_box
-    morph(dom_id(@commentable, "comments"), render(Comments::List::Component.new(commentable: @commentable)))
+    morph(dom_id(@commentable, "comments"), render(Comments::List.new(user: current_user, commentable: @commentable)))
   end
 
   def update_comment_form(form: Comment.new, comment: Comment.new)
-    morph(dom_id(form), render(Comments::Form::Component.new(comment: comment)))
+    morph(dom_id(form), render(Comments::Form::Component.new(user: current_user, comment: comment)))
   end
 
   def comment_params

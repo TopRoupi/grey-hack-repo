@@ -2,10 +2,10 @@
       class="bg-beaver-850 w-full rounded-lg mx-0 pt-3 pb-3 px-2">
   <turbo-frame id="post-link">
     <% @posts.each do |post| %>
-      <%= render(Posts::Card::Component.new(post: post, current_user: @current_user)) %>
+      <%= render(Posts::Card.new(post: post, current_user: @current_user)) %>
     <% end %>
 
-    <%= render(Pagy::Component.new(pagy: @pagy)) %>
+    <%= render(Pagination.new(pagy: @pagy)) %>
     <br>
   </turbo-frame>
 </div>

@@ -1,3 +1,3 @@
 <% title @category.name %>
 
-<%= render(Overview::Component.new(current_user: current_user, posts: @posts, categories: [@category], pagy: @pagy)) %>
+<%= render(Overview.new(current_user: current_user, posts: @posts, categories: [@category], pagy: @pagy)) %>

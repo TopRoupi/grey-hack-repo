@@ -8,7 +8,7 @@
 <% end %>
 
 <% if !@edit %>
-  <%= render(Layout::Toggle::Component.new(class: "w-full mt-3")) do |c| %>
+  <%= render(Layout::Toggle.new(class: "w-full mt-3")) do |c| %>
     <%= render(c.toggle(tag: :button, class: "w-full button_secondary")) { "export string" } %>
     <%= render(c.toggleable(tag: :textarea,class: "w-full overflow-x-auto bg-beaver-1000")) { @export_string } %>
   <% end %>

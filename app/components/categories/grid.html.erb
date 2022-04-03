@@ -1,0 +1,5 @@
+<div class="flex -mx-2 overflow-hidden">
+  <% @categories.each do |category| %>
+    <%= render(Categories::Card.new(category: category, href: @categories.length != 1 ? category_path(category) : root_path, on_grid: @categories.length != 1)) %>
+  <% end %>
+</div>

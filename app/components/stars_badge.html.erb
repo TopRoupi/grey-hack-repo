@@ -1,0 +1,11 @@
+<div id="<%= dom_id @starable, "star_badge" %>"
+  <% unless @visual %>
+     data-reflex="click->StarsBadgeReflex#star"
+     data-starable-id="<%= @starable.signed_id %>"
+     data-starable-type="<%= @starable.class %>"
+   <% end %>
+     class="<%= "cursor-pointer" unless @visual %> flex px-2 py-1 ml-2 rounded-md <%= "bg-beaver-800 hover:bg-beaver-700" unless @transparent %> text-sm">
+  <%= octicon stared? ? "star-fill" : "star", height: 16, class: "fill-current self-center mr-2"%>
+  <%= @stars.length %>
+</div>
+

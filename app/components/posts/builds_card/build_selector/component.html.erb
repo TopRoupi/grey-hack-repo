@@ -1,6 +1,6 @@
 <div class="bg-beaver-850 flex p-3 w-full rounded-t-md">
     <% @builds.each_with_index do |build, index| %>
-      <%= render(Layout::Dropdown::Component.new(disabled: !@edit)) do |c| %>
+      <%= render(Layout::Dropdown.new(disabled: !@edit)) do |c| %>
         <% c.button(tag: :button, type: :button, class: button_classes(build), data: button_data_attributes(build, index)) do %>
           <%= build.name %>
           <% if !build.valid? %>
@@ -17,7 +17,7 @@
       <% end %>
     <% end %>
     <% if @edit %>
-<%= render(Layout::Modal::Component.new(class: "ml-auto flex items-center")) do |c| %>
+<%= render(Layout::Modal.new(class: "ml-auto flex items-center")) do |c| %>
   <% c.button(class: "link ml-auto") { "Import build" } %>
   <% c.body(data: {controller: "posts--build-selector--component"}) do %>
     <p>build name: </p>

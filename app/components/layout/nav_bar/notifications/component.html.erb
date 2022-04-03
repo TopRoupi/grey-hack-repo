@@ -1,4 +1,4 @@
-<%= render(Layout::Dropdown::Component.new()) do |c| %>
+<%= render(Layout::Dropdown.new()) do |c| %>
   <% c.button(tag: :button, type: "button", class: "flex p-2 mr-4 rounded-md hover:bg-beaver-700 focus:bg-beaver-700", id: "notifications_button") do %>
     <%= octicon "#{@notifications.empty? ? "bell" : "bell-fill"}", class: "fill-current", height: 20 %>
   <% end %>
