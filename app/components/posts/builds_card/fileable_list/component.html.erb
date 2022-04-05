@@ -5,10 +5,15 @@
     <% end %>
     <div class="bg-beaver-850 w-full">
       <% @fileable.folders.each do |folder| %>
-        <%= render(Posts::BuildsCard::FileableList::Item::Component.new(file: folder, depth: @depth, edit: @edit, index: "#{@fileable_index}_#{@index_table.key(folder)}")) %>
-        <%= render(Posts::BuildsCard::FileableList::Component.new(fileable: folder, depth: @depth + 1, edit: @edit, index_table: @index_table)) %>
+        <%= render(Layout::Toggle.new(open: @edit, disabled: @edit, class: "w-full mt-3")) do |c| %>
+          <%= render(c.toggle(tag: :div)) do %>
+            <%= render(Posts::BuildsCard::FileableList::Item::Component.new(file: folder, depth: @depth, edit: @edit, index: "#{@fileable_index}_#{@index_table.key(folder)}")) %>
+          <% end %>
+          <%= render(c.toggleable) do %>
+            <%= render(Posts::BuildsCard::FileableList::Component.new(fileable: folder, depth: @depth + 1, edit: @edit, index_table: @index_table)) %>
+          <% end %>
+        <% end %>
       <% end %>
-
       <% @fileable.scripts.each do |script| %>
         <%= render(Posts::BuildsCard::FileableList::Item::Component.new(file: script, depth: @depth, edit: @edit, index: "#{@fileable_index}_#{@index_table.key(script)}")) %>
       <% end %>
