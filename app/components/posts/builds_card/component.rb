@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 class Posts::BuildsCard::Component < ApplicationComponent
-  def initialize(post:, edit: false)
-    @post = post
+  def initialize(builds:, edit: false)
     @edit = edit
+    @builds = builds
   end
 
   def before_render
     @selected_index = session[:selected_build]
-    @selected_build = @post.builds[@selected_index] if @selected_index
+    @selected_build = @builds[@selected_index] if @selected_index
 
     return if @selected_build.nil? || @edit
 

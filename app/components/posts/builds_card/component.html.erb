@@ -1,4 +1,4 @@
-<%= render(Posts::BuildsCard::BuildSelector::Component.new(builds: @post.builds, edit: @edit, selected_build: @selected_build)) %>
+<%= render(Posts::BuildsCard::BuildSelector::Component.new(builds: @builds, edit: @edit, selected_build: @selected_build)) %>
 <%= render(Posts::BuildsCard::FileableList::Component.new(fileable: @selected_build, edit: @edit)) if @selected_build %>
 
 <% if @selected_build && @selected_build.files_attachment && !@edit %>

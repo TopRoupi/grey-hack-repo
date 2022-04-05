@@ -1,44 +1,49 @@
-<% set_meta_tags title: @post.title,
-                 description: @post.summary %>
+<% cache @post do %>
+  <% set_meta_tags title: @post.title,
+    description: @post.summary %>
 
-<div class="flex justify-center text-3xl font-semibold items-end">
-  <%= @post.title.capitalize %>
-  <%= render(StarsBadge.new(starable: @post, user: current_user)) %>
-</div>
-
-<div class="text-center flex justify-center">
-  <%= @post.category.name %>
-  <%= octicon @post.category.icon, height: 16, class: "fill-current self-end mb-1 ml-2" %>
-  <a href="<%= user_path @post.user %>" class="link text-center ml-2 flex justify-center items-center">
-    from <%= @post.user.name %>
-  <img class="h-4 w-4 rounded-full ml-2" src="<%= user_avatar(@post.user) %>" alt="">
-  </a>
-</div>
-
-<div class="text-beaver-300 text-center mt-3">
-  <%= @post.summary %>
-</div>
-
-<% if @post.readme %>
-  <div class="mt-20">
-    <%= @post.readme %>
+  <div class="flex justify-center text-3xl font-semibold items-end">
+    <%= @post.title.capitalize %>
+    <%= cache @post.stars do %>
+      <%= render(StarsBadge.new(starable: @post, user: current_user)) %>
+    <% end %>
   </div>
+
+  <div class="text-center flex justify-center">
+    <%= @post.category.name %>
+    <%= octicon @post.category.icon, height: 16, class: "fill-current self-end mb-1 ml-2" %>
+    <a href="<%= user_path @post.user %>" class="link text-center ml-2 flex justify-center items-center">
+      from <%= @post.user.name %>
+    <img class="h-4 w-4 rounded-full ml-2" src="<%= user_avatar(@post.user) %>" alt="">
+    </a>
+  </div>
+
+  <div class="text-beaver-300 text-center mt-3">
+    <%= @post.summary %>
+  </div>
+
+  <% if @post.readme %>
+    <div class="mt-20">
+      <%= @post.readme %>
+    </div>
+  <% end %>
 <% end %>
 
 <div class="text-center text-2xl mb-4 mt-20">
   Files
 </div>
 
-<%= render(Posts::BuildsCard::Component.new(post: @post)) %>
+<%= render(Posts::BuildsCard::Component.new(builds: @builds)) %>
 
 <br>
 
-<div class="text-2xl text-center block mt-20">
-  Post's comments
-</div>
-<br>
-<%= render(Comments::List.new(user: current_user, commentable: @post)) %>
-<br>
+<% cache @comments do %>
+  <div class="text-2xl text-center block mt-20">
+    Post's comments
+  </div>
+  <br>
+  <%= render(Comments::List.new(user: current_user, commentable: @post, comments: @posts)) %>
+  <br>
 
-<%= render(Comments::Form::Component.new(user: current_user)) %>
-
+  <%= render(Comments::Form::Component.new(user: current_user)) %>
+<% end %>

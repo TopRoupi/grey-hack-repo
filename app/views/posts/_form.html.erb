@@ -39,7 +39,7 @@
     Post's Files
   </div>
 
-  <%= render(Posts::BuildsCard::Component.new(post: @post, edit: true)) %>
+  <%= render(Posts::BuildsCard::Component.new(builds: @post.builds, edit: true)) %>
   <br>
 
   <%= f.simple_fields_for(:builds) do |ff| %>

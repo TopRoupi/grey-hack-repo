@@ -25,6 +25,7 @@ class Comments::Form::ComponentReflex < ApplicationReflex
     cable_ready
       .remove(selector: dom_id(@comment))
       .broadcast
+    morph :nothing
   end
 
   def update
@@ -32,6 +33,7 @@ class Comments::Form::ComponentReflex < ApplicationReflex
       cable_ready
         .morph(selector: dom_id(@comment), html: render(Comments::Card.new(user: current_user, comment: @comment), layout: false))
         .broadcast
+      morph :nothing
     else
       update_comment_form(form: @comment, comment: @comment)
     end
