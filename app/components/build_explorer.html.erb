@@ -1,0 +1,4 @@
+<div class="flex border border-beaver-700 rounded" style="background: linear-gradient(to bottom, #3d262d 0%, #3d262d 50%, #2d1b21 50%, #2d1b21 100%);" >
+  <%= render(BuildSelector.new(builds: @builds)) %>
+  <%= render(FileableExplorer.new(fileable: @builds.first)) %>
+</div>

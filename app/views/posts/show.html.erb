@@ -33,7 +33,8 @@
   Files
 </div>
 
-<%= render(Posts::BuildsCard::Component.new(builds: @builds)) %>
+<%# <%= render(Posts::BuildsCard::Component.new(builds: @builds)) %>
+<%= render(BuildExplorer.new(builds: @builds)) %>
 
 <br>
 
