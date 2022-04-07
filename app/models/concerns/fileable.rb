@@ -28,6 +28,22 @@ module Fileable
     folders.select { |f| f.has_script? }.any?
   end
 
+  def path_list
+    if respond_to? :foldable
+      foldable.path_list << self
+    else
+      [self]
+    end
+  end
+
+  def path
+    if instance_of? Build
+      "#{post.friendly_id}_#{name}"
+    else
+      name
+    end
+  end
+
   def children_index_table(table = {}, parent = nil, &parser)
     index = table.size
     table[index] = parser ? parser.call(self, parent) : self
