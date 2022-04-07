@@ -6,7 +6,7 @@ class FileableExplorer < ApplicationComponent
   end
 
   def files
-    @fileable.folders.to_a + @fileable.scripts.to_a
+    @fileable.folders.order(name: :asc).to_a + @fileable.scripts.order(name: :asc).to_a
   end
 
   def root?

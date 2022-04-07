@@ -1,4 +1,16 @@
-<div class="flex border border-beaver-700 rounded" style="background: linear-gradient(to bottom, #3d262d 0%, #3d262d 50%, #2d1b21 50%, #2d1b21 100%);" >
-  <%= render(BuildSelector.new(builds: @builds)) %>
-  <%= render(FileableExplorer.new(fileable: @builds.first)) %>
-</div>
+<%= render(Layout::Toggle.new(tag: :div, open: true, id: "build-explorer", class: "flex border border-beaver-700 rounded", style: "background: linear-gradient(to bottom, #3d262d 0%, #3d262d 50%, #2d1b21 50%, #2d1b21 100%);")) do |c| %>
+  <%= render(c.toggleable()) do %>
+    <%= render(BuildSelector.new(builds: @builds, selected_build: @selected_build)) %>
+  <% end %>
+
+  <div class="flex flex-col w-full">
+    <%= render(FileableExplorer.new(fileable: @selected_build)) %>
+    <div class="p-3 flex justify-between">
+      <%= render(c.toggle(tag: :button, class: "button_secondary p-2 rounded")) do %>
+        <%= octicon "three-bars", class: "fill-current" %>
+      <% end %>
+
+      <%= link_to "Download #{@selected_build.name} files", rails_blob_path(@selected_build.files_attachment, disposition: "attachment"), class: "bg-green-700 hover:bg-green-600 px-2 py-1 rounded" %>
+    </div>
+  </div>
+<% end %>

@@ -1,10 +1,12 @@
-<div id="build-selector" class="border-beaver-700 border-r w-40">
+<div id="build-selector" class="h-full border-beaver-700 border-r w-40">
   <div class="bg-beaver-800 p-3 rounded-t text-beaver-200 border-b border-beaver-700 flex items-center" style="height: 54px">
     Builds
   </div>
-  <div class="flex flex-col justify-between bg-beaver-850 p-3 rounded-b" style="min-height: 300px">
+  <div class="flex flex-col bg-beaver-850 px-3 rounded-b" style="min-height: 300px">
     <% @builds.each do |build| %>
-      <button class="button_secondary rounded px-3 py-1">
+      <button class="<%= build == @selected_build ? "button_primary" : "button_secondary" %> rounded px-3 py-1 mt-3"
+              data-reflex="click->BuildSelectorReflex#open"
+              data-build_id="<%= build.id %>">
         <%= build.name %>
       </button>
     <% end %>

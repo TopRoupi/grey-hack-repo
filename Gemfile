@@ -34,6 +34,7 @@ gem "meta-tags", "~> 2.16"
 gem "octicons_helper", "~> 16.3"
 gem "pagy", "~> 5.10"
 # back end gems
+gem "sidekiq", "~> 6.4"
 gem "devise", "~> 4.8"
 gem "noticed", "~> 1.5"
 gem "friendly_id", "~> 5.4.0"
@@ -43,6 +44,8 @@ gem "jsbundling-rails", "~> 1.0"
 # gem "cssbundling-rails", "~> 1.0"
 # apm provider
 gem "newrelic_rpm", "~> 8.4"
+gem "sentry-ruby", "~> 5.2"
+gem "sentry-rails", "~> 5.2"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
@@ -65,9 +68,3 @@ group :test do
 end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-gem "sidekiq", "~> 6.4"
-
-gem "sentry-ruby", "~> 5.2"
-gem "sentry-rails", "~> 5.2"
-
