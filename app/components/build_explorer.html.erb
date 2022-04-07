@@ -10,7 +10,16 @@
         <%= octicon "three-bars", class: "fill-current" %>
       <% end %>
 
-      <%= link_to "Download #{@selected_build.name} files", rails_blob_path(@selected_build.files_attachment, disposition: "attachment"), class: "bg-green-700 hover:bg-green-600 px-2 py-1 rounded" %>
+      <div class="flex">
+        <%= render(Layout::Modal.new(tag: :div)) do |c| %>
+          <% c.button(tag: :button, class: "button_secondary px-2 py-1 rounded mr-2") { "Export string" } %>
+          <% c.body do %>
+            <textarea disabled=true" class="w-full break-all overflow-x-auto bg-beaver-1000 h-60"><%= @selected_build.export_string %></textarea>
+          <% end %>
+        <% end %>
+
+        <%= link_to "Download #{@selected_build.name} files", rails_blob_path(@selected_build.files_attachment, disposition: "attachment"), class: "bg-green-700 hover:bg-green-600 px-2 py-1 rounded", rel: "noopener noreferrer", target: "_blank"  %>
+      </div>
     </div>
   </div>
 <% end %>

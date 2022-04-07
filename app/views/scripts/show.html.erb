@@ -1,0 +1,8 @@
+<div class="text-center text-3xl font-semibold mb-10">
+  <%= @script.name %>
+</div>
+
+<div class="w-full overflow-x-auto bg-beaver-1000">
+  <%== @script.highlighted_content %>
+  <%= "refresh this page if this script didn't updated yet" if @script.highlighted_content.blank?%>
+</div>
