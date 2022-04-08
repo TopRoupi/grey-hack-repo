@@ -8,8 +8,4 @@ class Posts::BuildsCard::FileableList::Component < ApplicationComponent
     @index_table = index_table || @fileable.children_index_table
     @fileable_index = @index_table.key(@fileable)
   end
-
-  def cache_key
-    @fileable.cache_key_with_version + @fileable.scripts.cache_key_with_version + @fileable.folders.cache_key_with_version
-  end
 end
