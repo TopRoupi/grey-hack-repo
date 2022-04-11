@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_02_21_180520) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_11_122045) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -129,6 +129,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_21_180520) do
     t.integer "stars_count", default: 0
     t.string "slug"
     t.integer "visibility", default: 0
+    t.boolean "published", default: false, null: false
     t.index ["category_id"], name: "index_posts_on_category_id"
     t.index ["slug"], name: "index_posts_on_slug", unique: true
     t.index ["user_id"], name: "index_posts_on_user_id"

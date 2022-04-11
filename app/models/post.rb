@@ -19,7 +19,9 @@ class Post < ApplicationRecord
   validates :summary, presence: true, length: {minimum: 6, maximum: 230}
   validates :readme, length: {maximum: 50_000}
 
-  # default_scope -> { eager.asc }
+  # default_scope -> { published }
+  scope :published, -> { where(published: true) }
+  scope :unpublished, -> { where(published: false) }
   scope :search, ->(query) {
     query = sanitize_sql_like(query)
     where(arel_table[:title].matches("%#{query}%"))

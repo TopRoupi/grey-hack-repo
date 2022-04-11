@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
     made_up_categories = ["all", "private", "public", "not_listed"]
 
-    @posts = @user.posts.eager.asc
+    @posts = @user.posts.published.eager.asc
     @posts = @posts.where(category_id: @category) unless made_up_categories.include?(@category)
     if current_user && current_user == @user
       @posts = @posts.private_visibility if @category == "private"
