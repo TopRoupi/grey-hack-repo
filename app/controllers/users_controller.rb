@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
+  before_action :authenticate_user!, only: [:myposts]
+
   def show
     @user = User.friendly.find(params[:id])
     @category = params[:category] || "all"
@@ -20,6 +22,12 @@ class UsersController < ApplicationController
     @category_pagy, @posts = pagy @posts, items: 5, page_param: "cpage"
 
     @stars_pagy, @starred_posts = pagy(@user.starable_posts.eager.order('"stars_posts"."created_at"': :desc).public_visibility, items: 5)
+  end
+
+  def myposts
+    @posts = current_user.posts.order(created_at: :desc)
+    @posts = @posts.where(published: params[:published] || true)
+    @pagy, @posts = pagy @posts
   end
 
   def posts

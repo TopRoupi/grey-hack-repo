@@ -29,12 +29,14 @@
   <% end %>
 <% end %>
 
-<div class="text-center text-2xl mb-4 mt-20">
-  Files
-</div>
+<% if @post.builds.empty? != true %>
+  <div class="text-center text-2xl mb-4 mt-20">
+    Files
+  </div>
 
-<%# <%= render(Posts::BuildsCard::Component.new(builds: @builds)) %>
-<%= render(BuildExplorer.new(post: @post)) %>
+  <%# <%= render(Posts::BuildsCard::Component.new(builds: @builds)) %>
+  <%= render(BuildExplorer.new(post: @post)) %>
+<% end %>
 
 <br>
 
