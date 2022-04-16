@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   get "posts", to: "home#index"
+  get "posts/:id/builds", to: "posts#builds", as: "builds_post"
   get "users/:id/posts", to: "users#posts", as: "user_posts"
   get "users/:id", to: "users#show", as: "user"
   get "myposts", to: "users#myposts", as: "my_posts"

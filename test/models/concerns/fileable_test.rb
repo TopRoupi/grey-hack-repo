@@ -10,6 +10,15 @@ class FileableTest < ActiveSupport::TestCase
 
   # files
 
+  # TODO: this may be moved to builds test
+  test "should be saved valid even without files when it is not published" do
+    @fileable.scripts = []
+    @fileable.folders = []
+
+    @fileable.valid?
+    assert_empty @fileable.errors[:files]
+  end
+
   test "valid with a valid script" do
     @fileable.scripts = [build(:script, scriptable: nil)]
     @fileable.valid?
@@ -74,36 +83,17 @@ class FileableTest < ActiveSupport::TestCase
     assert_equal expected_result, @fileable.children_index_table
   end
 
-  # TODO: move it to a proper place, and refactor
-  # test "Fileable.strong_params should return params list given the fileable params" do
-  #   params = {
-  #     "title" => "",
-  #     "category_id" => "1",
-  #     "summary" => "",
-  #     "readme" => "",
-  #     "folders_attributes" => {
-  #       "0" => {
-  #         "name" => "",
-  #         "_destroy" => "false",
-  #         "scripts_attributes" => {
-  #           "0" => {"name" => "", "content" => "", "_destroy" => "false"}
-  #         },
-  #         "folders_attributes" => {"0" => {"name" => "", "_destroy" => "false"}}
-  #       }
-  #     }
-  #   }
-  #
-  #   expected_result = [
-  #     {scripts_attributes: [:id, :name, :content, :_destroy]},
-  #     {folders_attributes: [
-  #       :id,
-  #       :name,
-  #       :_destroy,
-  #       {scripts_attributes: [:id, :name, :content, :_destroy]},
-  #       {folders_attributes: [:id, :name, :_destroy, {scripts_attributes: [:id, :name, :content, :_destroy]}]}
-  #     ]}
-  #   ]
-  #
-  #   assert_equal expected_result, Fileable.strong_params(params)
-  # end
+  test "#build_published_status should find the fileable build and return its published status" do
+    build_fileable = build :build, published: false
+
+    assert_equal build_fileable.build_published_status, false
+
+    folder_fileable = build :folder, foldable: build_fileable
+
+    assert_equal folder_fileable.build_published_status, false
+
+    inner_folder_fileable = build :folder, foldable: folder_fileable
+
+    assert_equal inner_folder_fileable.build_published_status, false
+  end
 end

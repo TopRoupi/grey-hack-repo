@@ -11,8 +11,33 @@
 
 <br>
 
-<% @posts.each do |post| %>
-  <%= render(Posts::Card.new(post: post, current_user: @current_user)) %>
-<% end %>
+<table class="mx-auto mb-5">
+  <tr>
+    <td>Title</td>
+    <td>Category</td>
+    <td>Builds</td>
+    <!-- <td>Publish status</td> -->
+    <td>Actions</td>
+  </tr>
+
+  <% @posts.each do |post| %>
+    <tr>
+      <td>
+        <%= post.title %>
+      </td>
+      <td>
+        <%= post.category.name %>
+      </td>
+      <td>
+        <%= post.builds.size %>
+      </td>
+      <td>
+        <%= link_to "Edit", edit_post_path(post), class: "link" %>
+        <%= link_to "Manage builds", builds_post_path(post), class: "link" %>
+        <%= link_to "Destroy", @post, class: "link !text-red-400", data: { turbo_method: :delete, turbo_confirm: 'Are you sure?', turbo_frame: "_top" } %>
+      </td>
+    </tr>
+  <% end %>
+</table>
 
 <%= render(Pagination.new(pagy: @pagy)) if @pagy %>

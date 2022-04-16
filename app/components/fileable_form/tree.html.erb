@@ -1,0 +1,14 @@
+<div id="fileable-tree">
+  <%= @fileable.folders.size %> <%= @fileable.scripts.size %>
+  <%@fileable.folders.each do |folder| %>
+    <p>
+      <%= folder.name %> 
+    </p>
+  <% end %>
+
+  <% @fileable.scripts.each do |script| %>
+    <p>
+      <%= script.name %> 
+    </p>
+  <% end %>
+</div>

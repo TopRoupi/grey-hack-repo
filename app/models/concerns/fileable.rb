@@ -2,7 +2,7 @@
 
 class FileableValidator < ActiveModel::Validator
   def validate(record)
-    unless record.has_script?
+    if record.has_script? == false && record.build_published_status == true
       record.errors.add(:files, "shall have at least 1 script")
     end
   end
@@ -19,6 +19,14 @@ module Fileable
 
     accepts_nested_attributes_for :scripts, allow_destroy: true
     accepts_nested_attributes_for :folders, allow_destroy: true
+  end
+
+  def build_published_status
+    if instance_of? Build
+      published
+    else
+      foldable.build_published_status
+    end
   end
 
   def has_script?

@@ -1,0 +1,14 @@
+<div class="text-center text-3xl font-semibold mb-6">
+  Post builds editor
+</div>
+
+<div id="fileable-list text-center">
+  <% @post.builds.each do |build| %>
+    <p data-reflex="click->FileableForm::Reflex#select" data-build-id="<%= build.id %>">
+      <%= build.name %> <%= build.published ? "published" : "unpublished" %>
+    </p>
+  <% end %>
+</div>
+
+<div id="fileable-tree">
+</div>
