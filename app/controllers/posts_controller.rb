@@ -29,6 +29,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1/builds
   def builds
+    @selected_build = @post.builds.find(params[:build_id]) if params[:build_id]
   end
 
   # GET /posts/1/edit

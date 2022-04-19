@@ -9,6 +9,9 @@
       <span class="<%= build.published? ? "text-green-400" : "text-red-400" %>">
         <%= build.published ? "published" : "unpublished" %> 
       </span>
+      <a class="link" href="<%= path_to(request.url, build_id: build.id) %>">
+        Edit
+      </a>
       <button class="link" data-reflex="click->FileableForm::Reflex#select" data-build-id="<%= build.id %>">
         Edit
       </button>
@@ -16,8 +19,12 @@
   <% end %>
 </div>
 
-<div id="fileable-tree">
-</div>
+<% if @selected_build %>
+  <div id="fileable-tree">
+    <%= render(FileableForm::Tree.new(fileable: @selected_build)) %>
+  </div>
 
-<div id="build-form">
-</div>
+  <div id="build-form">
+    <%= render("builds/form", build: @selected_build) %>
+  </div>
+<% end %>
