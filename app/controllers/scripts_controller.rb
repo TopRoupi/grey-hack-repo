@@ -6,6 +6,10 @@ class ScriptsController < ApplicationController
   def show
   end
 
+  def new
+    @script = Script.new
+  end
+
   private
 
   def set_script

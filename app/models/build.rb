@@ -7,6 +7,8 @@ class Build < ApplicationRecord
   has_one_attached :files
   after_commit :set_files, on: [:update, :create]
 
+  validates :name, presence: true, length: {minimum: 3, maximum: 16}
+
   def set_files
     FileJob.perform_later(self, file_name: "#{post.title} | #{name}") unless @updated
   end

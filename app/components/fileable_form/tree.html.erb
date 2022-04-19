@@ -9,6 +9,20 @@
   <% @fileable.scripts.each do |script| %>
     <p>
       <%= script.name %> 
+      <button class="link">
+        Edit
+      </button>
+      <button class="link !text-red-400">
+        Destroy
+      </button>
     </p>
   <% end %>
+
+  <button class="link">
+    Add script
+  </button>
+
+  <button class="link">
+    Add folder
+  </button>
 </div>

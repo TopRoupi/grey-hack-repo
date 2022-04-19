@@ -12,6 +12,7 @@ class FileableTest < ActiveSupport::TestCase
 
   # TODO: this may be moved to builds test
   test "should be saved valid even without files when it is not published" do
+    @fileable.published = false
     @fileable.scripts = []
     @fileable.folders = []
 
