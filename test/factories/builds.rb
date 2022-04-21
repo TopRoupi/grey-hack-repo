@@ -5,5 +5,6 @@ FactoryBot.define do
     association :post
     scripts { [build(:script, scriptable: nil)] }
     name { Faker::Lorem.characters(number: 10) }
+    published { true }
   end
 end

@@ -35,13 +35,6 @@
     <% end %>
   </div>
 
-  <div class="text-center text-2xl mb-4">
-    Post's Files
-  </div>
-
-  <%= render(Posts::BuildsCard::Component.new(builds: @post.builds, edit: true)) %>
-  <br>
-
   <%= f.simple_fields_for(:builds) do |ff| %>
     <div class="<%= "hidden" unless ff.object == params[:edit_file] %>">
       <div class="nested-form-wrapper rounded bg-beaver-850 p-3 mb-3">

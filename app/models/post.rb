@@ -1,8 +1,18 @@
 # frozen_string_literal: true
 
+class PostValidator < ActiveModel::Validator
+  def validate(record)
+    published_builds = record.builds.select { |b| b.published == true }
+    if record.published == true && published_builds.size == 0
+      record.errors.add(:builds, "a published post should have at least one published build")
+    end
+  end
+end
+
 class Post < ApplicationRecord
   include ActionText::Attachable
   extend FriendlyId
+  validates_with PostValidator
 
   belongs_to :user
   belongs_to :category

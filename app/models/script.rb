@@ -8,6 +8,14 @@ class Script < ApplicationRecord
 
   after_commit :set_highlighted_content, on: [:create, :update]
 
+  def user
+    if scriptable.instance_of? Build
+      scriptable.post.user
+    else
+      scriptable.user
+    end
+  end
+
   def set_highlighted_content
     HighlightJob.perform_later(self) unless Digest::SHA256.digest(content) == old_content
   end

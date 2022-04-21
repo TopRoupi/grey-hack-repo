@@ -1,0 +1,42 @@
+<div class="border p-2 rounded border-beaver-800">
+  <%@fileable.folders.each do |folder| %>
+    <p>
+      <%= folder.name %> 
+      <a class="link" href="<%= edit_folder_path folder %>">
+        Edit
+      </a>
+      <button class="link !text-red-400" data-reflex="click->FileableForm::Reflex#destroy_folder" data-folder-id="<%= folder.signed_id %>">
+        Destroy
+      </button>
+      <div class="pl-3">
+        <%= render(FileableForm::Tree.new(fileable: folder)) %>
+      </div>
+    </p>
+  <% end %>
+
+  <% @fileable.scripts.each do |script| %>
+    <p>
+      <%= script.name %> 
+      <span class="<%= script.valid? ? "text-green-400" : "text-red-400" %>">
+        <%= script.valid? ? "valid" : "invalid" %> 
+      </span>
+      <a class="link" href="<%= script_path script %>">
+        View
+      </a>
+      <a class="link" href="<%= edit_script_path script %>">
+        Edit
+      </a>
+      <button class="link !text-red-400" data-reflex="click->FileableForm::Reflex#destroy_script" data-script-id="<%= script.signed_id %>">
+        Destroy
+      </button>
+    </p>
+  <% end %>
+
+  <button class="link" data-reflex="click->FileableForm::Reflex#add_script" data-fileable-id="<%= @fileable.signed_id %>" data-fileable-type="<%= @fileable.class %>">
+    Add script
+  </button>
+
+  <button class="link" data-reflex="click->FileableForm::Reflex#add_folder" data-fileable-id="<%= @fileable.signed_id %>" data-fileable-type="<%= @fileable.class %>">
+    Add folder
+  </button>
+</div>

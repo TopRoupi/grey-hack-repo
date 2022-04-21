@@ -1,0 +1,68 @@
+<h1 class="text-center text-3xl font-semibold mb-6">
+  <%= @post.title %>
+</h1>
+<h2 class="text-center text-2xl font-semibold mb-6">
+  Post build editor
+</h2>
+
+<div id="fileable-list" class="mb-6">
+  <% @builds.each do |build| %>
+    <p class="text-center">
+      <%= build.name %> 
+      <span class="<%= build.published? ? "text-green-400" : "text-red-400" %>">
+        <%= build.published ? "published" : "unpublished" %> 
+      </span>
+      <% if build.published == false %>
+        <% if build.ready_to_publish? %>
+          <span class="link !text-green-400" data-reflex="click->FileableForm::Reflex#publish_build" data-build-id="<%= build.signed_id %>">
+            ready to publish
+          </span>
+        <% else %>
+          <span class="text-red-400">
+            not read to publish
+          </span>
+        <% end %>
+      <% end %>
+      <% if build.published == false %>
+        <a class="link" href="<%= path_to(request.url, build_id: build.id) %>">
+          Edit
+        </a>
+        <button class="link !text-red-400" data-reflex="click->FileableForm::Reflex#delete_build" data-build-id="<%= build.signed_id %>">
+          Delete
+        </button>
+      <% end %>
+    </p>
+  <% end %>
+
+  <div class="link mx-auto block w-fit" data-reflex="click->FileableForm::Reflex#add_build" data-post-id="<%= @post.signed_id %>">
+    Add Build
+  </div>
+</div>
+
+<% if @selected_build %>
+  <h1 class="text-center text-3xl font-semibold mb-6">
+    <%= @selected_build.name %>
+  </h1>
+
+  <h2 class="text-center text-2xl font-semibold mb-6">
+    Build files
+  </h2>
+  <div class="mb-6 w-fit block mx-auto">
+    <%= render(FileableForm::Tree.new(fileable: @selected_build)) %>
+    <%= render(Layout::Modal.new(class: "ml-auto flex items-center")) do |c| %>
+      <% c.button(class: "link") { "import from string and replace this builds files" } %>
+      <% c.body(data: {controller: "fileable-form"}) do %>
+        <input class="hidden" data-fileable-form-target="build" value="<%= @selected_build.signed_id %>">
+        </input>
+        <p>export string: </p>
+        <textarea class="h-20 p-2 mt-2 bg-beaver-850 border-beaver-700 border rounded w-full" data-fileable-form-target="string"></textarea>
+        <button class="button_secondary font-bold py-2 px-4 rounded float-right mt-5" data-action="click->fileable-form#import_string">Import</button>
+      <% end %>
+    <% end %>
+  </div>
+
+  <h2 class="text-center text-2xl font-semibold mb-6">
+    Build fields
+  </h2>
+  <%= render("builds/form", build: @selected_build) %>
+<% end %>

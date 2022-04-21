@@ -11,8 +11,45 @@
 
 <br>
 
-<% @posts.each do |post| %>
-  <%= render(Posts::Card.new(post: post, current_user: @current_user)) %>
-<% end %>
+<table class="mx-auto mb-5">
+  <tr>
+    <td>Title</td>
+    <td>Category</td>
+    <td>Builds</td>
+    <!-- <td>Publish status</td> -->
+    <td>Actions</td>
+  </tr>
+
+  <% @posts.each do |post| %>
+    <tr>
+      <td>
+        <%= post.title %>
+      </td>
+      <td>
+        <%= post.category.name %>
+      </td>
+      <td>
+        <%= post.builds.size %>
+      </td>
+      <td>
+        <%= link_to "Edit", edit_post_path(post), class: "link" %>
+        <%= link_to "Manage builds", builds_post_path(post), class: "link" %>
+        <%= link_to "Destroy", post_path(post), class: "link !text-red-400", data: { turbo_method: :delete, turbo_confirm: 'Are you sure?', turbo_frame: "_top" } %>
+        <% if post.published == false %>
+          <% post.published = true %>
+          <% if post.valid? %>
+            <span class="link !text-green-400" data-reflex="click->FileableForm::Reflex#publish_post" data-post-id="<%= post.signed_id %>">
+              ready to publish
+            </span>
+          <% else %>
+            <span class="text-red-400">
+              not read to publish
+            </span>
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
 
 <%= render(Pagination.new(pagy: @pagy)) if @pagy %>

@@ -54,4 +54,22 @@ class PostTest < ActiveSupport::TestCase
     @post.valid?
     refute_empty @post.errors[:readme]
   end
+
+  # builds
+
+  test "should be valid without builds if unpublished" do
+    @post.published = false
+    @post.builds = []
+    @post.valid?
+
+    assert_empty @post.errors[:builds]
+  end
+
+  test "should be invalid without builds if published is true" do
+    @post.published = true
+    @post.builds = []
+    @post.valid?
+
+    refute_empty @post.errors[:builds]
+  end
 end

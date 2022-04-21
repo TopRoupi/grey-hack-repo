@@ -1,34 +1,34 @@
 <div class="bg-beaver-850 flex p-3 w-full rounded-t-md">
-    <% @builds.each_with_index do |build, index| %>
-      <%= render(Layout::Dropdown.new(disabled: !@edit)) do |c| %>
-        <% c.button(tag: :button, type: :button, class: button_classes(build), data: button_data_attributes(build, index)) do %>
-          <%= build.name %>
-          <% if !build.valid? %>
-            <span class="ml-2 !text-red-400">invalid</span>
-          <% end %>
+  <% @builds.each_with_index do |build, index| %>
+    <%= render(Layout::Dropdown.new(disabled: !@edit)) do |c| %>
+      <% c.button(tag: :button, type: :button, class: button_classes(build), data: button_data_attributes(build, index)) do %>
+        <%= build.name %>
+        <% if !build.valid? %>
+          <span class="ml-2 !text-red-400">invalid</span>
         <% end %>
-        <% if @edit %>
-          <% c.menu do |cc| %>
-            <% cc.item(tag: :button, data: reflex_attributes(:remove, index: index)) { "remove" } %>
-            <% cc.item(tag: :button, data: reflex_attributes(:select, index: index)) { "select" } %>
-            <% cc.item(tag: :button, data: reflex_attributes(:edit, index: index)) { "edit" } %>
-          <% end %>
+      <% end %>
+      <% if @edit %>
+        <% c.menu do |cc| %>
+          <% cc.item(tag: :button, data: reflex_attributes(:remove, index: index)) { "remove" } %>
+          <% cc.item(tag: :button, data: reflex_attributes(:select, index: index)) { "select" } %>
+          <% cc.item(tag: :button, data: reflex_attributes(:edit, index: index)) { "edit" } %>
         <% end %>
       <% end %>
     <% end %>
-    <% if @edit %>
-<%= render(Layout::Modal.new(class: "ml-auto flex items-center")) do |c| %>
-  <% c.button(class: "link ml-auto") { "Import build" } %>
-  <% c.body(data: {controller: "posts--build-selector--component"}) do %>
-    <p>build name: </p>
-    <input class="p-2 mt-2 bg-beaver-850 border-beaver-700 border rounded w-full" data-posts--build-selector--component-target="name">
-    </input>
-    <p>export string: </p>
-    <textarea class="h-20 p-2 mt-2 bg-beaver-850 border-beaver-700 border rounded w-full" data-posts--build-selector--component-target="string"></textarea>
-    <button class="button_secondary font-bold py-2 px-4 rounded float-right mt-5" data-action="click->posts--build-selector--component#import_string">Import</button>
   <% end %>
-<% end %>
-      <%= content_tag(:button, class: "link ml-2", data: reflex_attributes(:add)) { "Add build" } %>
+  <% if @edit %>
+    <%= render(Layout::Modal.new(class: "ml-auto flex items-center")) do |c| %>
+      <% c.button(class: "link ml-auto") { "Import build" } %>
+      <% c.body(data: {controller: "posts--build-selector--component"}) do %>
+        <p>build name: </p>
+        <input class="p-2 mt-2 bg-beaver-850 border-beaver-700 border rounded w-full" data-posts--build-selector--component-target="name">
+        </input>
+        <p>export string: </p>
+        <textarea class="h-20 p-2 mt-2 bg-beaver-850 border-beaver-700 border rounded w-full" data-posts--build-selector--component-target="string"></textarea>
+        <button class="button_secondary font-bold py-2 px-4 rounded float-right mt-5" data-action="click->posts--build-selector--component#import_string">Import</button>
+      <% end %>
     <% end %>
+    <%= content_tag(:button, class: "link ml-2", data: reflex_attributes(:add)) { "Add build" } %>
+  <% end %>
 </div>
 

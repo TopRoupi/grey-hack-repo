@@ -3,6 +3,44 @@
 require "test_helper"
 
 class BuildTest < ActiveSupport::TestCase
+  setup do
+    @build = build :build, published: true
+  end
+
+  # files validation
+
+  test "valid with a script in a folder" do
+    folder_with_script = build(:folder, foldable: nil)
+    folder_with_script.scripts = [build(:script, scriptable: nil)]
+    @build.scripts = []
+    @build.folders = [folder_with_script]
+    @build.valid?
+    assert_empty @build.errors[:files]
+  end
+
+  test "should be saved valid even without files when it is not published" do
+    @build.published = false
+    @build.scripts = []
+    @build.folders = []
+
+    @build.valid?
+    assert_empty @build.errors[:files]
+  end
+
+  test "valid with a valid script" do
+    @build.scripts = [build(:script, scriptable: nil)]
+    @build.valid?
+    assert_empty @build.errors[:files]
+  end
+
+  test "invalid without a script" do
+    folder_without_script = build(:folder, foldable: nil, scripts: [])
+    @build.scripts = []
+    @build.folders = [folder_without_script]
+    @build.valid?
+    refute_empty @build.errors[:files]
+  end
+
   class Parser < ActiveSupport::TestCase
     setup do
       @build = build :build

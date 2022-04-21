@@ -1,11 +1,26 @@
 # frozen_string_literal: true
 
+class BuildValidator < ActiveModel::Validator
+  def validate(record)
+    if record.has_script? == false && record.published == true
+      record.errors.add(:files, "shall have at least 1 script")
+    end
+  end
+end
+
 class Build < ApplicationRecord
   attr_accessor :updated # required to prevent the set_files/Filejob from infinite looping
   belongs_to :post
   include Fileable
   has_one_attached :files
   after_commit :set_files, on: [:update, :create]
+
+  validates_with BuildValidator
+  validates :name, presence: true, length: {minimum: 3, maximum: 16}
+
+  def ready_to_publish?
+    has_script?
+  end
 
   def set_files
     FileJob.perform_later(self, file_name: "#{post.title} | #{name}") unless @updated
