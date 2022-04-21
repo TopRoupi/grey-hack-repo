@@ -2,10 +2,10 @@
 
 FactoryBot.define do
   factory :folder do
-    for_post
+    for_build
 
-    trait :for_post do
-      association(:foldable, factory: :post)
+    trait :for_build do
+      association(:foldable, factory: :build)
     end
 
     name { "folder" }

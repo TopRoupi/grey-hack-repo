@@ -23,9 +23,7 @@ class BuildsController < ApplicationController
     respond_to do |format|
       if @build.update(build_params)
         format.html { redirect_back fallback_location: root_path, notice: "Build was successfully updated." }
-        format.json { render :show, status: :ok, location: @build }
       else
-        format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @build.errors, status: :unprocessable_entity }
         format.turbo_stream { render turbo_stream: turbo_stream.replace("edit_build_#{@build.id}", partial: "builds/form", locals: {build: @build}) }
       end

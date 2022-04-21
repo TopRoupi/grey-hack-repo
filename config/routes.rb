@@ -3,9 +3,12 @@
 require "sidekiq/web"
 
 Rails.application.routes.draw do
+  get 'folders/edit'
+  get 'folders/update'
   get "npc_decipher", to: "npc_decipher#index", as: "npc_decipher"
   resources :posts, except: [:index]
-  resources :scripts, only: [:show]
+  resources :scripts, only: [:show, :edit, :update]
+  resources :folders, only: [:edit, :update]
   resources :builds, only: [:create, :update, :destroy]
   devise_for :users, controllers: {session: "users/sessions"}
   get "home/index"

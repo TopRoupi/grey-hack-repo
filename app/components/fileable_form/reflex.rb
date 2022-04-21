@@ -1,10 +1,64 @@
 # frozen_string_literal: true
 
 class FileableForm::Reflex < ApplicationReflex
-  def select
-    build = Build.find(element.dataset[:build_id].to_i)
+  before_reflex :set_fileable, only: [:add_script, :add_folder]
 
-    morph("#fileable-tree", render(FileableForm::Tree.new(fileable: build)))
-    morph("#build-form", render("builds/_form", locals: {build: build}))
+  def import_build(params)
+    string = params["string"]
+    name = params["name"]
+    build_id = params["build_id"]
+
+    string = string.delete("\n")
+    string = string.gsub("\\...n", "\\n")
+
+    build = Build.find_signed(build_id)
+    new_build = Build.parse_string(string, name)
+    build.scripts = new_build.scripts
+    build.folders = new_build.folders
+    build.save
+  end
+
+  def publish_build
+    build = Build.find_signed(element.dataset[:build_id])
+    build.published = true
+    build.save
+  end
+
+  def publish_post
+    post = Post.find_signed(element.dataset[:post_id])
+    post.published = true
+    post.save
+  end
+
+  def add_build
+    post = Post.find_signed(element.dataset[:post_id])
+    post.builds << Build.new(name: "draft build", published: false)
+    post.save
+  end
+
+  def delete_build
+    Build.find_signed(element.dataset[:build_id]).destroy
+  end
+
+  def add_script
+    Script.create(name: "draft_script", content: "draft content", scriptable: @fileable)
+  end
+
+  def destroy_script
+    Script.find_signed(element.dataset[:script_id]).destroy
+  end
+
+  def add_folder
+    Folder.create(name: "draft_folder", foldable: @fileable)
+  end
+
+  def destroy_folder
+    Folder.find_signed(element.dataset[:folder_id]).destroy
+  end
+
+  def set_fileable
+    @fileable_type = element.dataset[:fileable_type]
+    @fileable_id = element.dataset[:fileable_id]
+    @fileable = @fileable_type.constantize.find_signed(@fileable_id)
   end
 end

@@ -8,41 +8,6 @@ class FileableTest < ActiveSupport::TestCase
     @fileable = build :build
   end
 
-  # files
-
-  # TODO: this may be moved to builds test
-  test "should be saved valid even without files when it is not published" do
-    @fileable.published = false
-    @fileable.scripts = []
-    @fileable.folders = []
-
-    @fileable.valid?
-    assert_empty @fileable.errors[:files]
-  end
-
-  test "valid with a valid script" do
-    @fileable.scripts = [build(:script, scriptable: nil)]
-    @fileable.valid?
-    assert_empty @fileable.errors[:files]
-  end
-
-  test "valid with a script in a folder" do
-    folder_with_script = build(:folder, foldable: nil)
-    folder_with_script.scripts = [build(:script, scriptable: nil)]
-    @fileable.scripts = []
-    @fileable.folders = [folder_with_script]
-    @fileable.valid?
-    assert_empty @fileable.errors[:files]
-  end
-
-  test "invalid without a script" do
-    folder_without_script = build(:folder, foldable: nil, scripts: [])
-    @fileable.scripts = []
-    @fileable.folders = [folder_without_script]
-    @fileable.valid?
-    refute_empty @fileable.errors[:files]
-  end
-
   # #has_script? method
 
   test "#has_script? returns true if it have a script" do
@@ -82,19 +47,5 @@ class FileableTest < ActiveSupport::TestCase
     }
 
     assert_equal expected_result, @fileable.children_index_table
-  end
-
-  test "#build_published_status should find the fileable build and return its published status" do
-    build_fileable = build :build, published: false
-
-    assert_equal build_fileable.build_published_status, false
-
-    folder_fileable = build :folder, foldable: build_fileable
-
-    assert_equal folder_fileable.build_published_status, false
-
-    inner_folder_fileable = build :folder, foldable: folder_fileable
-
-    assert_equal inner_folder_fileable.build_published_status, false
   end
 end

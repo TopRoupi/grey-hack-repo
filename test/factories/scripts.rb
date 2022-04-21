@@ -2,10 +2,10 @@
 
 FactoryBot.define do
   factory :script do
-    for_post
+    for_build
 
-    trait :for_post do
-      association(:scriptable, factory: :post)
+    trait :for_build do
+      association(:scriptable, factory: :build)
     end
 
     name { Faker::Lorem.characters(number: 20) }
