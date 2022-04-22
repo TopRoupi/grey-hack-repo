@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   get "home/index"
   root to: "home#index"
 
+  get "get_supporter", to: "checkouts#get_supporter"
+
   get "posts", to: "home#index"
   get "posts/:id/builds", to: "posts#builds", as: "builds_post"
   get "users/:id/posts", to: "users#posts", as: "user_posts"
