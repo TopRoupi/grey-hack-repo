@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  pay_customer
   extend FriendlyId
   has_many :notifications, as: :recipient
 
