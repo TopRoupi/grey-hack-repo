@@ -17,4 +17,8 @@ class User < ApplicationRecord
   has_many :stars, dependent: :destroy
   has_many :starable_posts, through: :stars, source: "starable", source_type: "Post"
   has_many :comments, dependent: :destroy
+
+  def supporter?
+    payment_processor.subscriptions.where(status: "active", processor_plan: SupporterSubscription.price).any?
+  end
 end

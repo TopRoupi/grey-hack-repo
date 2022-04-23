@@ -1,4 +1,7 @@
-<% if current_user.payment_processor.charges.size > 0 %>
-  you already payed
+<% if current_user.supporter? == true %>
+  you already have an active subscription
+<% else %>
+  get suppoter badge on your profile
+  <br>
+  <%= render(partial: "pay/stripe/checkout_button", locals: {session: @checkout_session, title: "Checkout"}) %>
 <% end %>
-<%= render(partial: "pay/stripe/checkout_button", locals: {session: @checkout_session, title: "Checkout"}) %>

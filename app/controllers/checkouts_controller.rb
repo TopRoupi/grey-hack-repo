@@ -5,8 +5,8 @@ class CheckoutsController < ApplicationController
     current_user.set_payment_processor :stripe
 
     @checkout_session = current_user.payment_processor.checkout(
-      mode: "payment",
-      line_items: "price_1KrFCMDSSkrqq2dH1UMWSSRP"
+      mode: "subscription",
+      line_items: SupporterSubscription.price
     )
   end
 end
