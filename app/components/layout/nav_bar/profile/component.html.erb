@@ -6,16 +6,14 @@
   <% c.menu(direction: :left) do |cc| %>
     <% if @current_user %>
       <% cc.item(tag: :a, href: user_path(@current_user)) { "Profile" } %>
+      <% if @current_user.supporter? == false %>
+        <% cc.item(tag: :a, href: supporter_checkout_path) { "supporter subscription" } %>
+      <% end %>
       <% cc.item(tag: :a, href: edit_user_registration_path) { "Settings" } %>
       <% cc.item(type: :separator) %>
       <% cc.item(type: :header) { "Posts" } %>
       <% cc.item(tag: :a, href: my_posts_path) { "My posts" } %>
-      <% if session[:forms] && session[:forms]["Post"] %>
-        <% cc.item(tag: :a, href: new_post_path) { "Continue to write post" } %>
-        <% cc.item(tag: :div, data: {reflex: "click->FormsReflex#dicard_session_forms"}) { "Discard changes" } %>
-      <% else %>
-        <% cc.item(tag: :a, href: new_post_path) { "Create a new post" } %>
-      <% end %>
+      <% cc.item(tag: :a, href: new_post_path) { "Create a new post" } %>
       <% cc.item(type: :separator) %>
       <% cc.item(tag: :a, href: destroy_user_session_path, data: { turbo_method: "delete" }) { "Sign out" } %>
     <% else %>
