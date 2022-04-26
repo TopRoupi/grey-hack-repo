@@ -4,6 +4,12 @@
 
 scripts repository for the [greyhack](https://store.steampowered.com/app/605230/Grey_Hack/) game
 
+## Main Features
+
+project files can be parser to a string, and the used inside the game to quickly build all the files, without copy and pasting 
+
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/oUzte-doaPo/0.jpg)](http://www.youtube.com/watch?v=oUzte-doaPo "Video Title")
+
 # Repo website
 
 https://www.greyrepo.xyz
@@ -32,6 +38,7 @@ https://www.greyrepo.xyz
   - mailer provider and session_cache_store in /config/enviroments/production.rb
   - action cable redis in /config/cable.yml
   - sidekiq redis in /config/initializers/sidekiq.rb
+  - pay(gem) credetials configuration for stripe
 
 
 * Database setup
@@ -65,9 +72,9 @@ https://www.greyrepo.xyz
 
 # todo list (in no particular order)
 
-add import feature to post scripts, upload a folder/zip in your computer and convert its .src files into a Fileable.
+add import feature to post scripts, upload a folder/zip in your computer and convert its .src files into a Fileable. (DONE)
 
-add a build/releases system to posts/fileable, to replace the script_v1.src script_v2.src in the posts files.
+add a build/releases system to posts/fileable, to replace the script_v1.src script_v2.src in the posts files. (DONE)
 
 add a guild system.
 
