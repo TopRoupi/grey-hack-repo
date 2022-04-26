@@ -3,8 +3,8 @@
 require "sidekiq/web"
 
 Rails.application.routes.draw do
-  get 'folders/edit'
-  get 'folders/update'
+  get "folders/edit"
+  get "folders/update"
   get "npc_decipher", to: "npc_decipher#index", as: "npc_decipher"
   resources :posts, except: [:index]
   resources :scripts, only: [:show, :edit, :update]

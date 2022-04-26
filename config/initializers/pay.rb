@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Pay.setup do |config|
   # For use in the receipt/refund/renewal mailers
   config.business_name = "Business Name"

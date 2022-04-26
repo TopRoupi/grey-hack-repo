@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Sentry.init do |config|
   config.environment = Rails.env
   config.release = "greyrepo@1.0.0"

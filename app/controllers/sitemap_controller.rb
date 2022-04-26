@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SitemapController < ApplicationController
   def index
     @pages = ["/", "/npc_decipher"]

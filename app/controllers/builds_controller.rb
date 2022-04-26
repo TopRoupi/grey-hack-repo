@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BuildsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_build, only: [:edit, :update, :destroy]

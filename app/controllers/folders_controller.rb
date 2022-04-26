@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FoldersController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update]
   before_action :set_folder, only: [:show, :edit, :update]
