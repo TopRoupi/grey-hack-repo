@@ -6,8 +6,9 @@ scripts repository for the [greyhack](https://store.steampowered.com/app/605230/
 
 ## Main Features
 
-project files can be parser to a string, and the used inside the game to quickly build all the files, without copy and pasting 
+project files can be parsed to a string, and then used inside the game to quickly build all the files, without copy and pasting.
 
+feature preview:
 [![IMAGE ALT TEXT](http://img.youtube.com/vi/oUzte-doaPo/0.jpg)](http://www.youtube.com/watch?v=oUzte-doaPo "Video Title")
 
 # Repo website
