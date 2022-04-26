@@ -219,6 +219,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.3)
+    rack-mini-profiler (2.3.4)
+      rack (>= 1.2.0)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (7.0.2.3)
@@ -294,6 +296,7 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    stackprof (0.2.19)
     stimulus_reflex (3.5.0.pre8)
       cable_ready (= 5.0.0.pre8)
       nokogiri
@@ -361,6 +364,7 @@ DEPENDENCIES
   pay (~> 3.0)
   pg (~> 1.1)
   puma (~> 5.0)
+  rack-mini-profiler (~> 2.0)
   rails (~> 7.0.1)
   rails-controller-testing
   redis (~> 4.0)
@@ -373,6 +377,7 @@ DEPENDENCIES
   simple_form (~> 5.1)
   spring
   sprockets-rails
+  stackprof (~> 0.2.19)
   stimulus_reflex (~> 3.5.0.pre.pre8)
   stripe (>= 5.0, < 6.0)
   tailwindcss-rails (~> 2.0)

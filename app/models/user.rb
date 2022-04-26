@@ -19,6 +19,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   def supporter?
+    set_payment_processor :stripe
     payment_processor.subscriptions.where(status: "active", processor_plan: SupporterSubscription.price).any?
   end
 end

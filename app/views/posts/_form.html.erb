@@ -1,9 +1,9 @@
 <%= simple_form_for(post, html: {data: {controller: "attachments"}}) do |f| %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
   <%= f.error_notification %>
-  <% if post.errors[:files].length != 0 %>
-    <% post.errors[:files].each do |error| %>
-      <%= "post files #{error}" %>
+  <% if post.errors[:builds].length != 0 %>
+    <% post.errors[:builds].each do |error| %>
+      <%= "post builds #{error}" %>
     <% end %>
   <% end %>
 

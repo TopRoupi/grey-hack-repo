@@ -10,7 +10,6 @@ debounced.initialize()
 import CommentsFormComponent from "../../components/comments/form/component_controller.js"
 import CategoriesCard from "../../components/categories/card_controller.js"
 import ScriptsCardCopyComponent from "../../components/scripts/card/copy_button/component_controller.js"
-import PostsBuildSelectorComponent from "../../components/posts/builds_card/build_selector/component_controller.js"
 import FileableForm from "../../components/fileable_form/controller.js"
 application.register("comments--form--component", CommentsFormComponent)
 application.register("categories--card", CategoriesCard)

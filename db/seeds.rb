@@ -10,9 +10,9 @@ user2 = User.create(name: "user2", password: "123456", email: "aaaaaa2@gmeilll.c
 Category.all.each do |category|
   20.times do |i|
     post = Post.new title: "test title #{category.name}", summary: "test post summary 123", category: category, user: user
-    post.published = i < 17
-    build = Build.new(name: "Main build")
-    build.scripts << Script.new(name: "script", content: 'print("lol"')
+    post.published = i > 10
+    build = Build.new(name: "Main build", published: i > 10)
+    build.scripts << Script.new(name: "script", content: 'print("lol")')
     post.builds << build
     post.save
   end

@@ -9,8 +9,6 @@ gem "rails", "~> 7.0.1"
 
 gem "pg", "~> 1.1"
 gem "puma", "~> 5.0"
-gem "sprockets-rails"
-gem "tailwindcss-rails", "~> 2.0"
 gem "turbo-rails", "~> 0.5.9"
 gem "jbuilder", "~> 2.7"
 # Use Active Model has_secure_password
@@ -39,16 +37,17 @@ gem "devise", "~> 4.8"
 gem "noticed", "~> 1.5"
 gem "friendly_id", "~> 5.4.0"
 gem "rubyzip", "~> 2.3", require: "zip" # required by FileJob
+gem "pay", "~> 3.0"
+gem "stripe", ">= 5.0", "< 6.0"
 # assets bundling
 gem "jsbundling-rails", "~> 1.0"
+gem "sprockets-rails"
+gem "tailwindcss-rails", "~> 2.0"
 # gem "cssbundling-rails", "~> 1.0"
 # apm provider
 gem "newrelic_rpm", "~> 8.4"
 gem "sentry-ruby", "~> 5.2"
 gem "sentry-rails", "~> 5.2"
-
-gem 'pay', '~> 3.0'
-gem 'stripe', '>= 5.0', '< 6.0'
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
@@ -59,9 +58,10 @@ end
 
 group :development do
   gem "web-console", ">= 4.1.0"
-  # gem "rack-mini-profiler", "~> 2.0"
+  gem "rack-mini-profiler", "~> 2.0"
   gem "listen", "~> 3.3"
   gem "spring"
+  gem "stackprof", "~> 0.2.19"
 end
 
 group :test do

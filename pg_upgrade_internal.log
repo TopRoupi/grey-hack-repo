@@ -1,0 +1,14 @@
+
+-----------------------------------------------------------------
+  pg_upgrade run on Mon Apr 25 10:42:42 2022
+-----------------------------------------------------------------
+
+check for "/opt/pgsql-PG_VERSION/bin" failed: No such file or directory
+
+
+-----------------------------------------------------------------
+  pg_upgrade run on Mon Apr 25 10:44:47 2022
+-----------------------------------------------------------------
+
+You must identify the directory where the old cluster binaries reside.
+Please use the -b command-line option or the PGBINOLD environment variable.
