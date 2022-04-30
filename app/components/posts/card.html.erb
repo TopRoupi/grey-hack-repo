@@ -1,8 +1,9 @@
-<div class="flex <%= "flex-col sm:flex-row" if @post.user == @current_user %>">
+<div class="flex">
   <a href="<%= post_path @post %>"
      data-turbo-frame="_top"
-     class="bg-beaver-800 hover:bg-beaver-700 w-full px-4 py-3 block <%= @post.user == @current_user ? "sm:rounded-r-none mb-0 sm:mb-4 rounded-t-lg sm:rounded-lg" : "mb-4 rounded-lg" %>">
+     class="bg-beaver-800 hover:bg-beaver-700 w-full px-4 py-3 block rounded-t-lg">
      <div class="flex items-center sm:items-end flex-col sm:flex-row mb-1">
+       <img class="h-8 w-8 mr-2 rounded-full" src="<%= helpers.user_avatar(@post.user) %>" alt="">
        <span class="font-semibold text-xl">
          <%= @post.title.capitalize %>
        </span>
@@ -21,18 +22,5 @@
        <%= @post.summary %>
      </div>
   </a>
-  <% if @post.user == @current_user %>
-    <div class="flex justify-between">
-      <a href="<%= edit_post_path @post %>"
-         data-turbo-frame="_top"
-         class="mb-4 button_info flex w-full sm:w-auto items-center justify-center rounded-bl-lg sm:rounded-none px-2">
-         <%= octicon "pencil", height:20, class: "fill-current" %>
-         <span class="sr-only">Edit</span>
-      </a>
-      <%= link_to @post, class: "mb-4 button_danger rounded-br-lg h-10 sm:h-auto sm:rounded-r-xl flex w-full sm:w-auto items-center justify-center px-2", data: { turbo_method: :delete, turbo_confirm: 'Are you sure?', turbo_frame: "_top" } do %>
-        <%= octicon "trash", height:20, class: "fill-current" %>
-        <span class="sr-only">Destroy</span>
-      <% end %>
-    </div>
-  <% end %>
 </div>
+<%= render(Posts::MiniFilesPreview.new(fileable: @build)) %>

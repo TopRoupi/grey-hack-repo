@@ -1,0 +1,19 @@
+<div id="<%= "#{@fileable.signed_id}_mini_files_preview" %>" class="mb-4 bg-beaver-850 px-2 py-1 rounded-b-lg flex justify-center sm:justify-start overflow-x-auto">
+  <% if @fileable.instance_of? Folder %>
+    <button class="mr-2 flex items-center rounded p-2 hover:bg-beaver-800" data-reflex="click->Posts::MiniFilesPreviewReflex#back" data-folder-id="<%= @fileable.signed_id %>">
+      lol
+    </button>
+  <% end %>
+  <% @fileable.folders.each do |folder| %>
+    <button class="mr-2 flex items-center rounded p-2 hover:bg-beaver-800" data-reflex="click->Posts::MiniFilesPreviewReflex#open" data-folder-id="<%= folder.signed_id %>">
+      <%= octicon "file-directory-fill", height: 15, class: "fill-current text-blue-400 mr-2" %>
+      <%= folder.name %>
+    </button>
+  <% end %>
+  <% @fileable.scripts.each do |script| %>
+    <a href="<%= script_path script %>" data-turbo-frame="_top" class="mr-2 flex items-center rounded p-2 hover:bg-beaver-800">
+      <%= octicon "file", height: 15, class: "fill-current mr-2" %>
+      <%= script.name %>
+    </a>
+  <% end %>
+</div>

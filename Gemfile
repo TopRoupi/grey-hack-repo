@@ -23,8 +23,8 @@ gem "aws-sdk-s3", "~> 1.112"
 gem "redis", "~> 4.0", require: ["redis", "redis/connection/hiredis"]
 gem "hiredis", "~> 0.6.3"
 gem "redis-session-store", "~> 0.11.4"
-gem "ostruct", "~> 0.5.3" # delete this after stimulus_reflex gets updated from pre8
-gem "stimulus_reflex", "~> 3.5.0-pre8"
+# gem "ostruct", "~> 0.5.3" # delete this after stimulus_reflex gets updated from pre8
+gem "stimulus_reflex", "~> 3.5.0-pre9"
 # front end gems
 gem "view_component", "~> 2.49"
 gem "simple_form", "~> 5.1"
