@@ -1,7 +1,7 @@
-<div id="<%= "#{@fileable.signed_id}_mini_files_preview" %>" class="mb-4 bg-beaver-850 px-2 py-1 rounded-b-lg flex justify-center sm:justify-start overflow-x-auto">
+<div id="<%= dom_id @fileable, "mini_files_preview" %>" class="mb-4 bg-beaver-850 px-2 py-1 rounded-b-lg flex justify-center sm:justify-start overflow-x-auto">
   <% if @fileable.instance_of? Folder %>
     <button class="mr-2 flex items-center rounded p-2 hover:bg-beaver-800" data-reflex="click->Posts::MiniFilesPreviewReflex#back" data-folder-id="<%= @fileable.signed_id %>">
-      lol
+      back
     </button>
   <% end %>
   <% @fileable.folders.each do |folder| %>

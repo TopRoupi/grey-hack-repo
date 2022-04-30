@@ -5,7 +5,7 @@ class Posts::MiniFilesPreviewReflex < ApplicationReflex
     folder = Folder.find_signed(element.dataset[:folder_id])
 
     cable_ready
-      .replace(selector: "##{folder.foldable.signed_id}_mini_files_preview", html: render(Posts::MiniFilesPreview.new(fileable: folder), layout: false))
+      .replace(selector: dom_id(folder.foldable, "mini_files_preview"), html: render(Posts::MiniFilesPreview.new(fileable: folder), layout: false))
     morph :nothing
   end
 
@@ -13,7 +13,7 @@ class Posts::MiniFilesPreviewReflex < ApplicationReflex
     folder = Folder.find_signed(element.dataset[:folder_id])
 
     cable_ready
-      .replace(selector: "##{folder.signed_id}_mini_files_preview", html: render(Posts::MiniFilesPreview.new(fileable: folder.foldable), layout: false))
+      .replace(selector: dom_id(folder, "mini_files_preview"), html: render(Posts::MiniFilesPreview.new(fileable: folder.foldable), layout: false))
     morph :nothing
   end
 end
