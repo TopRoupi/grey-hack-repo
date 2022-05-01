@@ -1,0 +1,9 @@
+<% title "Authors" %>
+
+<div class="mb-6 flex justify-center text-3xl font-semibold items-end">
+  Authors
+</div>
+
+<% @users.each do |user| %>
+  <%= render(Users::Card.new(user: user)) %>
+<% end %>

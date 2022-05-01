@@ -3,6 +3,14 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:myposts]
 
+  def index
+    @users = User.select("users.*, count(posts.id) AS posts_count, sum(posts.stars_count) as stars_count")
+      .joins("LEFT OUTER JOIN posts ON posts.user_id = users.id")
+      .group("users.id")
+      .order("posts_count desc, users.name")
+      .having("count(posts.id) > 0")
+  end
+
   def show
     @user = User.friendly.find(params[:id])
     @category = params[:category] || "all"

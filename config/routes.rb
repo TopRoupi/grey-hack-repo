@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :scripts, only: [:show, :edit, :update]
   resources :folders, only: [:edit, :update]
   resources :builds, only: [:create, :update, :destroy]
+  resources :users, only: [:show, :index]
+  resources :categories, only: [:show]
   devise_for :users, controllers: {session: "users/sessions"}
   get "home/index"
   root to: "home#index"
@@ -19,9 +21,7 @@ Rails.application.routes.draw do
   get "posts", to: "home#index"
   get "posts/:id/builds", to: "posts#builds", as: "builds_post"
   get "users/:id/posts", to: "users#posts", as: "user_posts"
-  get "users/:id", to: "users#show", as: "user"
   get "myposts", to: "users#myposts", as: "my_posts"
-  get "categories/:id", to: "categories#show", as: "category"
 
   authenticate :user, ->(user) { user.admin? } do
     mount Sidekiq::Web => "/sidekiq"

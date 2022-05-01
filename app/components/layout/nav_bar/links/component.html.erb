@@ -1,5 +1,8 @@
 <a href="<%= root_path %>" class="<%= current_page?(root_path) ? "bg-chestnut-900" : "hover:bg-beaver-700" %> text-white px-3 py-2 rounded-md  font-medium <%= @mobile ? 'text_base block' : 'text-sm' %>" aria-current="page">
-  Overview
+  Repos
+</a>
+<a href="<%= users_path %>" class="<%= current_page?(users_path) ? "bg-chestnut-900" : "hover:bg-beaver-700" %> text-white px-3 py-2 rounded-md  font-medium <%= @mobile ? 'text_base block' : 'text-sm' %>" aria-current="page">
+  Authors
 </a>
 <a href="<%= npc_decipher_path %>" class="<%= current_page?(npc_decipher_path) ? "bg-chestnut-900" : "hover:bg-beaver-700" %> text-white px-3 py-2 rounded-md  font-medium <%= @mobile ? 'text_base block' : 'text-sm' %>" aria-current="page">
   Npc password decipher

@@ -1,0 +1,13 @@
+<a href="<%= user_path @user %>" class="p-3 rounded hover:bg-beaver-900 bg-beaver-850 border border-beaver-800 flex gap-2 flex-col sm:flex-row items-center mb-6">
+  <img class="h-10 w-10 mr-2 rounded-full" src="<%= helpers.user_avatar(@user) %>" alt="user avatar">
+  <div>
+    <%= @user.name %>
+  </div>
+  <% if @user.supporter? %>
+    <span class="text-indigo-400">supporter</span>
+  <% end %>
+  <div class="sm:ml-auto flex flex-col sm:flex-row gap-2 items center text-center">
+    <span>stars: <%= @user.stars.count %></span>
+    <span>total posts: <%= @user.posts.count %></span>
+  </div>
+</a>
