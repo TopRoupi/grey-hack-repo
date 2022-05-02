@@ -1,19 +1,30 @@
-<div id="<%= dom_id @fileable, "mini_files_preview" %>" class="mb-4 bg-beaver-850 px-2 py-1 rounded-b-lg flex justify-center sm:justify-start overflow-x-auto">
-  <% if @fileable.instance_of? Folder %>
-    <button class="mr-2 flex items-center rounded p-2 hover:bg-beaver-800" data-reflex="click->Posts::MiniFilesPreviewReflex#back" data-folder-id="<%= @fileable.signed_id %>">
-      back
-    </button>
-  <% end %>
-  <% @fileable.folders.each do |folder| %>
-    <button class="mr-2 flex items-center rounded p-2 hover:bg-beaver-800" data-reflex="click->Posts::MiniFilesPreviewReflex#open" data-folder-id="<%= folder.signed_id %>">
-      <%= octicon "file-directory-fill", height: 15, class: "fill-current text-blue-400 mr-2" %>
-      <%= folder.name %>
-    </button>
-  <% end %>
-  <% @fileable.scripts.each do |script| %>
-    <a href="<%= script_path script %>" data-turbo-frame="_top" class="mr-2 flex items-center rounded p-2 hover:bg-beaver-800">
-      <%= octicon "file", height: 15, class: "fill-current mr-2" %>
-      <%= script.name %>
-    </a>
-  <% end %>
+<div id="<%= dom_id @fileable, "mini_files_preview" %>" class="mb-4 bg-beaver-850 px-2 py-1 rounded-b-lg overflow-x-auto">
+  <div class="flex items-center mx-auto sm:mx-0 w-fit sm:w-full">
+    <% if @fileable.instance_of? Folder %>
+      <button class="mr-2 flex items-center rounded p-2 hover:bg-beaver-800" data-reflex="click->Posts::MiniFilesPreviewReflex#back" data-folder-id="<%= @fileable.signed_id %>">
+        back
+      </button>
+    <% end %>
+    <% @fileable.folders.each do |folder| %>
+      <button class="mr-2 flex items-center rounded p-2 hover:bg-beaver-800" data-reflex="click->Posts::MiniFilesPreviewReflex#open" data-folder-id="<%= folder.signed_id %>">
+        <%= octicon "file-directory-fill", height: 15, class: "fill-current text-blue-400 mr-2" %>
+        <%= folder.name %>
+      </button>
+    <% end %>
+    <% @fileable.scripts.each do |script| %>
+      <a href="<%= script_path script %>" data-turbo-frame="_top" class="mr-2 flex items-center rounded p-2 hover:bg-beaver-800">
+        <%= octicon "file", height: 15, class: "fill-current mr-2" %>
+        <%= script.name %>
+      </a>
+    <% end %>
+    <div class="ml-0 sm:ml-auto">
+      <%= render(Layout::Modal.new(tag: :div)) do |c| %>
+        <% c.button(tag: :button, class: "button_secondary px-2 rounded whitespace-nowrap", style: "height: 40px") { "Export string" } %>
+        <% c.body do %>
+          <textarea disabled=true" class="w-full break-all overflow-x-auto bg-beaver-1000 h-60"><%= @export_string %></textarea>
+          <a class="link" href="https://www.greyrepo.xyz/posts/folder-parser">How to use it<a>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>

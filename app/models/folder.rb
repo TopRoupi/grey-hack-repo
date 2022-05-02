@@ -14,4 +14,12 @@ class Folder < ApplicationRecord
       foldable.user
     end
   end
+
+  def find_build
+    if foldable.instance_of? Build
+      foldable
+    else
+      foldable.find_build
+    end
+  end
 end
