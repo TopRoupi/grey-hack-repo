@@ -5,8 +5,7 @@
                                          categories: @visibility_categories,
                                          active_tab: @active_tab,
                                          remove_top_margin: false,
-                                         render_all_tab: false,
-                                         highlighted: true)) if @user == @current_user %>
+                                         render_all_tab: false,)) if @user == @current_user %>
   </div>
   <%= render(Users::PostsList.new(user: @user, current_user: @current_user, posts: @posts, pagy: @pagy)) %>
 </turbo-frame>

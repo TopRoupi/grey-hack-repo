@@ -1,6 +1,6 @@
 <% title @user.name %>
 
-<div class="flex justify-center items-start mb-5">
+<div class="flex justify-center items-start mb-10">
   <img class="h-20 w-20 rounded-full ml-2" src="<%= user_avatar(@user) %>" alt="">
   <div class="flex ml-2 flex-col">
     <span class="font-semibold text-lg"><%= @user.name %></span>
@@ -19,20 +19,36 @@
   </div>
 </div>
 
-<div class="block text-center text-2xl font-semibold mb-5">
-  <%= @user.name.capitalize %>'s posts
-</div>
+<%= render Layout::LinkGroup.new(2, dark: true) do |c| %>
+  <% c.link(name: "Posts", link: user_path(@user), active: params[:stars].nil?) %>
+  <% c.link(name: "Stars", link: path_to(request.url, stars: ""), active: params[:stars] == "") %>
+<% end %>
 
-<%= render(Users::PostsBox.new(user: @user, current_user: current_user, posts: @posts, pagy: @category_pagy, active_tab: @category)) %>
+<br><br>
 
-<div class="block text-center text-2xl font-semibold mb-5 mt-5">
-  <%= @user.name.capitalize %>'s stars
-</div>
+<% if params[:stars].nil? %>
+  <div class="block text-center text-2xl font-semibold mb-5">
+    <%= @user.name.capitalize %>'s posts
+  </div>
 
-<turbo-frame id="starred_posts">
-  <% @starred_posts.each do |post| %>
-    <%= render(Posts::Card.new(current_user: current_user, post: post)) %>
+  <%= render(Users::PostsBox.new(user: @user, current_user: current_user, posts: @posts, pagy: @category_pagy, active_tab: @category)) %>
+<% else %>
+  <div class="block text-center text-2xl font-semibold mb-5">
+    <%= @user.name.capitalize %>'s stars
+  </div>
+
+  <% if @starred_posts.empty? %>
+    <div class="bg-beaver-800 rounded p-6 text-beaver-200">
+      You dont have any starred posts
+    </div>
+  <% else %>
+    <turbo-frame id="starred_posts">
+      <% @starred_posts.each do |post| %>
+        <%= render(Posts::Card.new(current_user: current_user, post: post)) %>
+      <% end %>
+
+      <%= render(Pagination.new(pagy: @stars_pagy)) if @stars_pagy %>
+    </turbo-frame>
   <% end %>
+<% end %>
 
-  <%= render(Pagination.new(pagy: @stars_pagy)) if @stars_pagy %>
-</turbo-frame>

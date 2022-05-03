@@ -15,6 +15,7 @@
   </head>
 
   <body class="bg-beaver-900 text-white">
+    <div class="min-h-screen">
     <%= render(Layout::NavBar::Component.new(current_user: current_user)) %>
     <div class="container max-w-5xl mx-auto mb-8 px-4">
       <div id="flash-messages">
@@ -27,5 +28,11 @@
       </div>
       <%= yield %>
     </div>
+    </div>
+    <footer class="bg-beaver-900 border-t border-beaver-800 text-white">
+      <div class="container max-w-5xl mx-auto py-4">
+        contribute in the project on github: <a class="link" href="https://github.com/TopRoupi/grey-hack-repo">https://github.com/TopRoupi/grey-hack-repo</a>
+      </div>
+    </footer>
   </body>
 </html>
