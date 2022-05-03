@@ -23,6 +23,10 @@ html {
   @apply bg-beaver-800 hover:bg-beaver-700
 }
 
+.button_success {
+  @apply bg-green-700 hover:bg-green-600
+}
+
 .link {
   @apply hover:underline text-blue-400 cursor-pointer
 }

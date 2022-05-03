@@ -32,9 +32,9 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
       assert_response :success
     end
 
-    test "should not show builds_posts" do
+    test "should not show post_builds" do
       @post.save
-      get builds_post_url(@post)
+      get post_builds_url(@post)
       assert_response :redirect
     end
 
@@ -78,15 +78,15 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
       sign_in @user
     end
 
-    test "should now show builds_posts of not ownned posts" do
+    test "should now show post_builds of not ownned posts" do
       @post = create :post
-      get builds_post_url(@post)
+      get post_builds_url(@post)
       assert_redirected_to :root
     end
 
-    test "should show builds_posts of ownned posts" do
+    test "should show post_builds of ownned posts" do
       @post = create :post, user: @user
-      get builds_post_url(@post)
+      get post_builds_url(@post)
       assert_response :success
     end
 

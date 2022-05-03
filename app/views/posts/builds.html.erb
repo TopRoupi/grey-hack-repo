@@ -1,6 +1,29 @@
 <h1 class="text-center text-3xl font-semibold mb-6">
   <%= @post.title %>
+  <%= published_status(@post) %>
 </h1>
+
+<% if !@post.published? %>
+
+<% @post.published = true; @post.valid? %>
+<% if @post.errors.any? %>
+  <div class="text-center text-red-600 mb-5">
+    <p> ERRORS: </p>
+    <% @post.errors.each do |error| %>
+      * 
+      <%= error.message %>
+    <% end %>
+  </div>
+<% else %>
+  <p class="text-center text-green-400">
+    Post ready to publish
+  </p>
+  <button data-reflex="click->PostReflex#publish" data-post-id="<%= @post.signed_id %>" class="mb-5 px-4 py-2 mx-auto rounded button_success block">
+    Publish build
+  </button>
+<% end %>
+<% end %>
+
 <h2 class="text-center text-2xl font-semibold mb-6">
   Post build editor
 </h2>

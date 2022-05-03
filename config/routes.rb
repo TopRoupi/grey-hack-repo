@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get "get_supporter", to: "checkouts#get_supporter", as: "supporter_checkout"
 
   get "posts", to: "home#index"
-  get "posts/:id/builds", to: "posts#builds", as: "builds_post"
+  get "posts/:id/builds", to: "posts#builds", as: "post_builds"
   get "users/:id/posts", to: "users#posts", as: "user_posts"
   get "users/:id", to: "users#show", as: "user"
   get "users", to: "users#index", as: "users"

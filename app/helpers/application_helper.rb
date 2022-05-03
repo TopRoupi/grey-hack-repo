@@ -4,6 +4,23 @@ module ApplicationHelper
   include UsersHelper
   include Pagy::Frontend
 
+  def published_status(obj, tag: :span, **kwargs)
+    content = obj.published? ? "published" : "not published"
+    kwargs[:class] = obj.published? ? "text-green-400" : "text-red-400"
+    content_tag(tag, content, kwargs)
+  end
+
+  def publishable_status(obj)
+    obj.published = true
+
+    content = obj.valid? ? "ready to publish" : "not ready to published"
+    klass = obj.valid? ? "text-green-400" : "text-red-400"
+
+    obj.published = false
+    obj.valid?
+    content_tag(:span, content, class: klass)
+  end
+
   def default_meta_tags
     {
       site: "Grey Repo",
