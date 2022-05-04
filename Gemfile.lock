@@ -126,6 +126,7 @@ GEM
       responders
       warden (~> 1.2.3)
     digest (3.1.0)
+    discord-notifier (1.0.3)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     erubi (1.10.0)
@@ -353,6 +354,7 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   devise (~> 4.8)
+  discord-notifier (~> 1.0, >= 1.0.3)
   factory_bot_rails
   faker!
   friendly_id (~> 5.4.0)
