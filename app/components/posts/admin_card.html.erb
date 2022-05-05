@@ -1,0 +1,28 @@
+<div class="flex px-2 py-2 rounded bg-beaver-800 mb-6">
+  <div class="w-full p-2">
+    <table class="table-auto">
+      <tr>
+        <td>title: </td>
+        <td><%= @post.title %></td>
+      </tr>
+      <tr>
+        <td>category: </td>
+        <td><%= @post.category.name %></td>
+      </tr>
+      <tr>
+        <td>builds: </td>
+        <td><%= @post.builds.size %></td>
+      </tr>
+      <tr>
+        <td>visibility: </td>
+        <td><%= @post.visibility %></td>
+      </tr>
+        <td>has_readme?: </td>
+        <td><%= !@post.readme.blank? %></td>
+      </tr>
+    </table>
+  </div>
+  <div class="bg-beaver-600 w-fit p-2">
+    b
+  </div>
+</div>

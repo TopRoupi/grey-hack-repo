@@ -27,6 +27,10 @@ html {
   @apply bg-green-700 hover:bg-green-600
 }
 
+.button_submit {
+  @apply bg-indigo-700
+}
+
 .link {
   @apply hover:underline text-blue-400 cursor-pointer
 }
