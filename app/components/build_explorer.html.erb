@@ -1,4 +1,4 @@
-<%= render(Layout::Toggle.new(tag: :div, open: true, id: "build-explorer", class: "overflow-x-hidden flex border border-beaver-700 rounded", style: "background: linear-gradient(to bottom, #3d262d 0%, #3d262d 50%, #2d1b21 50%, #2d1b21 100%);")) do |c| %>
+<%= render(Layout::Toggle.new(tag: :div, open: true, id: "build-explorer", class: "overflow-x-hidden flex border border-beaver-700 rounded", style: "background: linear-gradient(to bottom, #1d1d1d 0%, #1d1d1d 50%, #171717 50%, #171717 100%);")) do |c| %>
   <%= render(c.toggleable()) do %>
     <%= render(BuildSelector.new(builds: @builds, selected_build: @selected_build)) %>
   <% end %>
