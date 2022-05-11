@@ -2,9 +2,9 @@
 
 class Layout::LinkGroup < ApplicationComponent
   renders_many :links, lambda { |link: nil, name: nil, active: false, disabled: link.nil?, **kwargs, &block|
-    bg = @dark ? "bg-beaver-900 hover:bg-beaver-850 border border-beaver-800" : "bg-beaver-800 hover:bg-beaver-700"
-    bg = @dark ? "bg-beaver-900 border border-beaver-800 text-beaver-300" : "bg-beaver-850" if disabled
-    bg = @dark ? "bg-beaver-850 border border-beaver-800" : "bg-beaver-600" if active
+    bg = @dark ? "bg-beaver-900 hover:bg-beaver-850 border border-beaver-800" : "button_secondary"
+    bg = @dark ? "bg-beaver-900 border border-beaver-800 text-beaver-300" : "bg-beaver-850 !cursor-default" if disabled
+    bg = @dark ? "bg-beaver-850 border border-beaver-800" : "bg-beaver-600 !cursor-default" if active
 
     rounded = ""
     rounded += "rounded-#{@vertical ? "t" : "l"}-md" if links.length == 0

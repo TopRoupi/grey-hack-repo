@@ -8,23 +8,23 @@ html {
 }
 
 .button_info {
-  @apply bg-denim-600 hover:bg-denim-500
+  @apply bg-denim-600 hover:bg-denim-500 active:bg-denim-600 transition duration-150 ease-in-out
 }
 
 .button_danger {
-  @apply bg-red-900 hover:bg-red-700
+  @apply bg-red-900 hover:bg-red-700 active:bg-red-900 transition duration-150 ease-in-out
 }
 
 .button_primary {
-  @apply bg-beaver-700 hover:bg-beaver-600
+  @apply bg-beaver-700 hover:bg-beaver-600 active:bg-beaver-700 transition duration-150 ease-in-out
 }
 
 .button_secondary {
-  @apply bg-beaver-800 hover:bg-beaver-700
+  @apply bg-beaver-800 hover:bg-beaver-700 active:bg-beaver-800 transition duration-150 ease-in-out
 }
 
 .button_success {
-  @apply bg-green-700 hover:bg-green-600
+  @apply bg-green-700 hover:bg-green-600 active:bg-green-700 transition duration-150 ease-in-out
 }
 
 .button_submit {

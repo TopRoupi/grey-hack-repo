@@ -5,10 +5,12 @@
   "dependencies": {
     "@hotwired/stimulus": "npm:@hotwired/stimulus",
     "@hotwired/turbo-rails": "^7.1.0",
+    "@material/mwc-button": "^0.26.1",
     "@rails/actioncable": "^7.0.1",
     "@rails/actiontext": "^7.0.1",
     "@rails/activestorage": "^7.0.1",
     "@rails/request.js": "^0.0.6",
+    "@webcomponents/webcomponentsjs": "^2.6.0",
     "autoprefixer": "^10.3.7",
     "debounced": "^0.0.5",
     "esbuild": "^0.13.3",

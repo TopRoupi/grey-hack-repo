@@ -40,13 +40,11 @@
 
 <br>
 
-<% cache @comments do %>
-  <div class="text-2xl text-center block mt-20">
-    Post's comments
-  </div>
-  <br>
-  <%= render(Comments::List.new(user: current_user, commentable: @post, comments: @posts)) %>
-  <br>
+<div class="text-2xl text-center block mt-20">
+  Post's comments
+</div>
+<br>
+<%= render(Comments::List.new(user: current_user, commentable: @post, comments: @posts)) %>
+<br>
 
-  <%= render(Comments::Form::Component.new(user: current_user)) %>
-<% end %>
+<%= render(Comments::Form::Component.new(user: current_user)) %>

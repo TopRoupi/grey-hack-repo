@@ -20,7 +20,7 @@
         <% end %>
 
         <% if @selected_build.files_attachment %>
-          <%= link_to "Download build", rails_blob_path(@selected_build.files_attachment, disposition: "attachment"), class: "whitespace-nowrap text-ellipsis bg-green-700 hover:bg-green-600 px-2 py-1 rounded", rel: "noopener noreferrer", target: "_blank"  %>
+          <%= link_to "Download build", rails_blob_path(@selected_build.files_attachment, disposition: "attachment"), class: "whitespace-nowrap text-ellipsis button_success px-2 py-1 rounded", rel: "noopener noreferrer", target: "_blank"  %>
         <% end %>
       </div>
     </div>

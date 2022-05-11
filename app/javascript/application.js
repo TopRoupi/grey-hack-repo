@@ -16,3 +16,5 @@ import "@rails/actiontext"
 import "./trix-editor-overrides"
 
 window.Turbo = Turbo
+
+import '@material/mwc-button'
