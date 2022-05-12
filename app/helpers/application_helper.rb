@@ -4,6 +4,11 @@ module ApplicationHelper
   include UsersHelper
   include Pagy::Frontend
 
+  def supporter_badge(**kwargs)
+    kwargs[:class] = "font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-indigo-400 to-indigo-600 #{kwargs[:class]}"
+    content_tag(:span, "supporter", kwargs)
+  end
+
   def published_status(obj, tag: :span, **kwargs)
     content = obj.published? ? "published" : "not published"
     kwargs[:class] = obj.published? ? "text-green-400" : "text-red-400"

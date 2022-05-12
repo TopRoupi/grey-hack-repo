@@ -1,7 +1,19 @@
 <% if current_user.supporter? == true %>
   you already have an active subscription
 <% else %>
-  get suppoter badge on your profile
+  <h1 class="text-center font-semibold text-3xl mt-2 mb-4">
+    Supporter badge
+  </h1>
+
+  <img class="mx-auto mb-3" src="https://i.imgur.com/wDslOvI.png" alt="supporter profile">
+  <p class="text-center mb-6">Profile</p>
+  <img class="mx-auto mb-3" src="https://i.imgur.com/4hkzmzU.png" alt="supporter card">
+  <p class="text-center mb-6">Card</p>
+  <img class="mx-auto mb-3" src="https://i.imgur.com/IdDdJAo.png" alt="supporter comment">
+  <p class="text-center mb-6">Comment</p>
+
   <br>
-  <%= render(partial: "pay/stripe/checkout_button", locals: {session: @checkout_session, title: "Checkout"}) %>
+  <div class="flex justify-end">
+    <%= render(partial: "pay/stripe/checkout_button", locals: {session: @checkout_session, title: "Checkout"}) %>
+  </div>
 <% end %>

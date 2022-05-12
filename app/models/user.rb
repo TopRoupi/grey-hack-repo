@@ -20,6 +20,7 @@ class User < ApplicationRecord
 
   def supporter?
     set_payment_processor :stripe
-    payment_processor.subscriptions.where(status: "active", processor_plan: SupporterSubscription.price).any?
+    # payment_processor.charges.where(processor_plan: SupporterBadge.price).any?
+    payment_processor.charges.any?
   end
 end

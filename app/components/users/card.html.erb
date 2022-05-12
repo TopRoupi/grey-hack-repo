@@ -4,7 +4,7 @@
     <%= @user.name %>
   </div>
   <% if @user.supporter? %>
-    <span class="text-indigo-400">supporter</span>
+    <%= supporter_badge %>
   <% end %>
   <div class="sm:ml-auto flex flex-col sm:flex-row gap-2 items center text-center">
     <span>stars: <%= @user.stars.count %></span>
