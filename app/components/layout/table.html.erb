@@ -1,0 +1,10 @@
+<%= content_tag(@tag, @sys_params) do %>
+  <thead class="bg-beaver-800">
+    <%= rows.first %>
+  </thead>
+  <tbody class="divide-y divide-beaver-900">
+    <% rows[1..].each do |row| %>
+      <%= row %>
+    <% end %>
+  </tbody>
+<% end %>

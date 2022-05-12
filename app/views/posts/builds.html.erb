@@ -29,31 +29,47 @@
 </h2>
 
 <div id="fileable-list" class="mb-6">
-  <% @builds.each do |build| %>
-    <p class="text-center">
-      <%= build.name %> 
-      <span class="<%= build.published? ? "text-green-400" : "text-red-400" %>">
-        <%= build.published ? "published" : "unpublished" %> 
-      </span>
-      <% if build.published == false %>
-        <% if build.ready_to_publish? %>
-          <span class="link !text-green-400" data-reflex="click->FileableForm::Reflex#publish_build" data-build-id="<%= build.signed_id %>">
-            ready to publish
-          </span>
-        <% else %>
-          <span class="text-red-400">
-            not read to publish
-          </span>
+  <%= render(Layout::Table.new(class: "!w-fit mx-auto")) do |c| %>
+    <% c.row do |cc| %>
+      <% cc.column { "Name" } %>
+      <% cc.column { "Published" } %>
+      <% cc.column { "Actions" } %>
+    <% end %>
+
+    <% @builds.each do |build| %>
+      <% c.row do |cc| %>
+        <% cc.column { build.name } %>
+        <% cc.column { published_status(build) } %>
+        <% cc.column do %>
+          <div class="flex justify-end">
+            <% if build.published == false %>
+              <% if build.ready_to_publish? %>
+                <button class="rounded p-2 mr-2 button_success" data-reflex="click->FileableForm::Reflex#publish_build" data-build-id="<%= build.signed_id %>">
+                  publish
+                </button>
+              <% else %>
+                <span class="p-2 rounded bg-beaver-800 text-red-400 mr-2 flex items-center">
+                  publish
+                </span>
+              <% end %>
+            <% end %>
+            <% if build.published == false %>
+              <%= link_to path_to(request.url, build_id: build.id), class: "p-2 rounded button_info mr-2 flex items-center" do %>
+                <%= octicon "pencil", height: 16, class: "fill-current" %>
+              <% end %>
+              <button class="p-2 rounded button_danger mr-2 flex items-center"
+                      data-reflex="click->FileableForm::Reflex#delete_build"
+                      data-build-id="<%= build.signed_id %>">
+                      <%= octicon "trash", height: 16, class: "fill-current" %>
+              </button>
+            <% end %>
+          </div>
         <% end %>
       <% end %>
-      <% if build.published == false %>
-        <a class="link" href="<%= path_to(request.url, build_id: build.id) %>">
-          Edit
-        </a>
-        <button class="link !text-red-400" data-reflex="click->FileableForm::Reflex#delete_build" data-build-id="<%= build.signed_id %>">
-          Delete
-        </button>
-      <% end %>
+    <% end %>
+  <% end %>
+  <% @builds.each do |build| %>
+    <p class="text-center">
     </p>
   <% end %>
 

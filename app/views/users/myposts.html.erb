@@ -11,56 +11,44 @@
 
 <br>
 
-<table class="w-full rounded overflow-hidden table-auto mb-5">
-  <thead class="bg-beaver-800">
-    <tr>
-      <th class="p-2">Title</th>
-      <th class="p-2">Category</th>
-      <th class="p-2">Builds</th>
-      <th class="p-2">Actions</th>
-    </tr>
-  </thead>
-  <tbody class="divide-y divide-beaver-900">
-    <% @posts.each do |post| %>
-      <tr class="bg-beaver-850">
-        <td class="p-2">
-          <%= post.title %>
-        </td>
-        <td class="p-2">
-          <%= post.category.name %>
-        </td>
-        <td class="p-2">
-          <%= post.builds.size %>
-        </td>
-        <td class="p-2">
-          <div class="flex w-fit ml-auto">
-            <% if post.published == false %>
-              <% post.published = true %>
-              <% if post.valid? %>
-                <button class="rounded p-2 mr-2 button_success" data-reflex="click->FileableForm::Reflex#publish_post" data-post-id="<%= post.signed_id %>">
-                  publish
-                </button>
-              <% else %>
-                <span class="p-2 rounded bg-beaver-800 text-red-400 mr-2 flex items-center">
-                  publish
-                </span>
-              <% end %>
-            <% end %>
-            <%= link_to "Manage builds", post_builds_path(post), class: "button_info p-2 rounded mr-2" %>
-            <%= link_to edit_post_path(post), class: "p-2 rounded button_info mr-2 flex items-center" do %>
-              <%= octicon "pencil", height: 16, class: "fill-current" %>
-            <% end %>
-            <%= link_to post_path(post), class: "p-2 rounded button_danger flex items-center", data: { turbo_method: :delete, turbo_confirm: 'Are you sure?', turbo_frame: "_top" } do %>
-              <%= octicon "trash", height: 16, class: "fill-current" %>
-            <% end %>
-          </div>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render(Layout::Table.new(class: "mb-5")) do |c| %>
+  <% c.row do |cc| %>
+    <% cc.column { "Title" } %>
+    <% cc.column { "Category" } %>
+    <% cc.column { "Build" } %>
+    <% cc.column { "Actions" } %>
+  <% end %>
 
-<%# <% @posts.each do |post| %>
-  <%#   <%= render(Posts::AdminCard.new(post: post)) %>
-  <%# <% end %>
+  <% @posts.each do |post| %>
+    <% c.row do |cc| %>
+      <% cc.column { link_to post.title, post_path(post), class: "link" } %>
+      <% cc.column { post.category.name } %>
+      <% cc.column { post.builds.size.to_s } %>
+      <% cc.column do %>
+        <div class="flex w-fit ml-auto">
+          <% if post.published == false %>
+            <% post.published = true %>
+            <% if post.valid? %>
+              <button class="rounded p-2 mr-2 button_success" data-reflex="click->FileableForm::Reflex#publish_post" data-post-id="<%= post.signed_id %>">
+                publish
+              </button>
+            <% else %>
+              <span class="p-2 rounded bg-beaver-800 text-red-400 mr-2 flex items-center">
+                publish
+              </span>
+            <% end %>
+          <% end %>
+          <%= link_to "Manage builds", post_builds_path(post), class: "button_info p-2 rounded mr-2" %>
+          <%= link_to edit_post_path(post), class: "p-2 rounded button_info mr-2 flex items-center" do %>
+            <%= octicon "pencil", height: 16, class: "fill-current" %>
+          <% end %>
+          <%= link_to post_path(post), class: "p-2 rounded button_danger flex items-center", data: { turbo_method: :delete, turbo_confirm: 'Are you sure?', turbo_frame: "_top" } do %>
+            <%= octicon "trash", height: 16, class: "fill-current" %>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+
 <%= render(Pagination.new(pagy: @pagy)) if @pagy %>

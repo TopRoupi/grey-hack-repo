@@ -12,6 +12,11 @@ class Comments::Form::ComponentReflex < ApplicationReflex
     if @comment.save
       update_comment_form
 
+      if @commentable.comments.count == 1
+        cable_ready
+          .inner_html(selector: dom_id(@commentable, "comments"), html: "")
+          .broadcast
+      end
       cable_ready
         .insert_adjacent_html(selector: dom_id(@commentable, "comments"), html: render(Comments::Card.new(user: current_user, comment: @comment), layout: false))
         .broadcast
