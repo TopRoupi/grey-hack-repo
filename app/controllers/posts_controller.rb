@@ -30,7 +30,7 @@ class PostsController < ApplicationController
   # GET /posts/1/builds
   def builds
     @builds = @post.builds.order(created_at: :desc)
-    @selected_build = @post.builds.find(params[:build_id]) if params[:build_id]
+    @selected_build = @post.builds.find_by(id: params[:build_id]) if params[:build_id]
   end
 
   # GET /posts/1/edit

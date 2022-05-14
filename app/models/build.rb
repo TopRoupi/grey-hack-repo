@@ -18,6 +18,9 @@ class Build < ApplicationRecord
   validates_with BuildValidator
   validates :name, presence: true, length: {minimum: 3, maximum: 16}
 
+  scope :published, -> { where(published: true) }
+  scope :unpublished, -> { where(published: false) }
+
   def ready_to_publish?
     has_script?
   end
