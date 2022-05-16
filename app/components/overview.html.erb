@@ -1,11 +1,13 @@
-<div class="text-center font-semibold text-3xl mt-2 mb-4">
-  <%= @categories.size > 1 ? "Categories" : "Category" %>
-</div>
+<% cache @categories do %>
+  <div class="text-center font-semibold text-3xl mt-2 mb-4">
+    <%= @categories.size > 1 ? "Categories" : "Category" %>
+  </div>
 
-<%= render(Categories::Grid.new(categories: @categories)) %>
+  <%= render(Categories::Grid.new(categories: @categories)) %>
 
-<% if @categories.size == 1 %>
-  <%= @categories.first.description %>
+  <% if @categories.size == 1 %>
+    <%= @categories.first.description %>
+  <% end %>
 <% end %>
 
 <%= simple_form_for(:query, url: request.url, method: :get, html: {class: "mt-5", data: {reflex: "debounced:input->SearchPostReflex#search"}}) do |f| %>

@@ -1,3 +1,1 @@
-<% cache [@posts, current_user] + @posts.map {|p| p.cache_key_with_version} do %>
-  <%= render(Overview.new(current_user: current_user, posts: @posts, pagy: @pagy)) %>
-<% end %>
+<%= render(Overview.new(current_user: current_user, posts: @posts, pagy: @pagy)) %>
