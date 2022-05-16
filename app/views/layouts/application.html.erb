@@ -16,18 +16,19 @@
 
   <body class="bg-beaver-900 text-white">
     <div class="min-h-screen">
-    <%= render(Layout::NavBar::Component.new(current_user: current_user)) %>
-    <div class="container max-w-5xl mx-auto mb-8 px-4">
-      <div id="flash-messages">
-        <% if alert %>
-          <%= render(Layout::Alert.new(alert, type: :error)) %>
-        <% end %>
-        <% if notice %>
-          <%= render(Layout::Alert.new(notice, type: :info)) %>
-        <% end %>
+      <%= render(Layout::NavBar::Component.new(current_user: current_user)) %>
+      <div class="container max-w-5xl mx-auto mb-8 px-4">
+        <div id="flash-messages">
+          <% if alert %>
+            <%= render(Layout::Alert.new(alert, type: :error)) %>
+          <% end %>
+          <% if notice %>
+            <%= render(Layout::Alert.new(notice, type: :info)) %>
+          <% end %>
+        </div>
+
+        <%= yield %>
       </div>
-      <%= yield %>
-    </div>
     </div>
     <footer class="bg-beaver-900 border-t border-beaver-800 text-white">
       <div class="container max-w-5xl mx-auto py-4">

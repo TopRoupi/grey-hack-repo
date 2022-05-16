@@ -1,12 +1,10 @@
-<% cache @post do %>
+<% cache [@post, current_user] do %>
   <% set_meta_tags title: @post.title,
     description: @post.summary %>
 
   <div class="flex justify-center text-3xl font-semibold items-end">
     <%= @post.title.capitalize %>
-    <%= cache @post.stars do %>
-      <%= render(StarsBadge.new(starable: @post, user: current_user)) %>
-    <% end %>
+    <%= render(StarsBadge.new(starable: @post, user: current_user)) %>
   </div>
 
   <div class="text-center flex justify-center">
@@ -29,21 +27,25 @@
   <% end %>
 <% end %>
 
-<% if @post.builds.empty? != true %>
-  <div class="text-center text-2xl mb-4 mt-20">
-    Files
-  </div>
+<% cache @post.builds.published {|b| b.cache_key_with_version} do %>
+  <% if @post.builds.published.empty? != true %>
+    <div class="text-center text-2xl mb-4 mt-20">
+      Files
+    </div>
 
-  <%= render(BuildExplorer.new(post: @post)) %>
+    <%= render(BuildExplorer.new(post: @post)) %>
+  <% end %>
 <% end %>
 
 <br>
 
-<div class="text-2xl text-center block mt-20">
-  Post's comments
-</div>
-<br>
-<%= render(Comments::List.new(user: current_user, commentable: @post, comments: @posts)) %>
-<br>
+<% cache @comments.map {|c| c.cache_key_with_version} <<  current_user do %>
+  <div class="text-2xl text-center block mt-20">
+    Post's comments
+  </div>
+  <br>
+  <%= render(Comments::List.new(user: current_user, commentable: @post, comments: @comments)) %>
+  <br>
 
-<%= render(Comments::Form::Component.new(user: current_user)) %>
+  <%= render(Comments::Form::Component.new(user: current_user)) %>
+<% end %>

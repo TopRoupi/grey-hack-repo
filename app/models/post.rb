@@ -37,7 +37,7 @@ class Post < ApplicationRecord
     where(arel_table[:title].matches("%#{query}%"))
       .or(where(arel_table[:summary].matches("%#{query}%")))
   }
-  scope :eager, -> { eager_load(:category, :user, stars: [:user]) }
+  scope :eager, -> { includes(:category, :user, stars: [:user], builds: [:scripts, folders: [:scripts, :folders]]) }
   scope :asc, -> { order(created_at: :desc) }
   scope :week, -> { where({created_at: (1.week.ago)..Time.now}) }
   scope :month, -> { where({created_at: (1.month.ago)..Time.now}) }

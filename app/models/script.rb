@@ -7,6 +7,11 @@ class Script < ApplicationRecord
   validates :name, presence: true, length: {minimum: 2, maximum: 24}
 
   after_commit :set_highlighted_content, on: [:create, :update]
+  after_commit :touch_scriptable, on: [:create, :destroy]
+
+  def touch_scriptable
+    scriptable.touch unless scriptable.destroyed?
+  end
 
   def user
     if scriptable.instance_of? Build

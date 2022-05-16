@@ -6,9 +6,6 @@
   <% c.menu(direction: :left) do |cc| %>
     <% if @current_user %>
       <% cc.item(tag: :a, href: user_path(@current_user)) { "Profile" } %>
-      <% if @current_user.supporter? == false %>
-        <% cc.item(tag: :a, href: supporter_checkout_path) { "Supporter badge" } %>
-      <% end %>
       <% cc.item(tag: :a, href: edit_user_registration_path) { "Settings" } %>
       <% cc.item(type: :separator) %>
       <% cc.item(type: :header) { "Posts" } %>
