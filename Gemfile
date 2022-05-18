@@ -22,7 +22,7 @@ gem "aws-sdk-s3", "~> 1.112"
 # Stimulus Reflex
 gem "redis", "~> 4.0", require: ["redis", "redis/connection/hiredis"]
 gem "hiredis", "~> 0.6.3"
-gem "redis-session-store", "~> 0.11.4"
+gem "redis-session-store", "~> 0.11.4" # removing this causes sentry params filter to break even though redis sesssion store is disabled
 # gem "ostruct", "~> 0.5.3" # delete this after stimulus_reflex gets updated from pre8
 gem "stimulus_reflex", "~> 3.5.0-pre9"
 # front end gems
