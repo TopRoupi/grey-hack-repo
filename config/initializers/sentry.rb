@@ -4,7 +4,7 @@ Sentry.init do |config|
   config.environment = Rails.env
   config.release = "greyrepo@1.0.0"
   config.dsn = Rails.application.credentials[:sentry_dsn]
-  config.breadcrumbs_logger = [:active_support_logger, :http_logger]
+  config.breadcrumbs_logger = [:sentry_logger, :active_support_logger, :http_logger]
   config.enabled_environments = %w[production]
 
   filter = ActiveSupport::ParameterFilter.new(Rails.application.config.filter_parameters)
@@ -16,8 +16,4 @@ Sentry.init do |config|
   # of transactions for performance monitoring.
   # We recommend adjusting this value in production
   config.traces_sample_rate = 1.0
-  # or
-  config.traces_sampler = lambda do |context|
-    true
-  end
 end

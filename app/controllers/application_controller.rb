@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   Pagy::DEFAULT[:items] = 10
 
   before_action :configure_permitted_parameters, if: :devise_controller?
+  newrelic_ignore_enduser
 
   protected
 

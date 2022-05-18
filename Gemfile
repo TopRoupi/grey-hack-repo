@@ -48,6 +48,7 @@ gem "tailwindcss-rails", "~> 2.0"
 gem "newrelic_rpm", "~> 8.4"
 gem "sentry-ruby", "~> 5.2"
 gem "sentry-rails", "~> 5.2"
+gem "sentry-sidekiq", "~> 5.3"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
