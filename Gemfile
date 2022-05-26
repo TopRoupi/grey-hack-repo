@@ -3,7 +3,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.1.1"
+ruby ">= 3.1.1"
 
 gem "rails", "~> 7.0.1"
 
@@ -63,6 +63,7 @@ group :development do
   gem "listen", "~> 3.3"
   gem "spring"
   gem "stackprof", "~> 0.2.19"
+  gem "standardrb"
 end
 
 group :test do

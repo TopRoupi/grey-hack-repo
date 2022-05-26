@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -20,7 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_21_204417) do
     t.string "name", null: false
     t.text "body"
     t.string "record_type", null: false
-    t.integer "record_id", null: false
+    t.bigint "record_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
@@ -121,8 +119,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_21_204417) do
   end
 
   create_table "pay_charges", force: :cascade do |t|
-    t.integer "customer_id", null: false
-    t.integer "subscription_id"
+    t.bigint "customer_id", null: false
+    t.bigint "subscription_id"
     t.string "processor_id", null: false
     t.integer "amount", null: false
     t.string "currency"
@@ -138,7 +136,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_21_204417) do
 
   create_table "pay_customers", force: :cascade do |t|
     t.string "owner_type"
-    t.integer "owner_id"
+    t.bigint "owner_id"
     t.string "processor", null: false
     t.string "processor_id"
     t.boolean "default"
@@ -152,7 +150,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_21_204417) do
 
   create_table "pay_merchants", force: :cascade do |t|
     t.string "owner_type"
-    t.integer "owner_id"
+    t.bigint "owner_id"
     t.string "processor", null: false
     t.string "processor_id"
     t.boolean "default"
@@ -163,7 +161,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_21_204417) do
   end
 
   create_table "pay_payment_methods", force: :cascade do |t|
-    t.integer "customer_id", null: false
+    t.bigint "customer_id", null: false
     t.string "processor_id", null: false
     t.boolean "default"
     t.string "type"
@@ -174,7 +172,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_21_204417) do
   end
 
   create_table "pay_subscriptions", force: :cascade do |t|
-    t.integer "customer_id", null: false
+    t.bigint "customer_id", null: false
     t.string "name", null: false
     t.string "processor_id", null: false
     t.string "processor_plan", null: false

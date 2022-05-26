@@ -1,0 +1,7 @@
+{
+  "solargraph.commandPath": "/usr/local/bundle/bin/solargraph",
+  "solargraph.diagnostics": true,
+  "ruby.useBundler": true,
+  "ruby.pathToBundler": "/usr/local/bin/bundle",
+  "ruby.rubocop.executePath": "",
+}

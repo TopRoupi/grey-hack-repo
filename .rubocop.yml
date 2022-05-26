@@ -1,0 +1,4 @@
+require: standardrb
+
+inherit_gem:
+  standard: config/base.yml

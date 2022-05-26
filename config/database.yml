@@ -20,10 +20,12 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("DB_POOL") { 5 } %>
+  username: postgres
+  password: postgres
+  host: localhost
 
 development:
   <<: *default
-  # database: railway
   database: grey_repo_development
 
   # The specified database role being used to connect to postgres.
