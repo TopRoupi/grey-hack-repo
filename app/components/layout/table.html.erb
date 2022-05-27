@@ -1,10 +1,17 @@
 <%= content_tag(@tag, @sys_params) do %>
-  <thead class="bg-beaver-800">
-    <%= rows.first %>
-  </thead>
+  <% if head %>
+    <thead class="bg-beaver-800">
+      <%= head %>
+    </thead>
+  <% end %>
   <tbody class="divide-y divide-beaver-900">
-    <% rows[1..].each do |row| %>
+    <% rows.each do |row| %>
       <%= row %>
     <% end %>
   </tbody>
+  <% if foot %>
+    <tfoot class="bg-beaver-800">
+      <%= foot %>
+    </tfoot>
+  <% end %>
 <% end %>

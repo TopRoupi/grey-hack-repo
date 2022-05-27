@@ -120,7 +120,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         post posts_url, params: {post: {summary: @post.summary, readme: @post.readme, title: @post.title, category_id: @post.category_id, builds_attributes: {"0": {name: @build.name, scripts_attributes: {"0": {name: @script.name, content: @script.content}}}}}}
       end
 
-      assert_redirected_to post_url(Post.last)
+      assert_redirected_to post_builds_url(Post.last)
     end
 
     test "should get edit of its own posts" do

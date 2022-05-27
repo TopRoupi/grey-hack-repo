@@ -30,7 +30,7 @@
 
 <div id="fileable-list" class="mb-6">
   <%= render(Layout::Table.new(class: "!w-fit mx-auto")) do |c| %>
-    <% c.row do |cc| %>
+    <% c.head do |cc| %>
       <% cc.column { "Name" } %>
       <% cc.column { "Published" } %>
       <% cc.column { "Actions" } %>
@@ -67,15 +67,16 @@
         <% end %>
       <% end %>
     <% end %>
-  <% end %>
-  <% @builds.each do |build| %>
-    <p class="text-center">
-    </p>
+
+    <% c.foot do |cc| %>
+      <% cc.column(colspan: 999) do %>
+        <button class="px-2 rounded button_info float-right" data-reflex="click->FileableForm::Reflex#add_build" data-post-id="<%= @post.signed_id %>">
+          Add Build
+        </button>
+      <% end %>
+    <% end %>
   <% end %>
 
-  <div class="link mx-auto block w-fit" data-reflex="click->FileableForm::Reflex#add_build" data-post-id="<%= @post.signed_id %>">
-    Add Build
-  </div>
 </div>
 
 <% if @selected_build %>

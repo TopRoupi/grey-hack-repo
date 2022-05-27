@@ -13,7 +13,7 @@ class Build < ApplicationRecord
   belongs_to :post
   include Fileable
   has_one_attached :files
-  after_commit :set_files, on: [:update, :create]
+  after_commit :set_files, on: [:update]
 
   validates_with BuildValidator
   validates :name, presence: true, length: {minimum: 3, maximum: 16}

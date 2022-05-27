@@ -1,8 +1,19 @@
 # frozen_string_literal: true
 
 class Layout::Table < ApplicationComponent
+  renders_one :head, lambda { |**kwargs|
+    kwargs[:head] = true
+
+    Layout::TableRow.new(**kwargs)
+  }
+
   renders_many :rows, lambda { |**kwargs|
-    kwargs[:head] = true if rows.length == 0
+    Layout::TableRow.new(**kwargs)
+  }
+
+
+  renders_one :foot, lambda { |**kwargs|
+    kwargs[:foot] = true
 
     Layout::TableRow.new(**kwargs)
   }
