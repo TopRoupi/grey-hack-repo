@@ -1,0 +1,16 @@
+<%= content_tag(@tag, @sys_params) do %>
+  <div class="flex items-center justify-start bg-beaver-900 p-2 rounded-t">
+    <%= header if header %>
+    <button class="bg-beaver-800 ml-auto hover:bg-beaver-700 text-white font-bold py-2 px-2 rounded" data-action="click->modal#close">
+      <%= octicon "x", height: 16, class: "fill-current" %>
+    </button>
+  </div>
+
+  <%= body %>
+
+  <%= @kek %>
+  <%= footer %>
+  <!-- <div class="flex justify-end items-center flex-wrap p-2 rounded-b bg-beaver-900"> -->
+  <!--   <button id="close-modal" class="bg-beaver-800 hover:bg-beaver-700 text-white font-bold py-2 px-4 rounded" data-action="click->modal#close">Close</button> -->
+  <!-- </div> -->
+<% end %>

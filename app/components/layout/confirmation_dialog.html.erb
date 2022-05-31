@@ -1,0 +1,16 @@
+<% content %>
+<%= render(Layout::Modal.new(**@modal_args)) do |c| %>
+  <% c.button(**@button_args) { @button_content.call } %>
+  <% c.dialog(size: :medium) do |cc| %>
+    <% cc.header(small: true) do %>
+      <%= title %>
+    <% end %>
+    <% cc.body do %>
+      Are you sure?
+    <% end %>
+    <% cc.footer do |ccc| %>
+      <% ccc.action(close: true) { "Cancel" } %>
+      <% ccc.action(**@action_args) { @action_content.call } %>
+    <% end %>
+  <% end %>
+<% end %>

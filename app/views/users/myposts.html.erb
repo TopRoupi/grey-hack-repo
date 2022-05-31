@@ -42,8 +42,12 @@
           <%= link_to edit_post_path(post), class: "p-2 rounded button_info mr-2 flex items-center" do %>
             <%= octicon "pencil", height: 16, class: "fill-current" %>
           <% end %>
-          <%= link_to post_path(post), class: "p-2 rounded button_danger flex items-center", data: { turbo_method: :delete, turbo_confirm: 'Are you sure?', turbo_frame: "_top" } do %>
-            <%= octicon "trash", height: 16, class: "fill-current" %>
+          <%= render(Layout::ConfirmationDialog.new(class: "flex")) do |c| %>
+            <% c.title { "Delete " + post.title } %>
+            <% c.button(class: "p-2 rounded button_danger flex items-center") do %>
+              <%= octicon "trash", height: 16, class: "fill-current" %>
+            <% end %>
+            <% c.action(tag: :a, style: "danger", data: {turbo_method: :delete, turbo_frame: "_top"}, href: post_path(post)) { "Delete" } %>
           <% end %>
         </div>
       <% end %>

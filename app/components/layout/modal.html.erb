@@ -5,21 +5,7 @@
     <%= button %>
 
     <div data-modal-target="container" data-action="click->modal#closeBackground keyup@window->modal#closeWithKeyboard" class="hidden animated fadeIn fixed inset-0 overflow-y-auto flex justify-center" style="z-index: 9999;">
-      <div class="mt-auto mb-auto w-full max-w-5xl mx-10 relative bg-beaver-900 rounded">
-        <div class="flex justify-end items-center flex-wrap mb-2 mt-2 mr-2">
-          <button class="bg-beaver-800 hover:bg-beaver-700 text-white font-bold py-2 px-2 rounded" data-action="click->modal#close">
-            <%= octicon "x", height: 16, class: "fill-current" %>
-          </button>
-        </div>
-
-        <div class="text-left overflow-x-auto w-full p-10 bg-beaver-850">
-          <%= body %>
-        </div>
-
-        <div class="flex justify-end items-center flex-wrap mt-2 mb-2 mr-2">
-          <button id="close-modal" class="bg-beaver-800 hover:bg-beaver-700 text-white font-bold py-2 px-4 rounded" data-action="click->modal#close">Close</button>
-        </div>
-      </div>
+      <%= dialog %>
     </div>
   <% end %>
 <% end %>
