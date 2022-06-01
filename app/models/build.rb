@@ -25,6 +25,7 @@ class Build < ApplicationRecord
 
   def update_post_published_status
     post.update(published: post.builds.published.any?)
+  rescue FrozenError
   end
 
   def ready_to_publish?
