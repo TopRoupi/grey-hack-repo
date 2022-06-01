@@ -37,35 +37,40 @@
     <% end %>
 
     <% @builds.each do |build| %>
-      <% c.row do |cc| %>
-        <% cc.column { build.name } %>
+      <% selected = @selected_build == build %>
+      <% c.row(class: "#{"bg-beaver-700" if selected}") do |cc| %>
+        <% cc.column do %>
+          <% if selected %>
+            <input data-reflex="debounced:input->FileableForm::Reflex#update_build_name" data-build-id="<%= build.signed_id %>" class="input" type="text" value="<%= build.name %>"></input>
+          <% else %>
+            <%= build.name %>
+          <% end %>
+        <% end %>
         <% cc.column { published_status(build) } %>
         <% cc.column do %>
           <div class="flex justify-end">
             <% if build.published == false %>
               <% if build.ready_to_publish? %>
-                <button class="rounded p-2 mr-2 button_success" data-reflex="click->FileableForm::Reflex#publish_build" data-build-id="<%= build.signed_id %>">
-                  publish
-                </button>
+                <%= render(Layout::ConfirmationDialog.new(class: "flex")) do |c| %>
+                  <% c.title { "Publish " + build.name } %>
+                  <% c.button(class: "rounded p-2 mr-2 button_success") { "Publish" } %>
+                  <% c.action(tag: :a, style: "success", href: build_publish_path(build), data: {turbo_method: :patch, turbo_frame: "_top"}){ "Publish" } %>
+                <% end %>
               <% else %>
                 <span class="p-2 rounded bg-beaver-800 text-red-400 mr-2 flex items-center">
                   publish
                 </span>
               <% end %>
-            <% end %>
-            <% if build.published == false %>
-              <%= link_to path_to(request.url, build_id: build.id), class: "p-2 rounded button_info mr-2 flex items-center" do %>
+              <%= link_to selected ? post_builds_path(@post) : path_to(request.url, build_id: build.id), class: "p-2 rounded button_info mr-2 flex items-center" do %>
                 <%= octicon "pencil", height: 16, class: "fill-current" %>
               <% end %>
-
-
-              <%= render(Layout::ConfirmationDialog.new(class: "flex")) do |c| %>
-                <% c.title { "Delete " + build.name } %>
-                <% c.button(class: "p-2 rounded button_danger mr-2 flex items-center") do %>
-                  <%= octicon "trash", height: 16, class: "fill-current" %>
-                <% end %>
-                <% c.action(style: "danger", data: {reflex: "click->FileableForm::Reflex#delete_build", build_id: build.signed_id}) { "Delete" } %>
+            <% end %>
+            <%= render(Layout::ConfirmationDialog.new(class: "flex")) do |c| %>
+              <% c.title { "Delete " + build.name } %>
+              <% c.button(class: "p-2 rounded button_danger mr-2 flex items-center") do %>
+                <%= octicon "trash", height: 16, class: "fill-current" %>
               <% end %>
+              <% c.action(tag: :a, style: "danger", href: build_path(build), data: {turbo_method: :delete, turbo_frame: "_top"}){ "Delete" } %>
             <% end %>
           </div>
         <% end %>
@@ -109,9 +114,4 @@
       <% end %>
     <% end %>
   </div>
-
-  <h2 class="text-center text-2xl font-semibold mb-6">
-    Build fields
-  </h2>
-  <%= render("builds/form", build: @selected_build) %>
 <% end %>

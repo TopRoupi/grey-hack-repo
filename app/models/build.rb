@@ -13,13 +13,19 @@ class Build < ApplicationRecord
   belongs_to :post
   include Fileable
   has_one_attached :files
+
   after_commit :set_files, on: [:update]
+  after_commit :update_post_published_status, on: [:destroy]
 
   validates_with BuildValidator
   validates :name, presence: true, length: {minimum: 3, maximum: 16}
 
   scope :published, -> { where(published: true) }
   scope :unpublished, -> { where(published: false) }
+
+  def update_post_published_status
+    post.update(published: post.builds.published.any?)
+  end
 
   def ready_to_publish?
     has_script?

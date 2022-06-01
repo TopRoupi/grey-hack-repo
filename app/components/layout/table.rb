@@ -11,7 +11,6 @@ class Layout::Table < ApplicationComponent
     Layout::TableRow.new(**kwargs)
   }
 
-
   renders_one :foot, lambda { |**kwargs|
     kwargs[:foot] = true
 

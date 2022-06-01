@@ -314,9 +314,9 @@ decamelize@^1.1.1:
   integrity sha512-z2S+W9X73hAUUki+N+9Za2lBlun89zigOyGrsax+KUQ6wKW4ZoWpEYBkGhQjwAjjDCkWxhY0VKEhk8wzY7F5cA==
 
 electron-to-chromium@^1.4.118:
-  version "1.4.141"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.141.tgz#4dd9119e8a99f1c83c51dfcf1bed79ea541f08d6"
-  integrity sha512-mfBcbqc0qc6RlxrsIgLG2wCqkiPAjEezHxGTu7p3dHHFOurH4EjS9rFZndX5axC8264rI1Pcbw8uQP39oZckeA==
+  version "1.4.142"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.142.tgz#70cc8871f7c0122b29256089989e67cee637b40d"
+  integrity sha512-ea8Q1YX0JRp4GylOmX4gFHIizi0j9GfRW4EkaHnkZp0agRCBB4ZGeCv17IEzIvBkiYVwfoKVhKZJbTfqCRdQdg==
 
 emissary@^1:
   version "1.3.3"
@@ -673,7 +673,7 @@ minimist@^1.2.6:
 mixto@1.x:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/mixto/-/mixto-1.0.0.tgz#c320ef61b52f2898f522e17d8bbc6d506d8425b6"
-  integrity sha1-wyDvYbUvKJj1IuF9i7xtUG2EJbY=
+  integrity sha512-g2Kg8O3ww9RbWuPnAgTsAhe+aBwVXoo/lhYyDKTYPiLKdJofAr97O8zTFzW5UfiJUoeJbmXLmcjDAF7/Egwi8Q==
 
 mkdirp@^0.5.1:
   version "0.5.6"

@@ -3,6 +3,14 @@
 class FileableForm::Reflex < ApplicationReflex
   before_reflex :set_fileable, only: [:add_script, :add_folder]
 
+  def update_build_name
+    puts element
+    build = Build.find_signed(element.dataset[:build_id])
+    puts build
+    build.update(name: element.value)
+    morph :nothing
+  end
+
   def import_build(params)
     string = params["string"]
     name = params["name"]
@@ -18,12 +26,6 @@ class FileableForm::Reflex < ApplicationReflex
     build.save
   end
 
-  def publish_build
-    build = Build.find_signed(element.dataset[:build_id])
-    build.published = true
-    build.save
-  end
-
   def publish_post
     post = Post.find_signed(element.dataset[:post_id])
     post.published = true
@@ -34,10 +36,6 @@ class FileableForm::Reflex < ApplicationReflex
     post = Post.find_signed(element.dataset[:post_id])
     post.builds << Build.new(name: "draft build", published: false)
     post.save
-  end
-
-  def delete_build
-    Build.find_signed(element.dataset[:build_id]).destroy
   end
 
   def add_script

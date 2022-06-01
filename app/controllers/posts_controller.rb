@@ -31,6 +31,7 @@ class PostsController < ApplicationController
   def builds
     @builds = @post.builds.order(created_at: :desc)
     @selected_build = @post.builds.find_by(id: params[:build_id]) if params[:build_id]
+    redirect_to post_builds_path if @selected_build&.published == true
   end
 
   # GET /posts/1/edit

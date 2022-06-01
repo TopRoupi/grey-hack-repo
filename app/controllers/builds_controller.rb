@@ -2,34 +2,12 @@
 
 class BuildsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_build, only: [:edit, :update, :destroy]
+  before_action :set_build, only: [:destroy, :publish]
 
-  # POST /builds
-  def create
-    @build = Build.new(build_params)
-    @build.user = current_user
-
-    respond_to do |format|
-      if @build.save
-        format.html { redirect_to @build.post, notice: "Post was successfully created." }
-        format.json { render :show, status: :created, location: @build }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @build.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /builds/1
-  def update
-    respond_to do |format|
-      if @build.update(build_params)
-        format.html { redirect_back fallback_location: root_path, notice: "Build was successfully updated." }
-      else
-        format.json { render json: @build.errors, status: :unprocessable_entity }
-        format.turbo_stream { render turbo_stream: turbo_stream.replace("edit_build_#{@build.id}", partial: "builds/form", locals: {build: @build}) }
-      end
-    end
+  # POST /builds/1/publish
+  def publish
+    @build.update published: true
+    redirect_to post_builds_path(@build.post)
   end
 
   # DELETE /builds/1

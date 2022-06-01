@@ -13,6 +13,7 @@ class Layout::TableRow < ApplicationComponent
     @head = head
     @foot = foot
 
-    @sys_params[:class] = "bg-beaver-850" if @head == false && @foot == false
+    @sys_params[:class] ||= ""
+    @sys_params[:class] += " bg-beaver-850" if @head == false && @foot == false
   end
 end

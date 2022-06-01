@@ -43,9 +43,11 @@ class Post < ApplicationRecord
   scope :month, -> { where({created_at: (1.month.ago)..Time.now}) }
   scope :year, -> { where({created_at: (1.year.ago)..Time.now}) }
 
-  after_commit :update_discord, on: [:update]
+  # after_commit :update_discord, on: [:update]
 
-  def update_discord
-    DiscordJob.perform_later(self)
-  end
+  private
+
+  # def update_discord
+  #   DiscordJob.perform_later(self)
+  # end
 end
