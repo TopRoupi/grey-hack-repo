@@ -72,4 +72,12 @@ class PostTest < ActiveSupport::TestCase
 
     refute_empty @post.errors[:builds]
   end
+
+  test "should update published status after all published builds gets deleted" do
+    @post.builds.each do |b|
+      b.destroy
+    end
+
+    refute @post.published
+  end
 end
