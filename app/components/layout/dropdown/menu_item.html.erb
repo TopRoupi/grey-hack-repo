@@ -1,3 +1,5 @@
-<%= content_tag(@tag, @sys_params) do %>
-  <%= content %>
-<% end %>
+<li class="<%= @item_class %>">
+  <%= content_tag(@tag, @sys_params) do %>
+    <%= content %>
+  <% end %>
+</li>

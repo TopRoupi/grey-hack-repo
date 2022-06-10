@@ -16,15 +16,15 @@ html {
 }
 
 .button_primary {
-  @apply bg-beaver-700 hover:bg-beaver-600 active:bg-beaver-700 transition duration-150 ease-in-out
+  @apply bg-primary hover:bg-primary-focus active:bg-primary transition duration-150 ease-in-out
 }
 
 .button_secondary {
-  @apply bg-beaver-800 hover:bg-beaver-700 active:bg-beaver-800 transition duration-150 ease-in-out
+  @apply bg-secondary hover:bg-secondary-focus active:bg-secondary transition duration-150 ease-in-out
 }
 
 .button_success {
-  @apply bg-green-700 hover:bg-green-600 active:bg-green-700 transition duration-150 ease-in-out
+  @apply bg-success  transition duration-150 ease-in-out
 }
 
 .button_submit {

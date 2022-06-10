@@ -19,7 +19,7 @@
   </div>
 </div>
 
-<%= render Layout::LinkGroup.new(2, dark: true) do |c| %>
+<%= render Layout::LinkGroup.new() do |c| %>
   <% c.link(name: "Posts", link: user_path(@user), active: params[:stars].nil?) %>
   <% c.link(name: "Stars", link: path_to(request.url, stars: ""), active: params[:stars] == "") %>
 <% end %>

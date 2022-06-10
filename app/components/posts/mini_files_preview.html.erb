@@ -1,4 +1,4 @@
-<div id="<%= dom_id @fileable, "mini_files_preview" %>" class="mb-4 bg-beaver-850 px-2 py-1 rounded-b-lg overflow-x-auto">
+<div id="<%= dom_id @fileable, "mini_files_preview" %>" class="mb-4 bg-base-100 border-2 border-base-200 p-1 card overflow-x-auto">
   <div class="flex items-center mx-auto sm:mx-0 w-fit sm:w-full">
     <% if @fileable.instance_of? Folder %>
       <button class="mr-2 flex items-center rounded p-2 hover:bg-beaver-800" data-reflex="click->Posts::MiniFilesPreviewReflex#back" data-folder-id="<%= @fileable.signed_id %>">
@@ -19,7 +19,7 @@
     <% end %>
     <div class="ml-0 sm:ml-auto">
       <%= render(Layout::Modal.new(tag: :div)) do |c| %>
-        <% c.button(tag: :button, class: "button_secondary px-2 rounded whitespace-nowrap", style: "height: 40px") { "Export string" } %>
+        <% c.button(tag: :button, class: "btn btn-xs whitespace-nowrap", style: "height: 40px") { "Export string" } %>
         <% c.dialog do |cc| %>
           <% cc.header { @fileable.name + " export string" } %>
           <% cc.body do %>
