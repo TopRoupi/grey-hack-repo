@@ -2,6 +2,7 @@
 
 class ApplicationController < ActionController::Base
   include Pagy::Backend
+  default_form_builder DaisyFormBuilder
   Pagy::DEFAULT[:items] = 10
 
   before_action :configure_permitted_parameters, if: :devise_controller?

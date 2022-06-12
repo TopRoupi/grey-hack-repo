@@ -7,14 +7,14 @@ import { Turbo, cable } from "@hotwired/turbo-rails"
 import * as ActiveStorage from "@rails/activestorage"
 ActiveStorage.start()
 
+import Trix from "trix"
+window.Trix = Trix
+require("@rails/actiontext")
+
+import "./trix-editor-overwrites"
+require("./trix-toolbar-overwrites")
+
 import "./controllers"
-
-// require("stylesheets/application.scss")
-import "trix"
-import "@rails/actiontext"
-
-import "./trix-editor-overrides"
 
 window.Turbo = Turbo
 
-import '@material/mwc-button'

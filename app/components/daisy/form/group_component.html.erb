@@ -1,0 +1,13 @@
+<div class="form-control w-full my-4">
+  <label class="block mb-2 text-sm" for="<%= "#{object_name}_#{method_name}" %>">
+    <%= method_name.capitalize %>
+    <% if required? %>
+      <abbr title="required">*</abbr>
+    <% end %>
+  </label>
+  <%= content %>
+  <div class="text-error italic mt-1">
+    <%= method_errors.join " and " %>
+  </div>
+</div>
+

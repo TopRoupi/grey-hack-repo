@@ -1,0 +1,70 @@
+<div class="flex mb-4">
+  <div class="btn-group" data-trix-button-group="text-tools">
+    <button class="btn btn-sm" data-trix-attribute="bold" data-trix-key="b" title="bold">
+      <%= octicon "bold", class: "fill-current" %>
+    </button>
+    <button class="btn btn-sm" data-trix-attribute="italic" data-trix-key="i" title="italic">
+      <%= octicon "italic", class: "fill-current" %>
+    </button>
+    <button class="btn btn-sm" data-trix-attribute="strike" title="strike">
+      <%= octicon "strikethrough", class: "fill-current" %>
+    </button>
+    <button class="btn btn-sm" data-trix-attribute="href" data-trix-action="link" data-trix-key="k" title="link">
+      <%= octicon "link", class: "fill-current" %>
+    </button>
+  </div>
+
+  <div class="btn-group ml-2" data-trix-button-group="block-tools">
+    <button class="btn btn-sm" data-trix-attribute="heading1" title="heading1">
+      <%= octicon "heading", class: "fill-current" %>
+    </button>
+    <button class="btn btn-sm" data-trix-attribute="quote" title="quote">
+      <%= octicon "quote", class: "fill-current" %>
+    </button>
+    <button class="btn btn-sm" data-trix-attribute="code" title="code">
+      <%= octicon "code", class: "fill-current" %>
+    </button>
+    <button class="btn btn-sm" data-trix-attribute="bullet" title="bullets">
+      <%= octicon "list-unordered", class: "fill-current" %>
+    </button>
+    <button class="btn btn-sm" data-trix-attribute="number" title="numbers">
+      <%= octicon "list-ordered", class: "fill-current" %>
+    </button>
+    <button class="btn btn-sm" data-trix-action="decreaseNestingLevel" title="outdent">
+      <%= octicon "triangle-left", class: "fill-current" %>
+    </button>
+    <button class="btn btn-sm" data-trix-action="increaseNestingLevel" title="indent">
+      <%= octicon "triangle-right", class: "fill-current" %>
+    </button>
+  </div>
+
+  <div class="btn-group ml-2" data-trix-button-group="file-tools">
+    <button class="btn btn-sm" data-trix-action="attachFiles" title="attachFiles">
+      <%= octicon "upload", class: "fill-current" %>
+    </button>
+  </div>
+
+
+  <div class="btn-group ml-auto" data-trix-button-group="history-tools">
+    <button class="btn btn-sm" data-trix-action="undo" title="undo">
+      <%= octicon "arrow-left", class: "fill-current" %>
+    </button>
+    <button class="btn btn-sm" data-trix-action="redo" title="redo">
+      <%= octicon "arrow-right", class: "fill-current" %>
+    </button>
+  </div>
+</div>
+
+<div data-trix-dialogs>
+  <div class="card card-compact bg-base-200 mb-2" data-trix-dialog="href" data-trix-dialog-attribute="href">
+    <div class="card-body">
+      <div class="flex">
+        <input type="url" name="href" class="input input-bordered w-full" placeholder="Enter a URL..." aria-label="#{lang.url}" required data-trix-input>
+        <div class="btn-group flex-nowrap">
+          <input type="button" class="btn" value="link" data-trix-method="setAttribute"></input>
+          <input type="button" class="btn" value="unlink" data-trix-method="removeAttribute"></input>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

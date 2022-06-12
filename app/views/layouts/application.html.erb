@@ -7,7 +7,6 @@
 
     <%= display_meta_tags(default_meta_tags) %>
 
-    <%# <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
@@ -15,6 +14,9 @@
   </head>
 
   <body>
+    <div id="toolbar-trix" class="hidden">
+      <%= render(TrixToolbar.new) %>
+    </div>
     <div class="min-h-screen">
       <%= render(Layout::NavBar::Component.new(current_user: current_user)) %>
       <div class="container max-w-5xl mx-auto mb-8 px-4">

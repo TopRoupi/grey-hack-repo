@@ -56,7 +56,7 @@ SimpleForm.setup do |config|
     b.optional :pattern
     b.optional :min_max
     b.optional :readonly
-    b.use :label, class: "block mb-2 text-sm text-chestnut-400"
+    b.use :label, class: "block mb-2 text-sm"
     b.use :input, class: "input", error_class: "border-red-300", valid_class: "border-green-500"
     b.use :full_error, wrap_with: {tag: "div", class: "text-red-500 text-xs italic error"}
     b.use :hint, wrap_with: {tag: "small", class: "text-gray-500 text-xs italic"}
@@ -67,7 +67,7 @@ SimpleForm.setup do |config|
     b.use :html5
     b.optional :readonly
     b.use :input, class: "mr-2 leading-tight", error_class: "is-invalid", valid_class: "is-valid"
-    b.use :label, class: "text-sm text-gray-400"
+    b.use :label, class: "text-sm"
     b.use :full_error, wrap_with: {tag: "div", class: "invalid-feedback"}
     b.use :hint, wrap_with: {tag: "small", class: "form-text text-muted"}
   end

@@ -10,8 +10,11 @@
   <% end %>
 <% end %>
 
-<%= simple_form_for(:query, url: request.url, method: :get, html: {class: "mt-5", data: {reflex: "debounced:input->SearchPostReflex#search"}}) do |f| %>
-  <%= f.input :title, input_html: { value: params[:query] && params[:query]["title"], class: "!rounded-none !rounded-r" }, wrapper_html: { class: "flex" }, label_html: { class: "bg-beaver-700 !mb-0 !text-white flex rounded-l px-2 items-center !text-base" }, required: false, label: "Search" %>
+<%= form_for :query, url: request.url, method: :get, class: "mt-5", data: {reflex: "debounced:input->SearchPostReflex#search"}, builder: DaisyFormBuilder do |f| %>
+  <div class="flex">
+    <%= f.label(:title, class: "!mb-0 text-neutral-content flex btn btn-neutral") { "Search" } %>
+    <%= f.text_field :title, value: params[:query] && params[:query]["title"], style: "height: 48px;" %>
+  </div>
 <% end %>
 
 <turbo-frame id="posts">
