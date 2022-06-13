@@ -142,15 +142,34 @@ module.exports = {
       }
     }
   },
-  plugins: [
-    require('@tailwindcss/aspect-ratio'),
-    require('@tailwindcss/typography'),
-    require('daisyui'),
-  ],
-  // daisyUI config (optional)
   daisyui: {
+    themes: [
+      {
+        black: {
+          primary: "#343232",
+          secondary: "#343232",
+          accent: "#343232",
+          "base-100": "#090909",
+          "base-200": "#0D0D0D",
+          "base-300": "#1A1919",
+          neutral: "#272626",
+          "neutral-focus": "#343232",
+          info: "#0000ff",
+          success: "#008000",
+          warning: "#ffff00",
+          error: "#ff0000",
+          "--rounded-box": "0",
+          "--rounded-btn": "0",
+          "--rounded-badge": "0",
+          "--animation-btn": "0",
+          "--animation-input": "0",
+          "--btn-text-case": "normal",
+          "--btn-focus-scale": "1",
+          "--tab-radius": "0",
+        },
+      },
+    ],
     styled: true,
-    themes: true,
     base: true,
     utils: true,
     logs: true,
@@ -158,4 +177,10 @@ module.exports = {
     prefix: "",
     darkTheme: "black",
   },
+  plugins: [
+    require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/typography'),
+    require('daisyui'),
+  ],
+  // daisyUI config (optional)
 }

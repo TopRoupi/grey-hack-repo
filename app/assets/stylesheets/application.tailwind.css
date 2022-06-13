@@ -31,10 +31,6 @@ html {
   @apply bg-indigo-700
 }
 
-.btn {
-  @apply normal-case
-}
-
 /* .btn:disabled { */
 /*   @apply btn-disabled */
 /* } */
