@@ -12,8 +12,8 @@
 
 <%= form_for :query, url: request.url, method: :get, class: "mt-5", data: {reflex: "debounced:input->SearchPostReflex#search"}, builder: DaisyFormBuilder do |f| %>
   <div class="flex">
-    <%= f.label(:title, class: "!mb-0 text-neutral-content flex btn btn-neutral") { "Search" } %>
-    <%= f.text_field :title, value: params[:query] && params[:query]["title"], style: "height: 48px;" %>
+    <%= f.label(:title, class: "!mb-0 text-neutral-content flex btn btn-neutral rounded-r-none") { "Search" } %>
+    <%= f.text_field :title, value: params[:query] && params[:query]["title"], style: "height: 48px;", class: "rounded-l-none" %>
   </div>
 <% end %>
 
@@ -42,4 +42,5 @@
   <% end %>
 
   <%= render(Pagination.new(pagy: @pagy)) if @pagy %>
+
 </turbo-frame>

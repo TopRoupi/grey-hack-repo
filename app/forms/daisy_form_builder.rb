@@ -3,8 +3,8 @@
 class DaisyFormBuilder < ViewComponent::Form::Builder
   namespace "Daisy::Form"
 
-  def group(method, &block)
-    render_component(:group, @object_name, method) do
+  def group(method, **options, &block)
+    render_component(:group, @object_name, method, options) do
       block.call
     end
   end

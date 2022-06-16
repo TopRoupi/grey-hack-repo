@@ -9,5 +9,12 @@
   <div class="text-error italic mt-1">
     <%= method_errors.join " and " %>
   </div>
+  <% if @hint %>
+    <label class="label">
+      <span class="label-text-alt">
+        <%= @hint %>
+      </span>
+    </label>
+  <% end %>
 </div>
 

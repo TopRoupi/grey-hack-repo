@@ -14,8 +14,6 @@ function updateToolbars(event) {
 function toolbarDefaultHTML() {
   const { lang } = Trix.config
 
-
-var toolbar = document.getElementById("toolbar-trix")
-
-return toolbar.innerHTML
+  var toolbar = document.getElementById("toolbar-trix")
+  return toolbar.innerHTML
 }

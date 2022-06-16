@@ -2,18 +2,24 @@
 <% content_for :title, "Log In" %>
 
 <%= render "devise/shared/form_card" do %>
-  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: "false" }) do |f| %>
-    <%= f.input :name,
-      required: true,
-      autofocus: true,
-      input_html: { autocomplete: "name" }%>
-    <%= f.input :password,
-      required: true,
-      input_html: { autocomplete: "new-password" } %>
-    <%= f.input :remember_me,
-      as: :boolean if devise_mapping.rememberable? %>
+  <%= form_for resource, as: resource_name, url: session_path(resource_name), builder: DaisyFormBuilder, html: { data: {turbo: "false"}} do |f| %>
+    <%= f.group :name do %>
+      <%= f.text_field :name %>
+    <% end %>
+
+    <%= f.group :password do %>
+      <%= f.password_field :password %>
+    <% end %>
+
+    <div class="form-control my-4">
+      <label class="label cursor-pointer">
+        <span class="label-text">Remember me</span> 
+        <%= f.check_box :remember_me if devise_mapping.rememberable? %>
+      </label>
+    </div>
+
     <div class="text-right">
-      <%= f.button :submit, "Log In" %>
+      <%= f.submit "Log in", class: "!float-none" %>
     </div>
   <% end %>
 <% end %>

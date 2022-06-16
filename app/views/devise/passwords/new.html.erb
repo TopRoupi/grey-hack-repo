@@ -1,14 +1,14 @@
 <% content_for :title, "Forgot your password?" %>
 
 <%= render "devise/shared/form_card" do %>
-  <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }, data: { turbo: "false" }) do |f| %>
-    <%= f.input :email,
-      required: true,
-      autofocus: true,
-      input_html: { autocomplete: "email" }%>
+
+  <%= form_for resource, as: resource_name, url: password_path(resource_name), builder: DaisyFormBuilder, html: { method: :post, data: {turbo: "false"}} do |f| %>
+    <%= f.group :email do %>
+      <%= f.text_field :email %>
+    <% end %>
 
     <div class="text-right">
-      <%= f.button :submit, "Send instructions" %>
+      <%= f.submit "Send instructions", class: "!float-none" %>
     </div>
   <% end %>
 <% end %>

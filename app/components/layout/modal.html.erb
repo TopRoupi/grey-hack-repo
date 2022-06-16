@@ -4,8 +4,10 @@
   <%= content_tag(@tag, @sys_params) do %>
     <%= button %>
 
-    <div data-modal-target="container" data-action="click->modal#closeBackground keyup@window->modal#closeWithKeyboard" class="hidden animated fadeIn fixed inset-0 overflow-y-auto flex justify-center" style="z-index: 9999;">
+    <input type="checkbox" id="<%= @modal_id %>" class="modal-toggle" />
+
+    <label for="<%= @modal_id %>" class="modal cursor-pointer">
       <%= dialog %>
-    </div>
+    </label>
   <% end %>
 <% end %>
