@@ -1,5 +1,5 @@
 <div id="fileable-explorer" class="w-full">
-  <div class="bg-beaver-800 p-3 rounded-t text-beaver-200 border-b border-beaver-700 flex items-center" style="height: 54px">
+  <div class="bg-base-200 p-3 rounded-tr border-b border-base-300 flex items-center" style="height: 54px">
     <% if render_back_button? %>
       <%= content_tag(:button, back_button_attributes) do %>
         <%= octicon "chevron-left", class: "align-baseline fill-current", height: 20 %>
@@ -7,7 +7,7 @@
     <% end %>
     <%= @fileable.path_list.map(&:path).join(" / ") %>
   </div>
-  <div class="flex flex-col justify-between bg-beaver-850 p-3 rounded-b " style="min-height: 300px">
+  <div class="flex flex-col justify-between bg-base-100 p-3 " style="min-height: 300px">
     <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
       <% files.each do |file| %>
         <%= render(FileableExplorer::File.new(file: file)) %>

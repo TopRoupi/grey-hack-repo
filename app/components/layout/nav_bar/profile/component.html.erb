@@ -1,6 +1,6 @@
 <%= render(Layout::Dropdown.new(direction: :left)) do |c| %>
   <% c.button(tag: :button, class: "btn btn-ghost btn-circle avatar") do %>
-    <div class="w-10 rounded-full">
+    <div class="w-8 rounded-full">
       <span class="sr-only">Open user menu</span>
       <img src="<%= helpers.user_avatar(@current_user) %>" alt="">
     </div>

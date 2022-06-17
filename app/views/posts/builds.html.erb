@@ -18,7 +18,7 @@
   <p class="text-center text-green-400">
     Post ready to publish
   </p>
-  <button data-reflex="click->PostReflex#publish" data-post-id="<%= @post.signed_id %>" class="mb-5 px-4 py-2 mx-auto rounded button_success block">
+  <button data-reflex="click->PostReflex#publish" data-post-id="<%= @post.signed_id %>" class="mb-5 btn btn-success btn-sm mx-auto block">
     Publish build
   </button>
 <% end %>
@@ -39,7 +39,7 @@
     <% @builds.each do |build| %>
       <%= next if defined?(@selected_build) && @selected_build != build %>
       <% selected = @selected_build == build %>
-      <% c.row(class: "#{"bg-beaver-700" if selected}") do |cc| %>
+      <% c.row(class: "#{"bg-primary" if selected}") do |cc| %>
         <% cc.column do %>
           <% if selected %>
             <input data-reflex="debounced:input->FileableForm::Reflex#update_build_name" data-build-id="<%= build.signed_id %>" class="input" type="text" value="<%= build.name %>"></input>
@@ -54,21 +54,21 @@
               <% if build.ready_to_publish? %>
                 <%= render(Layout::ConfirmationDialog.new(class: "flex")) do |c| %>
                   <% c.title { "Publish " + build.name } %>
-                  <% c.button(class: "rounded p-2 mr-2 button_success") { "Publish" } %>
+                  <% c.button(class: "btn btn-success btn-thin p-2 mr-2") { "Publish" } %>
                   <% c.action(tag: :a, style: "success", href: build_publish_path(build), data: {turbo_method: :patch, turbo_frame: "_top"}){ "Publish" } %>
                 <% end %>
               <% else %>
-                <span class="p-2 rounded bg-beaver-800 text-red-400 mr-2 flex items-center">
+                <span class="btn btn-disabled btn-thin p-2 mr-2">
                   publish
                 </span>
               <% end %>
-              <%= link_to selected ? post_builds_path(@post) : path_to(request.url, build_id: build.id), class: "p-2 rounded button_info mr-2 flex items-center" do %>
+              <%= link_to selected ? post_builds_path(@post) : path_to(request.url, build_id: build.id), class: "btn btn-info btn-thin p-2 mr-2" do %>
                 <%= octicon "pencil", height: 16, class: "fill-current" %>
               <% end %>
             <% end %>
             <%= render(Layout::ConfirmationDialog.new(class: "flex")) do |c| %>
               <% c.title { "Delete " + build.name } %>
-              <% c.button(class: "p-2 rounded button_danger mr-2 flex items-center") do %>
+              <% c.button(class: "btn btn-danger btn-thin p-2 mr-2") do %>
                 <%= octicon "trash", height: 16, class: "fill-current" %>
               <% end %>
               <% c.action(tag: :a, style: "danger", href: build_path(build), data: {turbo_method: :delete, turbo_frame: "_top"}){ "Delete" } %>
@@ -81,7 +81,7 @@
     <% if @selected_build.nil? %>
       <% c.foot do |cc| %>
         <% cc.column(colspan: 999) do %>
-          <button class="px-2 rounded button_info float-right" data-reflex="click->FileableForm::Reflex#add_build" data-post-id="<%= @post.signed_id %>">
+          <button class="btn btn-info btn-thin px-2 float-right" data-reflex="click->FileableForm::Reflex#add_build" data-post-id="<%= @post.signed_id %>">
             Add Build
           </button>
         <% end %>

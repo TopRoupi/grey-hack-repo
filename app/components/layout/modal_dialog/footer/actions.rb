@@ -2,7 +2,6 @@
 
 class Layout::ModalDialog::Footer::Actions < Layout::BaseComponent
   def initialize(id, tag: :button, close: false, style: :secondary, **sys_params)
-    style = :error if style == :danger || style == "danger"
     @modal_id = id
     @tag = tag
     @sys_params = sys_params

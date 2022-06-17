@@ -7,33 +7,21 @@ html {
   src: url('https://www.1001fonts.com/download/font/cantarell.regular.ttf') format('truetype');
 }
 
-.button_info {
-  @apply bg-denim-600 hover:bg-denim-500 active:bg-denim-600 transition duration-150 ease-in-out
+.btn-danger {
+  @apply btn-error
 }
 
-.button_danger {
-  @apply bg-red-900 hover:bg-red-700 active:bg-red-900 transition duration-150 ease-in-out
+.btn-info {
+  @apply text-white
 }
 
-.button_primary {
-  @apply bg-primary hover:bg-primary-focus active:bg-primary transition duration-150 ease-in-out
+.btn-thin {
+  @apply min-h-0 h-auto
 }
 
-.button_secondary {
-  @apply bg-secondary hover:bg-secondary-focus active:bg-secondary transition duration-150 ease-in-out
+.btn {
+  @apply text-base font-normal
 }
-
-.button_success {
-  @apply bg-success  transition duration-150 ease-in-out
-}
-
-.button_submit {
-  @apply bg-indigo-700
-}
-
-/* .btn:disabled { */
-/*   @apply btn-disabled */
-/* } */
 
 .link {
   @apply hover:underline text-blue-400 cursor-pointer

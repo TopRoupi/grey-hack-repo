@@ -19,7 +19,7 @@ class FileableExplorer::File < ApplicationComponent
       @sys_params[:data][:fileable_type] = @file.class.to_s
     end
 
-    @sys_params[:class] = "text-#{@icon_color} hover:bg-beaver-800 rounded flex flex-col justify-center items-center"
+    @sys_params[:class] = "text-#{@icon_color} hover:bg-base-200 rounded flex flex-col justify-center items-center"
   end
 
   def before_render

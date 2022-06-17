@@ -4,7 +4,7 @@
      data-starable-id="<%= @starable.signed_id %>"
      data-starable-type="<%= @starable.class %>"
    <% end %>
-     class="<%= "cursor-pointer" unless @visual %> flex px-2 py-1 ml-2 rounded-md <%= "button_secondary" unless @transparent %> text-sm">
+     class="<%= "cursor-pointer" unless @visual %> ml-2 flex py-1 px-2 <%= "btn btn-secondary btn-xs btn-thin !py-0 !px-1" unless @transparent %> text-sm">
   <%= octicon stared? ? "star-fill" : "star", height: 16, class: "fill-current self-center mr-2"%>
   <%= @stars.length %>
 </button>

@@ -1,6 +1,6 @@
-<div class="form-control w-full my-4">
+<div class="form-control w-full my-4 <%= @class %>">
   <label class="block mb-2 text-sm" for="<%= "#{object_name}_#{method_name}" %>">
-    <%= method_name.capitalize %>
+    <%= label %>
     <% if required? %>
       <abbr title="required">*</abbr>
     <% end %>
