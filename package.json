@@ -12,6 +12,7 @@
     "@rails/request.js": "^0.0.6",
     "@webcomponents/webcomponentsjs": "^2.6.0",
     "autoprefixer": "^10.3.7",
+    "daisyui": "^2.15.2",
     "debounced": "^0.0.5",
     "esbuild": "^0.13.3",
     "highlights": "^3.1.4",

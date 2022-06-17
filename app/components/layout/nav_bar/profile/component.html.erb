@@ -1,18 +1,19 @@
-<%= render(Layout::Dropdown.new()) do |c| %>
-  <% c.button(tag: :button, type: "button", class: "bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-beaver-500") do %>
-    <span class="sr-only">Open user menu</span>
-    <img class="h-8 w-8 rounded-full" src="<%= helpers.user_avatar(@current_user) %>" alt="">
+<%= render(Layout::Dropdown.new(direction: :left)) do |c| %>
+  <% c.button(tag: :button, class: "btn btn-ghost btn-circle avatar") do %>
+    <div class="w-8 rounded-full">
+      <span class="sr-only">Open user menu</span>
+      <img src="<%= helpers.user_avatar(@current_user) %>" alt="">
+    </div>
   <% end %>
-  <% c.menu(direction: :left) do |cc| %>
+  <% c.menu(class: "mt-3", compact: true) do |cc| %>
     <% if @current_user %>
+      <% cc.item(type: :title) { "Account" } %>
       <% cc.item(tag: :a, href: user_path(@current_user)) { "Profile" } %>
       <% cc.item(tag: :a, href: edit_user_registration_path) { "Settings" } %>
-      <% cc.item(type: :separator) %>
-      <% cc.item(type: :header) { "Posts" } %>
+      <% cc.item(tag: :a, href: destroy_user_session_path, data: { turbo_method: "delete" }) { "Sign out" } %>
+      <% cc.item(type: :title) { "Posts" } %>
       <% cc.item(tag: :a, href: my_posts_path) { "My posts" } %>
       <% cc.item(tag: :a, href: new_post_path) { "Create a new post" } %>
-      <% cc.item(type: :separator) %>
-      <% cc.item(tag: :a, href: destroy_user_session_path, data: { turbo_method: "delete" }) { "Sign out" } %>
     <% else %>
       <% cc.item(tag: :a, href: user_session_path) { "Log in" } %>
       <% cc.item(tag: :a, href: new_user_registration_path) { "Sign up" } %>

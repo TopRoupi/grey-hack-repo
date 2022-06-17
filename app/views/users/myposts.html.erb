@@ -29,22 +29,22 @@
           <% if post.published == false %>
             <% post.published = true %>
             <% if post.valid? %>
-              <button class="rounded p-2 mr-2 button_success" data-reflex="click->FileableForm::Reflex#publish_post" data-post-id="<%= post.signed_id %>">
+              <button class="btn btn-success btn-thin p-2 mr-2" data-reflex="click->FileableForm::Reflex#publish_post" data-post-id="<%= post.signed_id %>">
                 publish
               </button>
             <% else %>
-              <span class="p-2 rounded bg-beaver-800 text-red-400 mr-2 flex items-center">
+              <span class="btn btn-disabled btn-thin p-2 mr-2 flex items-center">
                 publish
               </span>
             <% end %>
           <% end %>
-          <%= link_to "Manage builds", post_builds_path(post), class: "button_info p-2 rounded mr-2" %>
-          <%= link_to edit_post_path(post), class: "p-2 rounded button_info mr-2 flex items-center" do %>
+          <%= link_to "Manage builds", post_builds_path(post), class: "btn btn-info btn-thin p-2 mr-2" %>
+          <%= link_to edit_post_path(post), class: "btn btn-info btn-thin p-2 mr-2 flex items-center" do %>
             <%= octicon "pencil", height: 16, class: "fill-current" %>
           <% end %>
           <%= render(Layout::ConfirmationDialog.new(class: "flex")) do |c| %>
             <% c.title { "Delete " + post.title } %>
-            <% c.button(class: "p-2 rounded button_danger flex items-center") do %>
+            <% c.button(class: "btn btn-danger btn-thin p-2 flex items-center") do %>
               <%= octicon "trash", height: 16, class: "fill-current" %>
             <% end %>
             <% c.action(tag: :a, style: "danger", data: {turbo_method: :delete, turbo_frame: "_top"}, href: post_path(post)) { "Delete" } %>

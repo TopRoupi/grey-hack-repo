@@ -3,14 +3,14 @@
 class Layout::Dropdown::Menu < ApplicationComponent
   renders_many :items, Layout::Dropdown::MenuItem
 
-  def initialize(tag: "div", direction: :right, **sys_params)
+  def initialize(tag: nil, compact: false, card: false, **sys_params)
     @sys_params = sys_params
-    @tag = tag
-
-    @sys_params[:data] ||= {}
-    @sys_params[:data][:dropdown_target] = "menu"
-    direction = direction.to_sym == :left ? "right-0" : "left-0"
-    @sys_params[:class] ||= "absolute #{direction} mt-2 hidden z-50 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
-    sys_params[:class] += " #{sys_params[:add_class]}" if sys_params[:add_class]
+    @tag ||= card ? :div : :ul
+    classes = ""
+    classes += "menu-compact " if compact && !card
+    classes += "card " if card
+    classes += "card-compact " if compact && card
+    @sys_params[:tabindex] = 0
+    @sys_params[:class] = "dropdown-content menu p-2 shadow bg-base-200 rounded-box w-52 #{classes} #{@sys_params[:class]}"
   end
 end

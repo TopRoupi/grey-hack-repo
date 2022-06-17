@@ -26,12 +26,14 @@ gem "redis-session-store", "~> 0.11.4" # removing this causes sentry params filt
 # gem "ostruct", "~> 0.5.3" # delete this after stimulus_reflex gets updated from pre8
 gem "stimulus_reflex", "~> 3.5.0-pre9"
 # front end gems
+gem "view_component-form"
 gem "view_component", "~> 2.49"
 gem "simple_form", "~> 5.1"
 gem "meta-tags", "~> 2.16"
 gem "octicons_helper", "~> 16.3"
 gem "pagy", "~> 5.10"
 # back end gems
+gem "discord-notifier", "~> 1.0", ">= 1.0.3"
 gem "sidekiq", "~> 6.4"
 gem "devise", "~> 4.8"
 gem "noticed", "~> 1.5"
@@ -75,4 +77,3 @@ end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem "discord-notifier", "~> 1.0", ">= 1.0.3"

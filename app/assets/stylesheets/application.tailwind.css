@@ -7,38 +7,31 @@ html {
   src: url('https://www.1001fonts.com/download/font/cantarell.regular.ttf') format('truetype');
 }
 
-.button_info {
-  @apply bg-denim-600 hover:bg-denim-500 active:bg-denim-600 transition duration-150 ease-in-out
+.btn-danger {
+  @apply btn-error
 }
 
-.button_danger {
-  @apply bg-red-900 hover:bg-red-700 active:bg-red-900 transition duration-150 ease-in-out
+.btn-info {
+  @apply text-white
 }
 
-.button_primary {
-  @apply bg-beaver-700 hover:bg-beaver-600 active:bg-beaver-700 transition duration-150 ease-in-out
+.btn-thin {
+  @apply min-h-0 h-auto
 }
 
-.button_secondary {
-  @apply bg-beaver-800 hover:bg-beaver-700 active:bg-beaver-800 transition duration-150 ease-in-out
-}
-
-.button_success {
-  @apply bg-green-700 hover:bg-green-600 active:bg-green-700 transition duration-150 ease-in-out
-}
-
-.button_submit {
-  @apply bg-indigo-700
+.btn {
+  @apply text-base font-normal
 }
 
 .link {
   @apply hover:underline text-blue-400 cursor-pointer
 }
 
-.input {
-  @apply w-full px-3 py-2 rounded-md focus:outline-none focus:ring bg-beaver-800 text-white placeholder-beaver-500 border-beaver-700 focus:ring-beaver-700 focus:border-beaver-700
+.trix-content a {
+  @apply link
 }
 
-.trix-content a {
-  @apply hover:underline text-blue-400 cursor-pointer
+button.trix-active {
+  @apply !btn-active
 }
+

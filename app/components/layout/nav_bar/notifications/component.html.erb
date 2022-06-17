@@ -1,36 +1,35 @@
-<%= render(Layout::Dropdown.new()) do |c| %>
-  <% c.button(tag: :button, type: "button", class: "flex p-2 mr-4 rounded-md button_secondary", id: "notifications_button") do %>
+<%= render(Layout::Dropdown.new(direction: :left)) do |c| %>
+  <% c.button(tag: :button, type: "button", class: "btn btn-ghost mr-4", id: "notifications_button") do %>
     <%= octicon "#{@notifications.empty? ? "bell" : "bell-fill"}", class: "fill-current", height: 20 %>
   <% end %>
-  <% c.menu(direction: :left, id: "notifications_menu") do |cc| %>
-    <% cc.item(type: :header) { "Notifications" } %>
-    <% cc.item(type: :separator) %>
-    <% if @notifications.empty? %>
-      <% cc.item(tag: :div, class: "hover:!bg-transparent cursor-auto text-center !text-gray-400") { "Empty" } %>
-    <% else %>
-      <% @notifications.each do |notification| %>
-        <% cc.item(tag: :div, class: "hover:!bg-transparent cursor-auto") { notification.message } %>
-        <% cc.item(tag: :div, class: "flex hover:!bg-transparent !p-0") do %>
-          <a href="<%= polymorphic_path(notification.params[:comment].commentable) %>"
-            class="w-full py-2 text-center border-r hover:bg-gray-200">
-            Open
-          </a>
-          <button class="w-full py-2 hover:bg-gray-200"
-            data-id="<%= notification.record.id %>"
-            data-reflex="click->NotificationsReflex#dismiss"
-            data-reflex-root="#notifications_menu #notifications_button">
-            Dismiss
-          </button>
+  <% c.menu(card: true, compact: true, class: "mt-3 w-64 p-0", id: "notifications_menu") do |cc| %>
+    <div class="card-body">
+      <h3 class="card-title text-base-content/70">Notifications</h3>
+      <% if @notifications.empty? %>
+        <p class="!text-base-content/60">
+          Empty
+        </p>
+      <% else %>
+        <% @notifications.each do |notification| %>
+          <div class="card">
+            <div class="card-body !px-0">
+              <p><%= notification.message %></p>
+            </div>
+            <div class="card-actions justify-end">
+              <a href="<%= polymorphic_path(notification.params[:comment].commentable) %>" class="btn btn-sm">Open</a>
+              <button class="btn btn-sm"
+                      data-id="<%= notification.record.id %>"
+                      data-reflex="click->NotificationsReflex#dismiss"
+                      data-reflex-root="#notifications_menu #notifications_button">
+                      Dismiss
+              </button>
+            </div>
+          </div>
         <% end %>
+        <div class="card-actions">
+          <button class="btn btn-primary btn-block" data-reflex="click->NotificationsReflex#dismiss_all" data-reflex-root="#notifications_menu #notifications_button">Dismiss all</button>
+        </div>
       <% end %>
-      <% cc.item(type: :separator) %>
-      <% cc.item(
-        tag: :div,
-        class: "text-center",
-        data: {
-          reflex: "click->NotificationsReflex#dismiss_all",
-          reflex_root: "#notifications_menu #notifications_button"
-        }) { "Dismiss all" } %>
-    <% end %>
+    </div>
   <% end %>
 <% end %>

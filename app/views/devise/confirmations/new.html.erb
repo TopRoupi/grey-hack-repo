@@ -1,16 +1,13 @@
 <% content_for :title, "Resend confirmation instructions" %>
 
 <%= render "devise/shared/form_card" do %>
-  <%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }, data: { turbo: "false" }) do |f| %>
-
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),
-                input_html: { autocomplete: "email" } %>
+  <%= form_for resource, as: resource_name, url: confirmation_path(resource_name), builder: DaisyFormBuilder, html: { method: :post, data: {turbo: "false"}} do |f| %>
+    <%= f.group :email do %>
+      <%= f.text_field :email, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+    <% end %>
 
     <div class="text-right">
-      <%= f.button :submit, "Resend confirmation instructions" %>
+      <%= f.submit "Resend confirmation instructions", class: "!float-none" %>
     </div>
   <% end %>
 <% end %>

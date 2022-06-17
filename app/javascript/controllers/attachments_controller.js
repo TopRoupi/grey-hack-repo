@@ -1,5 +1,4 @@
 import ApplicationController from './application_controller'
-import Trix from 'trix'
 
 export default class extends ApplicationController {
   static targets = ['editor', 'input'];

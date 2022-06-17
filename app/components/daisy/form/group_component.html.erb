@@ -1,0 +1,20 @@
+<div class="form-control w-full my-4 <%= @class %>">
+  <label class="block mb-2 text-sm" for="<%= "#{object_name}_#{method_name}" %>">
+    <%= label %>
+    <% if required? %>
+      <abbr title="required">*</abbr>
+    <% end %>
+  </label>
+  <%= content %>
+  <div class="text-error italic mt-1">
+    <%= method_errors.join " and " %>
+  </div>
+  <% if @hint %>
+    <label class="label">
+      <span class="label-text-alt">
+        <%= @hint %>
+      </span>
+    </label>
+  <% end %>
+</div>
+

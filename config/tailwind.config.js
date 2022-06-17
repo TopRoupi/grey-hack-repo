@@ -7,8 +7,10 @@ module.exports = {
     './config/initializers/*.rb',
     './app/components/**/*.rb',
     './app/components/**/**/*.rb',
+    './app/components/**/**/**/*.rb',
     './app/components/**/*.html.erb',
     './app/components/**/**/*.html.erb',
+    './app/components/**/**/**/*.html.erb',
     './node_modules/tailwindcss-stimulus-components/**/*.js',
     './app/helpers/**/*.rb',
     './app/javascript/**/*.js'
@@ -142,9 +144,45 @@ module.exports = {
       }
     }
   },
+  daisyui: {
+    themes: [
+      {
+        black: {
+          primary: "#343232",
+          secondary: "#181616",
+          accent: "#343232",
+          "base-100": "#070707",
+          "base-200": "#121212",
+          "base-300": "#1A1919",
+          neutral: "#272626",
+          "neutral-focus": "#343232",
+          info: "#604e86",
+          success: "#15803d",
+          warning: "#ffff00",
+          error: "#7f1d1d",
+          "--rounded-box": "0.75rem",
+          "--rounded-btn": ".25rem",
+          "--rounded-badge": ".25rem",
+          "--animation-btn": "0",
+          "--animation-input": "0",
+          "--btn-text-case": "normal",
+          "--btn-focus-scale": "1",
+          "--tab-radius": "0",
+        },
+      },
+    ],
+    styled: true,
+    base: true,
+    utils: true,
+    logs: true,
+    rtl: false,
+    prefix: "",
+    darkTheme: "black",
+  },
   plugins: [
-    require('@tailwindcss/forms'),
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/typography'),
+    require('daisyui'),
   ],
+  // daisyUI config (optional)
 }

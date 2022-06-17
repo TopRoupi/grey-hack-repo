@@ -2,7 +2,7 @@
 
 class Categories::Card < ApplicationComponent
   def initialize(category:, tag: :a, small: false, active: false, style: nil, **sys_params)
-    @style, @active_style = style || ["bg-gradient-to-r from-beaver-800 to-beaver-850 active:from-beaver-850 transition duration-150 ease-in-out", "bg-beaver-850 outline outline-1 outline-beaver-700"]
+    @style, @active_style = style || ["bg-gradient-to-r from-base-300 to-base-200 active:from-base-200 transition duration-150 ease-in-out", "bg-base-200 outline outline-1 outline-base-300"]
     @small = small
     @sys_params = sys_params
     @tag = tag

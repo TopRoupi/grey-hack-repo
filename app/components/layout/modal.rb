@@ -2,24 +2,21 @@
 
 class Layout::Modal < ApplicationComponent
   renders_one :button, lambda { |**kwargs|
-    kwargs[:tag] ||= :button
-    if !@disabled
-      kwargs[:data] ||= {}
-      kwargs[:data][:action] = "click->modal#open"
-    end
+    kwargs[:tag] = :label
+    kwargs[:for] = @modal_id if !@disabled
+    kwargs[:class] ||= "btn btn-modal"
 
     Layout::BaseComponent.new(**kwargs)
   }
 
-  renders_one :dialog, Layout::ModalDialog
+  renders_one :dialog, lambda { |**kwargs|
+    Layout::ModalDialog.new(@modal_id, **kwargs)
+  }
 
-  def initialize(tag: "div", auto_open: false, disabled: false, **sys_params)
+  def initialize(tag: "div", disabled: false, **sys_params)
+    @modal_id = "modal-#{Random.rand(999999)}"
     @sys_params = sys_params
     @tag = tag
     @disabled = disabled
-    sys_params[:data] ||= {}
-    sys_params[:data][:controller] = "modal"
-    sys_params[:data][:modal_auto_open_value] = "true" if auto_open
-    sys_params[:data][:modal_allow_background_close] = "true"
   end
 end

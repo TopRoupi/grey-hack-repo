@@ -1,17 +1,15 @@
-<a href="<%= root_path %>" class="<%= current_page?(root_path) ? "bg-beaver-900" : "button_secondary" %> text-white px-3 py-2 rounded-md  font-medium <%= @mobile ? 'text_base block' : 'text-sm' %>" aria-current="page">
+<a href="<%= root_path %>" class="btn btn-ghost text-white px-3 py-2 !text-sm <%= 'w-full justify-start' if @mobile %>" aria-current="page">
   Repos
 </a>
-<a href="<%= users_path %>" class="<%= current_page?(users_path) ? "bg-beaver-900" : "button_secondary" %> text-white px-3 py-2 rounded-md  font-medium <%= @mobile ? 'text_base block' : 'text-sm' %>" aria-current="page">
+<a href="<%= users_path %>" class="btn btn-ghost text-white px-3 py-2 !text-sm <%= 'w-full justify-start' if @mobile %>" aria-current="page">
   Authors
 </a>
-<a href="<%= npc_decipher_path %>" class="<%= current_page?(npc_decipher_path) ? "bg-beaver-900" : "button_secondary" %> text-white px-3 py-2 rounded-md  font-medium <%= @mobile ? 'text_base block' : 'text-sm' %>" aria-current="page">
+<a href="<%= npc_decipher_path %>" class="btn btn-ghost text-white px-3 py-2 !text-sm <%= 'w-full justify-start' if @mobile %>" aria-current="page">
   Npc password decipher
 </a>
-<a href="https://themes.ghtools.xyz/" class="button_secondary text-white px-3 py-2 rounded-md  font-medium <%= @mobile ? 'text_base block' : 'text-sm' %>" aria-current="page">
+<a href="https://themes.ghtools.xyz/" class="btn btn-ghost text-white px-3 py-2 !text-sm <%= 'w-full justify-start' if @mobile %>" aria-current="page">
   Themes
 </a>
-
-
-<a href="https://wyattsl.github.io/greydocs/api" class="button_secondary text-white px-3 py-2 rounded-md  font-medium <%= @mobile ? 'text_base block' : 'text-sm' %>" aria-current="page">
+<a href="https://wyattsl.github.io/greydocs/api" class="btn btn-ghost text-white px-3 py-2 !text-sm <%= 'w-full justify-start' if @mobile %>" aria-current="page">
   Docs
 </a>
