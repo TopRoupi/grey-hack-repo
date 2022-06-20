@@ -1,0 +1,14 @@
+<div class="flex max-w-2xl mx-auto flex-col w-full sm:flex-row">
+  <div class="w-full">
+        <h1 class="text-center mb-3 text-3xl font-semibold text-chestnut-200">
+          <%= yield :title %>
+        </h1>
+        <div class="text-left">
+          <%= yield %>
+        </div>
+  </div>
+  <div class="divider sm:divider-horizontal sm:mx-10">or</div> 
+  <div class="w-fit">
+    <%= render "devise/shared/links" %>
+  </div>
+</div>

@@ -22,7 +22,7 @@
   <% end %>
 
   <%= f.group :readme do %>
-    <%= f.rich_text_area :readme, as: :rich_text_area, data: {attachments_target: "editor"} %>
+    <%= f.rich_text_area :readme, as: :rich_text_area, data: {attachments_target: "editor"}, class: "textarea textarea-bordered w-full px-3 py-2 h-full trix-content" %>
   <% end %>
 
   <%= render(Layout::Dropdown.new()) do |c| %>

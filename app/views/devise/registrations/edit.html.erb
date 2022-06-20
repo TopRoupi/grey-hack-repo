@@ -2,9 +2,7 @@
   <h2 class="text-2xl mb-4">Edit <%= resource_name.to_s.humanize %></h2>
 </div>
 
-
 <%= form_for resource, as: resource_name, url: registration_path(resource_name), builder: DaisyFormBuilder, html: {method: "put", data: {turbo: "false"}} do |f| %>
-  <%# <%= f.error_notification %>
   <div class="flex flex-col sm:flex-row" data-controller="avatar-preview">
     <div class="w-full">
       <%= f.group :avatar do %>
@@ -13,7 +11,7 @@
     </div>
     <div class="w-full flex flex-col sm:flex-row items-center justify-start order-first sm:order-last sm:px-2">
       <span class="mr-3 text-beaver-400 text-sm self-start">Preview: </span>
-      <img class="h-16 w-16 border rounded-full mx-auto" data-avatar-preview-target="img" src="">
+      <img class="h-16 w-16 border rounded-full mx-auto" data-avatar-preview-target="img" src=""></img>
     </div>
   </div>
 
@@ -45,10 +43,10 @@
 <% end %>
 
 <% if current_user.uid.nil? %>
-  <p class="mb-6">
-    link your github account
-    <%= button_to "Link Github", omniauth_authorize_path(resource_name, :github), class: "link", data: {turbo: false} %>
-  </p>
+  <%= button_to omniauth_authorize_path(resource_name, :github), class: "btn btn-secondary mb-6", data: {turbo: false} do %>
+    <%= octicon "mark-github", class: "fill-current mr-2" %>
+    Link Github
+  <% end %>
 <% else %>
   <%= render(Layout::ConfirmationDialog.new(class: "flex")) do |c| %>
     <% c.title { "Unlink github" } %>
