@@ -13,10 +13,11 @@ Rails.application.routes.draw do
   get "posts/:id/builds", to: "posts#builds", as: "post_builds"
 
   patch "builds/:id/publish", to: "builds#publish", as: "build_publish"
-  devise_for :users, controllers: {session: "users/sessions"}
+  devise_for :users, controllers: {session: "users/sessions", omniauth_callbacks: "users/omniauth_callbacks"}
   get "users/:id/posts", to: "users#posts", as: "user_posts"
   get "users/:id", to: "users#show", as: "user"
   get "users", to: "users#index", as: "users"
+  patch "users/:id/unlink_github", to: "users#unlink_github", as: "user_unlink_github"
   get "myposts", to: "users#myposts", as: "my_posts"
 
   get "home/index"

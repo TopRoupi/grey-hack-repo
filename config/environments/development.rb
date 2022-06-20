@@ -3,6 +3,7 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+  config.hosts << /.*(ngrok\.io\Z)/
   config.session_store :cookie_store
 
   config.active_job.queue_adapter = :sidekiq

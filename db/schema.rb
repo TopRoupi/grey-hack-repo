@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_21_204417) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_19_225207) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "timescaledb"
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -119,8 +120,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_21_204417) do
   end
 
   create_table "pay_charges", force: :cascade do |t|
-    t.bigint "customer_id", null: false
-    t.bigint "subscription_id"
+    t.integer "customer_id", null: false
+    t.integer "subscription_id"
     t.string "processor_id", null: false
     t.integer "amount", null: false
     t.string "currency"
@@ -136,7 +137,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_21_204417) do
 
   create_table "pay_customers", force: :cascade do |t|
     t.string "owner_type"
-    t.bigint "owner_id"
+    t.integer "owner_id"
     t.string "processor", null: false
     t.string "processor_id"
     t.boolean "default"
@@ -150,7 +151,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_21_204417) do
 
   create_table "pay_merchants", force: :cascade do |t|
     t.string "owner_type"
-    t.bigint "owner_id"
+    t.integer "owner_id"
     t.string "processor", null: false
     t.string "processor_id"
     t.boolean "default"
@@ -161,7 +162,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_21_204417) do
   end
 
   create_table "pay_payment_methods", force: :cascade do |t|
-    t.bigint "customer_id", null: false
+    t.integer "customer_id", null: false
     t.string "processor_id", null: false
     t.boolean "default"
     t.string "type"
@@ -172,7 +173,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_21_204417) do
   end
 
   create_table "pay_subscriptions", force: :cascade do |t|
-    t.bigint "customer_id", null: false
+    t.integer "customer_id", null: false
     t.string "name", null: false
     t.string "processor_id", null: false
     t.string "processor_plan", null: false
@@ -253,6 +254,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_21_204417) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.boolean "admin"
+    t.string "provider"
+    t.string "uid"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["name"], name: "index_users_on_name", unique: true
   end

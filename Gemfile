@@ -33,6 +33,8 @@ gem "meta-tags", "~> 2.16"
 gem "octicons_helper", "~> 16.3"
 gem "pagy", "~> 5.10"
 # back end gems
+gem "omniauth-rails_csrf_protection"
+gem "omniauth-github"
 gem "discord-notifier", "~> 1.0", ">= 1.0.3"
 gem "sidekiq", "~> 6.4"
 gem "devise", "~> 4.8"
@@ -76,4 +78,3 @@ group :test do
 end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-

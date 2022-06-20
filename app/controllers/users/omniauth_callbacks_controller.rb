@@ -1,30 +1,23 @@
 # frozen_string_literal: true
 
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  # You should configure your model like this:
-  # devise :omniauthable, omniauth_providers: [:twitter]
+  def github
+    if current_user
+      @user = current_user.link_github(request.env["omniauth.auth"])
+      if @user
+        redirect_back fallback_location: root_path, notice: "Github account linked"
+      else
+        redirect_back fallback_location: root_path, alert: "Github account already taken"
+      end
+      return
+    end
 
-  # You should also create an action method in this controller like this:
-  # def twitter
-  # end
-
-  # More info at:
-  # https://github.com/heartcombo/devise#omniauth
-
-  # GET|POST /resource/auth/twitter
-  # def passthru
-  #   super
-  # end
-
-  # GET|POST /users/auth/twitter/callback
-  # def failure
-  #   super
-  # end
-
-  # protected
-
-  # The path used when OmniAuth fails
-  # def after_omniauth_failure_path_for(scope)
-  #   super(scope)
-  # end
+    @user = User.from_omniauth(request.env["omniauth.auth"])
+    if @user.persisted?
+      sign_in_and_redirect @user, event: :authentication # this will throw if @user is not activated
+      set_flash_message(:notice, :success, kind: "GitHub") if is_navigational_format?
+    else
+      redirect_to :root, notice: @user.errors.to_a.to_s
+    end
+  end
 end

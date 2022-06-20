@@ -44,6 +44,21 @@
   <%= f.submit "Update" %>
 <% end %>
 
+<% if current_user.uid.nil? %>
+  <p class="mb-6">
+    link your github account
+    <%= button_to "Link Github", omniauth_authorize_path(resource_name, :github), class: "link", data: {turbo: false} %>
+  </p>
+<% else %>
+  <%= render(Layout::ConfirmationDialog.new(class: "flex")) do |c| %>
+    <% c.title { "Unlink github" } %>
+    <% c.button(class: "btn btn-danger btn-sm mb-6") do %>
+      Unlink github account
+    <% end %>
+    <% c.action(tag: :a, style: "danger", href: user_unlink_github_path(current_user), data: {turbo_method: :patch, turbo_frame: "_top"}){ "Unlink" } %>
+  <% end %>
+<% end %>
+
 <%= link_to "Cancel my account",
   registration_path(current_user),
   class: "text-red-600",

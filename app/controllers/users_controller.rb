@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:myposts]
+  before_action :authenticate_user!, only: [:myposts, :unlink_github]
 
   def index
     @users = User.select("users.*, count(posts.id) AS posts_count, sum(posts.stars_count) as stars_count")
@@ -41,5 +41,10 @@ class UsersController < ApplicationController
   def posts
     show
     render(Users::PostsBox.new(user: @user, current_user: current_user, posts: @posts, pagy: @category_pagy, active_tab: @category), layout: false)
+  end
+
+  def unlink_github
+    current_user.update(uid: nil, provider: nil)
+    redirect_back fallback_location: root_path, notice: "Github account unlinked"
   end
 end
