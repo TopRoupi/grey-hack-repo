@@ -4,7 +4,7 @@
 
 <br>
 
-<%= render Layout::LinkGroup.new(2) do |c| %>
+<%= render Layout::LinkGroup.new() do |c| %>
   <% c.link(name: "Published", link: path_to(request.url, published: "true"), active: params[:published] == "true" || params[:published].nil?) %>
   <% c.link(name: "Not Published", link: path_to(request.url, published: "false"), active: params[:published] == "false") %>
 <% end %>
