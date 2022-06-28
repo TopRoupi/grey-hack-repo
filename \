@@ -1,7 +1,7 @@
 <% title @user.name %>
 
-<img class="rounded-t h-40 w-full object-cover" src="<%= image_url("userbanner.svg") %>">
-<div class="bg-base-100 px-6">
+<img class="rounded-t h-40 w-full object-cover" src="https://i.imgur.com/zscNRu2.jpg">
+<div class="bg-base-100 pb-6 px-6">
   <div class="flex">
     <img class="h-24 w-24 rounded-xl -mt-6 mb-6 border border-4 border-base-100 object-cover" src="<%= user_avatar(@user) %>" alt="">
     <div class="ml-3">
@@ -25,19 +25,43 @@
       <span class="block">total stars: <%= @user.stars.count %></span>
     </div>
   </div>
-  <!-- <div class="flex"> -->
-  <!--   <%# <%= link_to user_path(@user), class: "btn bnt-glass btn-sm" do %> -->
-  <!--   <%#   <%= @user.posts.count %> Posts -->
-  <!--   <%# <% end %> -->
-  <!--   <%# <%= link_to path_to(request.url, stars: ""), class: "btn bnt-glass btn-sm ml-2" do %> -->
-  <!--   <%#   <%= @user.stars.count %> Stars -->
-  <!--   <%# <% end %> -->
-  <!-- </div> -->
+  <div class="flex">
+    <%= link_to user_path(@user), class: "btn bnt-glass btn-sm" do %>
+      <%= @user.posts.count %> Posts
+    <% end %>
+    <%= link_to path_to(request.url, stars: ""), class: "btn bnt-glass btn-sm ml-2" do %>
+      <%= @user.stars.count %> Stars
+    <% end %>
+  </div>
 </div>
 <%= render Layout::LinkGroup.new(gap: 0) do |c| %>
-  <% custom = {class:"border-t border-b bg-base-200 hover:bg-base-200/80 active:bg-base-200 p-4 border-primary w-full text-center", active: " !bg-base-300 !hover:bg-base-300 !active:bg-base-300 cursor-default"} %>
+  <% custom = {class:"border-t border-b bg-base-200 hover:bg-base-200/80 active:bg-base-200 p-4 border-primary w-full text-center", active: " bg-base-300 hover:bg-base-300/80 active:bg-base-300"} %>
   <% c.link(name: "Posts", link: user_path(@user), active: params[:stars].nil?, custom: custom) %>
   <% c.link(name: "Stars", link: path_to(request.url, stars: ""), active: params[:stars] == "", custom: custom) %>
+<% end %>
+
+<div class="flex justify-center items-start mb-10">
+  <img class="h-20 w-20 rounded-full ml-2" src="<%= user_avatar(@user) %>" alt="">
+  <div class="flex ml-2 flex-col">
+    <span class="font-semibold text-lg"><%= @user.name %></span>
+    <div class="flex flex-col">
+      <% if @user.supporter? %>
+        <%= supporter_badge %>
+      <% end %>
+      <% if @user.btc %>
+        <span class="mr-3">BTC: <%= @user.btc %></span>
+      <% end %>
+      <% if @user.bank %>
+        <span class="mr-3">bank: <%= @user.bank %></span>
+      <% end %>
+      <span>total posts: <%= @user.posts.count %></span>
+    </div>
+  </div>
+</div>
+
+<%= render Layout::LinkGroup.new() do |c| %>
+  <% c.link(name: "Posts", link: user_path(@user), active: params[:stars].nil?) %>
+  <% c.link(name: "Stars", link: path_to(request.url, stars: ""), active: params[:stars] == "") %>
 <% end %>
 
 <br><br>
