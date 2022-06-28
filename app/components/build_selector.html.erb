@@ -1,8 +1,8 @@
-<div id="build-selector" class="h-full border-base-300 border-r w-40">
+<div id="build-selector" class="border-base-300 border-r w-40">
   <div class="bg-base-200 p-3 rounded-tl border-b border-base-300 flex items-center" style="height: 54px">
     Builds
   </div>
-  <div class="flex flex-col bg-base-100 px-3 rounded-bl" style="height: calc(100% - 54px)">
+  <div class="flex flex-col bg-base-100 px-3 rounded-bl overflow-y-auto pb-3" style="height: calc(100% - 54px)">
     <% @builds.each do |build| %>
       <button class="btn <%= build == @selected_build ? "btn-primary" : "btn-secondary" %> btn-thin px-3 py-1 mt-3"
               data-reflex="click->BuildSelectorReflex#open"

@@ -11,10 +11,12 @@ import CommentsFormComponent from "../../components/comments/form/component_cont
 import CategoriesCard from "../../components/categories/card_controller.js"
 import ScriptsCardCopyComponent from "../../components/scripts/card/copy_button/component_controller.js"
 import FileableForm from "../../components/fileable_form/controller.js"
+import BuildExplorer from "../../components/build_explorer_controller.js"
 application.register("comments--form--component", CommentsFormComponent)
 application.register("categories--card", CategoriesCard)
-application.register("scripts--card--copy--component", ScriptsCardCopyComponent )
-application.register("fileable-form", FileableForm )
+application.register("scripts--card--copy--component", ScriptsCardCopyComponent)
+application.register("fileable-form", FileableForm)
+application.register("build-explorer", BuildExplorer)
 
 import AvatarPreview from "./avatar_preview_controller"
 import Attachments from "./attachments_controller"

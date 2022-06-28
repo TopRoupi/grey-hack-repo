@@ -1,8 +1,19 @@
 <div class="text-center text-3xl font-semibold mb-10">
   <%= @script.name %>
+
+  <%= render(Scripts::Card::CopyButton::Component.new(script: @script)) %>
 </div>
 
-<div class="w-full overflow-x-auto bg-beaver-1000">
+<% content_for :containerless do %>
+<div class="flex px-4">
+<pre class="editor editor-colors w-fit pl-2 text-white/40 select-none">
+<% @script.content.lines.size.times do |i|  %>
+<%= i + 1 %>
+<% end %>
+</pre>
+<div class="w-full overflow-x-auto bg-beaver-1000 pl-4">
   <%== @script.highlighted_content %>
   <%= "refresh this page if this script didn't updated yet" if @script.highlighted_content.blank?%>
 </div>
+</div>
+<% end %>

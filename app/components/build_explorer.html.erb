@@ -1,22 +1,26 @@
-<%= render(Layout::Toggle.new(tag: :div, open: true, id: "build-explorer", class: "overflow-x-hidden flex border border-base-300 rounded")) do |c| %>
-  <%= render(c.toggleable()) do %>
-    <%= render(BuildSelector.new(builds: @builds, selected_build: @selected_build)) %>
-  <% end %>
+<div id="build-explorer" data-controller="build-explorer">
+  <%= render(Layout::Toggle.new(tag: :div, open: true, id: "build-explorer", class: "overflow-x-hidden flex border border-base-300 rounded")) do |c| %>
+    <%= render(c.toggleable()) do %>
+      <%= render(BuildSelector.new(builds: @builds, selected_build: @selected_build)) %>
+    <% end %>
 
-  <div class="flex flex-col w-full">
-    <%= render(FileableExplorer.new(fileable: @selected_build)) %>
-    <div class="p-3 flex justify-between">
-      <%= render(c.toggle(tag: :button, class: "btn btn-secondary btn-thin p-2")) do %>
-        <%= octicon "three-bars", class: "fill-current" %>
-      <% end %>
+    <div class="flex flex-col w-full">
+      <div id="explorer-content">
+        <%= render(FileableExplorer.new(fileable: @selected_build)) %>
+        <div class="p-3 flex justify-between">
+          <%= render(c.toggle(tag: :button, class: "btn btn-secondary btn-thin p-2")) do %>
+            <%= octicon "three-bars", class: "fill-current" %>
+          <% end %>
 
-      <div class="flex">
-        <%= render(Builds::ExportStringModal.new build: @selected_build, class: "btn btn-sm whitespace-nowrap mx-2") %>
+          <div class="flex">
+            <%= render(Builds::ExportStringModal.new build: @selected_build, class: "btn btn-sm whitespace-nowrap mx-2") %>
 
-        <% if @selected_build.files_attachment %>
-          <%= link_to "Download build", rails_blob_path(@selected_build.files_attachment, disposition: "attachment"), class: "whitespace-nowrap text-ellipsis btn btn-success btn-sm", rel: "noopener noreferrer", target: "_blank"  %>
-        <% end %>
+            <% if @selected_build.files_attachment %>
+              <%= link_to "Download build", rails_blob_path(@selected_build.files_attachment, disposition: "attachment"), class: "whitespace-nowrap text-ellipsis btn btn-success btn-sm", rel: "noopener noreferrer", target: "_blank"  %>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>

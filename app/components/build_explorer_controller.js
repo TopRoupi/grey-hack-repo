@@ -1,24 +1,19 @@
-import ApplicationController from '../../javascript/controllers/application_controller'
+import ApplicationController from '../javascript/controllers/application_controller'
 import { FetchRequest } from '@rails/request.js'
 
 export default class extends ApplicationController {
-  static values = { url: String }
-
   connect() {
-    super.connect()
+    this.mirror_height()
+
+    let t = this
+    window.addEventListener('resize', function(event){
+      t.mirror_height()
+    })
   }
 
-  async copy_script_to_clipboard(event) {
-    const request = new FetchRequest("get", this.urlValue)
-    const response = await request.perform()
-    if (response.ok) {
-      const body = await response.json
-      this.copy_to_clipboard(body.content)
-      this.stimulate('AlertReflex#alert', event.target)
-    }
-  }
-
-  copy_to_clipboard(text) {
-    navigator.clipboard.writeText(text)
+  mirror_height() {
+    let b_selector_element = document.getElementById("build-selector")
+    let b_explorer_element = document.getElementById("explorer-content")
+    b_selector_element.style.height = b_explorer_element.offsetHeight + "px"
   }
 }
