@@ -2,36 +2,40 @@
 
 <img class="rounded-t h-40 w-full object-cover" src="<%= image_url("userbanner.svg") %>">
 <div class="bg-base-100 px-6">
-  <div class="flex">
-    <img class="h-24 w-24 rounded-xl -mt-6 mb-6 border border-4 border-base-100 object-cover" src="<%= user_avatar(@user) %>" alt="">
-    <div class="ml-3">
-      <span class="font-semibold text-lg"><%= @user.name %></span>
-      <% if @user.supporter? %>
-        <span class="block">
-          <%= supporter_badge %>
-        </span>
-      <% end %>
+  <div class="flex flex-col sm:flex-row">
+    <div class="flex">
+      <img class="h-24 w-24 rounded-xl bg-base-200 -mt-6 mb-6 border border-4 border-base-100 object-cover" src="<%= user_avatar(@user) %>" alt="">
+      <div class="ml-3">
+        <span class="font-semibold text-lg"><%= @user.name %></span>
+        <% if @user.supporter? %>
+          <span class="block">
+            <%= supporter_badge %>
+          </span>
+        <% end %>
+      </div>
     </div>
-    <div class="ml-auto mt-1">
-      <% if @user.btc %>
-        <span class="mr-3">BTC: <%= @user.btc %></span>
-      <% end %>
-      <% if @user.bank %>
-        <span class="mr-3 block">bank: <%= @user.bank %></span>
-      <% end %>
-    </div>
-    <div class="ml-3 mt-1 mr-2">
-      <span>total posts: <%= @user.posts.count %></span>
-      <span class="block">total stars: <%= @user.stars.count %></span>
+    <div class="flex ml-0 sm:ml-auto">
+      <div class="mb-6 sm:mb-0 mt-1">
+        <% if @user.btc %>
+          <span class="mr-3">BTC: <%= @user.btc %></span>
+        <% end %>
+        <% if @user.bank %>
+          <span class="mr-3 block">bank: <%= @user.bank %></span>
+        <% end %>
+      </div>
+      <div class="ml-auto sm:ml-3 mt-1 mr-2">
+        <span>total posts: <%= @user.posts.count %></span>
+        <span class="block">total stars: <%= @user.stars.count %></span>
+      </div>
     </div>
   </div>
   <!-- <div class="flex"> -->
   <!--   <%# <%= link_to user_path(@user), class: "btn bnt-glass btn-sm" do %> -->
-  <!--   <%#   <%= @user.posts.count %> Posts -->
-  <!--   <%# <% end %> -->
+    <!--   <%#   <%= @user.posts.count %> Posts -->
+    <!--   <%# <% end %> -->
   <!--   <%# <%= link_to path_to(request.url, stars: ""), class: "btn bnt-glass btn-sm ml-2" do %> -->
-  <!--   <%#   <%= @user.stars.count %> Stars -->
-  <!--   <%# <% end %> -->
+    <!--   <%#   <%= @user.stars.count %> Stars -->
+    <!--   <%# <% end %> -->
   <!-- </div> -->
 </div>
 <%= render Layout::LinkGroup.new(gap: 0) do |c| %>

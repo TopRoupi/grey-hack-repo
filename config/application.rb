@@ -14,6 +14,7 @@ module GreyRepo
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
+    config.active_storage.content_types_to_serve_as_binary -= ["image/svg+xml"]
 
     # Configuration for the application, engines, and railties goes here.
     #

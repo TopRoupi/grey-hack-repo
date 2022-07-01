@@ -6,6 +6,7 @@ class HighlightJobTest < ActiveJob::TestCase
   setup do
     @script = build(:post).builds.first.scripts.first
   end
+
   test "update script highlighted_content when created" do
     @script.save
     assert_enqueued_jobs 1, only: HighlightJob

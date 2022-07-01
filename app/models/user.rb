@@ -3,7 +3,6 @@
 class User < ApplicationRecord
   pay_customer
   extend FriendlyId
-  has_many :notifications, as: :recipient
 
   devise :database_authenticatable, :registerable, :rememberable, :validatable, :confirmable, :recoverable, :omniauthable, omniauth_providers: [:github]
   friendly_id :name
@@ -17,6 +16,14 @@ class User < ApplicationRecord
   has_many :stars, dependent: :destroy
   has_many :starable_posts, through: :stars, source: "starable", source_type: "Post"
   has_many :comments, dependent: :destroy
+  has_many :notifications, as: :recipient
+  has_one_attached :nft
+
+  after_commit :set_nft, on: [:create]
+
+  def set_nft
+    NftJob.perform_later(self)
+  end
 
   def supporter?
     set_payment_processor :stripe
