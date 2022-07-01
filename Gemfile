@@ -54,6 +54,8 @@ gem "sentry-ruby", "~> 5.2"
 gem "sentry-rails", "~> 5.2"
 gem "sentry-sidekiq", "~> 5.3"
 
+gem "rpictogrify", git: "https://github.com/TopRoupi/rpictogrify.git", branch: "master"
+
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
   gem "factory_bot_rails"

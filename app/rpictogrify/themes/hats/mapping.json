@@ -1,0 +1,38 @@
+{
+  "name": "Avataars Malee",
+  "viewBox": "0 0 300 300",
+  "shapes": {
+    "hat": {
+      "length": 1,
+      "fill": "hat",
+      "currentColor": "#d0c6ac"
+    },
+    "stripe": {
+      "length": 1,
+      "fill": "stripe",
+      "currentColor": "#8c522d"
+    }
+  },
+  "colors": {
+    "background": [
+      "#1b1b1b",
+      "#1e1616",
+      "#343232"
+    ],
+    "hat": [
+      "#767a7f",
+      "#070707",
+      "#38869e",
+      "#d63949",
+      "#8260e0",
+      "#3a7018",
+      "#21381c",
+      "#6d0203"
+    ],
+    "stripe": [
+      "#f4f4f4",
+      "#020202",
+      "#2b2b2b"
+    ]
+  }
+}
