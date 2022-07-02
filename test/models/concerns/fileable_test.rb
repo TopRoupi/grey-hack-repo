@@ -8,6 +8,21 @@ class FileableTest < ActiveSupport::TestCase
     @fileable = build :build
   end
 
+  test "#all_children_scripts should return all scripts in this fileable and chield fileables" do
+    @fileable.scripts = []
+    @fileable.folders = []
+
+    script = build :script, scriptable: nil
+    folder_script = build :script, scriptable: nil
+
+    @fileable.scripts << script
+    @fileable.folders << build(:folder, foldable: @fileable)
+    @fileable.folders.last.scripts << folder_script
+
+    assert_includes @fileable.all_children_scripts, script
+    assert_includes @fileable.all_children_scripts, folder_script
+  end
+
   # #has_script? method
 
   test "#has_script? returns true if it have a script" do

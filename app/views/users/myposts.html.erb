@@ -22,7 +22,7 @@
   <% @posts.each do |post| %>
     <% c.row do |cc| %>
       <% cc.column { link_to post.title, post_path(post), class: "link" } %>
-      <% cc.column { post.category.name } %>
+      <% cc.column { post.lib? ? "Lib" : post.category.name } %>
       <% cc.column { post.builds.size.to_s } %>
       <% cc.column do %>
         <div class="flex w-fit ml-auto">

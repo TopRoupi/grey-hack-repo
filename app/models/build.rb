@@ -5,6 +5,24 @@ class BuildValidator < ActiveModel::Validator
     if record.has_script? == false && record.published == true
       record.errors.add(:files, "shall have at least 1 script")
     end
+
+    if record.lib? == true && record.published == true
+      if record.all_children_scripts.select { |s| s.lib == true }.empty?
+        record.errors.add(:scripts, "build should have at least 1 lib script")
+      end
+
+      if !version_name?(record.name)
+        record.errors.add(:name, "build name should be in version format if it is a lib")
+      end
+    end
+  end
+
+  private
+
+  def version_name?(name)
+    return false if name.count(".") != 2
+    return false if name.delete(".").scan(/\D/).any?
+    true
   end
 end
 
@@ -30,6 +48,10 @@ class Build < ApplicationRecord
 
   def ready_to_publish?
     has_script?
+  end
+
+  def lib?
+    post.lib == true
   end
 
   def set_files

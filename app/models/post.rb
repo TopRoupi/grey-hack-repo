@@ -32,6 +32,7 @@ class Post < ApplicationRecord
   # default_scope -> { published }
   scope :published, -> { where(published: true) }
   scope :unpublished, -> { where(published: false) }
+  scope :lib, -> { where(lib: true) }
   scope :search, ->(query) {
     query = sanitize_sql_like(query)
     where(arel_table[:title].matches("%#{query}%"))

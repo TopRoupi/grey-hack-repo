@@ -11,6 +11,16 @@ module Fileable
     accepts_nested_attributes_for :folders, allow_destroy: true
   end
 
+  def all_children_scripts(parent_scripts = [])
+    parent_scripts += scripts
+
+    folders.each do |f|
+      parent_scripts += f.all_children_scripts(parent_scripts)
+    end
+
+    parent_scripts
+  end
+
   def has_script?
     if scripts.any?
       return true

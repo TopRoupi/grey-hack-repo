@@ -1,15 +1,19 @@
-<a href="<%= root_path %>" class="btn btn-ghost text-white px-3 py-2 !text-sm <%= 'w-full justify-start' if @mobile %>" aria-current="page">
+<% @class = "btn btn-ghost text-white px-3 py-2 !text-sm #{'w-full justify-start' if @mobile}" %>
+<a href="<%= root_path %>" class="<%= @class %>">
   Repos
 </a>
-<a href="<%= users_path %>" class="btn btn-ghost text-white px-3 py-2 !text-sm <%= 'w-full justify-start' if @mobile %>" aria-current="page">
+<a href="<%= libs_path %>" class="<%= @class %>">
+  Libs
+</a>
+<a href="<%= users_path %>" class="<%= @class %>">
   Authors
 </a>
-<a href="<%= npc_decipher_path %>" class="btn btn-ghost text-white px-3 py-2 !text-sm <%= 'w-full justify-start' if @mobile %>" aria-current="page">
+<a href="<%= npc_decipher_path %>" class="<%= @class %>">
   Npc password decipher
 </a>
-<a href="https://themes.ghtools.xyz/" class="btn btn-ghost text-white px-3 py-2 !text-sm <%= 'w-full justify-start' if @mobile %>" aria-current="page">
+<a href="https://themes.ghtools.xyz/" class="<%= @class %>">
   Themes
 </a>
-<a href="https://wyattsl.github.io/greydocs/api" class="btn btn-ghost text-white px-3 py-2 !text-sm <%= 'w-full justify-start' if @mobile %>" aria-current="page">
+<a href="https://wyattsl.github.io/greydocs/api" class="<%= @class %>">
   Docs
 </a>

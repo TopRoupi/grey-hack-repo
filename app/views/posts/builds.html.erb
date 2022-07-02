@@ -10,8 +10,7 @@
   <div class="text-center text-red-600 mb-5">
     <p> ERRORS: </p>
     <% @post.errors.each do |error| %>
-      * 
-      <%= error.message %>
+      * <%= error.message %> <br>
     <% end %>
   </div>
 <% else %>
@@ -98,6 +97,16 @@
       <% c.row do |cc| %>
         <% cc.column do %>
           <div class="w-full">
+            <% @selected_build.published = true; @selected_build.valid? %>
+            <% if @selected_build.errors.any? %>
+              <div class="text-center text-red-600 mb-5">
+                <p> ERRORS: </p>
+                <% @selected_build.errors.each do |error| %>
+                  * <%= error.message %> <br>
+                <% end %>
+              </div>
+            <% end %>
+            <% @selected_build.published = false %>
             <%= render(FileableForm::Tree.new(fileable: @selected_build)) %>
             <%= render(Layout::Modal.new(class: "ml-auto flex items-center")) do |c| %>
               <% c.button(class: "link") { "import from string and replace this builds files" } %>

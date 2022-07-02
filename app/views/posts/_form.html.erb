@@ -1,15 +1,25 @@
 <%= form_for post, builder: DaisyFormBuilder, html: {data: {controller: "attachments"}} do |f| %>
+  <div class="form-control my-4">
+    <label class="label cursor-pointer">
+      <span class="label-text flex">
+        <%= octicon "package", class: "fill-current mr-2" %>
+        is this post a lib? 
+      </span>
+      <%= f.check_box :lib, data: { reflex: "change->PostReflex#set_lib_form", reflex_serialize_form: true } %>
+    </label>
+  </div>
+
   <%= f.group :title do %>
     <%= f.text_field :title %>
   <% end %>
 
-  <div class="flex flex-wrap overflow-hidden sm:-mx-3">
-    <div class="w-full overflow-hidden sm:w-1/2 sm:my-3 sm:px-3">
+  <div class="block sm:grid grid-flow-col gap-2">
+    <div class="w-full">
       <%= f.group :visibility do %>
         <%= f.select :visibility, Post.visibilities.keys %>
       <% end %>
     </div>
-    <div class="w-full overflow-hidden sm:w-1/2 sm:my-3 sm:px-3">
+    <div id="category_id_input" class="w-full <%= "hidden" if post.lib %>">
       <%= f.group :category do %>
         <%= f.select :category_id,
           options_from_collection_for_select(Category.all, :id, :name), disabled: "", prompt: 'Select a category' %>

@@ -41,6 +41,52 @@ class BuildTest < ActiveSupport::TestCase
     refute_empty @build.errors[:files]
   end
 
+  # lib validation
+
+  test "#lib? should return true if post relation have lib set to true" do
+    @build.post.update(lib: true)
+    assert @build.lib?
+
+    @build.post.update(lib: false)
+    refute @build.lib?
+
+    @build.post.update(lib: nil)
+    refute @build.lib?
+  end
+
+  test "should be invalid if is lib and the name does not match version format" do
+    @build.post.lib = true
+    @build.published = true
+    @build.name = "whatever"
+    @build.valid?
+    refute_empty @build.errors[:name]
+
+    @build.name = "1.0.0"
+    @build.valid?
+    assert_empty @build.errors[:name]
+  end
+
+  test "should be invalid if is lib and do not have at least one script with lib = true" do
+    @build.post.lib = true
+    @build.published = true
+    @build.folders = []
+    @build.scripts = []
+
+    @build.scripts << build(:script, scriptable: @build, lib: false)
+    @build.valid?
+    refute_empty @build.errors[:scripts]
+
+    @build.scripts.last.lib = true
+    @build.valid?
+    assert_empty @build.errors[:scripts]
+
+    @build.scripts = []
+    @build.folders << build(:folder, foldable: @build)
+    @build.folders.last.scripts << build(:script, scriptable: @build.folders.last, lib: true)
+    @build.valid?
+    assert_empty @build.errors[:scripts]
+  end
+
   class Parser < ActiveSupport::TestCase
     setup do
       @build = build :build
