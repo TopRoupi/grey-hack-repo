@@ -202,6 +202,8 @@ GEM
     msgpack (1.5.2)
     multi_json (1.15.0)
     multi_xml (0.6.0)
+    mustermann (1.1.1)
+      ruby2_keywords (~> 0.0.1)
     net-imap (0.2.3)
       digest
       net-protocol
@@ -354,6 +356,11 @@ GEM
     simple_form (5.1.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
+    sinatra (2.2.0)
+      mustermann (~> 1.0)
+      rack (~> 2.2)
+      rack-protection (= 2.2.0)
+      tilt (~> 2.0)
     spring (4.0.0)
     sprockets (4.0.3)
       concurrent-ruby (~> 1.0)
@@ -384,6 +391,7 @@ GEM
       railties (>= 6.0.0)
     thor (1.2.1)
     thread-local (1.1.0)
+    tilt (2.0.10)
     timeout (0.3.0)
     turbo-rails (0.5.12)
       rails (>= 6.0.0)
@@ -463,6 +471,7 @@ DEPENDENCIES
   sentry-sidekiq (~> 5.3)
   sidekiq (~> 6.4)
   simple_form (~> 5.1)
+  sinatra
   spring
   sprockets-rails
   stackprof (~> 0.2.19)
