@@ -2,7 +2,7 @@
 
 module UsersHelper
   def user_avatar(user)
-    user&.avatar || (user&.nft_attachment && rails_blob_path(user&.nft_attachment)) || default_avatar
+    (!user&.avatar.blank? && user&.avatar) || (user&.nft_attachment && rails_blob_path(user&.nft_attachment)) || default_avatar
   end
 
   def current_user_avatar

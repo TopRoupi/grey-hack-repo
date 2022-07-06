@@ -44,7 +44,14 @@
           <% if selected %>
             <input data-reflex="debounced:input->FileableForm::Reflex#update_build_name" data-build-id="<%= build.signed_id %>" class="input" type="text" value="<%= build.name %>"></input>
           <% else %>
-            <%= build.name %>
+            <div class="flex items-center">
+              <%= build.name %>
+              <% if !selected %>
+                <%= render(Builds::ExportStringModal.new build: build, class: "btn btn-thin ml-2 p-2") do %>
+                  <%= octicon "copy", class: "fill-current" %>
+                <% end %>
+              <% end %>
+            </div>
           <% end %>
         <% end %>
         <% cc.column { published_status(build) } %>
@@ -64,6 +71,11 @@
               <% end %>
               <%= link_to selected ? post_builds_path(@post) : path_to(request.url, build_id: build.id), class: "btn btn-info btn-thin p-2 mr-2" do %>
                 <%= octicon "pencil", height: 16, class: "fill-current" %>
+              <% end %>
+            <% end %>
+            <% if build.published %>
+              <%= button_tag class: "btn btn-thin p-2 mr-2", data: {reflex: "click->BuildReflex#clone_build", build_id: build.signed_id} do %>
+                clone
               <% end %>
             <% end %>
             <%= render(Layout::ConfirmationDialog.new(class: "flex")) do |c| %>

@@ -6,4 +6,13 @@ class PostReflex < ApplicationReflex
     post.published = true
     post.save!
   end
+
+  def change_visibility
+    post = Post.find_signed(element.dataset[:post_id])
+    new_value = element.value
+
+    post.update visibility: new_value
+
+    morph :nothing
+  end
 end

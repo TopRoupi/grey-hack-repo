@@ -15,15 +15,19 @@
   <% c.head do |cc| %>
     <% cc.column { "Title" } %>
     <% cc.column { "Category" } %>
-    <% cc.column { "Build" } %>
+    <% cc.column { "Builds" } %>
+    <% cc.column { "Visibility" } %>
     <% cc.column { "Actions" } %>
   <% end %>
 
   <% @posts.each do |post| %>
     <% c.row do |cc| %>
-      <% cc.column { link_to post.title, post_path(post), class: "link" } %>
+      <% cc.column { post.published? ? link_to(post.title, post_path(post), class: "link") : post.title } %>
       <% cc.column { post.category.name } %>
       <% cc.column { post.builds.size.to_s } %>
+      <% cc.column do %>
+        <%= select_tag :visibility, options_for_select(Post.visibilities.keys, post.visibility), class: "select select-bordered", data: {reflex: "change->PostReflex#change_visibility", post_id: post.signed_id}%>
+      <% end %>
       <% cc.column do %>
         <div class="flex w-fit ml-auto">
           <% if post.published == false %>

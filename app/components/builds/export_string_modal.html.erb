@@ -1,5 +1,5 @@
 <%= render(Layout::Modal.new(tag: :div)) do |c| %>
-  <% c.button(**@button_options) { "Export String" } %>
+  <% c.button(**@button_options) { content ? content : "Export String" } %>
   <% c.dialog do |cc| %>
     <% cc.header { @build.name + " export string"} %>
     <% cc.body do %>

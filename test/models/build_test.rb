@@ -7,6 +7,18 @@ class BuildTest < ActiveSupport::TestCase
     @build = build :build, published: true
   end
 
+  test "#clone should return a new build object same attributes and same files" do
+    @build.folders = []
+    nested_folder = build :folder, foldable: @build
+    nested_folder.scripts = []
+    nested_folder.scripts << build(:script, scriptable: nested_folder)
+    @build.published = true
+    @build.save
+
+    clone = @build.clone
+
+  end
+
   # files validation
 
   test "valid with a script in a folder" do

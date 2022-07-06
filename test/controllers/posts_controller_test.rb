@@ -3,6 +3,19 @@
 require "test_helper"
 
 class PostsControllerTest < ActionDispatch::IntegrationTest
+  setup do
+    @post = build :post
+  end
+
+  test "should show 404 if the post in unpublised" do
+    @post.published = false
+    @post.save
+
+    get post_url @post
+
+    assert_equal 404, response.status
+  end
+
   class GuestUser < ActionDispatch::IntegrationTest
     setup do
       @post = build :post
@@ -121,6 +134,13 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
       end
 
       assert_redirected_to post_builds_url(Post.last)
+    end
+
+    test "new post should have private visibility by default" do
+      get new_post_url
+      new_post = assigns(:post)
+
+      assert new_post.private_visibility?
     end
 
     test "should get edit of its own posts" do

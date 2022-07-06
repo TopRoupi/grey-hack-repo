@@ -17,6 +17,8 @@ class PostsController < ApplicationController
       .friendly
       .find(params[:id])
 
+    render_not_found if @post.published == false
+
     redirect_to :root, alert: "action not permitted" if @post.private_visibility? && @post.user != current_user
 
     @comments = @post.comments.order(:created_at)
@@ -25,6 +27,7 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
+    @post.visibility = :private
   end
 
   # GET /posts/1/builds

@@ -9,6 +9,10 @@ module Fileable
 
     accepts_nested_attributes_for :scripts, allow_destroy: true
     accepts_nested_attributes_for :folders, allow_destroy: true
+
+    amoeba do
+      enable
+    end
   end
 
   def has_script?
