@@ -11,8 +11,6 @@ class PostReflex < ApplicationReflex
     post = Post.find_signed(element.dataset[:post_id])
     new_value = element.value
 
-    post.update visibility: new_value
-
-    morph :nothing
+    post.update! visibility: new_value
   end
 end

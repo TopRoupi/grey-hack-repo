@@ -18,9 +18,12 @@
   <p class="text-center text-green-400">
     Post ready to publish
   </p>
-  <button data-reflex="click->PostReflex#publish" data-post-id="<%= @post.signed_id %>" class="mb-5 btn btn-success btn-sm mx-auto block">
-    Publish build
-  </button>
+
+  <%= render(Layout::ConfirmationDialog.new()) do |c| %>
+    <% c.title { "Publish post " + @post.title } %>
+    <% c.button(class: "mb-5 btn btn-success btn-thin mx-auto w-fit block py-1 px-2") { "Publish post" } %>
+    <% c.action(tag: :button, style: "success", data: {reflex: "click->PostReflex#publish", post_id: @post.signed_id}){ "Publish" } %>
+  <% end %>
 <% end %>
 <% end %>
 
