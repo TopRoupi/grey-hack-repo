@@ -33,6 +33,7 @@ gem "meta-tags", "~> 2.16"
 gem "octicons_helper", "~> 16.3"
 gem "pagy", "~> 5.10"
 # back end gems
+gem "rpictogrify", git: "https://github.com/TopRoupi/rpictogrify.git", branch: "master"
 gem "amoeba", "~> 3.2"
 gem "omniauth-rails_csrf_protection"
 gem "omniauth-github"
@@ -55,7 +56,7 @@ gem "sentry-ruby", "~> 5.2"
 gem "sentry-rails", "~> 5.2"
 gem "sentry-sidekiq", "~> 5.3"
 
-gem "rpictogrify", git: "https://github.com/TopRoupi/rpictogrify.git", branch: "master"
+gem "foreman", require: false
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]

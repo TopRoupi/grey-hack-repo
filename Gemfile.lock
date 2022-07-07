@@ -155,6 +155,7 @@ GEM
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
       rake
+    foreman (0.87.2)
     friendly_id (5.4.2)
       activerecord (>= 4.0.0)
     globalid (1.0.0)
@@ -177,6 +178,7 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    jemalloc (1.0.1)
     jmespath (1.6.1)
     jsbundling-rails (1.0.2)
       railties (>= 6.0.0)
@@ -436,10 +438,12 @@ DEPENDENCIES
   discord-notifier (~> 1.0, >= 1.0.3)
   factory_bot_rails
   faker!
+  foreman
   friendly_id (~> 5.4.0)
   hiredis (~> 0.6.3)
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
+  jemalloc
   jsbundling-rails (~> 1.0)
   listen (~> 3.3)
   meta-tags (~> 2.16)
