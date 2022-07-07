@@ -178,7 +178,6 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
-    jemalloc (1.0.1)
     jmespath (1.6.1)
     jsbundling-rails (1.0.2)
       railties (>= 6.0.0)
@@ -443,7 +442,6 @@ DEPENDENCIES
   hiredis (~> 0.6.3)
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
-  jemalloc
   jsbundling-rails (~> 1.0)
   listen (~> 3.3)
   meta-tags (~> 2.16)
