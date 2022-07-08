@@ -67,7 +67,8 @@ Rails.application.configure do
   #     key_prefix: "app:session:",
   #     url: ENV["REDIS_URL_RED"]
   #   }
-  config.cache_store = :redis_cache_store, {url: ENV["REDIS_URL_RED"]}
+  # config.cache_store = :redis_cache_store, {url: ENV["REDIS_URL"]}
+  config.cache_store = :file_store, "#{root}/tmp/cache"
   config.session_store = :cookie_store
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
