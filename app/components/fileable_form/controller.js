@@ -14,7 +14,5 @@ export default class extends ApplicationController {
     this.stimulate(
         'FileableForm::Reflex#import_build', {"string": string, "build_id": build_id}
     )
-    //close modal
-    document.getElementById("close-modal").click()
   }
 }

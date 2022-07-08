@@ -26,12 +26,6 @@ class FileableForm::Reflex < ApplicationReflex
     build.save
   end
 
-  def publish_post
-    post = Post.find_signed(element.dataset[:post_id])
-    post.published = true
-    post.save
-  end
-
   def add_build
     post = Post.find_signed(element.dataset[:post_id])
     post.builds << Build.new(name: "draft build", published: false)

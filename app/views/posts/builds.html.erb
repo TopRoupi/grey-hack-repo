@@ -22,7 +22,7 @@
   <%= render(Layout::ConfirmationDialog.new()) do |c| %>
     <% c.title { "Publish post " + @post.title } %>
     <% c.button(class: "mb-5 btn btn-success btn-thin mx-auto w-fit block py-1 px-2") { "Publish post" } %>
-    <% c.action(tag: :button, style: "success", data: {reflex: "click->PostReflex#publish", post_id: @post.signed_id}){ "Publish" } %>
+    <% c.action(tag: :a, href: post_publish_path(@post), style: "success", data: {turbo_method: :patch}){ "Publish" } %>
   <% end %>
 <% end %>
 <% end %>
@@ -135,4 +135,12 @@
     <% end %>
   <% end %>
 </div>
+
+<% if @selected_file %>
+  <h1 class="text-center text-3xl font-semibold mb-6 mt-10">
+    Edit <%= @selected_file.name %>
+  </h1>
+
+  <%= render("#{@selected_file.class.to_s.downcase.pluralize}/form", @selected_file.class.to_s.downcase.to_sym => @selected_file) %>
+<% end %>
 

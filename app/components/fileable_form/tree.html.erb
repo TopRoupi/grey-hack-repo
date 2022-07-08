@@ -2,7 +2,7 @@
   <%@fileable.folders.each do |folder| %>
     <p>
       <%= folder.name %> 
-      <a class="link" href="<%= edit_folder_path folder %>">
+      <a class="link" href="<%= path_to(request.url, file_type: "Folder", file_id: folder.id) %>">
         Edit
       </a>
       <button class="link !text-red-400" data-reflex="click->FileableForm::Reflex#destroy_folder" data-folder-id="<%= folder.signed_id %>">
@@ -23,7 +23,7 @@
       <a class="link" href="<%= script_path script %>">
         View
       </a>
-      <a class="link" href="<%= edit_script_path script %>">
+      <a class="link" href="<%= path_to(request.url, file_type: "Script", file_id: script.id) %>">
         Edit
       </a>
       <button class="link !text-red-400" data-reflex="click->FileableForm::Reflex#destroy_script" data-script-id="<%= script.signed_id %>">

@@ -2,7 +2,13 @@
 
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :builds]
-  before_action :set_post, only: [:edit, :update, :destroy, :builds]
+  before_action :set_post, only: [:edit, :update, :destroy, :builds, :publish]
+
+  # POST /posts/1/publish
+  def publish
+    @post.update published: true
+    redirect_to post_builds_path(@post), notice: "Post #{@post.title} published"
+  end
 
   # GET /posts or /posts.json
   def index
@@ -34,6 +40,9 @@ class PostsController < ApplicationController
   def builds
     @builds = @post.builds.order(created_at: :desc)
     @selected_build = @post.builds.find_by(id: params[:build_id]) if params[:build_id]
+
+    @selected_file = params[:file_type].constantize.find(params[:file_id]) if params[:file_type] && params[:file_id]
+
     redirect_to post_builds_path if @selected_build&.published == true
   end
 

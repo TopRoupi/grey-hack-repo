@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :posts, except: [:index]
   get "posts", to: "home#index"
+  patch "posts/:id/publish", to: "posts#publish", as: "post_publish"
   get "posts/:id/builds", to: "posts#builds", as: "post_builds"
 
   patch "builds/:id/publish", to: "builds#publish", as: "build_publish"
