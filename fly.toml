@@ -10,7 +10,7 @@ processes = []
   [build.args]
     BUNDLER_VERSION = "2.3.7"
     NODE_VERSION = "14"
-    RUBY_VERSION = ">= 3.1.1"
+    RUBY_VERSION = ">= 3.1.2"
 
 [env]
   SERVER_COMMAND = "bundle exec sidekiq -e production -C config/sidekiq.yml"

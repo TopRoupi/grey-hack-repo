@@ -16,7 +16,6 @@ class BuildTest < ActiveSupport::TestCase
     @build.save
 
     clone = @build.clone
-
   end
 
   # files validation
