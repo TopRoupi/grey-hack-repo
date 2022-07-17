@@ -863,9 +863,9 @@ is-number@^7.0.0:
   resolved "https://registry.yarnpkg.com/is-number/-/is-number-7.0.0.tgz#7535345b896734d5f80c4d06c50955527a14f12b"
   integrity sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==
 
-"language-greyscript@https://github.com/Elec0/language-greyscript":
-  version "1.2.0"
-  resolved "https://github.com/Elec0/language-greyscript#720367c500d8d24e9a4050eb3b8de0b2c5c54d96"
+"language-greyscript@https://github.com/nyx-gh/language-greyscript-2":
+  version "1.0.1"
+  resolved "https://github.com/nyx-gh/language-greyscript-2#1f50796c4ee6e672c89d260d68baafd2f99b2847"
 
 lcid@^1.0.0:
   version "1.0.0"
