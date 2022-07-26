@@ -15,6 +15,7 @@
     "daisyui": "^2.15.2",
     "debounced": "^0.0.5",
     "esbuild": "^0.13.3",
+    "highlight.js": "^11.6.0",
     "highlights": "^3.1.4",
     "language-greyscript": "https://github.com/nyx-gh/language-greyscript-2",
     "stimulus_reflex": "^3.5.0-pre9",
