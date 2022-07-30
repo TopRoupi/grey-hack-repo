@@ -10,7 +10,6 @@
     "@rails/actiontext": "^7.0.1",
     "@rails/activestorage": "^7.0.1",
     "@rails/request.js": "^0.0.6",
-    "@webcomponents/webcomponentsjs": "^2.6.0",
     "autoprefixer": "^10.3.7",
     "daisyui": "^2.15.2",
     "debounced": "^0.0.5",
