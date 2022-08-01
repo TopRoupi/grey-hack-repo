@@ -16,21 +16,5 @@ require("./trix-toolbar-overwrites")
 
 import "./controllers"
 
-import hljs from "highlight.js"
-import 'highlight.js/styles/monokai-sublime.css'
-var hljsDefineGreyScript = require('./gs');
-hljsDefineGreyScript(hljs);
-
-
-// hljs.highlightAll()
-// code = document.getElementById("codetest")
-// code.innerHTML = hljs.highlight(code.innerHTML, {language: "greyscript"}).value
-document.addEventListener('turbo:load', (event) => {
-  document.querySelectorAll('pre').forEach((block) => {
-    block.innerHTML = hljs.highlight(block.innerHTML, {language: "greyscript"}).value
-    // hljs.highlightBlock(block, {language: "greyscript"})
-  })
-})
-
 window.Turbo = Turbo
 

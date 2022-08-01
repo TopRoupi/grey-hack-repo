@@ -4,7 +4,7 @@
   <% end %>
 
   <%= f.group :content do %>
-    <%= f.text_area :content %>
+    <%= f.text_area :content, data: {controller: "code-editor", code_editor_language_value: "greyscript", code_editor_editorclass_value: "p-2 rounded"} %>
   <% end %>
 
   <%= f.submit %>

@@ -21,9 +21,13 @@ application.register("build-explorer", BuildExplorer)
 import AvatarPreview from "./avatar_preview_controller"
 import Attachments from "./attachments_controller"
 import Decipher from "./decipher_controller"
+import Code from "./code_controller"
+import CodeEditor from "./code_editor_controller"
 application.register("avatar-preview", AvatarPreview)
 application.register("attachments", Attachments)
 application.register("decipher", Decipher)
+application.register("code", Code)
+application.register("code-editor", CodeEditor)
 
 import { Alert, Dropdown, Modal, Toggle } from "tailwindcss-stimulus-components"
 

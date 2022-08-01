@@ -11,6 +11,7 @@
     "@rails/activestorage": "^7.0.1",
     "@rails/request.js": "^0.0.6",
     "autoprefixer": "^10.3.7",
+    "codejar": "^3.6.0",
     "daisyui": "^2.15.2",
     "debounced": "^0.0.5",
     "esbuild": "^0.13.3",
