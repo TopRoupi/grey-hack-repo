@@ -7,7 +7,8 @@
 
     <%= display_meta_tags(default_meta_tags) %>
 
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= javascript_include_tag "main", "data-turbo-track": "reload", defer: true %>
+    <%= stylesheet_link_tag 'main', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <script src="https://js.stripe.com/v3/"></script>
