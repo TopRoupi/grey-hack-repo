@@ -23,11 +23,13 @@ import Attachments from "./attachments_controller"
 import Decipher from "./decipher_controller"
 import Code from "./code_controller"
 import CodeEditor from "./code_editor_controller"
+import CableFrom from "./cable_from_controller"
 application.register("avatar-preview", AvatarPreview)
 application.register("attachments", Attachments)
 application.register("decipher", Decipher)
 application.register("code", Code)
 application.register("code-editor", CodeEditor)
+application.register("cable-from", CableFrom)
 
 import { Alert, Dropdown, Modal, Toggle } from "tailwindcss-stimulus-components"
 
