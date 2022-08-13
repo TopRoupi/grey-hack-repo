@@ -2,6 +2,7 @@
 
 class ApplicationController < ActionController::Base
   include Pagy::Backend
+  include CableReady::Broadcaster
   default_form_builder DaisyFormBuilder
   Pagy::DEFAULT[:items] = 10
 

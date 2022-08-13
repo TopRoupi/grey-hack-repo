@@ -21,6 +21,14 @@ class Script < ApplicationRecord
     end
   end
 
+  def find_build
+    if scriptable.instance_of? Build
+      scriptable
+    else
+      scriptable.find_build
+    end
+  end
+
   def set_highlighted_content
     HighlightJob.perform_later(self) unless Digest::SHA256.digest(content) == old_content
   end

@@ -1,7 +1,10 @@
 <turbo-frame id="<%= dom_id build, "editor" %>">
   <div class="w-full flex" style="min-height: 400px;">
     <div class="border-r-2 border-base-300">
-      <%= render(FileableForm::Tree.new(fileable: build)) %>
+      <div data-controller="cable-from" data-cable-from-id-value="<%= Cable.signed_stream_name(dom_id(build, "file_tree")) %>"></div>
+      <div id="<%= dom_id build, "file_tree" %>">
+        <%= render(FileableForm::Tree.new(fileable: build)) %>
+      </div>
     </div>
     <div class="w-full px-4">
       <% if file %>

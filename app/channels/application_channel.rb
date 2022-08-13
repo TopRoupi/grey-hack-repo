@@ -2,9 +2,7 @@
 
 class ApplicationChannel < ApplicationCable::Channel
   def subscribed
-    # puts "application channel"
-    # puts params
-    # stream_for params[:key]
-    stream_from "application-stream"
+    stream_for params[:id]
+    # stream_from "application-stream"
   end
 end

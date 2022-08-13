@@ -17,7 +17,8 @@ class ScriptsController < ApplicationController
   def update
     respond_to do |format|
       if @script.update(script_params)
-        format.html { redirect_back fallback_location: root_path, notice: "Script was successfully updated." }
+        format.html { render "scripts/_form", locals: {script: @script, message: "Script updated"} }
+        Broadcast::Script.morph(script: @script)
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @script.errors, status: :unprocessable_entity }
