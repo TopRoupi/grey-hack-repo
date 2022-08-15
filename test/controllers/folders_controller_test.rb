@@ -51,7 +51,7 @@ class FoldersControllerTest < ActionDispatch::IntegrationTest
       @folder.save
 
       patch folder_url(@folder), params: {folder: {name: "aAAA"}}
-      assert_redirected_to root_path
+      assert_response :success
     end
 
     test "should not update ramdom folder" do
