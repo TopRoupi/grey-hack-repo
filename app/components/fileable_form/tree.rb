@@ -27,7 +27,8 @@ class FileableForm::Tree < ApplicationComponent
       options[:class] += file.valid? ? " text-green-400" : " text-red-400"
     end
 
-    options[:href] = path_to(request.url, file_type: file.class.to_s, file_id: file.id)
+    build = file.find_build
+    options[:href] = post_builds_path(id: build.post.slug, build_id: file.find_build, file_type: file.class.to_s, file_id: file.id)
     options[:style] = "padding-left: #{depth * 10 + 3}px;"
 
     tag.a(**options) do
@@ -39,5 +40,9 @@ class FileableForm::Tree < ApplicationComponent
     tag.div(class: "flex flex-nowrap pr-2", style: "padding-left: #{depth * 10 + 3}px;") do
       yield
     end
+  end
+
+  def test_path_helpers
+    [posts_path, posts_url, request.url]
   end
 end

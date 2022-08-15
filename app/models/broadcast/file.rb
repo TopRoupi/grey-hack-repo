@@ -1,17 +1,17 @@
 module Broadcast
-  class Script
+  class File
     include Rails.application.routes.url_helpers
     include ActionView::RecordIdentifier
     include CableReady::Broadcaster
-    attr_reader :script, :build, :file_tree_dom_id, :stream_id
+    attr_reader :file, :build, :file_tree_dom_id, :stream_id
 
-    def self.morph(script:)
-      new(script).morph
+    def self.morph(file:)
+      new(file).morph
     end
 
-    def initialize(script)
-      @script = script
-      @build = @script.find_build
+    def initialize(file)
+      @file = file
+      @build = @file.find_build
       @file_tree_dom_id = dom_id(build, "file_tree")
       @stream_id = Cable.signed_stream_name(file_tree_dom_id[1..-1])
     end
@@ -25,7 +25,7 @@ module Broadcast
     private
 
     def rendered_file_tree
-      ActionController::Base.renderer.render(
+      ApplicationController.renderer.render(
         FileableForm::Tree.new(fileable: build),
         layout: false
       )

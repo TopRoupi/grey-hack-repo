@@ -18,7 +18,7 @@ class ScriptsController < ApplicationController
     respond_to do |format|
       if @script.update(script_params)
         format.html { render "scripts/_form", locals: {script: @script, message: "Script updated"} }
-        Broadcast::Script.morph(script: @script)
+        Broadcast::File.morph(file: @script)
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @script.errors, status: :unprocessable_entity }
