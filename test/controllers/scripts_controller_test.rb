@@ -57,7 +57,7 @@ class ScriptsControllerTest < ActionDispatch::IntegrationTest
       @script.save
 
       patch script_url(@script), params: {script: {name: "aAAA"}}
-      assert_redirected_to root_path
+      assert_response :success
     end
 
     test "should not update ramdom scripts" do

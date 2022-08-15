@@ -13,7 +13,8 @@ class FoldersController < ApplicationController
   def update
     respond_to do |format|
       if @folder.update(folder_params)
-        format.html { redirect_back fallback_location: root_path, notice: "Script was successfully updated." }
+        format.html { render "folders/_form", locals: {folder: @folder, message: "Folder updated"} }
+        Broadcast::File.morph(file: @folder)
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @folder.errors, status: :unprocessable_entity }

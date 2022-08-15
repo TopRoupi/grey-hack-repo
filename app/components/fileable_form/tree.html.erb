@@ -1,42 +1,17 @@
-<div class="border p-2 rounded border-beaver-800">
-  <%@fileable.folders.each do |folder| %>
-    <p>
-      <%= folder.name %> 
-      <a class="link" href="<%= path_to(request.url, file_type: "Folder", file_id: folder.id) %>">
-        Edit
-      </a>
-      <button class="link !text-red-400" data-reflex="click->FileableForm::Reflex#destroy_folder" data-folder-id="<%= folder.signed_id %>">
-        Destroy
-      </button>
-      <div class="pl-3">
-        <%= render(FileableForm::Tree.new(fileable: folder)) %>
-      </div>
-    </p>
+<% files.each do |file| %>
+  <%= file_button(file) do %>
+    <%= octicon file_icon(file), class: "fill-current mr-2" %>
+    <%= file.name %>
   <% end %>
+  <%= render(FileableForm::Tree.new(fileable: file, depth: depth + 1)) if file.instance_of?(Folder)%>
+<% end %>
 
-  <% @fileable.scripts.each do |script| %>
-    <p>
-      <%= script.name %> 
-      <span class="<%= script.valid? ? "text-green-400" : "text-red-400" %>">
-        <%= script.valid? ? "valid" : "invalid" %> 
-      </span>
-      <a class="link" href="<%= script_path script %>">
-        View
-      </a>
-      <a class="link" href="<%= path_to(request.url, file_type: "Script", file_id: script.id) %>">
-        Edit
-      </a>
-      <button class="link !text-red-400" data-reflex="click->FileableForm::Reflex#destroy_script" data-script-id="<%= script.signed_id %>">
-        Destroy
-      </button>
-    </p>
-  <% end %>
-
-  <button class="link" data-reflex="click->FileableForm::Reflex#add_script" data-fileable-id="<%= @fileable.signed_id %>" data-fileable-type="<%= @fileable.class %>">
+<%= tree_controls do %>
+  <button class="link whitespace-nowrap mr-2" data-reflex="click->FileableForm::Reflex#add_script" data-fileable-id="<%= @fileable.signed_id %>" data-fileable-type="<%= @fileable.class %>">
     Add script
   </button>
 
-  <button class="link" data-reflex="click->FileableForm::Reflex#add_folder" data-fileable-id="<%= @fileable.signed_id %>" data-fileable-type="<%= @fileable.class %>">
+  <button class="link whitespace-nowrap" data-reflex="click->FileableForm::Reflex#add_folder" data-fileable-id="<%= @fileable.signed_id %>" data-fileable-type="<%= @fileable.class %>">
     Add folder
   </button>
-</div>
+<% end %>

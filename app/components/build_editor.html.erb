@@ -1,0 +1,37 @@
+<turbo-frame id="<%= dom_id build, "editor" %>">
+  <div class="w-full flex" style="min-height: 400px;">
+    <div class="border-r-2 border-base-300">
+      <div data-controller="cable-from" data-cable-from-id-value="<%= Cable.signed_stream_name(dom_id(build, "file_tree")) %>"></div>
+      <div id="<%= dom_id build, "file_tree" %>">
+        <%= render(FileableForm::Tree.new(fileable: build)) %>
+      </div>
+    </div>
+    <div class="w-full px-4">
+      <% if file %>
+        <h1 class="text-center text-3xl font-semibold mb-6 mt-10">
+          Edit <%= file.name %>
+        </h1>
+
+        <%= render("#{file.class.to_s.downcase.pluralize}/form", file.class.to_s.downcase.to_sym => file) %>
+
+        <%= file_destroy_button %>
+      <% end %>
+    </div>
+  </div>
+
+  <%= render(Layout::Modal.new(class: "ml-auto flex items-center")) do |c| %>
+    <% c.button(class: "link") { "import from string and replace this builds files" } %>
+    <% c.dialog do |cc| %>
+      <% cc.header {"Import project folder"} %>
+      <% cc.body(data: {controller: "fileable-form"}) do %>
+        <input class="hidden" data-fileable-form-target="build" value="<%= build.signed_id %>">
+        </input>
+        <p>paste the output of <a class="link" href="https://www.greyrepo.xyz/posts/folder-parser">grparser</a> export string in the field bellow.</p>
+        <br>
+        <p>export string: </p>
+        <textarea class="h-20 p-2 mt-2 bg-beaver-850 border-beaver-700 border rounded w-full" data-fileable-form-target="string"></textarea>
+        <button class="button_secondary font-bold py-2 px-4 rounded float-right mt-5" data-action="click->fileable-form#import_string">Import</button>
+      <% end %>
+    <% end %>
+  <% end %>
+</turbo-frame>

@@ -1,7 +1,12 @@
-<%= form_for(folder, builder: DaisyFormBuilder) do |f| %>
-  <%= f.group :name do %>
-    <%= f.text_field :name %>
+<turbo-frame id="<%= dom_id folder %>">
+  <% if defined? message %>
+    <%= message %>
   <% end %>
+  <%= form_for(folder, builder: DaisyFormBuilder) do |f| %>
+    <%= f.group :name do %>
+      <%= f.text_field :name %>
+    <% end %>
 
-  <%= f.submit %>
-<% end %>
+    <%= f.submit %>
+  <% end %>
+</turbo-frame>

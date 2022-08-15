@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Layout::Dropdown::MenuItem < ApplicationComponent
-  include ViewComponent::PolymorphicSlots
-
   def initialize(tag: :span, type: nil, **sys_params)
     @sys_params = sys_params
     @tag = tag
