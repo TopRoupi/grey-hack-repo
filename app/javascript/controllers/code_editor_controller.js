@@ -4,7 +4,7 @@ import {CodeJar} from 'codejar'
 import {withLineNumbers} from 'codejar/linenumbers'
 
 import hljs from "highlight.js"
-import 'highlight.js/styles/monokai-sublime.css'
+import 'highlight.js/styles/base16/brewer.css'
 // define custom highligher
 var hljsDefineGreyScript = require('../gs');
 hljsDefineGreyScript(hljs);

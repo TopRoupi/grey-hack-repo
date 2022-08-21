@@ -35,3 +35,6 @@ button.trix-active {
   @apply !btn-active
 }
 
+.code-line-numbers__number {
+  background-color: transparent !important ;
+}

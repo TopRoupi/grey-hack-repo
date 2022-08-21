@@ -4,8 +4,6 @@
   <%= render(Scripts::Card::CopyButton::Component.new(script: @script)) %>
 </div>
 
-<% content_for :containerless do %>
-<div class="px-4">
+<div class="overflow-auto hljs">
   <%= render(CodeHighlight.new(code: @script.content)) %>
 </div>
-<% end %>

@@ -328,6 +328,11 @@ cliui@^7.0.2:
     strip-ansi "^6.0.0"
     wrap-ansi "^7.0.0"
 
+code-line-numbers@^0.0.12:
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/code-line-numbers/-/code-line-numbers-0.0.12.tgz#21fd8f7fb9ebe7b85af3f15742980299f7846e62"
+  integrity sha512-9Nam1jxb0jrArqs9XDP7+pJn33HAOuoCVpPUYZyXSZf9O2ZVc7B3GghFoax0SA4mzmQYwewOpe6uUKxdJ/PFyw==
+
 code-point-at@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
