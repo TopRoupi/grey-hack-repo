@@ -1,12 +1,12 @@
-import ApplicationController from './application_controller'
+import ApplicationController from "./application_controller"
 
-import {CodeJar} from 'codejar'
-import {withLineNumbers} from 'codejar/linenumbers'
+import {CodeJar} from "codejar"
+import {withLineNumbers} from "codejar/linenumbers"
 
 import hljs from "highlight.js"
-import 'highlight.js/styles/base16/brewer.css'
+import "highlight.js/styles/base16/brewer.css"
 // define custom highligher
-var hljsDefineGreyScript = require('../gs');
+var hljsDefineGreyScript = require("../gs");
 hljsDefineGreyScript(hljs);
 
 /*
@@ -40,7 +40,6 @@ export default class extends ApplicationController {
   }
 
   highlight(editor) {
-    editor.textContent = editor.textContent;
     hljs.highlightElement(editor);
   }
 

@@ -1,7 +1,7 @@
-import ApplicationController from './application_controller'
+import ApplicationController from "./application_controller"
 
 export default class extends ApplicationController {
-  static targets = ['editor', 'input'];
+  static targets = ["editor", "input"];
 
   attach(event) {
     const postId = this.inputTarget.value;
@@ -10,7 +10,7 @@ export default class extends ApplicationController {
       .then(response => response.json())
       .then(post => this._createAttachment(post))
       .catch(error => {
-        console.log('error', error);
+        console.log("error", error);
       });
   }
 
@@ -23,6 +23,6 @@ export default class extends ApplicationController {
     });
 
     editor.insertAttachment(attachment);
-    editor.insertString(' ');
+    editor.insertString(" ");
   }
 }

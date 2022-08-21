@@ -1,9 +1,9 @@
-Trix.config.toolbar.getDefaultHTML = toolbarDefaultHTML;
+window.Trix.config.toolbar.getDefaultHTML = toolbarDefaultHTML;
 
-document.addEventListener('trix-initialize', updateToolbars, { once: true });
+document.addEventListener("trix-initialize", updateToolbars, { once: true });
 
 function updateToolbars(event) {
-  const toolbars = document.querySelectorAll('trix-toolbar');
+  const toolbars = document.querySelectorAll("trix-toolbar");
   const html = Trix.config.toolbar.getDefaultHTML();
   toolbars.forEach((toolbar) => (toolbar.innerHTML = html));
 }

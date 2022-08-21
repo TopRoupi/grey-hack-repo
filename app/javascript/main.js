@@ -14,7 +14,6 @@ require("@rails/actiontext")
 import "./trix-editor-overwrites"
 require("./trix-toolbar-overwrites")
 
-
 import hljs from "highlight.js"
 window.hljs = hljs
 

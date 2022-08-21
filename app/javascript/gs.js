@@ -1,39 +1,39 @@
 var module = module ? module : {}; // shim for browser use
 
-const decimalDigits = '[0-9](_?[0-9])*';
-const frac = `\\.(${decimalDigits})`;
-const decimalInteger = `0|[1-9](_?[0-9])*|0[0-7]*[89][0-9]*`;
+// const decimalDigits = "[0-9](_?[0-9])*";
+// const frac = `\\.(${decimalDigits})`;
+// const decimalInteger = "0|[1-9](_?[0-9])*|0[0-7]*[89][0-9]*";
 
 function hljsDefineGreyScript(hljs) {
   return {
-    keywords: 'for function break continue else or if not and or end then return while with in',
-    literal: ['false','true','null'],
+    keywords: "for function break continue else or if not and or end then return while with in",
+    literal: ["false","true","null"],
     contains: [
       {
-        scope: 'string',
-        begin: '"',
-        end: '"'
+        scope: "string",
+        begin: "\"",
+        end: "\""
       },
       {
-        scope: 'number',
+        scope: "number",
         variants: [
           {
-            begin: hljs.C_NUMBER_RE + '[i]',
+            begin: hljs.C_NUMBER_RE + "[i]",
             relevance: 1
           },
           hljs.C_NUMBER_MODE
         ]
       },
       hljs.COMMENT(
-        '//', // begin
-        '\n', // end
+        "//", // begin
+        "\n", // end
       )
     ]
   }
 }
 
 module.exports = function(hljs) {
-  hljs.registerLanguage('greyscript', hljsDefineGreyScript);
+  hljs.registerLanguage("greyscript", hljsDefineGreyScript);
 };
 
 module.exports.definer = hljsDefineGreyScript;

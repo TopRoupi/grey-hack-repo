@@ -1,9 +1,9 @@
 import { application } from "./application"
-import StimulusReflex from 'stimulus_reflex'
-import consumer from '../channels/consumer'
-import controller from './application_controller'
-import CableReady from 'cable_ready'
-import debounced from  'debounced'
+import StimulusReflex from "stimulus_reflex"
+import consumer from "../channels/consumer"
+import controller from "./application_controller"
+import CableReady from "cable_ready"
+import debounced from  "debounced"
 
 debounced.initialize()
 
@@ -33,10 +33,10 @@ application.register("cable-from", CableFrom)
 
 import { Alert, Dropdown, Modal, Toggle } from "tailwindcss-stimulus-components"
 
-application.register('dropdown', Dropdown)
-application.register('alert', Alert)
-application.register('modal', Modal)
-application.register('toggle', Toggle)
+application.register("dropdown", Dropdown)
+application.register("alert", Alert)
+application.register("modal", Modal)
+application.register("toggle", Toggle)
 
 application.consumer = consumer
 

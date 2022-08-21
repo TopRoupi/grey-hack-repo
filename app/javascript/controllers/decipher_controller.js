@@ -1,4 +1,4 @@
-import ApplicationController from './application_controller'
+import ApplicationController from "./application_controller"
 
 export default class extends ApplicationController {
   static targets = ["input"]
@@ -9,7 +9,7 @@ export default class extends ApplicationController {
 
   deciphe() {
     this.stimulate(
-      'DecipherReflex#deciphe', this.inputTarget.value
+      "DecipherReflex#deciphe", this.inputTarget.value
     )
   }
 }
