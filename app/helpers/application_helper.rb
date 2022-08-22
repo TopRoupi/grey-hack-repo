@@ -37,7 +37,7 @@ module ApplicationHelper
       noindex: !Rails.env.production?,
       icon: [
         {href: image_url("icon.ico")},
-        {href: image_url("logo2.svg"), rel: "apple-touch-icon", sizes: "180x180", type: "image/svg"}
+        {href: image_url("logo3.svg"), rel: "apple-touch-icon", sizes: "180x180", type: "image/svg"}
       ],
       og: {
         site_name: "Grey Repo",

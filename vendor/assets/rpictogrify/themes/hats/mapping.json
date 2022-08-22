@@ -5,12 +5,22 @@
     "hat": {
       "length": 1,
       "fill": "hat",
-      "currentColor": "#d0c6ac"
+      "currentColor": "#252628"
     },
-    "stripe": {
+    "hole": {
       "length": 1,
-      "fill": "stripe",
-      "currentColor": "#8c522d"
+      "fill": "hole",
+      "currentColor": "#252628"
+    },
+    "file": {
+      "length": 1,
+      "fill": "file",
+      "currentColor": "#252628"
+    },
+	"code": {
+      "length": 1,
+      "fill": "code",
+      "currentColor": "#ffffff"
     }
   },
   "colors": {
@@ -18,6 +28,9 @@
       "#1b1b1b",
       "#1e1616",
       "#343232"
+    ],
+    "hole": [
+      "#000000"
     ],
     "hat": [
       "#767a7f",
@@ -29,7 +42,17 @@
       "#21381c",
       "#6d0203"
     ],
-    "stripe": [
+    "code": [
+      "#767a7f",
+      "#070707",
+      "#38869e",
+      "#d63949",
+      "#8260e0",
+      "#3a7018",
+      "#21381c",
+      "#6d0203"
+    ],
+    "file": [
       "#f4f4f4",
       "#020202",
       "#2b2b2b"
