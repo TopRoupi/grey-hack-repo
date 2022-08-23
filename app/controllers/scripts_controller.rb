@@ -7,6 +7,7 @@ class ScriptsController < ApplicationController
 
   # GET /scripts/1
   def show
+    @markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true)
   end
 
   # GET /scripts/1/edit

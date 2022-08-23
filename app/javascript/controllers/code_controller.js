@@ -3,7 +3,9 @@ import hljs from "highlight.js"
 import "highlight.js/styles/base16/brewer.css"
 // define custom highligher
 var hljsDefineGreyScript = require("../gs");
+var hljsDefineText = require("../txt");
 hljsDefineGreyScript(hljs);
+hljsDefineText(hljs);
 import {CodeLineNumbers} from "code-line-numbers";
 
 /*
@@ -18,6 +20,7 @@ export default class extends ApplicationController {
 
   connect() {
     this.element.classList.add(`language-${this.languageValue}`)
+    // this.element.classList.add("language-text")
     if (!this.element.getAttribute("has-line-numbers")) {
       hljs.highlightElement(this.element)
       CodeLineNumbers.addLineNumbersTo(this.element)

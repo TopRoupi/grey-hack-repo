@@ -6,11 +6,15 @@ class Script < ApplicationRecord
   validates :content, presence: true, length: {minimum: 10, maximum: 80_000}
   validates :name, presence: true, length: {minimum: 2, maximum: 24}
 
-  after_commit :set_highlighted_content, on: [:create, :update]
   after_commit :touch_scriptable, on: [:create, :destroy]
 
   def touch_scriptable
     scriptable.touch unless scriptable.destroyed?
+  end
+
+  def extension
+    _, extension = name.split(".")
+    extension
   end
 
   def user
@@ -27,9 +31,5 @@ class Script < ApplicationRecord
     else
       scriptable.find_build
     end
-  end
-
-  def set_highlighted_content
-    HighlightJob.perform_later(self) unless Digest::SHA256.digest(content) == old_content
   end
 end

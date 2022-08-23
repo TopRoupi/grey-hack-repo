@@ -2,6 +2,7 @@
 
 module ApplicationHelper
   include UsersHelper
+  include ScriptsHelper
   include Pagy::Frontend
 
   def supporter_badge(**kwargs)

@@ -33,7 +33,7 @@ class FileableForm::Reflex < ApplicationReflex
   end
 
   def add_script
-    Script.create(name: "draft_script", content: "draft content", scriptable: @fileable)
+    Script.create(name: "draft_script.src", content: "draft content", scriptable: @fileable)
   end
 
   def destroy_script

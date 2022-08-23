@@ -7,7 +7,9 @@ import hljs from "highlight.js"
 import "highlight.js/styles/base16/brewer.css"
 // define custom highligher
 var hljsDefineGreyScript = require("../gs");
+var hljsDefineText = require("../txt");
 hljsDefineGreyScript(hljs);
+hljsDefineText(hljs);
 
 /*
 Example usage:

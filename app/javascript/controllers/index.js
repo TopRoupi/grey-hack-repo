@@ -31,8 +31,9 @@ application.register("code", Code)
 application.register("code-editor", CodeEditor)
 application.register("cable-from", CableFrom)
 
-import { Alert, Dropdown, Modal, Toggle } from "tailwindcss-stimulus-components"
+import { Tabs, Alert, Dropdown, Modal, Toggle } from "tailwindcss-stimulus-components"
 
+application.register("tabs", Tabs)
 application.register("dropdown", Dropdown)
 application.register("alert", Alert)
 application.register("modal", Modal)

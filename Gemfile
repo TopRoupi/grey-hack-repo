@@ -33,6 +33,7 @@ gem "meta-tags", "~> 2.16"
 gem "octicons_helper", "~> 16.3"
 gem "pagy", "~> 5.10"
 # back end gems
+gem "redcarpet", "~> 3.5"
 gem "rpictogrify", "~> 0.5.0"
 gem "amoeba", "~> 3.2"
 gem "omniauth-rails_csrf_protection"
