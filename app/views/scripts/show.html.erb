@@ -25,7 +25,7 @@
   <% if @script.extension == "md" %>
     <div class="hidden p-4 border border-base-300" style="margin-top: -1px" data-tabs-target="panel">
       <div class="trix-content">
-        <%== @markdown.render(@script.content) %>
+        <%= markdown @script.content %>
       </div>
     </div>
   <% end %>

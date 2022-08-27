@@ -24,20 +24,22 @@ export default class extends ApplicationController {
     height: String
   }
 
+  static targets = [ "editor", "name" ]
+
   connect() {
-    this.editor_element = this.element.insertAdjacentElement("afterend", document.createElement("div"))
-    this.editor_element.classList.add("language-".concat(this.languageValue), "code-editor")
+    this.editor_element = this.editorTarget.insertAdjacentElement("afterend", document.createElement("div"))
+    this.editor_element.classList.add("language-".concat(this.get_language()), "code-editor")
 
     this.editorclassValue.split(" ").forEach((c) => {
       this.editor_element.classList.add(c)
     })
 
     this.jar = CodeJar(this.editor_element, withLineNumbers(this.highlight))
-    this.element.style.display = "none"
+    this.editorTarget.style.display = "none"
     this.editor_element.style.height = this.heightValue
-    this.jar.updateCode(this.element.value)
+    this.jar.updateCode(this.editorTarget.value)
     this.jar.onUpdate(code => {
-      this.element.value = this.jar.toString()
+      this.editorTarget.value = this.jar.toString()
     });
   }
 
@@ -45,7 +47,25 @@ export default class extends ApplicationController {
     hljs.highlightElement(editor);
   }
 
+  reset() {
+    this.disconnect()
+    this.connect()
+  }
+
+  get_language() {
+    const languages = {
+      "src": "greyscript",
+      "md": "markdown",
+      "txt": "text"
+    }
+
+    const extension = this.nameTarget.value.split(".").pop()
+    const language = languages[extension] || "text"
+
+    return language
+  }
+
   disconnect() {
-    this.editor_element.remove()
+    this.editor_element.parentNode.remove()
   }
 }

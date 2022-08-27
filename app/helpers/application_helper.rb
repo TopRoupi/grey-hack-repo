@@ -5,6 +5,17 @@ module ApplicationHelper
   include ScriptsHelper
   include Pagy::Frontend
 
+  def markdown(content)
+    return "" if content.blank?
+
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::XHTML,
+      autolink: true,
+      space_after_headers: true,
+      tables: true)
+    markdown.render(content)
+    sanitize(markdown.render(content)).html_safe
+  end
+
   def supporter_badge(**kwargs)
     kwargs[:class] = "font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-indigo-400 to-indigo-600 #{kwargs[:class]}"
     content_tag(:span, "supporter", kwargs)

@@ -8,6 +8,6 @@ module ScriptsHelper
       md: "markdown"
     }
 
-    langs[extension]
+    langs[extension] || "text"
   end
 end
