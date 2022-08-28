@@ -13,8 +13,9 @@ class Script < ApplicationRecord
   end
 
   def extension
-    _, extension = name.split(".")
-    extension
+    file_extensions = name.split(".")[1..]
+
+    file_extensions[-1]
   end
 
   def user
