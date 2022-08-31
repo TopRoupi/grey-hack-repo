@@ -42,4 +42,15 @@ class GistTest < ActiveSupport::TestCase
     @gist.valid?
     refute_empty @gist.errors[:scripts]
   end
+
+  test "author should return anonymous user if anonymous or user if not anonymous" do
+    @gist = build :gist, :as_user
+    @gist.anonymous = false
+    assert_equal @gist.user, @gist.author
+    @gist = build :gist, :as_user
+    @gist.anonymous = true
+    assert_equal User.anonymous_user, @gist.author
+    @gist = build :gist, :as_anonymous
+    assert_equal User.anonymous_user, @gist.author
+  end
 end

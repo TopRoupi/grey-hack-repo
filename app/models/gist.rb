@@ -7,4 +7,12 @@ class Gist < ApplicationRecord
   validates :name, presence: true, length: {minimum: 3, maximum: 32}
   validates :description, presence: true, length: {minimum: 6, maximum: 230}
   validates :scripts, length: {minimum: 1}
+
+  def author
+    if anonymous?
+      User.anonymous_user
+    else
+      user
+    end
+  end
 end
