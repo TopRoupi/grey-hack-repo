@@ -5,7 +5,7 @@ class Gist < ApplicationRecord
   accepts_nested_attributes_for :scripts, allow_destroy: true
 
   validates :name, presence: true, length: {minimum: 3, maximum: 32}
-  validates :description, presence: true, length: {minimum: 6, maximum: 230}
+  validates :description, length: {minimum: 6, maximum: 230}
   validates :scripts, length: {minimum: 1}
 
   def author

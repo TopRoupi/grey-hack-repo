@@ -1,0 +1,16 @@
+<%= form_for gist, builder: DaisyFormBuilder, html: {class: "rounded p-2 border border-base-300 relative"} do |f| %>
+  <%= f.group :anonymous, class: "flex flex-row justify-end absolute -top-4 right-2 mt-0 bg-base-100 w-fit border border-base-300 px-1 pt-1 rounded", label: "Anonymous?" do %>
+    <%= f.check_box :anonymous, class: "ml-2" %>
+  <% end %>
+
+  <%= f.group :name do %>
+    <%= f.text_field :name %>
+  <% end %>
+
+  <%= f.group :description do %>
+    <%= f.text_area :description %>
+  <% end %>
+
+  <%= f.submit class: "!float-none ml-auto block"  %>
+<% end %>
+

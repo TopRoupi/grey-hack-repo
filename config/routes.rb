@@ -3,6 +3,7 @@
 require "sidekiq/web"
 
 Rails.application.routes.draw do
+  resources :gists
   resources :scripts, only: [:show, :edit, :update]
   resources :folders, only: [:edit, :update]
   resources :builds, only: [:destroy]
