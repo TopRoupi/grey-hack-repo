@@ -104,7 +104,6 @@ class GistsControllerTest < ActionDispatch::IntegrationTest
       assert_redirected_to gists_url
     end
 
-
     test "logged should not destroy unownned gist" do
       u = create :user
       sign_in u
