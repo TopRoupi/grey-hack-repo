@@ -13,6 +13,7 @@ class User < ApplicationRecord
   validates :bank, length: {is: 8, allow_blank: true}
 
   has_many :posts, dependent: :destroy
+  has_many :gists, dependent: :destroy
   has_many :stars, dependent: :destroy
   has_many :starable_posts, through: :stars, source: "starable", source_type: "Post"
   has_many :comments, dependent: :destroy

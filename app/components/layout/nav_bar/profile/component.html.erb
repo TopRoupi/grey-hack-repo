@@ -14,9 +14,13 @@
       <% cc.item(type: :title) { "Posts" } %>
       <% cc.item(tag: :a, href: my_posts_path) { "My posts" } %>
       <% cc.item(tag: :a, href: new_post_path) { "Create a new post" } %>
+      <% cc.item(type: :title) { "Gists" } %>
+      <% cc.item(tag: :a, href: my_gists_path) { "My gists" } %>
+      <% cc.item(tag: :a, href: new_gist_path) { "Create a new gist" } %>
     <% else %>
       <% cc.item(tag: :a, href: user_session_path) { "Log in" } %>
       <% cc.item(tag: :a, href: new_user_registration_path) { "Sign up" } %>
+      <% cc.item(tag: :a, href: new_gist_path) { "Create a new gist" } %>
     <% end %>
   <% end %>
 <% end %>

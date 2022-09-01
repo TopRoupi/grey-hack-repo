@@ -7,6 +7,9 @@ import debounced from  "debounced"
 
 debounced.initialize()
 
+import NestedForm from "stimulus-rails-nested-form"
+application.register("nested-form", NestedForm)
+
 import CommentsFormComponent from "../../components/comments/form/component_controller.js"
 import CategoriesCard from "../../components/categories/card_controller.js"
 import ScriptsCardCopyComponent from "../../components/scripts/card/copy_button/component_controller.js"

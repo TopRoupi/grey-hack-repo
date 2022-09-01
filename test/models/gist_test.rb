@@ -52,5 +52,8 @@ class GistTest < ActiveSupport::TestCase
     assert_equal User.anonymous_user, @gist.author
     @gist = build :gist, :as_anonymous
     assert_equal User.anonymous_user, @gist.author
+    @gist = build :gist, :as_anonymous
+    @gist.anonymous = false
+    assert_equal User.anonymous_user, @gist.author
   end
 end

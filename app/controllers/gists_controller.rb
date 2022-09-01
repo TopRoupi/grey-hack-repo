@@ -1,9 +1,12 @@
 class GistsController < ApplicationController
-  before_action :set_gist, only: %i[ show edit update destroy ]
+  before_action :set_gist, only: %i[show edit update destroy]
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
+  before_action :authorize_user!, only: [:edit, :update, :destroy]
 
   # GET /gists or /gists.json
   def index
-    @gists = Gist.all
+    @gists = Gist.order(created_at: :desc)
+    @pagy, @gists = pagy @gists
   end
 
   # GET /gists/1 or /gists/1.json
@@ -13,6 +16,8 @@ class GistsController < ApplicationController
   # GET /gists/new
   def new
     @gist = Gist.new
+    @gist.scripts << Script.new(name: "script.md", content: "# my documentation\nif it compiles it works :)")
+    @gist.scripts << Script.new(name: "script.src", content: "if true == true then\n\tprint(\"hello\")\nend if")
   end
 
   # GET /gists/1/edit
@@ -22,6 +27,7 @@ class GistsController < ApplicationController
   # POST /gists or /gists.json
   def create
     @gist = Gist.new(gist_params)
+    @gist.user = current_user
 
     respond_to do |format|
       if @gist.save
@@ -59,6 +65,10 @@ class GistsController < ApplicationController
 
   private
 
+  def authorize_user!
+    redirect_to :root, alert: "action not permitted" if @gist.user != current_user
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_gist
     @gist = Gist.find(params[:id])
@@ -66,6 +76,11 @@ class GistsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def gist_params
-    params.require(:gist).permit(:name, :description)
+    params.require(:gist).permit(
+      :name,
+      :description,
+      :anonymous,
+      scripts_attributes: [:id, :name, :content, :_destroy]
+    )
   end
 end

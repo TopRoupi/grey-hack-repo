@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get "users", to: "users#index", as: "users"
   patch "users/:id/unlink_github", to: "users#unlink_github", as: "user_unlink_github"
   get "myposts", to: "users#myposts", as: "my_posts"
+  get "mygists", to: "users#mygists", as: "my_gists"
 
   get "home/index"
   root to: "home#index"
