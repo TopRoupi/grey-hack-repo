@@ -1,4 +1,6 @@
 class Gist < ApplicationRecord
+  extend FriendlyId
+
   belongs_to :user, optional: true
   has_many :scripts, as: :scriptable, dependent: :destroy
 
@@ -7,6 +9,8 @@ class Gist < ApplicationRecord
   validates :name, presence: true, length: {minimum: 3, maximum: 32}
   validates :description, length: {maximum: 230}
   validates :scripts, length: {minimum: 1}
+
+  friendly_id :name, use: :slugged
 
   def author
     if anonymous?

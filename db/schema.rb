@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_28_121014) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_01_182438) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -113,6 +113,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_28_121014) do
     t.boolean "anonymous", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_gists_on_slug", unique: true
     t.index ["user_id"], name: "index_gists_on_user_id"
   end
 
@@ -219,6 +221,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_28_121014) do
     t.string "slug"
     t.integer "visibility", default: 0
     t.boolean "published", default: false, null: false
+    t.boolean "lib"
     t.index ["category_id"], name: "index_posts_on_category_id"
     t.index ["slug"], name: "index_posts_on_slug", unique: true
     t.index ["user_id"], name: "index_posts_on_user_id"
@@ -233,6 +236,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_28_121014) do
     t.string "scriptable_type"
     t.bigint "scriptable_id"
     t.binary "old_content"
+    t.boolean "lib"
     t.index ["scriptable_type", "scriptable_id"], name: "index_scripts_on_scriptable"
   end
 
