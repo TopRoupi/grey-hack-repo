@@ -1,20 +1,16 @@
 <div data-controller="tabs" data-tabs-active-tab="tab-active">
   <div class="tabs">
-    <a class="tab tab-lifted" data-tabs-target="tab" data-action="click->tabs#change">
-      Code
-    </a>
     <% if @script.extension == "md" %>
       <a class="tab tab-lifted" data-tabs-target="tab" data-action="click->tabs#change">
         Preview
       </a>
     <% end %>
-    <%= render(Scripts::Card::CopyButton::Component.new(script: @script, class: "tab tab-lifted ml-auto block border border-base-300 !bg-success !text-success-content")) %>
-  </div>
 
-  <div class="hidden border border-base-300" style="margin-top: -1px" data-tabs-target="panel">
-    <div class="overflow-x-auto hljs">
-      <%= render(CodeHighlight.new(code: @script.content, extension: @script.extension)) %>
-    </div>
+    <a class="tab tab-lifted" data-tabs-target="tab" data-action="click->tabs#change">
+      Code
+    </a>
+
+    <%= render(Scripts::Card::CopyButton::Component.new(script: @script, class: "tab tab-lifted ml-auto block border border-base-300 !bg-success !text-success-content")) %>
   </div>
 
   <% if @script.extension == "md" %>
@@ -24,4 +20,10 @@
       </div>
     </div>
   <% end %>
+
+  <div class="hidden border border-base-300" style="margin-top: -1px" data-tabs-target="panel">
+    <div class="overflow-x-auto hljs">
+      <%= render(CodeHighlight.new(code: @script.content, extension: @script.extension)) %>
+    </div>
+  </div>
 </div>
