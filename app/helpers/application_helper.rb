@@ -53,8 +53,8 @@ module ApplicationHelper
       ],
       og: {
         site_name: "Grey Repo",
-        title: @post&.title || "Grey Repo",
-        description: @post&.summary || "GreyHack game scripts repository.",
+        title: @gist&.name || @post&.title || "Grey Repo",
+        description: @gist&.description || @post&.summary || "GreyHack game scripts repository.",
         type: "website",
         url: request.original_url,
         image: image_url("image.png")
