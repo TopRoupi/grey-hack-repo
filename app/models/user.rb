@@ -53,7 +53,7 @@ class User < ApplicationRecord
   def self.anonymous_user
     OpenStruct.new(
       name: "anonymous",
-      avatar: "https://cdn.discordapp.com/avatars/631889630199021579/66ec95d086927199efad6fe5ae7781dc.png",
+      avatar: "https://i.imgur.com/LHv2STe.png",
       email: "bob.shadow@gmail.com"
     )
   end
