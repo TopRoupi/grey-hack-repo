@@ -34,6 +34,7 @@ class GistsController < ApplicationController
         format.html { redirect_to gist_url(@gist), notice: "Gist was successfully created." }
         format.json { render :show, status: :created, location: @gist }
       else
+        puts @gist.errors.to_a
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @gist.errors, status: :unprocessable_entity }
       end

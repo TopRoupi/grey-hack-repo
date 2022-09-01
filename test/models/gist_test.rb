@@ -25,15 +25,6 @@ class GistTest < ActiveSupport::TestCase
   test "validate description" do
     @gist.description = nil
     @gist.valid?
-    refute_empty @gist.errors[:description]
-    @gist.description = "a" * 5
-    @gist.valid?
-    refute_empty @gist.errors[:description]
-    @gist.description = "a" * 231
-    @gist.valid?
-    refute_empty @gist.errors[:description]
-    @gist.description = "a" * 200
-    @gist.valid?
     assert_empty @gist.errors[:description]
   end
 
@@ -53,6 +44,7 @@ class GistTest < ActiveSupport::TestCase
     @gist = build :gist, :as_anonymous
     assert_equal User.anonymous_user, @gist.author
     @gist = build :gist, :as_anonymous
+    @gist.user = nil
     @gist.anonymous = false
     assert_equal User.anonymous_user, @gist.author
   end

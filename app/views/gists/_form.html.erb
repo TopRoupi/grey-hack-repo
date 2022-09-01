@@ -1,6 +1,10 @@
 <%= form_for gist, builder: DaisyFormBuilder, html: {class: "rounded p-2 border border-base-300 relative", data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' }} do |f| %>
-  <%= f.group :anonymous, class: "flex flex-row justify-end absolute -top-4 right-2 mt-0 bg-base-100 w-fit border border-base-300 px-1 pt-1 rounded", label: "Anonymous?" do %>
-    <%= f.check_box :anonymous, class: "ml-2" %>
+  <% if current_user %>
+    <%= f.group :anonymous, class: "flex flex-row justify-end absolute -top-4 right-2 mt-0 bg-base-100 w-fit border border-base-300 px-1 pt-1 rounded", label: "Anonymous?" do %>
+      <%= f.check_box :anonymous, class: "ml-2" %>
+    <% end %>
+  <% else %>
+    warning: you are not logged, you can still create gists as an anonymous user but you wont be able to edit/delete this gist later
   <% end %>
 
   <%= f.group :name do %>
