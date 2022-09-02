@@ -1,0 +1,15 @@
+<% set_meta_tags title: @gist.name %>
+
+<div class="text-center text-3xl font-semibold mb-2">
+  <%= @gist.name %>
+</div>
+
+<div class="text-beaver-300 text-center mb-10">
+  <%= @gist.description %>
+</div>
+
+<% @gist.scripts.each do |script| %>
+  <p><%= script.name %></p>
+  <%= render(Scripts::Card::Component.new(script: script)) %>
+  <br>
+<% end %>

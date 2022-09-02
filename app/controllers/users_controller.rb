@@ -38,6 +38,11 @@ class UsersController < ApplicationController
     @pagy, @posts = pagy @posts
   end
 
+  def mygists
+    @gists = current_user.gists.order(created_at: :desc)
+    @pagy, @gists = pagy @gists
+  end
+
   def posts
     show
     render(Users::PostsBox.new(user: @user, current_user: current_user, posts: @posts, pagy: @category_pagy, active_tab: @category), layout: false)

@@ -1,0 +1,14 @@
+<% title "Gists" %>
+
+<div class="mb-6 relative">
+  <%= link_to "create a new gist", new_gist_path, class: "absolute right-0 btn btn-sm" %>
+  <h1 class="text-3xl font-semibold text-center">
+    Gists
+  </h1>
+</div>
+
+<div id="gists">
+  <%= render @gists %>
+</div>
+
+<%= render(Pagination.new(pagy: @pagy)) if @pagy %>

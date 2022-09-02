@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_19_225207) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_01_182438) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -104,6 +104,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_19_225207) do
     t.string "version"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "gists", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.bigint "user_id"
+    t.boolean "anonymous", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_gists_on_slug", unique: true
+    t.index ["user_id"], name: "index_gists_on_user_id"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -209,6 +221,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_19_225207) do
     t.string "slug"
     t.integer "visibility", default: 0
     t.boolean "published", default: false, null: false
+    t.boolean "lib"
     t.index ["category_id"], name: "index_posts_on_category_id"
     t.index ["slug"], name: "index_posts_on_slug", unique: true
     t.index ["user_id"], name: "index_posts_on_user_id"
@@ -223,6 +236,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_19_225207) do
     t.string "scriptable_type"
     t.bigint "scriptable_id"
     t.binary "old_content"
+    t.boolean "lib"
     t.index ["scriptable_type", "scriptable_id"], name: "index_scripts_on_scriptable"
   end
 
@@ -263,6 +277,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_19_225207) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "builds", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "gists", "users"
   add_foreign_key "pay_charges", "pay_customers", column: "customer_id"
   add_foreign_key "pay_charges", "pay_subscriptions", column: "subscription_id"
   add_foreign_key "pay_payment_methods", "pay_customers", column: "customer_id"

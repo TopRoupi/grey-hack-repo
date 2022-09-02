@@ -11,6 +11,9 @@
       <%= f.group :content do %>
         <%= f.text_area :content, data: {code_editor_target: "editor"} %>
       <% end %>
+
+      <div class="trix-content mb-6" data-code-editor-target="preview">
+      </div>
     <% end %>
 
     <%= f.submit %>

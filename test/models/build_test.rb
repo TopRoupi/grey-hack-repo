@@ -16,6 +16,7 @@ class BuildTest < ActiveSupport::TestCase
     @build.save
 
     clone = @build.clone
+    assert_equal clone.attributes, @build.attributes
   end
 
   # files validation
@@ -90,7 +91,7 @@ class BuildTest < ActiveSupport::TestCase
 
     test "#parse_string should return a valid build object" do
       string = @build_export_table
-      string = string[0..20] << "\n" + string[20..-1]
+      string = string[0..20] << "\n" + string[20..]
       assert_equal Build.parse_string(string).export_string, @build.export_string
     end
   end

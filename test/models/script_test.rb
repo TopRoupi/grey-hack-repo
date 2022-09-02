@@ -34,4 +34,21 @@ class ScriptTest < ActiveSupport::TestCase
     @script.valid?
     refute_empty @script.errors[:name]
   end
+
+  test "extension should return extension" do
+    @script.name = "test"
+    assert_nil @script.extension
+    @script.name = "test.src"
+    assert_equal @script.extension, "src"
+    @script.name = "test.src.md"
+    assert_equal @script.extension, "md"
+  end
+
+  test "find_build should return script's build" do
+    @build = create :build
+    assert_equal @build.scripts.last.find_build, @build
+    @build = build :build
+    @build.folders << build(:folder)
+    assert_equal @build.folders.last.scripts.last.find_build, @build
+  end
 end

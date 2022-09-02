@@ -1,43 +1,29 @@
-<%= render(Layout::Toggle.new(class: "w-full")) do |c| %>
-  <div class="flex w-full justify-start">
-    <%= render(c.toggle(tag: @edit ? :div : :button, class: "flex w-full p-3 #{params[:edit_file] == @script ? 'bg-beaver-700' : 'bg-beaver-800'} #{'hover:bg-beaver-700 cursor-pointer' unless @edit} items-center")) do %>
-      <%= octicon "file", height: 20, class: "fill-current mr-2" %>
-      <%= @script.name %>
-
-      <% if @edit && @script.invalid? %>
-        <span class="text-red-400 ml-2">
-          invalid
-        </span>
-      <% end %>
-
-      <% if @script.content %>
-        <div class="ml-auto text-beaver-400">
-          chars: <%= @script.content.size %>
-        </div>
-      <% end %>
+<div data-controller="tabs" data-tabs-active-tab="tab-active">
+  <div class="tabs">
+    <% if @script.extension == "md" %>
+      <a class="tab tab-lifted" data-tabs-target="tab" data-action="click->tabs#change">
+        Preview
+      </a>
     <% end %>
-    <% unless @edit %>
-      <%= render(Scripts::Card::CopyButton::Component.new(script: @script)) %>
-    <% end %>
-    <% if @edit %>
-      <button class="p-3 border-l cursor-pointer button_info border-beaver-850"
-        data-reflex="click->Posts::BuildsCard::FileableList::ComponentReflex#<%= params[:edit_file] == @script ? "close_form" : "edit_file" %>"
-        data-index="<%= @index %>">
-        Edit
-      </button>
 
-      <button class="p-3 border-l cursor-pointer button_danger border-beaver-850"
-        data-reflex="click->Posts::BuildsCard::FileableList::ComponentReflex#remove_file"
-        data-index="<%= @index %>">
-        Delete
-      </button>
-    <% end %>
+    <a class="tab tab-lifted" data-tabs-target="tab" data-action="click->tabs#change">
+      Code
+    </a>
+
+    <%= render(Scripts::Card::CopyButton::Component.new(script: @script, class: "tab tab-lifted ml-auto block border border-base-300 !bg-success !text-success-content")) %>
   </div>
-  <% unless @edit %>
-    <%= render(c.toggleable(class: "w-full overflow-x-auto bg-beaver-1000")) do %>
-      <%== @script.highlighted_content %>
-      <%= "refresh this page if this script didn't updated yet" if @script.highlighted_content.blank?%>
-    <% end %>
-  <% end %>
-<% end %>
 
+  <% if @script.extension == "md" %>
+    <div class="hidden p-4 border border-base-300" style="margin-top: -1px" data-tabs-target="panel">
+      <div class="trix-content">
+        <%= markdown @script.content %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="hidden border border-base-300" style="margin-top: -1px" data-tabs-target="panel">
+    <div class="overflow-x-auto hljs">
+      <%= render(CodeHighlight.new(code: @script.content, extension: @script.extension)) %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<%= form_for gist, builder: DaisyFormBuilder, html: {class: "rounded p-2 border border-base-300 relative", data: { controller: 'nested-form', nested_form_wrapper_selector_value: '.nested-form-wrapper' }} do |f| %>
+  <% if current_user %>
+    <%= f.group :anonymous, class: "flex flex-row justify-end absolute -top-4 right-2 mt-0 bg-base-100 w-fit border border-base-300 px-1 pt-1 rounded", label: "Anonymous?" do %>
+      <%= f.check_box :anonymous, class: "ml-2" %>
+    <% end %>
+  <% else %>
+    warning: you are not logged, you can still create gists as an anonymous user but you wont be able to edit/delete this gist later
+  <% end %>
+
+  <%= f.group :name do %>
+    <%= f.text_field :name %>
+  <% end %>
+
+  <%= f.group :description do %>
+    <%= f.text_area :description %>
+  <% end %>
+
+  <h2 class="text-center mb-6">gist files</h2>
+
+  <template data-nested-form-target="template">
+    <%= f.fields_for :scripts, Script.new(name: "script.src"), child_index: 'NEW_RECORD' do |script_fields| %>
+      <%= render "script_form", f: script_fields %>
+    <% end %>
+  </template>
+
+  <%= f.fields_for :scripts do |script_fields| %>
+    <%= render "script_form", f: script_fields %>
+  <% end %>
+
+  <div data-nested-form-target="target"></div>
+
+  <button class="btn btn-sm" type="button" data-action="nested-form#add">Add file</button>
+
+  <%= f.submit class: "!float-none ml-auto block"  %>
+<% end %>
+

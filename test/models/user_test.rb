@@ -9,25 +9,16 @@ class UserTest < ActiveSupport::TestCase
 
   # name
 
-  test "invalid without a name" do
+  test "invalid invalide a name length" do
     @user.name = nil
     @user.valid?
     refute_empty @user.errors[:name]
-  end
-
-  test "invalid with a name of 2 characters" do
     @user.name = "0" * 2
     @user.valid?
     refute_empty @user.errors[:name]
-  end
-
-  test "valid with a name of 16 characters" do
     @user.name = "0" * 16
     @user.valid?
     assert_empty @user.errors[:name]
-  end
-
-  test "invalid with a name of 17 characters" do
     @user.name = "a" * 17
     @user.valid?
     refute_empty @user.errors[:name]
@@ -60,21 +51,22 @@ class UserTest < ActiveSupport::TestCase
     refute_empty @user.errors[:password]
   end
 
-  test "invalid with a password of length 5" do
+  test "invalid with a password with invalid length" do
     @user.password = "a" * 5
     @user.valid?
     refute_empty @user.errors[:password]
-  end
-
-  test "valid with a password of length 128" do
     @user.password = "a" * 128
     @user.valid?
     assert_empty @user.errors[:password]
-  end
-
-  test "invalid with a password of length 129" do
     @user.password = "a" * 129
     @user.valid?
     refute_empty @user.errors[:password]
+  end
+
+  test "#anonymous_user should return an obj that quacks like a user with anon data" do
+    anon = User.anonymous_user
+    refute_nil anon.name
+    refute_nil anon.email
+    refute_nil anon.avatar
   end
 end

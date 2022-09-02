@@ -13,7 +13,7 @@ module Broadcast
       @file = file
       @build = @file.find_build
       @file_tree_dom_id = dom_id(build, "file_tree")
-      @stream_id = Cable.signed_stream_name(file_tree_dom_id[1..-1])
+      @stream_id = Cable.signed_stream_name(file_tree_dom_id[1..])
     end
 
     def morph

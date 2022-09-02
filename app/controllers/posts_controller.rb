@@ -96,43 +96,14 @@ class PostsController < ApplicationController
     redirect_to :root, alert: "action not permitted" if @post.user != current_user
   end
 
-  def count_levels(parameters, attribute_key)
-    return 0 if parameters[attribute_key].nil?
-
-    parameters = parameters.to_unsafe_hash if parameters.instance_of? ActionController::Parameters
-    parameters[attribute_key].map do |child_params|
-      count_levels(child_params.to_a[1], attribute_key)
-    end.max + 1
-  end
-
   # Only allow a list of trusted parameters through.
   def post_params
-    folder_attributes_base = [:id, :name, :_destroy, scripts_attributes: [:id, :name, :content, :_destroy]]
-    folders = []
-
-    if params[:post][:builds_attributes]
-      depth = params[:post][:builds_attributes].to_unsafe_hash.map do |p|
-        count_levels(p.to_a[1], "folders_attributes")
-      end.max
-
-      (1..depth).each do |value|
-        folders = folder_attributes_base + [{folders_attributes: folders}]
-      end
-    end
-
     params.require(:post).permit(
       :title,
       :category_id,
       :summary,
       :readme,
-      :visibility,
-      {builds_attributes: [
-        :id,
-        :name,
-        :_destroy,
-        scripts_attributes: [:id, :name, :content, :_destroy],
-        folders_attributes: folders
-      ]}
+      :visibility
     )
   end
 end

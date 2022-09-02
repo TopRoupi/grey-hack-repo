@@ -1,0 +1,38 @@
+<div class="text-center text-3xl font-semibold">
+  My gists
+</div>
+
+<br>
+
+
+<%= render(Layout::Table.new(class: "mb-5")) do |c| %>
+  <% c.head do |cc| %>
+    <% cc.column { "Name" } %>
+    <% cc.column { "Author" } %>
+    <% cc.column { "Actions" } %>
+  <% end %>
+
+  <% @gists.each do |gist| %>
+    <% c.row do |cc| %>
+      <% cc.column { gist.name } %>
+      <% cc.column { gist.author.name } %>
+      <% cc.column do %>
+        <div class="flex w-fit ml-auto">
+          <%= link_to edit_gist_path(gist), class: "btn btn-info btn-thin p-2 mr-2 flex items-center" do %>
+            <%= octicon "pencil", height: 16, class: "fill-current" %>
+          <% end %>
+          <%= render(Layout::ConfirmationDialog.new(class: "flex")) do |c| %>
+            <% c.title { "Delete " + gist.name } %>
+            <% c.button(class: "btn btn-danger btn-thin p-2 flex items-center") do %>
+              <%= octicon "trash", height: 16, class: "fill-current" %>
+            <% end %>
+            <% c.action(tag: :a, style: "danger", data: {turbo_method: :delete, turbo_frame: "_top"}, href: gist_path(gist)) { "Delete" } %>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= render(Pagination.new(pagy: @pagy)) if @pagy %>
+

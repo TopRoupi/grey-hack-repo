@@ -1,0 +1,28 @@
+<div id="<%= dom_id gist %>">
+  <a href="<%= gist_path gist %>"
+     data-turbo-frame="_top"
+     class="bg-base-200 hover:bg-base-300 w-full px-4 py-3 card mb-6">
+     <div class="flex items-start flex-col sm:flex-row mb-1">
+       <div class="flex">
+         <img class="h-8 w-8 mr-2 rounded-full hidden sm:block" src="<%= user_avatar(gist.author) %>" alt="">
+         <div class="block">
+           <span class="font-semibold text-xl">
+             <%= gist.name.capitalize %>
+           </span>
+           <span class="text-beaver-300 ml-1">
+             from <%= gist.author.name %>
+           </span>
+           <div class="text-beaver-300">
+             Created <%= time_ago_in_words(gist.created_at) %> ago
+           </div>
+           <div class="text-beaver-300">
+             <%= gist.description %>
+           </div>
+         </div>
+       </div>
+       <div class="ml-0 sm:ml-auto text-beaver-300 mt-4 sm:mt-0">
+         <%= pluralize(gist.scripts.size, 'file') %>
+       </div>
+     </div>
+  </a>
+</div>
