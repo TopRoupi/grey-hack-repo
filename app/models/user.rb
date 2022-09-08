@@ -27,6 +27,7 @@ class User < ApplicationRecord
   end
 
   def supporter?
+    return true if supporter == true
     set_payment_processor :stripe
     # payment_processor.charges.where(processor_plan: SupporterBadge.price).any?
     payment_processor.charges.any?

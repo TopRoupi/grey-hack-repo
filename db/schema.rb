@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_01_182438) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_08_223309) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -269,6 +269,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_01_182438) do
     t.boolean "admin"
     t.string "provider"
     t.string "uid"
+    t.boolean "supporter"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["name"], name: "index_users_on_name", unique: true
   end
