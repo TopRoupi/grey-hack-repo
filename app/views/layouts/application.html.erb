@@ -35,13 +35,16 @@
 
       <%= yield :containerless %>
     </div>
-    <footer class="mt-20 bg-beaver-900 border-t border-beaver-800 text-white">
+    <footer class="mt-20 bg-beaver-900 border-t border-beaver-800 text-white px-4">
       <div class="container max-w-5xl mx-auto py-4">
         <p>
           contribute in the project on github: <a class="link" href="https://github.com/TopRoupi/grey-hack-repo">https://github.com/TopRoupi/grey-hack-repo</a>
         </p>
         <p>
           get <%= link_to "supporter badge", supporter_checkout_path, class: "link" %> on your profile
+        </p>
+        <p>
+          <%= link_to "make a donation (paypal)", "https://www.paypal.com/donate/?hosted_button_id=MLQW58ZDPTSVJ", class: "link" %>
         </p>
       </div>
     </footer>
