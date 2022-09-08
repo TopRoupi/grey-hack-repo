@@ -23,7 +23,9 @@
   <% @posts.each do |post| %>
     <% c.row do |cc| %>
       <% cc.column { post.published? ? link_to(post.title, post_path(post), class: "link") : post.title } %>
-      <% cc.column { post.category.name } %>
+      <% cc.column do %>
+        <%= select_tag :category, options_for_select(@categories.collect { |c| [c.name, c.id]}, post.category.id), class: "select select-bordered", data: {reflex: "change->PostReflex#change_category", post_id: post.signed_id}%>
+      <% end %>
       <% cc.column { post.builds.size.to_s } %>
       <% cc.column do %>
         <%= select_tag :visibility, options_for_select(Post.visibilities.keys, post.visibility), class: "select select-bordered", data: {reflex: "change->PostReflex#change_visibility", post_id: post.signed_id}%>

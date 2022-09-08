@@ -13,4 +13,11 @@ class PostReflex < ApplicationReflex
 
     post.update! visibility: new_value
   end
+
+  def change_category
+    post = Post.find_signed(element.dataset[:post_id])
+    new_value = element.value
+
+    post.update! category_id: new_value
+  end
 end

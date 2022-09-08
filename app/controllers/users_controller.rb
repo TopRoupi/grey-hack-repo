@@ -33,7 +33,8 @@ class UsersController < ApplicationController
   end
 
   def myposts
-    @posts = current_user.posts.order(created_at: :desc)
+    @categories = Category.all
+    @posts = current_user.posts.includes(:category, :builds).order(created_at: :desc)
     @posts = @posts.where(published: params[:published] || true)
     @pagy, @posts = pagy @posts
   end

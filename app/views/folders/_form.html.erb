@@ -1,6 +1,6 @@
 <turbo-frame id="<%= dom_id folder %>">
   <% if defined? message %>
-    <%= message %>
+    <%= render Layout::Alert.new(message) %>
   <% end %>
   <%= form_for(folder, builder: DaisyFormBuilder) do |f| %>
     <%= f.group :name do %>

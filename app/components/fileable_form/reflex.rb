@@ -4,10 +4,15 @@ class FileableForm::Reflex < ApplicationReflex
   before_reflex :set_fileable, only: [:add_script, :add_folder]
 
   def update_build_name
-    puts element
     build = Build.find_signed(element.dataset[:build_id])
-    puts build
-    build.update(name: element.value)
+    build.name = element.value
+    if build.valid?
+      build.save
+      cable_ready.text_content selector: "#build-name-error", text: ""
+    else
+      cable_ready.text_content selector: "#build-name-error", text: build.errors[:name].to_sentence
+    end
+
     morph :nothing
   end
 

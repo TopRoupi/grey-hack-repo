@@ -1,6 +1,6 @@
 <turbo-frame id="<%= dom_id script %>">
   <% if defined? message %>
-    <%= message %>
+    <%= render Layout::Alert.new(message) %>
   <% end %>
   <%= form_for(script, builder: DaisyFormBuilder) do |f| %>
     <%= content_tag :div, data: {controller: "code-editor", code_editor_language_value: file_extension_to_language(script.extension&.to_sym || :txt), code_editor_editorclass_value: "p-2 rounded"} do %>
