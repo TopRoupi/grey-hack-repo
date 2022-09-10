@@ -30,7 +30,8 @@
         <br>
         <p>export string: </p>
         <textarea class="h-20 p-2 mt-2 bg-beaver-850 border-beaver-700 border rounded w-full" data-fileable-form-target="string"></textarea>
-        <button class="button_secondary font-bold py-2 px-4 rounded float-right mt-5" data-action="click->fileable-form#import_string">Import</button>
+        <button class="button_secondary font-bold py-2 px-4 rounded block ml-auto mt-5" data-action="click->fileable-form#import_string">Import</button>
+        <span id="import-error" class="block mx-auto text-red-400 text-center"></span>
       <% end %>
     <% end %>
   <% end %>

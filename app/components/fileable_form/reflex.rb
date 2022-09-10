@@ -24,11 +24,17 @@ class FileableForm::Reflex < ApplicationReflex
     string = string.delete("\n")
     string = string.gsub("\\...n", "\\n")
 
-    build = Build.find_signed(build_id)
-    new_build = Build.parse_string(string, name)
-    build.scripts = new_build.scripts
-    build.folders = new_build.folders
-    build.save
+    begin
+      build = Build.find_signed(build_id)
+      new_build = Build.parse_string(string, name)
+      build.scripts = new_build.scripts
+      build.folders = new_build.folders
+      build.save
+      cable_ready.text_content selector: "#import-error", text: ""
+    rescue => err
+      cable_ready.text_content selector: "#import-error", text: err
+      morph :nothing
+    end
   end
 
   def add_build

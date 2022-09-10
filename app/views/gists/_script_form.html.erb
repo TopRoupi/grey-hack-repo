@@ -1,15 +1,28 @@
-<div class="nested-form-wrapper p-1 border border-base-200 rounded mb-6" data-new-record="<%= f.object.new_record? %>">
+<div class="nested-form-wrapper mb-6" data-new-record="<%= f.object.new_record? %>">
   <%= content_tag :div, data: {controller: "code-editor", code_editor_language_value: file_extension_to_language(f.object.extension&.to_sym || :txt), code_editor_editorclass_value: "p-2 rounded-b"} do %>
-      <div class="rounded-t bg-base-200 p-2 flex justify-between items-center">
-        <%= f.text_field :name, class: "!py-0 !px-2 w-fit", data: {code_editor_target: "name", action: "debounced:input->code-editor#reset"}%>
-        <div class="text-white/50">
+    <%= render Layout::Tabs.new(render_outside: true, active_tab_class: "btn-active") do |c| %>
+      <% c.tab(class: "btn btn-sm ml-2") {"code"} %>
+      <% c.tab_content class: "" do %>
+        <%= f.text_area :content, data: {code_editor_target: "editor"} %>
+      <% end %>
+      <% c.tab(class: "btn btn-sm ml-2") {"preview"} %>
+      <% c.tab_content do %>
+        <div class="trix-content mb-6" data-code-editor-target="preview">
         </div>
+      <% end %>
+
+      <div class="rounded-t bg-base-200 p-2 flex items-center">
+        <%= f.text_field :name, class: "!py-0 !px-2 w-fit", data: {code_editor_target: "name", action: "debounced:input->code-editor#reset"}%>
+        <div data-code-editor-target="tabs">
+          <% c.tabs.each do |tb| %>
+            <%= tb %>
+          <% end %>
+        </div>
+        <button class="ml-auto block btn btn-sm btn-error opacity-90" type="button" data-action="nested-form#remove">Remove file</button>
       </div>
-      <%= f.text_area :content, data: {code_editor_target: "editor"} %>
-
-    <div class="trix-content mb-6" data-code-editor-target="preview">
-    </div>
-
-    <button class="ml-auto block text-error" type="button" data-action="nested-form#remove">Remove file</button>
+      <% c.tab_contents.each do |tb_c| %>
+        <%= tb_c %>
+      <% end %>
+    <% end %>
   <% end %>
 </div>

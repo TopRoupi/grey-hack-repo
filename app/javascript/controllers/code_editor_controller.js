@@ -26,7 +26,7 @@ export default class extends ApplicationController {
     height: String
   }
 
-  static targets = [ "editor", "name", "preview" ]
+  static targets = [ "editor", "name", "preview", "tabs" ]
 
   connect() {
     this.editor_element = this.editorTarget.insertAdjacentElement("afterend", document.createElement("div"))
@@ -51,8 +51,14 @@ export default class extends ApplicationController {
   updatePreview(code) {
     if (this.getLanguage() == "markdown") {
       this.previewTarget.innerHTML = md.render(code)
+      if (this.hasTabsTarget) {
+        this.tabsTarget?.classList?.remove("hidden")
+      }
     } else {
       this.previewTarget.innerHTML = ""
+      if (this.hasTabsTarget) {
+        this.tabsTarget?.classList?.add("hidden")
+      }
     }
   }
 

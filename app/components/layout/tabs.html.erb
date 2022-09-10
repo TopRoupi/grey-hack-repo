@@ -1,0 +1,14 @@
+<%= content_tag(:div, @sys_params) do %>
+  <% if @render_outside == false %>
+    <div class="tabs">
+      <% tabs.each do |tab| %>
+        <%= tab %>
+      <% end %>
+      <%= tabs_append %>
+    </div>
+    <% tab_contents.each do |cont| %>
+      <%= cont %>
+    <% end %>
+  <% end %>
+  <%= content %>
+<% end %>
