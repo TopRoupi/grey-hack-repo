@@ -81,6 +81,11 @@
               <% end %>
             <% end %>
             <% if build.published %>
+              <% if build != @builds.last %>
+                <%= link_to build_diff_path(build), class: "btn btn-thin p-2 mr-2" do %>
+                  diff
+                <% end %>
+              <% end %>
               <%= button_tag class: "btn btn-thin p-2 mr-2", data: {reflex: "click->BuildReflex#clone_build", build_id: build.signed_id} do %>
                 clone
               <% end %>

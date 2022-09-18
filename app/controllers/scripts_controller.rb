@@ -34,7 +34,7 @@ class ScriptsController < ApplicationController
   end
 
   def block_access
-    redirect_to :root, alert: "action not permitted" if @script.user != current_user
+    redirect_to :root, alert: "action not permitted" if @script.user != current_user || @script.find_build.published?
   end
 
   def script_params

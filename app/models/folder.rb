@@ -5,6 +5,7 @@ class Folder < ApplicationRecord
 
   belongs_to :foldable, polymorphic: true
 
+  validates_with Validator::FileValidator
   validates :name, presence: true, length: {minimum: 2, maximum: 24}
 
   after_commit :touch_foldable, on: [:create, :destroy]

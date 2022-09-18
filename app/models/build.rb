@@ -29,7 +29,14 @@ class Build < ApplicationRecord
   end
 
   def ready_to_publish?
-    has_script?
+    result = true
+    result = false if has_script? == false
+    self.published = true
+    files = get_all_files
+    result = false if files.select { |f| f.valid? == false }.any?
+    self.published = false
+
+    result
   end
 
   def set_files

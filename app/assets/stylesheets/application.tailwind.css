@@ -38,3 +38,16 @@ button.trix-active {
 .code-line-numbers__number {
   background-color: transparent !important ;
 }
+
+
+.diff {
+  @apply bg-base-200 overflow-x-auto
+}
+
+.diff .del {
+  @apply bg-red-900/40
+}
+
+.diff .ins {
+  @apply bg-green-900/40
+}

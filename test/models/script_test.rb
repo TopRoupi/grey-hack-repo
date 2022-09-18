@@ -51,4 +51,18 @@ class ScriptTest < ActiveSupport::TestCase
     @build.folders << build(:folder)
     assert_equal @build.folders.last.scripts.last.find_build, @build
   end
+
+  test "file with the same name and path should be invalid" do
+    @build = build :build
+    script1 = build :script, name: "agua", scriptable: nil
+    script2 = build :script, name: "agua", scriptable: nil
+
+    @build.scripts << script1
+    @build.scripts << script2
+
+    @build.published = true
+    script1.valid?
+
+    refute_empty script1.errors[:name]
+  end
 end

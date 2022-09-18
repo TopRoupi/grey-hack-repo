@@ -1,1 +1,4 @@
+<%# <%== Diffy::Diff.new(Script.find(255).content, Script.find(294).content).to_s(:html_simple) %>
+<%# <%== Diffy::SplitDiff.new(Script.find(294).content, Script.find(255).content, :include_plus_and_minus_in_html => true, :format => :html).left %>
+<%# <%== Diffy::SplitDiff.new(Script.find(294).content, Script.find(255).content, :include_plus_and_minus_in_html => true, :format => :html).right %>
 <%= render(Overview.new(current_user: current_user, posts: @posts, pagy: @pagy)) %>

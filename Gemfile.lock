@@ -128,6 +128,7 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    diffy (3.4.2)
     digest (3.1.0)
     discord-notifier (1.0.3)
     domain_name (0.5.20190701)
@@ -429,6 +430,7 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   devise (~> 4.8)
+  diffy (~> 3.4)
   discord-notifier (~> 1.0, >= 1.0.3)
   factory_bot_rails
   faker!

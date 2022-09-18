@@ -23,9 +23,8 @@ class FileableForm::Tree < ApplicationComponent
     options = {}
 
     options[:class] = "flex items-center hover:bg-base-100 px-1 w-full "
-    if file.instance_of? Script
-      options[:class] += file.valid? ? " text-green-400" : " text-red-400"
-    end
+    file.find_build.published = true
+    options[:class] += file.valid? ? " text-green-400" : " text-red-400"
 
     build = file.find_build
     options[:href] = post_builds_path(id: build.post.slug, build_id: file.find_build, file_type: file.class.to_s, file_id: file.id)

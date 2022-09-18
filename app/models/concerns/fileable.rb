@@ -15,6 +15,37 @@ module Fileable
     end
   end
 
+  def get_all_scripts
+    scripts = []
+
+    scripts << self.scripts.to_a
+
+    folders.each do |f|
+      scripts << f.get_all_scripts
+    end
+
+    scripts.flatten
+  end
+
+  def get_all_folders
+    folders = []
+
+    folders << self.folders.to_a
+
+    self.folders.each do |f|
+      folders << f.get_all_folders
+    end
+
+    folders.flatten
+  end
+
+  def get_all_files
+    files = []
+    files << get_all_scripts
+    files << get_all_folders
+    files.flatten
+  end
+
   def has_script?
     if scripts.any?
       return true

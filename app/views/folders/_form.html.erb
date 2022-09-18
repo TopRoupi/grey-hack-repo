@@ -2,6 +2,15 @@
   <% if defined? message %>
     <%= render Layout::Alert.new(message) %>
   <% end %>
+
+  <% as_published =  folder.amoeba_dup %>
+  <% as_published.find_build.published = true %>
+  <% as_published.valid? %>
+
+  <% as_published.errors.to_a.each do |e| %>
+    <p class="text-red-400"><%= e %><p>
+  <% end %>
+
   <%= form_for(folder, builder: DaisyFormBuilder) do |f| %>
     <%= f.group :name do %>
       <%= f.text_field :name %>
