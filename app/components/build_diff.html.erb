@@ -1,0 +1,14 @@
+<h2 class="text-center mb-6">changed files</h2>
+<% changed_files.each do |scripts| %>
+  <%= render FileDiff.new(before_script: scripts[0], after_script: scripts[1]) %>
+<% end %>
+
+<h2 class="text-center mb-6">deleted files</h2>
+<% deleted_files.each do |scripts| %>
+  <%= render FileDiff.new(before_script: scripts[0], after_script: scripts[1]) %>
+<% end %>
+
+<h2 class="text-center mb-6">added files</h2>
+<% added_files.each do |scripts| %>
+  <%= render FileDiff.new(before_script: scripts[0], after_script: scripts[1]) %>
+<% end %>

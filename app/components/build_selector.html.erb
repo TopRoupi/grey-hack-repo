@@ -4,11 +4,16 @@
   </div>
   <div class="flex flex-col bg-base-100 px-3 rounded-bl overflow-y-auto pb-3" style="height: calc(100% - 54px)">
     <% @builds.each do |build| %>
-      <button class="btn <%= build == @selected_build ? "btn-primary" : "btn-secondary" %> btn-thin px-3 py-1 mt-3"
-              data-reflex="click->BuildSelectorReflex#open"
-              data-build_id="<%= build.id %>">
-        <%= build.name %>
-      </button>
+      <div class="flex mt-3">
+        <button class="btn <%= build == @selected_build ? "btn-primary" : "btn-secondary" %> btn-thin px-3 py-1 rounded-r-none"
+                data-reflex="click->BuildSelectorReflex#open"
+                data-build_id="<%= build.id %>">
+          <%= build.name %>
+        </button>
+        <%= link_to build_diff_path(build), class: "btn btn-thin px-2 py-1 rounded-l-none" do %>
+          <%= octicon :diff, class: "fill-current" %>
+        <% end %>
+      </div>
     <% end %>
   </div>
 </div>
