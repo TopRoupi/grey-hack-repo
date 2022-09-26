@@ -7,7 +7,8 @@
       <div class="flex mt-3">
         <button class="btn <%= build == @selected_build ? "btn-primary" : "btn-secondary" %> btn-thin px-3 py-1 rounded-r-none"
                 data-reflex="click->BuildSelectorReflex#open"
-                data-build_id="<%= build.id %>">
+                data-build_id="<%= build.id %>"
+                style="width: calc(100% - 34px)">
           <%= build.name %>
         </button>
         <%= link_to build_diff_path(build), class: "btn btn-thin px-2 py-1 rounded-l-none" do %>
