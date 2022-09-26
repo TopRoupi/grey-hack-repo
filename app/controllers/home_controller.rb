@@ -13,5 +13,7 @@ class HomeController < ApplicationController
       params[:page] = 1
       retry
     end
+
+    @builds = Build.eager_load(:post).where("\"posts\".\"visibility\" = #{Post.visibilities[:public]}").order(created_at: :desc).last(20)
   end
 end

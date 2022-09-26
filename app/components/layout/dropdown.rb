@@ -10,6 +10,7 @@ class Layout::Dropdown < ApplicationComponent
   def initialize(tag: "div", direction: :right, **sys_params)
     @sys_params = sys_params
     @tag = tag
-    @sys_params[:class] ||= "dropdown #{"dropdown-end" if direction == :left}"
+    @sys_params[:class] ||= ""
+    @sys_params[:class] += " dropdown #{"dropdown-end" if direction == :left}"
   end
 end
