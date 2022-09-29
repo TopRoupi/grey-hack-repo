@@ -38,6 +38,7 @@ class ScriptsControllerTest < ActionDispatch::IntegrationTest
 
     test "should get edit of its own scripts" do
       @script.scriptable.post.user = @user
+      @script.find_build.published = false
       @script.save
 
       get edit_script_url(@script)
@@ -54,6 +55,7 @@ class ScriptsControllerTest < ActionDispatch::IntegrationTest
 
     test "should update its own scripts" do
       @script.scriptable.post.user = @user
+      @script.find_build.published = false
       @script.save
 
       patch script_url(@script), params: {script: {name: "aAAA"}}

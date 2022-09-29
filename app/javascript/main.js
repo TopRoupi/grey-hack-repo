@@ -5,6 +5,7 @@
 
 import { Turbo, cable } from "@hotwired/turbo-rails"
 import * as ActiveStorage from "@rails/activestorage"
+import "@shoelace-style/shoelace/dist/components/relative-time/relative-time.js";
 ActiveStorage.start()
 
 import Trix from "trix"

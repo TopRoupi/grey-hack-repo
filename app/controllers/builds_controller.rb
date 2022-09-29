@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class BuildsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:diff]
   before_action :set_build, only: [:destroy, :publish, :diff]
 
   # POST /builds/1/publish

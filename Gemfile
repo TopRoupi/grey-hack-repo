@@ -32,6 +32,7 @@ gem "simple_form", "~> 5.1"
 gem "meta-tags", "~> 2.16"
 gem "octicons_helper", "~> 16.3"
 gem "pagy", "~> 5.10"
+gem "diffy", "~> 3.4"
 # back end gems
 gem "redcarpet", "~> 3.5"
 gem "rpictogrify", "~> 0.5.0"
@@ -83,5 +84,3 @@ group :test do
 end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-gem "diffy", "~> 3.4"
