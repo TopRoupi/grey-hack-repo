@@ -3,6 +3,7 @@
 class BuildsController < ApplicationController
   before_action :authenticate_user!, except: [:diff]
   before_action :set_build, only: [:destroy, :publish, :diff]
+  before_action :block_access, only: [:publish, :destroy]
 
   # POST /builds/1/publish
   def publish
@@ -39,6 +40,12 @@ class BuildsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_build
     @build = Build.find(params[:id])
+  end
+
+  def block_access
+    if current_user != @build.post.user
+      redirect_to :root, alert: "action not permitted"
+    end
   end
 
   # Only allow a list of trusted parameters through.
