@@ -1,15 +1,15 @@
-<% cache @builds do %>
-  <div class="relative">
-    <%= render(Layout::Dropdown.new(direction: :left, class: "absolute right-0 top-0")) do |c| %>
-      <% c.button(tag: :button, class: "btn btn-thin p-3 rounded-full") do %>
-        <%= octicon :megaphone, class: "fill-current" %>
-      <% end %>
-      <% c.menu(class: "mt-3 !w-96 bg-base-200 shadow-xl border border-white/10 overflow-y-auto p-0", style: "height: 400px", card: true) do |cc| %>
-        <div class="border-b border-white/10 p-2">
-          Recent Builds
-        </div>
+<div class="relative">
+  <%= render(Layout::Dropdown.new(direction: :left, class: "absolute right-0 top-0")) do |c| %>
+    <% c.button(tag: :button, class: "btn btn-thin p-3 rounded-full") do %>
+      <%= octicon :megaphone, class: "fill-current" %>
+    <% end %>
+    <% c.menu(class: "mt-3 !w-96 bg-base-200 shadow-xl border border-white/10 overflow-y-auto p-0", style: "height: 400px", card: true) do |cc| %>
+      <div class="border-b border-white/10 p-2">
+        Recent Builds
+      </div>
 
-        <% @builds.each do |build| %>
+      <% @builds.each do |build| %>
+        <% cache build.cache_key + time_ago_in_words(build.created_at) do %>
           <div class="rounded border border-white/10 p-2 m-2">
             <span class="text-beaver-400"> new </span>
             <%= build.name %>
@@ -25,6 +25,6 @@
         <% end %>
       <% end %>
     <% end %>
-  </div>
-<% end %>
+  <% end %>
+</div>
 <%= render(Overview.new(current_user: current_user, posts: @posts, pagy: @pagy)) %>
