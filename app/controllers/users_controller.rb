@@ -4,6 +4,8 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:myposts, :unlink_github]
 
   def index
+    authorize User
+
     @users = User.select("users.*, count(posts.id) AS posts_count, sum(posts.stars_count) as stars_count")
       .joins("LEFT OUTER JOIN posts ON posts.user_id = users.id")
       .group("users.id")
@@ -12,6 +14,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    authorize User
+
     @user = User.friendly.find(params[:id])
     @category = params[:category] || "all"
 
@@ -33,6 +37,8 @@ class UsersController < ApplicationController
   end
 
   def myposts
+    authorize User
+
     @categories = Category.all
     @posts = current_user.posts.includes(:category, :builds).order(created_at: :desc)
     @posts = @posts.where(published: params[:published] || true)
@@ -40,16 +46,22 @@ class UsersController < ApplicationController
   end
 
   def mygists
+    authorize User
+
     @gists = current_user.gists.order(created_at: :desc)
     @pagy, @gists = pagy @gists
   end
 
   def posts
+    authorize User
+
     show
     render(Users::PostsBox.new(user: @user, current_user: current_user, posts: @posts, pagy: @category_pagy, active_tab: @category), layout: false)
   end
 
   def unlink_github
+    authorize User
+
     current_user.update(uid: nil, provider: nil)
     redirect_back fallback_location: root_path, notice: "Github account unlinked"
   end

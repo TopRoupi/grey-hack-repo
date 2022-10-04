@@ -7,7 +7,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     @post = build :post
   end
 
-  test "should show 404 if the post in unpublised" do
+  test "should show 404 if the post is not published" do
     @post.published = false
     @post.save
 
@@ -19,6 +19,14 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   class GuestUser < ActionDispatch::IntegrationTest
     setup do
       @post = build :post
+    end
+
+    test "should not publish posts" do
+      @post = create :post, published: false
+      patch post_publish_url(@post)
+      assert_redirected_to :root
+      @post.reload
+      assert_equal @post.published, false
     end
 
     test "should get index" do
@@ -89,6 +97,22 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     setup do
       @user = create :user
       sign_in @user
+    end
+
+    test "should update published status on patch publish" do
+      @post = create :post, published: false, user: @user
+      patch post_publish_url(@post)
+      assert_redirected_to post_builds_url(@post)
+      @post.reload
+      assert_equal @post.published, true
+    end
+
+    test "should not publish not ownned posts" do
+      @post = create :post, published: false
+      patch post_publish_url(@post)
+      assert_redirected_to :root
+      @post.reload
+      assert_equal @post.published, false
     end
 
     test "should now show post_builds of not ownned posts" do

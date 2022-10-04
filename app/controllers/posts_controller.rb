@@ -6,13 +6,10 @@ class PostsController < ApplicationController
 
   # POST /posts/1/publish
   def publish
+    authorize @post
+
     @post.update published: true
     redirect_to post_builds_path(@post), notice: "Post #{@post.title} published"
-  end
-
-  # GET /posts or /posts.json
-  def index
-    @posts = Post.last(10)
   end
 
   # GET /posts/1 or /posts/1.json
@@ -23,21 +20,25 @@ class PostsController < ApplicationController
       .friendly
       .find(params[:id])
 
-    render_not_found if @post.published == false
+    return render_not_found if @post.published == false
 
-    redirect_to :root, alert: "action not permitted" if @post.private_visibility? && @post.user != current_user
+    authorize @post
 
     @comments = @post.comments.order(:created_at)
   end
 
   # GET /posts/new
   def new
+    authorize Post
     @post = Post.new
+
     @post.visibility = :private
   end
 
   # GET /posts/1/builds
   def builds
+    authorize @post
+
     @builds = @post.builds.order(created_at: :desc)
     @selected_build = @post.builds.find_by(id: params[:build_id]) if params[:build_id]
 
@@ -48,10 +49,12 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    authorize @post
   end
 
   # POST /posts or /posts.json
   def create
+    authorize Post
     @post = Post.new(post_params)
     @post.user = current_user
 
@@ -68,6 +71,8 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /posts/1 or /posts/1.json
   def update
+    authorize @post
+
     respond_to do |format|
       if @post.update(post_params)
         format.html { redirect_to @post, notice: "Post was successfully updated." }
@@ -81,6 +86,8 @@ class PostsController < ApplicationController
 
   # DELETE /posts/1 or /posts/1.json
   def destroy
+    authorize @post
+
     @post.destroy
     respond_to do |format|
       format.html { redirect_back fallback_location: root_path, status: :see_other, notice: "Post was successfully destroyed." }
@@ -93,7 +100,6 @@ class PostsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_post
     @post = Post.friendly.find(params[:id])
-    redirect_to :root, alert: "action not permitted" if @post.user != current_user
   end
 
   # Only allow a list of trusted parameters through.

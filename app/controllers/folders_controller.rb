@@ -3,14 +3,16 @@
 class FoldersController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update]
   before_action :set_folder, only: [:show, :edit, :update]
-  before_action :block_access, only: [:edit, :update]
 
   # GET /folders/1/edit
   def edit
+    authorize @folder
   end
 
   # PUT /folders/1
   def update
+    authorize @folder
+
     respond_to do |format|
       if @folder.update(folder_params)
         format.html { render "folders/_form", locals: {folder: @folder, message: "Folder updated"} }
@@ -26,10 +28,6 @@ class FoldersController < ApplicationController
 
   def set_folder
     @folder = Folder.find(params[:id])
-  end
-
-  def block_access
-    redirect_to :root, alert: "action not permitted" if @folder.user != current_user
   end
 
   def folder_params
