@@ -11,6 +11,6 @@ class FileDiff < ApplicationComponent
     @after_content = @after_script&.content || ""
 
     main_file = @before_script || @after_script
-    @file_name = main_file.scriptable.path_list.map(&:path)[1..].push(main_file.name).join("/")
+    @file_name = main_file.name_with_path
   end
 end

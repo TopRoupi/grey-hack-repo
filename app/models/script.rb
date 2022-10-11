@@ -8,6 +8,10 @@ class Script < ApplicationRecord
 
   after_commit :touch_scriptable, on: [:create, :destroy]
 
+  def name_with_path
+    scriptable.path_list.map(&:path)[1..].push(name).join("/")
+  end
+
   def touch_scriptable
     scriptable.touch unless scriptable.destroyed?
   end

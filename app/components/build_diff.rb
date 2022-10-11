@@ -1,12 +1,25 @@
 # frozen_string_literal: true
 
 class BuildDiff < ApplicationComponent
-  attr_accessor :before, :after, :before_files, :after_files
+  attr_accessor :before, :after, :before_files, :after_files, :files
+
+  @@icon_styles = {
+    modified: {name: "diff-modified", class: "fill-current text-beaver-200"},
+    removed: {name: "diff-removed", class: "fill-current text-red-400"},
+    added: {name: "diff-added", class: "fill-current text-green-400"}
+  }
+
   def initialize(before:, after:)
     @before = before
     @after = after
     @before_files = build_files_path_hash(@before)
     @after_files = build_files_path_hash(@after)
+
+    @files = []
+    @files << changed_files.map { |l| {script: l.first, after: l.last, icon: @@icon_styles[:modified]} }
+    @files << deleted_files.map { |l| {script: l.first, after: l.last, icon: @@icon_styles[:removed]} }
+    @files << added_files.map { |l| {script: l.last, after: l.first, icon: @@icon_styles[:added]} }
+    @files.flatten!
   end
 
   def changed_files

@@ -1,14 +1,12 @@
-<h2 class="text-center mb-6">changed files</h2>
-<% changed_files.each do |scripts| %>
-  <%= render FileDiff.new(before_script: scripts[0], after_script: scripts[1]) %>
-<% end %>
-
-<h2 class="text-center mb-6">deleted files</h2>
-<% deleted_files.each do |scripts| %>
-  <%= render FileDiff.new(before_script: scripts[0], after_script: scripts[1]) %>
-<% end %>
-
-<h2 class="text-center mb-6">added files</h2>
-<% added_files.each do |scripts| %>
-  <%= render FileDiff.new(before_script: scripts[0], after_script: scripts[1]) %>
+<h2 class="mb-2 text-center">Files</h2>
+<%= render Layout::Tabs.new(active_tab_class: "btn-active") do |c| %>
+  <% files.each do |hash| %>
+    <% c.tab(class: "btn btn-thin w-full justify-between px-2 py-1 flex mb-2") do %>
+      <%= hash[:script].name_with_path %>
+      <%= octicon hash[:icon][:name], class: "#{hash[:icon][:class]} ml-2" %>
+    <% end %>
+    <% c.tab_content(class: "") do %>
+      <%= render FileDiff.new(before_script: hash[:script], after_script: hash[:after]) %>
+    <% end %>
+  <% end %>
 <% end %>
