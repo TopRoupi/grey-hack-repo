@@ -65,6 +65,7 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "faker", git: "https://github.com/faker-ruby/faker.git", branch: "master"
   gem "rails-controller-testing"
+  gem "annotate", git: "https://github.com/ctran/annotate_models.git"
 end
 
 group :development do

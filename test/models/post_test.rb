@@ -1,5 +1,24 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: posts
+#
+#  id          :bigint           not null, primary key
+#  user_id     :bigint           not null
+#  title       :string
+#  description :string
+#  summary     :string
+#  readme      :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  category_id :bigint
+#  stars_count :integer          default(0)
+#  slug        :string
+#  visibility  :integer          default("public")
+#  published   :boolean          default(FALSE), not null
+#  lib         :boolean
+#
 require "test_helper"
 
 class PostTest < ActiveSupport::TestCase

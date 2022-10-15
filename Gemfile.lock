@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/ctran/annotate_models.git
+  revision: ae0b79c0f816b2433a3f00b9a73b3aea1bd3e84b
+  specs:
+    annotate (3.2.0)
+      activerecord (>= 3.2, < 8.0)
+      rake (>= 10.4, < 14.0)
+
+GIT
   remote: https://github.com/faker-ruby/faker.git
   revision: efc6a90d845a25a34ddbcc9280ed951ecd346163
   branch: master
@@ -427,6 +435,7 @@ PLATFORMS
 
 DEPENDENCIES
   amoeba (~> 3.2)
+  annotate!
   aws-sdk-s3 (~> 1.112)
   bootsnap (>= 1.4.4)
   byebug

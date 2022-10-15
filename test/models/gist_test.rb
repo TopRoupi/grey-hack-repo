@@ -1,5 +1,18 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: gists
+#
+#  id          :bigint           not null, primary key
+#  name        :string
+#  description :string
+#  user_id     :bigint
+#  anonymous   :boolean          default(TRUE), not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  slug        :string
+#
 require "test_helper"
 
 class GistTest < ActiveSupport::TestCase
