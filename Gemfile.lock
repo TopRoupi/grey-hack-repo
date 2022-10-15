@@ -127,6 +127,9 @@ GEM
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
     childprocess (4.1.0)
+    clockwork (3.0.0)
+      activesupport
+      tzinfo
     concurrent-ruby (1.1.10)
     connection_pool (2.2.5)
     crass (1.0.6)
@@ -260,6 +263,8 @@ GEM
     pay (3.0.24)
       rails (>= 6.0.0)
     pg (1.4.2)
+    pghero (3.0.1)
+      activerecord (>= 6)
     public_suffix (4.0.7)
     puma (5.6.4)
       nio4r (~> 2.0)
@@ -440,6 +445,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
+  clockwork (~> 3.0)
   devise (~> 4.8)
   diffy (~> 3.4)
   discord-notifier (~> 1.0, >= 1.0.3)
@@ -461,6 +467,7 @@ DEPENDENCIES
   pagy (~> 5.10)
   pay (~> 3.0)
   pg (~> 1.1)
+  pghero (~> 3.0)
   puma (~> 5.0)
   pundit (~> 2.2)
   rack-mini-profiler (~> 2.0)

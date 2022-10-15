@@ -13,7 +13,7 @@ processes = []
     RUBY_VERSION = ">= 3.1.2"
 
 [env]
-  SERVER_COMMAND = "bundle exec sidekiq -e production -C config/sidekiq.yml"
+  SERVER_COMMAND = "bundle exec sidekiq -e production -C config/sidekiq.yml & bundle exec clockwork lib/clock.rb"
 
 [experimental]
   allowed_public_ports = []

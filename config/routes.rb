@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   get "npc_decipher", to: "npc_decipher#index", as: "npc_decipher"
 
   authenticate :user, ->(user) { user.admin? } do
+    mount PgHero::Engine, at: "pghero"
     mount Sidekiq::Web => "/sidekiq"
   end
 

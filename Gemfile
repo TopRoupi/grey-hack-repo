@@ -34,6 +34,8 @@ gem "octicons_helper", "~> 16.3"
 gem "pagy", "~> 5.10"
 gem "diffy", "~> 3.4"
 # back end gems
+gem "pundit", "~> 2.2"
+gem "pghero", "~> 3.0"
 gem "redcarpet", "~> 3.5"
 gem "rpictogrify", "~> 0.5.0"
 gem "amoeba", "~> 3.2"
@@ -86,4 +88,4 @@ end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem "pundit", "~> 2.2"
+gem "clockwork", "~> 3.0"

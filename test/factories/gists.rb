@@ -3,13 +3,22 @@
 # Table name: gists
 #
 #  id          :bigint           not null, primary key
-#  name        :string
-#  description :string
-#  user_id     :bigint
 #  anonymous   :boolean          default(TRUE), not null
+#  description :string
+#  name        :string
+#  slug        :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  slug        :string
+#  user_id     :bigint
+#
+# Indexes
+#
+#  index_gists_on_slug     (slug) UNIQUE
+#  index_gists_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
 #
 FactoryBot.define do
   factory :gist do

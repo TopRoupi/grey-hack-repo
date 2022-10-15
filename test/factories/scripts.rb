@@ -6,14 +6,18 @@
 #
 #  id                  :bigint           not null, primary key
 #  content             :string
+#  highlighted_content :string
+#  lib                 :boolean
+#  name                :string
+#  old_content         :binary
+#  scriptable_type     :string
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
-#  highlighted_content :string
-#  name                :string
-#  scriptable_type     :string
 #  scriptable_id       :bigint
-#  old_content         :binary
-#  lib                 :boolean
+#
+# Indexes
+#
+#  index_scripts_on_scriptable  (scriptable_type,scriptable_id)
 #
 FactoryBot.define do
   factory :script do
