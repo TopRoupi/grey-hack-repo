@@ -10,6 +10,8 @@ class BuildsController < ApplicationController
 
     @build.update published: true
     redirect_to post_builds_path(@build.post)
+
+    DiscordJob.perform_later(@build)
   end
 
   # DELETE /builds/1

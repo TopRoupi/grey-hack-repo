@@ -5,13 +5,28 @@ class DiscordJob < ApplicationJob
 
   queue_as :default
 
-  def perform(post)
-    return if post.published == false || post.visibility != "public" || Rails.env != "production"
+  def perform(obj)
+    return if Rails.env != "production"
+
+    announce_build(obj) if obj.instance_of?(Build)
+    announce_post(obj) if obj.instance_of?(Post)
+  end
+
+  private
+
+  def announce_post(post)
+    return if post.visibility != "public"
 
     url = post_url(post, only_path: false, host: "www.greyrepo.xyz")
 
-    if post.builds.size == 1
-      Discord::Notifier.message("new post published: #{url}")
-    end
+    Discord::Notifier.message("new post published: #{url}")
+  end
+
+  def announce_build(build)
+    return if build.post.visibility != "public" || build.post.published != true
+
+    url = post_url(build.post, only_path: false, host: "www.greyrepo.xyz")
+
+    Discord::Notifier.message("new #{build.post.title} build #{build.name} published: #{url}")
   end
 end

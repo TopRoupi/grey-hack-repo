@@ -10,6 +10,8 @@ class PostsController < ApplicationController
 
     @post.update published: true
     redirect_to post_builds_path(@post), notice: "Post #{@post.title} published"
+
+    DiscordJob.perform_later(@post)
   end
 
   # GET /posts/1 or /posts/1.json
