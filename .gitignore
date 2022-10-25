@@ -40,3 +40,4 @@ source.src
 !/app/assets/builds/.keep
 
 /node_modules
+coverage

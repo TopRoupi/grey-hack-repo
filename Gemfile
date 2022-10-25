@@ -68,6 +68,7 @@ group :development, :test do
   gem "faker", git: "https://github.com/faker-ruby/faker.git", branch: "master"
   gem "rails-controller-testing"
   gem "annotate", git: "https://github.com/ctran/annotate_models.git"
+  gem "simplecov"
 end
 
 group :development do
