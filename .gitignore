@@ -41,3 +41,5 @@ source.src
 
 /node_modules
 coverage
+
+public/uploads

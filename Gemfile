@@ -34,6 +34,7 @@ gem "octicons_helper", "~> 16.3"
 gem "pagy", "~> 5.10"
 gem "diffy", "~> 3.4"
 # back end gems
+gem 'shrine', '~> 3.3'
 gem "pundit", "~> 2.2"
 gem "pghero", "~> 3.0"
 gem "redcarpet", "~> 3.5"

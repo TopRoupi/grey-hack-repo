@@ -8,6 +8,7 @@
 #  admin                  :boolean
 #  avatar                 :string
 #  bank                   :string
+#  banner_data            :text
 #  btc                    :string
 #  confirmation_sent_at   :datetime
 #  confirmation_token     :string
@@ -48,7 +49,9 @@ class User < ApplicationRecord
   has_many :starable_posts, through: :stars, source: "starable", source_type: "Post"
   has_many :comments, dependent: :destroy
   has_many :notifications, as: :recipient
-  has_one_attached :nft
+  has_one_attached :nft, dependent: :destroy
+
+  include ImageUploader::Attachment(:banner)
 
   after_commit :set_nft, on: [:create]
 

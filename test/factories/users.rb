@@ -8,6 +8,7 @@
 #  admin                  :boolean
 #  avatar                 :string
 #  bank                   :string
+#  banner_data            :text
 #  btc                    :string
 #  confirmation_sent_at   :datetime
 #  confirmation_token     :string
