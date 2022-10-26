@@ -8,6 +8,7 @@ class GistsController < ApplicationController
     authorize Gist
 
     @gists = Gist.order(created_at: :desc)
+    @gists = @gists.search(params[:query]["name"]) if params[:query]
     @pagy, @gists = pagy @gists
   end
 

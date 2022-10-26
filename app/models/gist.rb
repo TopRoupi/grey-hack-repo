@@ -32,6 +32,12 @@ class Gist < ApplicationRecord
   validates :description, length: {maximum: 230}
   validates :scripts, length: {minimum: 1}
 
+  scope :search, ->(query) {
+    query = sanitize_sql_like(query)
+    where(arel_table[:name].matches("%#{query}%"))
+      .or(where(arel_table[:description].matches("%#{query}%")))
+  }
+
   friendly_id :name, use: :slugged
 
   def author

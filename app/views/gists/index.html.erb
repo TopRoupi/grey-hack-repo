@@ -7,6 +7,17 @@
   </h1>
 </div>
 
+<%= form_for :query,
+  url: request.url,
+  method: :get,
+  class: "mt-5 mb-5",
+  data: {reflex: "debounced:input->ApplicationReflex#refresh"}, builder: DaisyFormBuilder do |f| %>
+  <div class="flex">
+    <%= f.label(:name, class: "!mb-0 text-neutral-content flex btn btn-neutral rounded-r-none") { "Search" } %>
+    <%= f.text_field :name, value: params[:query] && params[:query]["name"], style: "height: 48px;", class: "rounded-l-none" %>
+  </div>
+<% end %>
+
 <div id="gists">
   <%= render @gists %>
 </div>
