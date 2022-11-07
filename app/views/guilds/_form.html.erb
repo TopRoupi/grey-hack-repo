@@ -1,0 +1,22 @@
+<%= form_for guild, builder: DaisyFormBuilder do |f| %>
+  <%# <%= f.group :banner do %>
+  <%#   <%= image_tag f.object.banner_url, class: "rounded-t h-40 w-full object-cover" if f.object.banner %>
+  <%#
+  <%#   <%= f.file_field :banner %>
+  <%# <% end %>
+
+  <%= f.group :name do %>
+    <%= f.text_field :name %>
+  <% end %>
+
+  <%= f.group :description do %>
+    <%= f.text_area :description %>
+  <% end %>
+
+  <%= f.group :registration_info, label: "Registration info" do %>
+    <%= f.text_field :registration_info %>
+  <% end %>
+
+  <%= f.submit %>
+<% end %>
+

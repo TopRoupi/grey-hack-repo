@@ -17,6 +17,8 @@
       <% cc.item(type: :title) { "Gists" } %>
       <% cc.item(tag: :a, href: my_gists_path) { "My gists" } %>
       <% cc.item(tag: :a, href: new_gist_path) { "Create a new gist" } %>
+      <% cc.item(type: :title) { "Guilds" } %>
+      <% cc.item(tag: :a, href: new_guild_path) { "Create a new guild" } %>
     <% else %>
       <% cc.item(tag: :a, href: user_session_path) { "Log in" } %>
       <% cc.item(tag: :a, href: new_user_registration_path) { "Sign up" } %>

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :folders, only: [:edit, :update]
   resources :builds, only: [:destroy]
   resources :categories, only: [:show]
+  resources :guilds, only: [:new, :create, :show]
 
   resources :posts, except: [:index]
   get "posts", to: "home#index"
