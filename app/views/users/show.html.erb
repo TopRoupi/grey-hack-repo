@@ -1,9 +1,14 @@
 <% title @user.name %>
 
-<%= image_tag @user.banner ? @user.banner_url : image_url("userbanner2.svg"), class: "rounded-t h-40 w-full object-cover" %>
+<div class="relative h-40">
+  <%= image_tag @user.banner ? @user.banner_url : image_url("userbanner2.svg"),
+    class: "rounded-t h-40 w-full object-cover absolute",
+    style: "-webkit-filter: blur(200px); filter: blur(200px);" %>
+  <%= image_tag @user.banner ? @user.banner_url : image_url("userbanner2.svg"), class: "rounded-t h-40 w-full object-cover absolute" %>
+</div>
 
 <div class="bg-base-100 px-6">
-  <div class="flex flex-col sm:flex-row">
+  <div class="flex flex-col sm:flex-row relative z-10">
     <div class="flex">
       <img class="h-24 w-24 rounded-xl bg-base-200 -mt-6 mb-3 border border-4 border-base-100 object-cover" src="<%= user_avatar(@user) %>" alt="">
       <div class="ml-3">
