@@ -29,9 +29,11 @@ class GuildsController < ApplicationController
   end
 
   def edit
+    authorize @guild
   end
 
   def update
+    authorize @guild
   end
 
   def destroy

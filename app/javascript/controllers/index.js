@@ -28,6 +28,7 @@ import Code from "./code_controller"
 import CodeEditor from "./code_editor_controller"
 import CableFrom from "./cable_from_controller"
 import Alert from "./alert_controller"
+import ProfilePreview from "./profile_preview_controller"
 application.register("avatar-preview", AvatarPreview)
 application.register("attachments", Attachments)
 application.register("decipher", Decipher)
@@ -35,6 +36,7 @@ application.register("code", Code)
 application.register("code-editor", CodeEditor)
 application.register("cable-from", CableFrom)
 application.register("alert", Alert)
+application.register("profile-preview", ProfilePreview)
 
 import { Tabs, Alert as Toast, Dropdown, Modal, Toggle } from "tailwindcss-stimulus-components"
 

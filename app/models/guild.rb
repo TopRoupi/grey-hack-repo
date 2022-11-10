@@ -39,4 +39,8 @@ class Guild < ApplicationRecord
   validates :name, presence: true, length: {minimum: 3, maximum: 16}, uniqueness: true
   validates :description, presence: true, length: {maximum: 230}
   validates :registration_info, length: {maximum: 64}
+
+  def admin
+    user
+  end
 end

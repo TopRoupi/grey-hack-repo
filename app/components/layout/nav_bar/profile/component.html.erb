@@ -18,7 +18,14 @@
       <% cc.item(tag: :a, href: my_gists_path) { "My gists" } %>
       <% cc.item(tag: :a, href: new_gist_path) { "Create a new gist" } %>
       <% cc.item(type: :title) { "Guilds" } %>
-      <% cc.item(tag: :a, href: new_guild_path) { "Create a new guild" } %>
+      <% if @current_user.guild %>
+        <% cc.item(tag: :a, href: guild_path(@current_user.guild)) { "My guild profile" } %>
+        <% if @current_user.guild.admin == @current_user %>
+          <% cc.item(tag: :a, href: edit_guild_path(@current_user.guild)) { "Edit guild" } %>
+        <% end %>
+      <% else %>
+        <% cc.item(tag: :a, href: new_guild_path) { "Create a new guild" } %>
+      <% end %>
     <% else %>
       <% cc.item(tag: :a, href: user_session_path) { "Log in" } %>
       <% cc.item(tag: :a, href: new_user_registration_path) { "Sign up" } %>

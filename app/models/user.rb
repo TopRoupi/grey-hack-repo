@@ -91,4 +91,8 @@ class User < ApplicationRecord
       email: "bob.shadow@gmail.com"
     )
   end
+
+  def guild
+    Guild.where(user_id: id).first
+  end
 end
