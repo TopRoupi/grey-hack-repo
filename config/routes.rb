@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   resources :folders, only: [:edit, :update]
   resources :builds, only: [:destroy]
   resources :categories, only: [:show]
+
   resources :guilds, only: [:new, :create, :show, :edit, :update]
+  get "guilds/:id/invite", to: "guilds#invite", as: "guild_invite"
+  post "guilds/:id/invite", to: "guilds#create_invite", as: "guild_create_invite"
 
   resources :posts, except: [:index]
   get "posts", to: "home#index"

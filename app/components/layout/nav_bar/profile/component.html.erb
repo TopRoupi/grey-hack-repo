@@ -22,6 +22,7 @@
         <% cc.item(tag: :a, href: guild_path(@current_user.guild)) { "My guild profile" } %>
         <% if @current_user.guild.admin == @current_user %>
           <% cc.item(tag: :a, href: edit_guild_path(@current_user.guild)) { "Edit guild" } %>
+          <% cc.item(tag: :a, href: guild_invite_path(@current_user.guild)) { "Invite user to guild" } %>
         <% end %>
       <% else %>
         <% cc.item(tag: :a, href: new_guild_path) { "Create a new guild" } %>

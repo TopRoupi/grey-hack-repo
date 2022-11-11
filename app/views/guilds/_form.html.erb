@@ -30,8 +30,10 @@
     <% end %>
   </div>
 
-  <%= f.group :name do %>
-    <%= f.text_field :name %>
+  <% if f.object.id == nil %>
+    <%= f.group :name do %>
+      <%= f.text_field :name %>
+    <% end %>
   <% end %>
 
   <%= f.group :description do %>

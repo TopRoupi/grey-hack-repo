@@ -6,9 +6,8 @@
   <div class="flex flex-col sm:flex-row relative z-1">
     <div class="flex">
       <div class="relative h-24 w-24">
-        <%= content_tag(:img, @avatar_html) do %>
-          <%= content_tag(:img, @badge_html) {} %>
-        <% end %>
+        <%= content_tag(:img, @avatar_html) {} %>
+        <%= content_tag(:img, @badge_html) {} %>
       </div>
     </div>
   </div>

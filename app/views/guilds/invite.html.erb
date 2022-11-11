@@ -1,0 +1,7 @@
+<%= form_for :invite, url: guild_create_invite_path(@guild), method: :post, builder: DaisyFormBuilder do |f| %>
+  <%= f.group :name, label: "User name" do %>
+    <%= f.text_field :name %>
+  <% end %>
+
+  <%= f.submit "Send invite" %>
+<% end %>
