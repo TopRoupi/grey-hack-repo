@@ -30,6 +30,7 @@ class Guild < ApplicationRecord
   friendly_id :name, use: :slugged
 
   belongs_to :user
+  has_many :invites, dependent: :destroy
 
   enum registration: [:closed, :external], _suffix: true
   include ImageUploader::Attachment(:avatar)

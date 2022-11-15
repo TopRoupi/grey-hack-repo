@@ -1,25 +1,12 @@
 class GuildsController < ApplicationController
-  before_action :set_guild, only: %i[invite create_invite show edit update destroy]
+  before_action :set_guild, only: %i[manager create_invite show edit update destroy]
 
   def show
     authorize @guild
   end
 
-  def invite
+  def manager
     authorize @guild
-  end
-
-  def create_invite
-    authorize @guild
-
-    user_name = params[:invite][:name]
-    user = User.where(name: user_name).first
-
-    if user
-      redirect_back fallback_location: :root, notice: "Invite sent to: #{user_name}"
-    else
-      redirect_back fallback_location: :root, alert: "Could not find user: #{user_name}"
-    end
   end
 
   def new
@@ -53,7 +40,10 @@ class GuildsController < ApplicationController
     authorize @guild
 
     respond_to do |format|
-      if @guild.update(guild_params)
+      # TODO better way to filter params
+      p = guild_params
+      p.delete :name
+      if @guild.update(p)
         format.html { redirect_to guild_url(@guild), notice: "Guild was successfully updated." }
         format.json { render :show, status: :ok, location: @gist }
       else

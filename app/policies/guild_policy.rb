@@ -17,11 +17,7 @@ class GuildPolicy < ApplicationPolicy
     record.user == user
   end
 
-  def invite?
-    record.user == user
-  end
-
-  def create_invite?
+  def manager?
     record.user == user
   end
 

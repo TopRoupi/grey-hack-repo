@@ -1,4 +1,4 @@
-<%= form_for :invite, url: guild_create_invite_path(@guild), method: :post, builder: DaisyFormBuilder do |f| %>
+<%= form_for :invite, url: invites_path, method: :post, builder: DaisyFormBuilder do |f| %>
   <%= f.group :name, label: "User name" do %>
     <%= f.text_field :name %>
   <% end %>

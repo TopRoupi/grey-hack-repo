@@ -9,9 +9,11 @@ Rails.application.routes.draw do
   resources :builds, only: [:destroy]
   resources :categories, only: [:show]
 
+  resources :invites, only: [:create, :destroy]
+  patch "invites/:id/accept", to: "invites#accept", as: "invite_accept"
+
   resources :guilds, only: [:new, :create, :show, :edit, :update]
-  get "guilds/:id/invite", to: "guilds#invite", as: "guild_invite"
-  post "guilds/:id/invite", to: "guilds#create_invite", as: "guild_create_invite"
+  get "guilds/:id/manager", to: "guilds#manager", as: "guild_manager"
 
   resources :posts, except: [:index]
   get "posts", to: "home#index"

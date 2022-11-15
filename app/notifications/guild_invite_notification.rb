@@ -4,7 +4,7 @@
 # GuildInviteNotification.with(post: @post).deliver(current_user)
 
 class GuildInviteNotification < Noticed::Base
-  deliver_by :database
+  # deliver_by :database
   # deliver_by :email, mailer: "UserMailer"
 
   param :user, :guild

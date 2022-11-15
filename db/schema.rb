@@ -10,8 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_07_123144) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_13_183911) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
 
   create_table "action_text_rich_texts", force: :cascade do |t|
@@ -133,6 +134,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_07_123144) do
     t.index ["name"], name: "index_guilds_on_name", unique: true
     t.index ["slug"], name: "index_guilds_on_slug", unique: true
     t.index ["user_id"], name: "index_guilds_on_user_id"
+  end
+
+  create_table "invites", force: :cascade do |t|
+    t.string "key"
+    t.bigint "guild_id"
+    t.bigint "user_id"
+    t.date "accepted_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["guild_id"], name: "index_invites_on_guild_id"
+    t.index ["key"], name: "index_invites_on_key", unique: true
+    t.index ["user_id"], name: "index_invites_on_user_id"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -258,6 +271,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_07_123144) do
     t.string "slug"
     t.integer "visibility", default: 0
     t.boolean "published", default: false, null: false
+    t.boolean "lib"
     t.index ["category_id"], name: "index_posts_on_category_id"
     t.index ["slug"], name: "index_posts_on_slug", unique: true
     t.index ["user_id"], name: "index_posts_on_user_id"
@@ -272,6 +286,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_07_123144) do
     t.string "scriptable_type"
     t.bigint "scriptable_id"
     t.binary "old_content"
+    t.boolean "lib"
     t.index ["scriptable_type", "scriptable_id"], name: "index_scripts_on_scriptable"
   end
 
@@ -316,6 +331,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_07_123144) do
   add_foreign_key "comments", "users"
   add_foreign_key "gists", "users"
   add_foreign_key "guilds", "users"
+  add_foreign_key "invites", "guilds"
+  add_foreign_key "invites", "users"
   add_foreign_key "pay_charges", "pay_customers", column: "customer_id"
   add_foreign_key "pay_charges", "pay_subscriptions", column: "subscription_id"
   add_foreign_key "pay_payment_methods", "pay_customers", column: "customer_id"
