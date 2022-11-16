@@ -1,0 +1,24 @@
+<div class="text-center">
+  <h1 class="text-2xl mb-4">Send Invite</h1>
+</div>
+
+<%= form_for :invite, url: invites_path, method: :post, builder: DaisyFormBuilder do |f| %>
+  <%= f.group :name, label: "User name" do %>
+    <%= f.text_field :name %>
+  <% end %>
+
+  <%= f.submit "Send invite", class: "block ml-auto float-none" %>
+<% end %>
+
+
+<div class="text-center mt-4">
+  <h1 class="text-2xl mb-4">Manage members</h1>
+</div>
+
+<% @guild.members.each do |member| %>
+  <div class="flex items-center">
+    <img class="h-10 w-10 rounded-xl bg-base-200 border border-4 border-base-100 object-cover" src="<%= user_avatar(member) %>" alt="user avatar" />
+    <%= member.name %>
+    <button data-reflex="click->GuildReflex#kick_player" data-user-id="<%= member.signed_id %>" class="btn btn-thin btn-error ml-auto">kick</button>
+  </div>
+<% end %>

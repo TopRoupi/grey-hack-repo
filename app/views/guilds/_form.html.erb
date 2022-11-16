@@ -1,0 +1,49 @@
+<%= form_for guild, builder: DaisyFormBuilder do |f| %>
+  <div data-controller="profile-preview">
+    <%= render(Users::ProfilePreview.new(
+      avatar: f.object.avatar_url || image_url("user.png"),
+      avatar_html: {data: {profile_preview_target: "avatarimg"}},
+      banner: f.object.banner_url || image_url("userbanner2.svg"),
+      banner_html: {data: {profile_preview_target: "bannerimg"}},
+      badge: f.object.badge_url || image_url("userbanner2.svg"),
+      badge_html: {data: {profile_preview_target: "badgeimg"}}
+    )) %>
+
+    <div class="flex flex-wrap overflow-hidden sm:-mx-3">
+      <div class="w-full overflow-hidden sm:w-1/2 sm:px-3">
+        <%= f.group :avatar do %>
+          <%= f.hidden_field :avatar, value: f.object.cached_avatar_data %>
+          <%= f.file_field :avatar, data: {profile_preview_target: "input", action: "change->profile-preview#update_avatar"} %>
+        <% end %>
+      </div>
+      <div class="w-full overflow-hidden sm:w-1/2 sm:px-3">
+        <%= f.group :banner do %>
+          <%= f.hidden_field :banner, value: f.object.cached_banner_data %>
+          <%= f.file_field :banner, data: {action: "change->profile-preview#update_banner"} %>
+        <% end %>
+      </div>
+    </div>
+
+    <%= f.group :badge do %>
+      <%= f.hidden_field :badge, value: f.object.cached_badge_data %>
+      <%= f.file_field :badge, data: {action: "change->profile-preview#update_badge"} %>
+    <% end %>
+  </div>
+
+  <% if f.object.id == nil %>
+    <%= f.group :name do %>
+      <%= f.text_field :name %>
+    <% end %>
+  <% end %>
+
+  <%= f.group :description do %>
+    <%= f.text_area :description %>
+  <% end %>
+
+  <%= f.group :registration_info, label: "Registration info" do %>
+    <%= f.text_field :registration_info %>
+  <% end %>
+
+  <%= f.submit %>
+<% end %>
+

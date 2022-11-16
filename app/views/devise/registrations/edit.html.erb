@@ -21,6 +21,7 @@
   </div>
 
   <%= f.group :banner do %>
+    <%= f.hidden_field :banner, value: f.object.cached_banner_data %>
     <%= image_tag f.object.banner_url, class: "rounded-t h-40 w-full object-cover" if f.object.banner %>
 
     <%= f.file_field :banner %>

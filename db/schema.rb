@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_26_021844) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_16_194345) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
@@ -117,6 +117,44 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_26_021844) do
     t.string "slug"
     t.index ["slug"], name: "index_gists_on_slug", unique: true
     t.index ["user_id"], name: "index_gists_on_user_id"
+  end
+
+  create_table "guilds", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "name"
+    t.string "description"
+    t.text "avatar_data"
+    t.text "badge_data"
+    t.text "banner_data"
+    t.integer "registration", default: 0
+    t.string "registration_info"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.index ["name"], name: "index_guilds_on_name", unique: true
+    t.index ["slug"], name: "index_guilds_on_slug", unique: true
+    t.index ["user_id"], name: "index_guilds_on_user_id"
+  end
+
+  create_table "guilds_users", force: :cascade do |t|
+    t.bigint "guild_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["guild_id"], name: "index_guilds_users_on_guild_id"
+    t.index ["user_id"], name: "index_guilds_users_on_user_id"
+  end
+
+  create_table "invites", force: :cascade do |t|
+    t.string "key"
+    t.bigint "guild_id"
+    t.bigint "user_id"
+    t.date "accepted_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["guild_id"], name: "index_invites_on_guild_id"
+    t.index ["key"], name: "index_invites_on_key", unique: true
+    t.index ["user_id"], name: "index_invites_on_user_id"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -301,6 +339,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_26_021844) do
   add_foreign_key "builds", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "gists", "users"
+  add_foreign_key "guilds", "users"
+  add_foreign_key "guilds_users", "guilds"
+  add_foreign_key "guilds_users", "users"
+  add_foreign_key "invites", "guilds"
+  add_foreign_key "invites", "users"
   add_foreign_key "pay_charges", "pay_customers", column: "customer_id"
   add_foreign_key "pay_charges", "pay_subscriptions", column: "subscription_id"
   add_foreign_key "pay_payment_methods", "pay_customers", column: "customer_id"
