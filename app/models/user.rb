@@ -49,6 +49,9 @@ class User < ApplicationRecord
   has_many :starable_posts, through: :stars, source: "starable", source_type: "Post"
   has_many :comments, dependent: :destroy
   has_many :notifications, as: :recipient
+  has_many :guilds_users, dependent: :destroy
+  has_many :member_guilds, through: :guilds_users, source: :guild, dependent: :destroy
+  has_one :owner_guild, class_name: "Guild", foreign_key: :user_id, dependent: :destroy
   has_one_attached :nft, dependent: :destroy
 
   include ImageUploader::Attachment(:banner)
@@ -93,6 +96,7 @@ class User < ApplicationRecord
   end
 
   def guild
-    Guild.where(user_id: id).first
+    # TODO make users able to  join in more than 1 guild
+    owner_guild || member_guilds.first
   end
 end

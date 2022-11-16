@@ -3,3 +3,11 @@
 </div>
 
 <%= render 'form', guild: @guild %>
+
+<%= render(Layout::ConfirmationDialog.new(class: "flex")) do |c| %>
+  <% c.title { "Delete guild" } %>
+  <% c.button(class: "btn btn-danger btn-sm mb-6") do %>
+    Delete Guild
+  <% end %>
+  <% c.action(tag: :a, style: "danger", href: guild_path(@guild), data: {turbo_method: :delete, turbo_frame: "_top"}){ "Delete" } %>
+<% end %>

@@ -10,12 +10,17 @@ class InvitesController < ApplicationController
     user_name = params[:invite][:name]
     user = User.where(name: user_name).first
 
-    if user == current_user
-      redirect_back fallback_location: :root, alert: "You cant invite your self"
-      return
-    end
-
     if user
+      if user == current_user
+        redirect_back fallback_location: :root, alert: "You cant invite your self"
+        return
+      end
+
+      if !user.guild.nil?
+        redirect_back fallback_location: :root, alert: "User is in a guild already"
+        return
+      end
+
       if Invite.where(user: user, guild: guild).any?
         redirect_back fallback_location: :root, alert: "You already sent a invite to #{user_name}"
         return
@@ -36,8 +41,9 @@ class InvitesController < ApplicationController
 
   def accept
     if @invite.update(accepted_date: Time.now)
+      Invite.where("user_id = #{current_user.id} AND id != #{@invite.id} AND accepted_date = null").destroy_all
+      GuildsUser.create(user: @invite.user, guild: @invite.guild)
       redirect_back fallback_location: :root, notice: "Invite accepted"
-      Invite.where("user_id = #{current_user.id} AND id != #{@invite.id}").destroy_all
     else
       redirect_back fallback_location: :root, alert: "Something went wrong"
     end
