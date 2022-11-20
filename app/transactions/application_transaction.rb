@@ -1,7 +1,7 @@
 class ApplicationTransaction
   include Dry::Transaction
 
-  def self.call(*args, &block)
-    new.call(*args, &block)
+  def self.call(...)
+    new.call(...)
   end
 end

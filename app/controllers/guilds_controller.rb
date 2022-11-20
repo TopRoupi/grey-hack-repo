@@ -81,4 +81,3 @@ class GuildsController < ApplicationController
     )
   end
 end
-

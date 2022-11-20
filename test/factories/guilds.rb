@@ -32,7 +32,7 @@ FactoryBot.define do
     name { Faker::Lorem.characters(number: 10) }
     description { Faker::Lorem.characters(number: 100) }
     avatar_data { nil }
-    badge_data { nil}
+    badge_data { nil }
     banner_data { nil }
   end
 end

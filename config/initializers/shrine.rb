@@ -6,7 +6,7 @@ require "shrine/storage/s3"
 if Rails.env.test?
   Shrine.storages = {
     cache: Shrine::Storage::Memory.new,
-    store: Shrine::Storage::Memory.new,
+    store: Shrine::Storage::Memory.new
   }
 elsif Rails.env.development?
   Shrine.storages = {

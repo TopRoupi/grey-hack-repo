@@ -183,7 +183,6 @@ class InvitesControllerTest < ActionDispatch::IntegrationTest
       assert_response :redirect
     end
 
-
     test "should not reject a invite of other users" do
       @user.guild.destroy
       user = create :user
