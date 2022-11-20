@@ -10,12 +10,16 @@ class InvitePolicy < ApplicationPolicy
   def accept?
     if user.nil? || user != record.user
       false
+    else
+      true
     end
   end
 
   def destroy?
     if user.nil? || user != record.user
       false
+    else
+      true
     end
   end
 end

@@ -40,8 +40,10 @@ class InvitesController < ApplicationController
   end
 
   def accept
+    authorize @invite
+
     if @invite.update(accepted_date: Time.now)
-      Invite.where("user_id = #{current_user.id} AND id != #{@invite.id} AND accepted_date = null").destroy_all
+      Invite.where("user_id = #{current_user.id} AND id != #{@invite.id} AND accepted_date IS NULL").destroy_all
       GuildsUser.create(user: @invite.user, guild: @invite.guild)
       redirect_back fallback_location: :root, notice: "Invite accepted"
     else
@@ -50,6 +52,8 @@ class InvitesController < ApplicationController
   end
 
   def destroy
+    authorize @invite
+
     if @invite.destroy
       redirect_back fallback_location: :root, notice: "Invite rejected"
     else
