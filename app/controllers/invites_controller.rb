@@ -7,31 +7,14 @@ class InvitesController < ApplicationController
 
     authorize invite
 
-    invite_name = params[:invite][:name]
-    user = User.find_by(name: invite_name)
+    Invites::Create.call(name: params[:invite][:name], guild: guild) do |m|
+      m.success do |success|
+        redirect_back fallback_location: :root, notice: success
+      end
 
-    if user.nil?
-      redirect_back fallback_location: :root, alert: "Could not find user: #{invite_name}"
-      return
-    end
-
-    if !user.guild.nil?
-      redirect_back fallback_location: :root, alert: "User is in a guild already"
-      return
-    end
-
-    if Invite.where("accepted_date IS NULL", user: user, guild: guild).any?
-      redirect_back fallback_location: :root, alert: "You already sent a invite to #{invite_name}"
-      return
-    end
-
-    invite.user = user
-    invite.set_random_key
-
-    if invite.save
-      redirect_back fallback_location: :root, notice: "Invite sent to: #{invite_name}"
-    else
-      redirect_back fallback_location: :root, alert: "Sorry a error occurred"
+      m.failure do |failure|
+        redirect_back fallback_location: :root, alert: failure
+      end
     end
   end
 
