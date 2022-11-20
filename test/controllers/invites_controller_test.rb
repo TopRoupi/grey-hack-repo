@@ -104,6 +104,17 @@ class InvitesControllerTest < ActionDispatch::IntegrationTest
       assert_response :redirect
     end
 
+    test "should create a invite even if the target user has accepted a invite for the same guild before" do
+      user = create :user
+      create :invite, guild: @guild, user: user, accepted_date: Time.now
+
+      assert_difference("Invite.count", 1) do
+        post invites_url, params: {invite: {name: user.name}}
+      end
+
+      assert_response :redirect
+    end
+
     # accept invites
 
     test "should become a member of the guild after accepting a invite" do
@@ -133,7 +144,6 @@ class InvitesControllerTest < ActionDispatch::IntegrationTest
       assert_response :redirect
     end
 
-
     test "should not destroy old accepted invites after accepting a invite" do
       @user.guild.destroy
       guild = create :guild
@@ -146,7 +156,7 @@ class InvitesControllerTest < ActionDispatch::IntegrationTest
       assert_response :redirect
     end
 
-    test "should be able to accept invites of other users" do
+    test "should not be able to accept invites of other users" do
       user = create :user
       guild = create :guild
       invite = create :invite, user: user, guild: guild

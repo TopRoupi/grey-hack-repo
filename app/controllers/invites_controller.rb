@@ -2,40 +2,36 @@ class InvitesController < ApplicationController
   before_action :set_invite, only: %i[accept destroy]
 
   def create
-    guild = Guild.where(user_id: current_user).first
+    guild = Guild.find_by(user_id: current_user)
     invite = Invite.new guild: guild
 
     authorize invite
 
-    user_name = params[:invite][:name]
-    user = User.where(name: user_name).first
+    invite_name = params[:invite][:name]
+    user = User.find_by(name: invite_name)
 
-    if user
-      if user == current_user
-        redirect_back fallback_location: :root, alert: "You cant invite your self"
-        return
-      end
+    if user.nil?
+      redirect_back fallback_location: :root, alert: "Could not find user: #{invite_name}"
+      return
+    end
 
-      if !user.guild.nil?
-        redirect_back fallback_location: :root, alert: "User is in a guild already"
-        return
-      end
+    if !user.guild.nil?
+      redirect_back fallback_location: :root, alert: "User is in a guild already"
+      return
+    end
 
-      if Invite.where(user: user, guild: guild).any?
-        redirect_back fallback_location: :root, alert: "You already sent a invite to #{user_name}"
-        return
-      end
+    if Invite.where("accepted_date IS NULL", user: user, guild: guild).any?
+      redirect_back fallback_location: :root, alert: "You already sent a invite to #{invite_name}"
+      return
+    end
 
-      invite.user = user
-      invite.set_random_key
+    invite.user = user
+    invite.set_random_key
 
-      if invite.save
-        redirect_back fallback_location: :root, notice: "Invite sent to: #{user_name}"
-      else
-        redirect_back fallback_location: :root, alert: "Sorry a error occurred"
-      end
+    if invite.save
+      redirect_back fallback_location: :root, notice: "Invite sent to: #{invite_name}"
     else
-      redirect_back fallback_location: :root, alert: "Could not find user: #{user_name}"
+      redirect_back fallback_location: :root, alert: "Sorry a error occurred"
     end
   end
 
