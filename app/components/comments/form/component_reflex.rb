@@ -14,7 +14,7 @@ class Comments::Form::ComponentReflex < ApplicationReflex
 
       if @commentable.comments.count == 1
         cable_ready
-          .inner_html(selector: dom_id(@commentable, "comments"), html: "")
+          .add_css_class(selector: "#empty_box", name: "hidden")
           .broadcast
       end
       cable_ready
@@ -27,6 +27,13 @@ class Comments::Form::ComponentReflex < ApplicationReflex
 
   def destroy
     @comment.destroy
+
+    if @commentable.comments.count == 0
+      cable_ready
+        .remove_css_class(selector: "#empty_box", name: "hidden")
+        .broadcast
+    end
+
     cable_ready
       .remove(selector: dom_id(@comment))
       .broadcast
