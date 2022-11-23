@@ -26,7 +26,7 @@ class Invites::Create < ApplicationTransaction
   end
 
   def check_if_invite_is_a_duplicate
-    if Invite.where("accepted_date IS NULL", user: @user, guild: @guild).any?
+    if Invite.where("accepted_date IS NULL AND user_id = #{@user.id} AND guild_id = #{@guild.id}").any?
       Failure("You already sent a invite to #{@user.name}")
     else
       Success()

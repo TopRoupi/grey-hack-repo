@@ -10,10 +10,39 @@
   <%= f.submit "Send invite", class: "block ml-auto float-none" %>
 <% end %>
 
+<div class="divider"></div>
 
-<div class="text-center mt-4">
-  <h1 class="text-2xl mb-4">Manage members</h1>
+<div class="text-center mt-8 mb-8">
+  <h1 class="text-2xl">Manage Invites</h1>
 </div>
+
+<% if @open_invites.empty? %>
+  <div class="card w-full bg-secondary text-primary-content">
+    <div class="card-body text-center">
+      No open invites
+    </div>
+  </div>
+<% end %>
+
+<% @open_invites.each do |invite| %>
+  <div class="flex items-center">
+    <img class="h-10 w-10 rounded-xl bg-base-200 border border-4 border-base-100 object-cover" src="<%= user_avatar(invite.user) %>" alt="user avatar" />
+    <%= invite.user.name %>
+    <button data-reflex="click->GuildReflex#cancel_invite" data-invite-id="<%= invite.signed_id %>" class="btn btn-thin btn-error ml-auto">Cancel</button>
+  </div>
+<% end %>
+
+<div class="text-center mt-8 mb-8">
+  <h1 class="text-2xl">Manage members</h1>
+</div>
+
+<% if @guild.members.empty? %>
+  <div class="card w-full bg-secondary text-primary-content">
+    <div class="card-body text-center">
+      Guild has no members
+    </div>
+  </div>
+<% end %>
 
 <% @guild.members.each do |member| %>
   <div class="flex items-center">

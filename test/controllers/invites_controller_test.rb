@@ -54,6 +54,16 @@ class InvitesControllerTest < ActionDispatch::IntegrationTest
       assert_response :redirect
     end
 
+    test "should be able to have more than 1 open invite at the same time" do
+      user = create :user
+      post invites_url, params: {invite: {name: user.name}}
+
+      user = create :user
+      assert_difference("Invite.count", 1) do
+        post invites_url, params: {invite: {name: user.name}}
+      end
+    end
+
     test "should not create invite if user name doest exist" do
       assert_difference("Invite.count", 0) do
         post invites_url, params: {invite: {name: "dwadfej"}}

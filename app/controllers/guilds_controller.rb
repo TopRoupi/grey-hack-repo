@@ -7,6 +7,8 @@ class GuildsController < ApplicationController
 
   def manager
     authorize @guild
+
+    @open_invites = Invite.where("accepted_date IS NULL", guild: @guild)
   end
 
   def new
