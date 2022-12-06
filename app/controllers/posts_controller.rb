@@ -44,7 +44,8 @@ class PostsController < ApplicationController
     @builds = @post.builds.order(created_at: :desc)
     @selected_build = @post.builds.find_by(id: params[:build_id]) if params[:build_id]
 
-    @selected_file = params[:file_type].constantize.find(params[:file_id]) if params[:file_type] && params[:file_id]
+    @selected_file = params[:file_type].constantize.find_by(id: params[:file_id]) if params[:file_type] && params[:file_id]
+
 
     redirect_to post_builds_path if @selected_build&.published == true
   end

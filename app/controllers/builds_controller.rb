@@ -20,7 +20,7 @@ class BuildsController < ApplicationController
 
     @build.destroy
     respond_to do |format|
-      format.html { redirect_back fallback_location: root_path, status: :see_other, notice: "Build was successfully destroyed." }
+      format.html { redirect_to post_builds_path(@build.post), status: :see_other, notice: "Build was successfully destroyed." }
     end
   end
 
