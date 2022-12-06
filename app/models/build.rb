@@ -38,6 +38,7 @@ class Build < ApplicationRecord
 
   validates_with BuildValidator
   validates :name, presence: true, length: {minimum: 3, maximum: 16}
+  validates :message, length: {minimum: 3, maximum: 255}
 
   scope :published, -> { where(published: true) }
   scope :unpublished, -> { where(published: false) }

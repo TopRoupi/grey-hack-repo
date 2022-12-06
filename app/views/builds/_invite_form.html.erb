@@ -1,0 +1,9 @@
+<turbo-frame id="<%= dom_id build %>">
+  <%= form_for build, url: build_publish_path(build), class: "p-2", method: :patch, builder: DaisyFormBuilder do |f| %>
+    <%= f.group :message, label: "Modifications description" do %>
+      <%= f.text_area :message %>
+    <% end %>
+
+    <%= f.submit "Publish", class: "block ml-auto float-none btn btn-success" %>
+  <% end %>
+</turbo-frame>

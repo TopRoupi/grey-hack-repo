@@ -18,6 +18,10 @@
               <%= build.post.title %>
             <% end %>
             <br>
+            <% if build.message %>
+              <span class="text-beaver-400">notes: </span><%= build.message %>
+              <br>
+            <% end %>
             <span class="text-beaver-400">
               created <%= time_ago_in_words(build.created_at) %> ago
             </span>

@@ -66,11 +66,21 @@
           <div class="flex justify-end">
             <% if build.published == false %>
               <% if build.ready_to_publish? %>
-                <%= render(Layout::ConfirmationDialog.new(class: "flex")) do |c| %>
-                  <% c.title { "Publish " + build.name } %>
+                <%= render(Layout::Modal.new(tag: :div)) do |c| %>
                   <% c.button(class: "btn btn-success btn-thin p-2 mr-2") { "Publish" } %>
-                  <% c.action(tag: :a, style: "success", href: build_publish_path(build), data: {turbo_method: :patch, turbo_frame: "_top"}){ "Publish" } %>
+                  <% c.dialog(size: :medium) do |cc| %>
+                    <% cc.header { "Publish " + build.name } %>
+                    <% cc.body do %>
+                      <%= render '/builds/invite_form', build: build %>
+                    <% end %>
+                  <% end %>
                 <% end %>
+
+                <%# <%= render(Layout::ConfirmationDialog.new(class: "flex")) do |c| %>
+                  <%#   <% c.title { "Publish " + build.name } %>
+                  <%#   <% c.button(class: "btn btn-success btn-thin p-2 mr-2") { "Publish" } %>
+                  <%#   <% c.action(tag: :a, style: "success", href: build_publish_path(build), data: {turbo_method: :patch, turbo_frame: "_top"}){ "Publish" } %>
+                  <%# <% end %>
               <% else %>
                 <span class="btn btn-disabled btn-thin p-2 mr-2">
                   publish

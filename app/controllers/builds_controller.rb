@@ -4,14 +4,19 @@ class BuildsController < ApplicationController
   before_action :authenticate_user!, except: [:diff]
   before_action :set_build, only: [:destroy, :publish, :diff]
 
-  # POST /builds/1/publish
+  # PATCH /builds/1/publish
   def publish
     authorize @build
 
-    @build.update published: true
-    redirect_to post_builds_path(@build.post)
+    build_params = params.require(:build).permit(:message)
+    build_params[:published] = true
 
-    DiscordJob.perform_later(@build)
+    if @build.update(build_params)
+      redirect_to post_builds_path(@build.post)
+      DiscordJob.perform_later(@build)
+    else
+      render "builds/_invite_form", locals: {build: @build}
+    end
   end
 
   # DELETE /builds/1
