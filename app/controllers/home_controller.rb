@@ -14,6 +14,6 @@ class HomeController < ApplicationController
       retry
     end
 
-    @builds = Build.eager_load(:post).where("\"posts\".\"visibility\" = #{Post.visibilities[:public]}").order(created_at: :desc).limit(20)
+    @builds = Build.eager_load(:post).where("\"posts\".\"visibility\" = #{Post.visibilities[:public]} AND builds.published = true").order(created_at: :desc).limit(20)
   end
 end

@@ -17,7 +17,7 @@ class PostsController < ApplicationController
   # GET /posts/1 or /posts/1.json
   def show
     @post = Post
-      .includes(:user, :category, stars: [:user], builds: [:scripts, :folders, files_attachment: :blob], comments: [:user])
+      .preload_associations_lazily
       .with_rich_text_readme
       .friendly
       .find(params[:id])
