@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
     made_up_categories = ["all", "private", "public", "not_listed"]
 
-    @posts = @user.posts.published.preload_associations_lazily.asc
+    @posts = @user.posts.published.eager.asc
     @posts = @posts.where(category_id: @category) unless made_up_categories.include?(@category)
     if current_user && current_user == @user
       @posts = @posts.private_visibility if @category == "private"
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
 
     @category_pagy, @posts = pagy @posts, items: 5, page_param: "cpage"
 
-    @stars_pagy, @starred_posts = pagy(@user.starable_posts.preload_associations_lazily.order('"stars_posts"."created_at"': :desc).public_visibility, items: 5)
+    @stars_pagy, @starred_posts = pagy(@user.starable_posts.eager.order('"stars_posts"."created_at"': :desc).public_visibility, items: 5)
   end
 
   def myposts

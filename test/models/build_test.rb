@@ -5,6 +5,7 @@
 # Table name: builds
 #
 #  id         :bigint           not null, primary key
+#  message    :string
 #  name       :string
 #  published  :boolean          default(FALSE), not null
 #  created_at :datetime         not null

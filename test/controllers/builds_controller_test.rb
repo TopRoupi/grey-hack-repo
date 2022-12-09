@@ -90,7 +90,7 @@ class BuildsControllerTest < ActionDispatch::IntegrationTest
       @build.published = false
       @build.save
 
-      patch build_publish_url(@build)
+      patch build_publish_url(@build, {build: {message: ""}})
       assert_response :redirect
       @build.reload
       assert_equal @build.published, true
