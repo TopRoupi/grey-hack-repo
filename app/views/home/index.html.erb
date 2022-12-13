@@ -1,3 +1,9 @@
+<%= render(Layout::CoolTab.new()) do |c| %>
+  <%= c.hightlight(class: "rounded bg-base-200") %>
+  <%= c.tab(class: "p-2 mr-2") { "lol" } %>
+  <%= c.tab(class: "p-2 mr-2") { "aaaaaaa" } %>
+<% end %>
+
 <div class="relative">
   <%= render(Layout::Dropdown.new(direction: :left, class: "absolute right-0 top-0")) do |c| %>
     <% c.button(tag: :button, class: "btn btn-thin p-3 rounded-full") do %>
