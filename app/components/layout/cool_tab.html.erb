@@ -1,6 +1,7 @@
 <%= content_tag(@tag, @sys_params) do %>
-  <%= hightlight %>
   <% tabs.each do |tab| %>
     <%= tab %>
   <% end %>
+  <%= hightlight %>
+  <%= append %>
 <% end %>

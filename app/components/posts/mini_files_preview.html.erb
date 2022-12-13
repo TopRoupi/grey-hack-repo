@@ -1,24 +1,32 @@
 <div id="<%= dom_id @fileable, "mini_files_preview" %>" class="mb-4 bg-base-100 border-2 border-base-200 p-1 card rounded-t-none overflow-x-auto">
-  <div class="flex items-center mx-auto sm:mx-0 w-fit sm:w-full">
+  <%= render(Layout::CoolTab.new(class: "relative flex items-center mx-auto sm:mx-0 w-fit sm:w-full")) do |c| %>
+    <% c.hightlight(class: "rounded bg-beaver-800") %>
+
     <% if @fileable.instance_of? Folder %>
-      <button class="mr-2 flex items-center rounded p-2 hover:bg-beaver-800" data-reflex="click->Posts::MiniFilesPreviewReflex#back" data-folder-id="<%= @fileable.signed_id %>">
+      <% c.tab(class: "flex p-2 items-center mr-2", tag: :button, data: {reflex: "click->Posts::MiniFilesPreviewReflex#back", folder_id: @fileable.signed_id}) do %>
         back
-      </button>
+      <% end %>
     <% end %>
+
     <% @fileable.folders.each do |folder| %>
-      <button class="mr-2 flex items-center rounded p-2 hover:bg-beaver-800" data-reflex="click->Posts::MiniFilesPreviewReflex#open" data-folder-id="<%= folder.signed_id %>">
+      <% c.tab(class: "flex p-2 items-center mr-2", tag: :button, data: {reflex: "click->Posts::MiniFilesPreviewReflex#open", folder_id: folder.signed_id}) do %>
         <%= octicon "file-directory-fill", height: 15, class: "fill-current text-blue-400 mr-2" %>
         <%= folder.name %>
-      </button>
+      <% end %>
     <% end %>
+
     <% @fileable.scripts.each do |script| %>
-      <a href="<%= script_path script %>" data-turbo-frame="_top" class="mr-2 flex items-center rounded p-2 hover:bg-beaver-800">
+      <% c.tab(class: "flex p-2 items-center mr-2", tag: :a, data: {turbo_frame: "_top"}, href: script_path(script) ) do %>
         <%= octicon "file", height: 15, class: "fill-current mr-2" %>
         <%= script.name %>
-      </a>
+      <% end %>
     <% end %>
-    <div class="ml-0 sm:ml-auto">
-      <%= render(Builds::ExportStringModal.new build: @build, class: "btn btn-xs whitespace-nowrap", style: "height: 40px") %>
-    </div>
-  </div>
+
+
+    <% c.append do %>
+      <div class="ml-0 sm:ml-auto">
+        <%= render(Builds::ExportStringModal.new build: @build, class: "btn btn-xs whitespace-nowrap", style: "height: 40px") %>
+      </div>
+    <% end %>
+  <% end %>
 </div>

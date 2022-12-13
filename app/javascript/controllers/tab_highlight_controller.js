@@ -4,7 +4,6 @@ export default class extends ApplicationController {
   static targets = ["tabs", "highlight"]
 
   connect(){
-    console.log("lol")
     console.log(this.tabsTargets)
     for(let i in this.tabsTargets) {
       let obj = this.tabsTargets[i]
