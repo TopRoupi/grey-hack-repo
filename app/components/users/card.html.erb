@@ -7,7 +7,8 @@
     <%= supporter_badge %>
   <% end %>
   <div class="sm:ml-auto flex flex-col sm:flex-row gap-2 items center text-center">
+    <span>posts: <%= @user.posts.count %></span>
+    <span>gists: <%= @user.gists.not_anonymous.count %></span>
     <span>stars: <%= @user.stars.count %></span>
-    <span>total posts: <%= @user.posts.count %></span>
   </div>
 </a>

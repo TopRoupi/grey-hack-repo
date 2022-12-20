@@ -13,3 +13,7 @@
   <%= render(Scripts::Card::Component.new(script: script)) %>
   <br>
 <% end %>
+
+<div class="block ml-auto w-fit">
+  from: <%= link_to @gist.author.name, @gist.anonymous ? "#" : user_path(@gist.author), class: "link" %>
+</div>

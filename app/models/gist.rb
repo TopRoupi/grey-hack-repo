@@ -38,6 +38,9 @@ class Gist < ApplicationRecord
       .or(where(arel_table[:description].matches("%#{query}%")))
   }
 
+  scope :not_anonymous, -> { where(anonymous: false) }
+
+
   friendly_id :name, use: :slugged
 
   def author

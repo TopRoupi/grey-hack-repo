@@ -41,6 +41,9 @@
         <%= link_to path_to(request.url, stars: ""), class: "link !text-neutral-content" do %>
           total stars: <b><%= @user.stars.count %></b>
         <% end %>
+        <%= link_to path_to(request.url, gists: ""), class: "link !text-neutral-content" do %>
+          total gists: <b><%= @user.gists.not_anonymous.count %></b>
+        <% end %>
       </div>
     </div>
   </div>
@@ -48,12 +51,10 @@
 
 <div class="divider sm:mt-0"></div>
 
-<% if params[:stars].nil? %>
-  <%= render(Users::PostsBox.new(user: @user, current_user: current_user, posts: @posts, pagy: @category_pagy, active_tab: @category)) %>
-<% else %>
+<% if params[:stars] %>
   <% if @starred_posts.empty? %>
     <div class="bg-beaver-800 rounded p-6 text-beaver-200">
-      You dont have any starred posts
+      User doest have any starred posts
     </div>
   <% else %>
     <turbo-frame id="starred_posts">
@@ -64,5 +65,19 @@
       <%= render(Pagination.new(pagy: @stars_pagy)) if @stars_pagy %>
     </turbo-frame>
   <% end %>
+<% elsif params[:gists] %>
+  <% if @gists.empty? %>
+    <div class="bg-beaver-800 rounded p-6 text-beaver-200">
+      User doest have any gists
+    </div>
+  <% else %>
+    <turbo-frame id="starred_posts">
+      <%= render @gists %>
+
+      <%= render(Pagination.new(pagy: @gists_pagy)) if @gists_pagy %>
+    </turbo-frame>
+  <% end %>
+<% else %>
+  <%= render(Users::PostsBox.new(user: @user, current_user: current_user, posts: @posts, pagy: @category_pagy, active_tab: @category)) %>
 <% end %>
 

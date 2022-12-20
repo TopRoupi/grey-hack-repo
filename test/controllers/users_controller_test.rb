@@ -32,15 +32,25 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
       get user_path(@user)
       posts = assigns(:posts)
-      stars = assigns(:starred_posts)
 
       assert_includes posts, public_post
       refute_includes posts, not_listed_post
       refute_includes posts, private_post
 
+      get user_path(@user, stars: ";;;")
+      stars = assigns(:starred_posts)
       assert_includes stars, public_post
       refute_includes stars, not_listed_post
       refute_includes stars, private_post
+
+
+      get user_path(@user, gists: "kk")
+      gists = assigns(:gists)
+      anonymous_gist = create :gist, :as_anonymous, user: @user
+      public_gist = create :gist, user: @user
+
+      assert_includes gists, public_gist
+      refute_includes gists, anonymous_gist
     end
 
     test "should not show private or not_listed posts using the category=private or not_listed url param if not logged as the user" do
