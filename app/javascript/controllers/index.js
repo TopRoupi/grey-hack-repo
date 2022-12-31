@@ -30,6 +30,7 @@ import CableFrom from "./cable_from_controller"
 import Alert from "./alert_controller"
 import ProfilePreview from "./profile_preview_controller"
 import TabHighlight from "./tab_highlight_controller"
+import Encoder from "./encoder_controller"
 application.register("avatar-preview", AvatarPreview)
 application.register("attachments", Attachments)
 application.register("decipher", Decipher)
@@ -39,6 +40,7 @@ application.register("cable-from", CableFrom)
 application.register("alert", Alert)
 application.register("profile-preview", ProfilePreview)
 application.register("tab-highlight", TabHighlight)
+application.register("encoder", Encoder)
 
 import { Tabs, Alert as Toast, Dropdown, Modal, Toggle } from "tailwindcss-stimulus-components"
 

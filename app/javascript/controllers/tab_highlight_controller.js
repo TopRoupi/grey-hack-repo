@@ -4,7 +4,6 @@ export default class extends ApplicationController {
   static targets = ["tabs", "highlight"]
 
   connect(){
-    console.log(this.tabsTargets)
     for(let i in this.tabsTargets) {
       let obj = this.tabsTargets[i]
       obj.onmouseenter = () => {this.highlight(obj)}
@@ -17,12 +16,6 @@ export default class extends ApplicationController {
     this.highlightTarget.style.height = e.offsetHeight + "px"
     this.highlightTarget.style.width = e.offsetWidth + "px"
     this.highlightTarget.style.left = e.offsetLeft + "px"
-
-
-    console.log(e.offsetHeight)
-    console.log(e.offsetWidth)
-    console.log(e.offsetLeft)
-    // console.log(e.offsetLeft - this.highlightTarget.offset().left)
   }
 
   unhighlight() {

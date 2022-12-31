@@ -1,4 +1,12 @@
-<%= GreyParser::Encoder.encode(["T", "O", "B", "E", "O", "R", "N", "O", "T", 256, 258, 260, 265, 259, 261, 263]) %>
+<textarea class="" data-encoder-target="string"><%= GreyParser::Encoder.encode(["T", "O", "B", "E", "O", "R", "N", "O", "T", 256, 258, 260, 265, 259, 261, 263]) %></textarea>
+
+
+<div data-controller="encoder">
+  <textarea class="" data-encoder-target="string"></textarea>
+  <button class="" data-action="click->encoder#decode_string">decode</button>
+</div>
+
+
 <div class="relative">
   <%= render(Layout::Dropdown.new(direction: :left, class: "absolute right-0 top-0")) do |c| %>
     <% c.button(tag: :button, class: "btn btn-thin p-3 rounded-full") do %>
