@@ -1,22 +1,31 @@
 import ApplicationController from "./application_controller"
 
 export default class extends ApplicationController {
-  static targets = ["string"]
+  static targets = ["string", "result"]
 
   connect() {
     super.connect()
   }
 
-  decode_string(event) {
+  decompress_string(event) {
     event.preventDefault()
     var string = this.stringTarget.value
+    var result_element = this.resultTarget
 
-    for(let i = 0; i < string.length; i++) {
-      console.log(string.charCodeAt(i))
-    }
+    this.stimulate("EncoderReflex#decompress", {"string": string})
+      .then((payload) => {
+        result_element.value = payload.payload
+      })
+  }
 
-    this.stimulate(
-      "EncoderReflex#decode", {"string": string}
-    )
+  compress_string(event) {
+    event.preventDefault()
+    var string = this.stringTarget.value
+    var result_element = this.resultTarget
+
+    this.stimulate("EncoderReflex#compress", {"string": string})
+      .then((payload) => {
+        result_element.value = payload.payload
+      })
   }
 }

@@ -30,4 +30,8 @@ class EncoderTest < ActiveSupport::TestCase
     #
     # assert_equal "93L4»4Y�´��J§a11W�c3�mu", GreyParser::Encoder.encode(lzw)
   end
+
+  test "decode should decode" do
+    input = "93L4»4Y�´��J§a11W�c3�mu"
+  end
 end

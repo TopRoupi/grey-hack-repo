@@ -25,7 +25,7 @@ class GreyParser::Encoder
     cell_size = 0
 
     l.map! do |e|
-      e = e.bytes[0] if e.is_a? String
+      e = e.ord if e.is_a? String
       e = e.to_s(2)
       cell_size = e.size if e.size > cell_size
       e
@@ -70,5 +70,30 @@ class GreyParser::Encoder
   end
 
   def self.decode(string)
+    l = string.chars
+
+    l.map! do |e|
+      e = @@char_set.index(e.ord).to_s(2)
+      "0" * (7 - e.size) + e
+    end
+
+    l = l.join
+
+    cell_size = l[0...7].to_i(2)
+    fat_added = l[7...14].to_i(2)
+
+    l = divide(l[14..], 7)
+
+    l[-1] = l[-1][0...fat_added * -1] if fat_added > 0
+
+    l = divide(l.join, cell_size)
+
+    l.map! do |e|
+      e = e.to_i(2)
+      e = e.chr("UTF-8") if e < 256
+      e
+    end
+
+    l
   end
 end
