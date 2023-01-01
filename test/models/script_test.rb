@@ -34,8 +34,8 @@ class ScriptTest < ActiveSupport::TestCase
     refute_empty @script.errors[:content]
   end
 
-  test "invalid with a content of length 80_001" do
-    @script.content = "a" * 80_001
+  test "invalid with a content of length 160_001" do
+    @script.content = "a" * 160_001
     @script.valid?
     refute_empty @script.errors[:content]
   end

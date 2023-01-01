@@ -1,0 +1,23 @@
+<div class="text-center">
+  <h1 class="text-2xl mb-4">Compress</h1>
+</div>
+<div class="mb-4" data-controller="encoder">
+  <p>input: </p>
+  <textarea class="h-32 textarea w-full textarea-bordered my-2" data-encoder-target="string"></textarea>
+  <p>output: </p>
+  <textarea data-encoder-target="result" class="h-32 textarea textarea-bordered mt-2 w-full" disabled></textarea>
+  <button class="btn btn-md ml-auto block mt-3" data-action="click->encoder#compress_string">compress</button>
+</div>
+
+<div class="text-center">
+  <h1 class="text-2xl mb-4">Decompress</h1>
+</div>
+<div class="mb-4" data-controller="encoder">
+  <p>input: </p>
+  <textarea class="h-32 textarea w-full textarea-bordered my-2" data-encoder-target="string"></textarea>
+  <p>output: </p>
+  <textarea data-encoder-target="result" class="h-32 textarea textarea-bordered mt-2 w-full" disabled></textarea>
+  <button class="btn btn-md ml-auto block mt-3" data-action="click->encoder#decompress_string">decompress</button>
+</div>
+
+

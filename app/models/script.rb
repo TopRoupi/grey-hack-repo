@@ -23,7 +23,7 @@ class Script < ApplicationRecord
   belongs_to :scriptable, polymorphic: true
 
   validates_with Validator::FileValidator
-  validates :content, presence: true, length: {minimum: 10, maximum: 80_000}
+  validates :content, presence: true, length: {minimum: 10, maximum: 160_000}
   validates :name, presence: true, length: {minimum: 2, maximum: 24}
 
   after_commit :touch_scriptable, on: [:create, :destroy]

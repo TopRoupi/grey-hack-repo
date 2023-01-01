@@ -18,15 +18,11 @@ class FileableForm::Reflex < ApplicationReflex
 
   def import_build(params)
     string = params["string"]
-    name = params["name"]
     build_id = params["build_id"]
-
-    string = string.delete("\n")
-    string = string.gsub("\\...n", "\\n")
 
     begin
       build = Build.find_signed(build_id)
-      new_build = Build.parse_string(string, name)
+      new_build = Build.parse_string(string)
       build.scripts = new_build.scripts
       build.folders = new_build.folders
       build.save
