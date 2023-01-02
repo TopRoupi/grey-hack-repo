@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   get "get_supporter", to: "checkouts#get_supporter", as: "supporter_checkout"
   get "npc_decipher", to: "npc_decipher#index", as: "npc_decipher"
 
-  get "compressor", to: "compressor#index"
+  get "compressor", to: "compressor#index", as: "compressor"
 
   authenticate :user, ->(user) { user.admin? } do
     mount PgHero::Engine, at: "pghero"

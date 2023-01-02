@@ -89,7 +89,7 @@ class BuildTest < ActiveSupport::TestCase
           parent: "0",
           type: "script",
           name: @build.scripts.first.name,
-          content: "print(\"hello\")\nexit(\"bye\")"
+          content: GreyParser::Compressor.compress("print(\"hello\")\nexit(\"bye\")")
         },
         "2": {
           parent: "0",
@@ -100,9 +100,9 @@ class BuildTest < ActiveSupport::TestCase
           parent: "2",
           type: "script",
           name: build_folder.scripts.first.name,
-          content: build_folder.scripts.first.content
+          content: GreyParser::Compressor.compress(build_folder.scripts.first.content)
         }
-      }.to_json.gsub("\\n", "\\...n")
+      }.to_json
     end
 
     test "#export_string should return valid export_string" do
@@ -111,8 +111,10 @@ class BuildTest < ActiveSupport::TestCase
 
     test "#parse_string should return a valid build object" do
       string = @build_export_table
-      string = string[0..20] << "\n" + string[20..]
+      string = string[0..20] << "\n" + string[20..-1]
       assert_equal Build.parse_string(string).export_string, @build.export_string
     end
+
+    # todo: add tests to check the compressor here
   end
 end

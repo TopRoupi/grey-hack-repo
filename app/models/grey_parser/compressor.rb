@@ -3,8 +3,6 @@
 class GreyParser::Compressor
   def self.compress(string)
     compressed = GreyParser::Lzw.compress(string)
-    puts "EEEEEEEEEEEEE"
-    p compressed
     GreyParser::Encoder.encode(compressed)
   end
 

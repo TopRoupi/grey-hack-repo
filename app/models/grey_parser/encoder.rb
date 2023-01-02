@@ -9,15 +9,17 @@ class GreyParser::Encoder
   @@char_set.flatten!
 
   def self.divide(s, n)
-    if s.size == 0
-      return []
+    offset = 0
+    r = []
+
+    loop do
+      r << s[0...n]
+      s = s[n..-1]
+
+      break if s.blank?
     end
 
-    if s.size < n
-      return [s]
-    end
-
-    divide(s[n..], n).unshift(s[0...n])
+    r
   end
 
   def self.encode(lzw, step: nil)

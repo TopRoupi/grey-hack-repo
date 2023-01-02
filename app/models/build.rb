@@ -70,15 +70,14 @@ class Build < ApplicationRecord
       output[:parent] = parent.to_s
       output[:type] = obj.instance_of?(Script) ? "script" : "folder"
       output[:name] = obj.name
-      output[:content] = obj.content if obj.respond_to? :content
+      output[:content] = GreyParser::Compressor.compress(obj.content) if obj.respond_to? :content
 
       output
-    end.to_json.gsub("\\n", "\\...n")
+    end.to_json
   end
 
   def self.parse_string(string, name = nil)
     string = string.delete("\n")
-    string = string.gsub("\\...n", "\\n")
     obj = JSON.parse(string)
     build = new(name: name || obj["0"]["name"])
 
@@ -95,7 +94,7 @@ class Build < ApplicationRecord
     children.each do |key, value|
       case value["type"]
       when "script"
-        parent.scripts << Script.new(name: value["name"], content: value["content"])
+        parent.scripts << Script.new(name: value["name"], content: GreyParser::Compressor.decompress(value["content"]))
       when "folder"
         folder = Folder.new(name: value["name"])
         parent.folders << folder
