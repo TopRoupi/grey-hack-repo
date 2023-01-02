@@ -74,6 +74,8 @@ class Build < ApplicationRecord
 
       output
     end.to_json
+  rescue
+    "ERROR COMPRESSING"
   end
 
   def self.parse_string(string, name = nil)
