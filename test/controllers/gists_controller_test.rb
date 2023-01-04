@@ -80,8 +80,9 @@ class GistsControllerTest < ActionDispatch::IntegrationTest
 
     test "logged user should update gist" do
       new_name = "new name"
-      patch gist_url(@gist), params: {gist: {name: new_name, scripts_attributes: {"0": {name: "script.src", content: "dwadawfnsefgsefg"}}}}
+      patch gist_url(@gist), params: {gist: {name: new_name, scripts_attributes: {"0": {id: @gist.scripts.last.id, name: "script.src", content: "dwadawfnsefgsefg"}}}}
       @gist.reload
+      assert_equal @gist.scripts.last.content, "dwadawfnsefgsefg"
       assert_equal new_name, @gist.name
       assert_redirected_to gist_url @gist
     end
