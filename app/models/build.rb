@@ -65,17 +65,19 @@ class Build < ApplicationRecord
   end
 
   def export_string
-    children_index_table do |obj, parent|
-      output = {}
-      output[:parent] = parent.to_s
-      output[:type] = obj.instance_of?(Script) ? "script" : "folder"
-      output[:name] = obj.name
-      output[:content] = GreyParser::Compressor.compress(obj.content) if obj.respond_to? :content
+    Rails.cache.fetch("build_#{id}_#{updated_at}_export_string", expires_in: 12.hours) do
+      children_index_table do |obj, parent|
+        output = {}
+        output[:parent] = parent.to_s
+        output[:type] = obj.instance_of?(Script) ? "script" : "folder"
+        output[:name] = obj.name
+        output[:content] = GreyParser::Compressor.compress(obj.content) if obj.respond_to? :content
 
-      output
-    end.to_json
-  rescue
-    "ERROR COMPRESSING"
+        output
+      end.to_json
+    rescue
+      "ERROR COMPRESSING"
+    end
   end
 
   def self.parse_string(string, name = nil)
