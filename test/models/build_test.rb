@@ -106,6 +106,7 @@ class BuildTest < ActiveSupport::TestCase
     end
 
     test "#export_string should return valid export_string" do
+      Rails.cache.clear
       assert_equal @build.export_string, @build_export_table
     end
 

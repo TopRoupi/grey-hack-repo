@@ -21,6 +21,6 @@ module SortablePosts
       filter[:created_at] = (1.year.ago)..Time.now if params[:filter] == "year"
     end
 
-    @posts = policy_scope(Post).published.preload_associations_lazily.order(sort).where(filter).public_visibility
+    @posts = policy_scope(Post).published.eager.order(sort).where(filter).public_visibility
   end
 end
