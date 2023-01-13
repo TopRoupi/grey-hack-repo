@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   get "npc_decipher", to: "npc_decipher#index", as: "npc_decipher"
 
   get "compressor", to: "compressor#index", as: "compressor"
+  get "gen_img", to: "gen_img#index", as: "gen_img"
 
   authenticate :user, ->(user) { user.admin? } do
     mount PgHero::Engine, at: "pghero"

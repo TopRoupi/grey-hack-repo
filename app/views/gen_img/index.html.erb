@@ -1,0 +1,23 @@
+<div class="text-center">
+  <h1 class="text-2xl mb-4">Generate Image</h1>
+</div>
+
+<%= form_for :gen, class: "mt-5", builder: DaisyFormBuilder do |f| %>
+  <%= f.group :data do %>
+    <%= f.text_area :data %>
+  <% end %>
+
+  <%= f.group :output do %>
+    <%= f.text_area :output %>
+  <% end %>
+
+  <%= f.submit "Generate image string", data: {reflex: "click->ImgReflex#convert"}, class: "block ml-auto float-none" %>
+<% end %>
+
+
+<p>
+  https://imageresizer.com/resize to resize images
+</p>
+<p>
+  https://www.boxentriq.com/code-breaking/pixel-values-extractor to extract pixels
+</p>

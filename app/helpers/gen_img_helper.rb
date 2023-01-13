@@ -1,0 +1,2 @@
+module GenImgHelper
+end
