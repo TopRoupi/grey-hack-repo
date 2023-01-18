@@ -65,7 +65,7 @@ class Build < ApplicationRecord
   end
 
   def export_string
-    Rails.cache.fetch(md5, expires_in: 12.hours) do
+    Rails.cache.fetch("build_#{id}_#{updated_at}_export_string", expires_in: 12.hours) do
       children_index_table do |obj, parent|
         output = {}
         output[:parent] = parent.to_s
