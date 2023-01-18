@@ -53,7 +53,6 @@ class GistsController < ApplicationController
   # PATCH/PUT /gists/1 or /gists/1.json
   def update
     authorize @gist
-    puts @gist.scripts
 
     respond_to do |format|
       if @gist.update(gist_params)

@@ -17,7 +17,6 @@ class PostsController < ApplicationController
   # GET /posts/1 or /posts/1.json
   def show
     @post = Post
-      .preload_associations_lazily
       .with_rich_text_readme
       .friendly
       .find(params[:id])

@@ -86,4 +86,8 @@ module Fileable
 
     table
   end
+
+  def md5
+    Digest::MD5.hexdigest children_index_table.to_s
+  end
 end

@@ -58,6 +58,8 @@ class InvitesControllerTest < ActionDispatch::IntegrationTest
       user = create :user
       post invites_url, params: {invite: {name: user.name}}
 
+      # TODO: fix mini test not maintaining login after the first request
+      sign_in @user
       user = create :user
       assert_difference("Invite.count", 1) do
         post invites_url, params: {invite: {name: user.name}}

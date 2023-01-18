@@ -96,6 +96,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       refute_includes posts, not_listed_post
       refute_includes posts, public_post
 
+      # TODO: fix mini test not maintaining login after the first request
+      sign_in @user
       get user_path(@user, category: "not_listed")
       posts = assigns(:posts)
 
