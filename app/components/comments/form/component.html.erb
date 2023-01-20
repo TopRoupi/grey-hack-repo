@@ -1,16 +1,25 @@
 <% if @user %>
-  <div id="<%= dom_id(@comment) %>">
+  <div id="<%= dom_id(@comment) %>" class="">
+    <% if @responding %>
+      <p class="mb-2 text-beaver-400">
+        reponding to <b><%= @responding&.user.name %></b>
+      </p>
+    <% end %>
     <div class="flex justify-center"
          data-controller="comments--form--component"
          data-comments--form--component-target="form">
       <img class="rounded-full h-12 w-12 mt-3" src="<%= helpers.user_avatar(@user) %>">
-      <div class="w-96 ml-2">
+      <div class="w-full ml-2">
         <%= form_for(@comment, url: request.url, builder: DaisyFormBuilder) do |f| %>
+          <%= f.hidden_field(:response_id, data: {"comments--form--component-target": "respondId"}, value: @responding&.id) %>
           <%= f.group :content, label: "Comment", class: "mt-0" do %>
             <%= f.text_area :content, data: {"comments--form--component-target": "input"} %>
           <% end %>
 
           <div class="text-right">
+            <% if @comment.id %>
+              <%= content_tag(:button, class: "btn btn-error mr-2", data: {reflex: "click->Comments::Form::ComponentReflex#cancel_edit", "comment-id": @comment.id}) { "Cancel" } %>
+            <% end %>
             <%= f.submit data: {action: "click->comments--form--component##{@comment.created_at ? "update" : "create"}", "comment-id": @comment.id} %>
           </div>
         <% end %>

@@ -2,7 +2,7 @@
 
 class Comments::Form::ComponentReflex < ApplicationReflex
   before_reflex :set_commentable
-  before_reflex :set_comment, only: [:destroy, :edit, :update]
+  before_reflex :set_comment, only: [:destroy, :edit, :update, :cancel_edit]
 
   def create
     @comment = Comment.new(comment_params)
@@ -23,6 +23,13 @@ class Comments::Form::ComponentReflex < ApplicationReflex
     else
       update_comment_form(comment: @comment)
     end
+  end
+
+  def respond
+    comment = Comment.find(element.dataset["comment-id"])
+
+    cable_ready.scroll_into_view(selector: dom_id(Comment.new))
+    update_comment_form(form: Comment.new, comment: Comment.new, responding: comment)
   end
 
   def destroy
@@ -52,7 +59,14 @@ class Comments::Form::ComponentReflex < ApplicationReflex
   end
 
   def edit
-    update_comment_form(form: @comment, comment: @comment)
+    update_comment_form(form: @comment, comment: @comment, responding: @comment.response)
+  end
+
+  def cancel_edit
+    cable_ready
+      .morph(selector: dom_id(@comment), html: render(Comments::Card.new(user: current_user, comment: @comment), layout: false))
+      .broadcast
+    morph :nothing
   end
 
   private
@@ -70,11 +84,11 @@ class Comments::Form::ComponentReflex < ApplicationReflex
     morph(dom_id(@commentable, "comments"), render(Comments::List.new(user: current_user, commentable: @commentable)))
   end
 
-  def update_comment_form(form: Comment.new, comment: Comment.new)
-    morph(dom_id(form), render(Comments::Form::Component.new(user: current_user, comment: comment)))
+  def update_comment_form(form: Comment.new, comment: Comment.new, responding: nil)
+    morph(dom_id(form), render(Comments::Form::Component.new(user: current_user, comment: comment, responding: responding)))
   end
 
   def comment_params
-    params.require(:comment).permit(:content)
+    params.require(:comment).permit(:content, :response_id)
   end
 end

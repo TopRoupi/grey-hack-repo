@@ -10,8 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_06_121531) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_19_174238) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
 
   create_table "action_text_rich_texts", force: :cascade do |t|
@@ -77,6 +78,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_06_121531) do
     t.string "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "response_id"
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
@@ -120,7 +122,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_06_121531) do
   end
 
   create_table "guilds", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.string "name"
     t.string "description"
     t.text "avatar_data"
@@ -146,9 +148,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_06_121531) do
   end
 
   create_table "invites", force: :cascade do |t|
-    t.string "key", null: false
-    t.bigint "guild_id", null: false
-    t.bigint "user_id", null: false
+    t.string "key"
+    t.bigint "guild_id"
+    t.bigint "user_id"
     t.date "accepted_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -280,6 +282,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_06_121531) do
     t.string "slug"
     t.integer "visibility", default: 0
     t.boolean "published", default: false, null: false
+    t.boolean "lib"
     t.index ["category_id"], name: "index_posts_on_category_id"
     t.index ["slug"], name: "index_posts_on_slug", unique: true
     t.index ["user_id"], name: "index_posts_on_user_id"
@@ -294,6 +297,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_06_121531) do
     t.string "scriptable_type"
     t.bigint "scriptable_id"
     t.binary "old_content"
+    t.boolean "lib"
     t.index ["scriptable_type", "scriptable_id"], name: "index_scripts_on_scriptable"
   end
 

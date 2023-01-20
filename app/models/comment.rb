@@ -10,6 +10,7 @@
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  commentable_id   :bigint           not null
+#  response_id      :bigint
 #  user_id          :bigint           not null
 #
 # Indexes
@@ -24,6 +25,8 @@
 class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :commentable, polymorphic: true
+  belongs_to :response, optional: true, class_name: "Comment"
+  has_many :responses, class_name: "Comment", foreign_key: "response_id"
 
   validates :content, length: {maximum: 255}, presence: true
 
@@ -33,8 +36,8 @@ class Comment < ApplicationRecord
   private
 
   def notify_user
-    return if commentable.user == user
-    CommentNotification.with(comment: self).deliver(commentable.user)
+    CommentNotification.with(comment: self).deliver(commentable.user) if commentable.user != user
+    CommentNotification.with(comment: self).deliver(response.user) if response
   end
 
   def remove_notification

@@ -10,6 +10,7 @@
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  commentable_id   :bigint           not null
+#  response_id      :bigint
 #  user_id          :bigint           not null
 #
 # Indexes

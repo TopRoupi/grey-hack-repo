@@ -1,14 +1,30 @@
-<div id="<%= dom_id @comment %>">
+<div id="<%= dom_id @comment %>" class="px-10">
+  <% if @comment.response_id %>
+    <p class="text-beaver-400 whitespace-nowrap text-ellipsis overflow-hidden">
+      response to 
+      <% if @comment.response %>
+        <b><%= @comment.response.user.name %></b> 
+        <a href="#<%= dom_id @comment.response %>" class="!text-beaver-400 link"><%= @comment.response.content%><a>
+      <% else %>
+        <b>deleted comment</b>
+      <% end %>
+    </p>
+  <% end %>
   <div class="flex justify-center mb-2">
     <img class="rounded-full h-12 w-12 mt-3" src="<%= helpers.user_avatar @comment.user %>">
-    <div class="w-96 ml-2 overflow-x-hidden">
+    <div class="ml-2 overflow-x-hidden w-full">
       <div class="flex text-sm text-chestnut-400">
         <%= @comment.user.name %>
         <% if @comment.user.supporter? %>
           <%= supporter_badge class: "ml-2" %>
         <% end %>
-        <% if @user == @comment.user %>
-          <div class="ml-auto">
+        <div class="ml-auto">
+          <span class="hover:underline cursor-pointer text-blue-400 mr-2"
+                data-reflex="click->Comments::Form::ComponentReflex#respond"
+                data-comment-id="<%= @comment.id %>">
+                respond
+          </span>
+          <% if @user == @comment.user %>
             <span class="hover:underline cursor-pointer text-blue-400 mr-2"
                   data-reflex="click->Comments::Form::ComponentReflex#edit"
                   data-comment-id="<%= @comment.id %>">
@@ -19,8 +35,8 @@
                   data-comment-id="<%= @comment.id %>">
                   delete
             </span>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
       <div>
         <%= @comment.content %>
