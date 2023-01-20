@@ -4,7 +4,7 @@
   </div>
 </div>
 
-<div id="<%= dom_id @commentable, "comments" %>" >
+<div id="<%= dom_id @commentable, "comments" %>" class="border border-base-200 rounded px-2 py-3">
   <% @comments.each do |comment| %>
     <%= render(Comments::Card.new(user: @user, comment: comment)) %>
   <% end %>

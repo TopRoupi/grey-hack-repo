@@ -1,4 +1,4 @@
-<div id="<%= dom_id @comment %>" class="px-10">
+<div id="<%= dom_id @comment %>" class="px-2 py-1 group hover:bg-base-100 rounded">
   <% if @comment.response_id %>
     <p class="text-beaver-400 whitespace-nowrap text-ellipsis overflow-hidden">
       response to 
@@ -10,31 +10,31 @@
       <% end %>
     </p>
   <% end %>
-  <div class="flex justify-center mb-2">
+  <div class="flex justify-center">
     <img class="rounded-full h-12 w-12 mt-3" src="<%= helpers.user_avatar @comment.user %>">
     <div class="ml-2 overflow-x-hidden w-full">
-      <div class="flex text-sm text-chestnut-400">
+      <div class="flex text-sm text-chestnut-400 items-center">
         <%= @comment.user.name %>
         <% if @comment.user.supporter? %>
           <%= supporter_badge class: "ml-2" %>
         <% end %>
-        <div class="ml-auto">
-          <span class="hover:underline cursor-pointer text-blue-400 mr-2"
+        <div class="ml-auto block group-hover:block sm:hidden">
+          <button class="hover:underline cursor-pointer text-primary-content mr-2"
                 data-reflex="click->Comments::Form::ComponentReflex#respond"
                 data-comment-id="<%= @comment.id %>">
-                respond
-          </span>
+                <%= octicon "reply", height: 15, class: "fill-current" %>
+          </button>
           <% if @user == @comment.user %>
-            <span class="hover:underline cursor-pointer text-blue-400 mr-2"
+            <button class="text-blue-400 mr-2"
                   data-reflex="click->Comments::Form::ComponentReflex#edit"
                   data-comment-id="<%= @comment.id %>">
-                  edit
-            </span>
-            <span class="hover:underline cursor-pointer text-red-400"
+                  <%= octicon "pencil", height: 15, class: "fill-current" %>
+            </button>
+            <button class="text-red-400"
                   data-reflex="click->Comments::Form::ComponentReflex#destroy"
                   data-comment-id="<%= @comment.id %>">
-                  delete
-            </span>
+                  <%= octicon "trash", height: 15, class: "fill-current" %>
+            </button>
           <% end %>
         </div>
       </div>

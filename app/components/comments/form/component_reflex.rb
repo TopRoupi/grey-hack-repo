@@ -15,11 +15,9 @@ class Comments::Form::ComponentReflex < ApplicationReflex
       if @commentable.comments.count == 1
         cable_ready
           .add_css_class(selector: "#empty_box", name: "hidden")
-          .broadcast
       end
       cable_ready
         .insert_adjacent_html(selector: dom_id(@commentable, "comments"), html: render(Comments::Card.new(user: current_user, comment: @comment), layout: false))
-        .broadcast
     else
       update_comment_form(comment: @comment)
     end
@@ -30,6 +28,10 @@ class Comments::Form::ComponentReflex < ApplicationReflex
 
     cable_ready.scroll_into_view(selector: dom_id(Comment.new))
     update_comment_form(form: Comment.new, comment: Comment.new, responding: comment)
+  end
+
+  def cancel_respond
+    update_comment_form(form: Comment.new, comment: Comment.new)
   end
 
   def destroy

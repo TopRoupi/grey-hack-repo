@@ -3,6 +3,11 @@
     <% if @responding %>
       <p class="mb-2 text-beaver-400">
         reponding to <b><%= @responding&.user.name %></b>
+        <% if @comment.id.nil? %>
+          <%= content_tag :button, class: "block float-right p-1", data: {reflex: "click->Comments::Form::ComponentReflex#cancel_respond"} do%>
+            <%= octicon "x", class: "fill-current" %>
+          <% end %>
+        <% end %>
       </p>
     <% end %>
     <div class="flex justify-center"
