@@ -1,10 +1,9 @@
-<div id="empty_box" class="<%= "hidden" if !@comments.empty? %>">
-  <div class="m-auto block my-10 rounded text-center text-beaver-400">
-    <%= @commentable.class.to_s.downcase %> does not have comments.
-  </div>
-</div>
-
 <div id="<%= dom_id @commentable, "comments" %>" class="border border-base-200 rounded px-2 py-3">
+  <div id="empty_box" class="<%= "hidden" if !@comments.empty? %>">
+    <div class="m-auto block my-10 rounded text-center text-beaver-400">
+      <%= @commentable.class.to_s.downcase %> does not have comments.
+    </div>
+  </div>
   <% @comments.each do |comment| %>
     <%= render(Comments::Card.new(user: @user, comment: comment)) %>
   <% end %>

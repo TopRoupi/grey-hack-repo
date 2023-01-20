@@ -13,8 +13,10 @@
     <div class="flex justify-center"
          data-controller="comments--form--component"
          data-comments--form--component-target="form">
-      <img class="rounded-full h-12 w-12 mt-3" src="<%= helpers.user_avatar(@user) %>">
-      <div class="w-full ml-2">
+      <% if @comment.id %>
+        <img class="rounded-full h-12 w-12 mt-3 mr-2" src="<%= helpers.user_avatar(@user) %>">
+      <% end %>
+      <div class="w-full">
         <%= form_for(@comment, url: request.url, builder: DaisyFormBuilder) do |f| %>
           <%= f.hidden_field(:response_id, data: {"comments--form--component-target": "respondId"}, value: @responding&.id) %>
           <%= f.group :content, label: "Comment", class: "mt-0" do %>
