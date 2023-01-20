@@ -1,6 +1,6 @@
 # fly.toml file generated for grepo on 2022-07-07T12:53:13-03:00
 
-app = "grepo"
+app = "sidekiq-greyrepo"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
@@ -8,9 +8,9 @@ processes = []
 [build]
   dockerfile = "FlyDockerfile"
   [build.args]
-    BUNDLER_VERSION = "2.3.7"
-    NODE_VERSION = "14"
-    RUBY_VERSION = ">= 3.1.2"
+    BUNDLER_VERSION = "2.4.4"
+    NODE_VERSION = "18"
+    RUBY_VERSION = ">= 3.2.0"
 
 [env]
   SERVER_COMMAND = "bundle exec sidekiq -e production -C config/sidekiq.yml & bundle exec clockwork lib/clock.rb"

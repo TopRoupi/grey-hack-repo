@@ -1,8 +1,8 @@
 # syntax = docker/dockerfile:experimental
-FROM quay.io/evl.ms/fullstaq-ruby:3.1.2-jemalloc-slim as base
+FROM quay.io/evl.ms/fullstaq-ruby:3.2.0-jemalloc-slim as base
 
-ARG NODE_VERSION=16
-ARG BUNDLER_VERSION=2.3.9
+ARG NODE_VERSION=18
+ARG BUNDLER_VERSION=2.4.4
 
 ARG RAILS_ENV=production
 ENV RAILS_ENV=${RAILS_ENV}
