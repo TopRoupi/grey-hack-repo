@@ -5,12 +5,18 @@ class GuildPolicy < ApplicationPolicy
     end
   end
 
+  def index?
+    true
+  end
+
   def show?
     true
   end
 
   def new?
-    !user.nil?
+    return false if user.nil?
+    return false if user.guild
+    true
   end
 
   def edit?
@@ -22,7 +28,9 @@ class GuildPolicy < ApplicationPolicy
   end
 
   def create?
-    !user.nil?
+    return false if user.nil?
+    return false if user.guild
+    true
   end
 
   def update?

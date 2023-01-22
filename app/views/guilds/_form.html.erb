@@ -40,6 +40,10 @@
     <%= f.text_area :description %>
   <% end %>
 
+  <%= f.group :tag do %>
+    <%= f.text_field :tag %>
+  <% end %>
+
   <%= f.group :registration_info, label: "Registration info" do %>
     <%= f.text_field :registration_info %>
   <% end %>

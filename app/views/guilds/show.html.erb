@@ -7,7 +7,7 @@
     <div class="flex">
       <img class="h-24 w-24 rounded-xl bg-base-200 -mt-6 mb-3 border border-4 border-base-100 object-cover" src="<%= @guild.avatar_url || image_url("user.png") %>" alt="">
       <div class="ml-3">
-        <span class="font-semibold text-lg"><%= @guild.name %></span>
+        <span class="font-semibold text-lg"><%= @guild.display_name %></span>
       </div>
     </div>
     <div class="flex ml-0 sm:ml-auto flex-col sm:flex-row">

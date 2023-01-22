@@ -1,6 +1,10 @@
 class GuildsController < ApplicationController
   before_action :set_guild, only: %i[manager create_invite show edit update destroy]
 
+  def index
+    authorize Guild
+  end
+
   def show
     authorize @guild
   end
@@ -79,7 +83,8 @@ class GuildsController < ApplicationController
       :banner,
       :avatar,
       :badge,
-      :registration_info
+      :registration_info,
+      :tag
     )
   end
 end

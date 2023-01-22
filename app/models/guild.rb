@@ -11,6 +11,7 @@
 #  registration      :integer          default("closed")
 #  registration_info :string
 #  slug              :string
+#  tag               :string
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  user_id           :bigint
@@ -42,6 +43,11 @@ class Guild < ApplicationRecord
   validates :name, presence: true, length: {minimum: 3, maximum: 16}, uniqueness: true
   validates :description, presence: true, length: {maximum: 230}
   validates :registration_info, length: {maximum: 64}
+  validates :tag, length: {maximum: 3, minimum: 3}, presence: true, uniqueness: true
+
+  def display_name
+    "#{name} [#{tag}]"
+  end
 
   def admin
     user

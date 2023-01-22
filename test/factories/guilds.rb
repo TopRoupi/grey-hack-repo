@@ -11,6 +11,7 @@
 #  registration      :integer          default("closed")
 #  registration_info :string
 #  slug              :string
+#  tag               :string
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  user_id           :bigint
@@ -30,6 +31,7 @@ FactoryBot.define do
     association :user
 
     name { Faker::Lorem.characters(number: 10) }
+    tag { Faker::Lorem.characters(number: 3) }
     description { Faker::Lorem.characters(number: 100) }
     avatar_data { nil }
     badge_data { nil }

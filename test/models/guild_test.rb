@@ -11,6 +11,7 @@
 #  registration      :integer          default("closed")
 #  registration_info :string
 #  slug              :string
+#  tag               :string
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  user_id           :bigint
@@ -64,6 +65,25 @@ class GuildTest < ActiveSupport::TestCase
     @guild.description = "a" * 10
     @guild.valid?
     assert_empty @guild.errors[:description]
+  end
+
+  test "validate tag" do
+    @guild.tag = nil
+    @guild.valid?
+    refute_empty @guild.errors[:tag]
+    create :guild, tag: "LOL"
+    @guild.tag = "LOL"
+    @guild.valid?
+    refute_empty @guild.errors[:tag]
+    @guild.tag = "a" * 4
+    @guild.valid?
+    refute_empty @guild.errors[:tag]
+    @guild.tag = "a" * 2
+    @guild.valid?
+    refute_empty @guild.errors[:tag]
+    @guild.tag = "a" * 3
+    @guild.valid?
+    assert_empty @guild.errors[:tag]
   end
 
   test "validate registration_info" do

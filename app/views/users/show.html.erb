@@ -17,7 +17,7 @@
       </div>
 
       <div class="ml-3">
-        <span class="font-semibold text-lg"><%= @user.name %></span>
+        <span class="font-semibold text-lg"><%= @user.display_name %></span>
         <% if @user.supporter? %>
           <span class="block">
             <%= supporter_badge %>
