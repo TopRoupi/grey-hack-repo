@@ -43,10 +43,18 @@ class Guild < ApplicationRecord
   validates :name, presence: true, length: {minimum: 3, maximum: 16}, uniqueness: true
   validates :description, presence: true, length: {maximum: 230}
   validates :registration_info, length: {maximum: 64}
-  validates :tag, length: {maximum: 3, minimum: 3}, presence: true, uniqueness: true
+  validates :tag, length: {maximum: 3, minimum: 3}, uniqueness: true, allow_blank: true
+
+  def all_members
+    [admin].push(members.to_a).flatten
+  end
 
   def display_name
-    "#{name} [#{tag}]"
+    if tag
+      "#{name} [#{tag}]"
+    else
+      name
+    end
   end
 
   def admin

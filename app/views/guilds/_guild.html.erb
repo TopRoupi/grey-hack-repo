@@ -1,0 +1,30 @@
+<div id="<%= dom_id guild %>" class="w-full">
+  <div class="flex items-start h-full mb-6" style="height: 92px">
+    <%= link_to guild, class: "h-full flex flex-row bg-base-200 w-full px-4 py-3 card rounded-r-none hover:bg-base-300" do %>
+      <img class="h-12 w-12 mr-2 rounded-full block object-cover" src="<%= guild.avatar_url %>" alt="">
+
+      <div>
+        <span class="font-semibold">
+          <%= guild.display_name %>
+        </span>
+        <div class="text-beaver-300">
+          <%= guild.description %>
+        </div>
+      </div>
+    <% end %>
+    <%= render(Layout::Dropdown.new(direction: :left)) do |c| %>
+      <% c.button(tag: :button, class: "text-left bg-base-200 hover:bg-base-300 px-4 py-3 !block card rounded-l-none", style: "width: 136px") do %>
+        <%= render Guilds::MemberGroup.new(users: guild.all_members) %>
+        <%= pluralize(guild.all_members.size, "member") %>
+      <% end %>
+      <% c.menu(class: "mt-3 flex-nowrap !w-96 bg-base-200 p-4 pb-2 shadow-xl border border-white/10 overflow-y-auto p-0", style: "max-height: 300px", card: true) do |cc| %>
+        <% guild.all_members.each do |member| %>
+          <div class="flex">
+            <img class="w-10 h-10 object-cover rounded mb-2 mr-2" src="<%= user_avatar(member)%>" />
+            <%= member.display_name %>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

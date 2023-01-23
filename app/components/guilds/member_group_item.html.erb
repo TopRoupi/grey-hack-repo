@@ -1,0 +1,13 @@
+<% if @user %>
+  <div class="avatar !border-base-100 border-2">
+    <div class="w-10">
+      <img src="<%= user_avatar(@user)%>" />
+    </div>
+  </div>
+<% else %>
+  <div class="avatar placeholder !border-base-100 border-2 bg-base-200">
+    <div class="w-10 text-neutral-content">
+      <span><%= @placeholder %></span>
+    </div>
+  </div>
+<% end %>

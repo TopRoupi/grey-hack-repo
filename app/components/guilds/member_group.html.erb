@@ -1,0 +1,8 @@
+<div class="avatar-group -space-x-6">
+  <% @users.first(3).each do |user| %>
+    <%= render Guilds::MemberGroupItem.new(user: user) %>
+  <% end %>
+  <% if @users.size > 3 %>
+    <%= render Guilds::MemberGroupItem.new(placeholder: "+#{@users.size - 3}") %>
+  <% end %>
+</div>

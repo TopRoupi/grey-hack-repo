@@ -3,6 +3,8 @@ class GuildsController < ApplicationController
 
   def index
     authorize Guild
+
+    @guilds = Guild.all
   end
 
   def show

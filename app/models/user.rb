@@ -60,7 +60,7 @@ class User < ApplicationRecord
   after_commit :set_nft, on: [:create]
 
   def display_name
-    if guild
+    if guild&.tag
       "[#{guild.tag}] #{name}"
     else
       name

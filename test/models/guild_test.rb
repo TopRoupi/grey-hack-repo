@@ -70,7 +70,7 @@ class GuildTest < ActiveSupport::TestCase
   test "validate tag" do
     @guild.tag = nil
     @guild.valid?
-    refute_empty @guild.errors[:tag]
+    assert_empty @guild.errors[:tag]
     create :guild, tag: "LOL"
     @guild.tag = "LOL"
     @guild.valid?
