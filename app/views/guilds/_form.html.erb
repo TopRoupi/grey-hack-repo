@@ -44,6 +44,10 @@
     <%= f.text_field :tag %>
   <% end %>
 
+  <%= f.group :alignment do %>
+    <%= f.select :alignment, Guild.alignments.keys %>
+  <% end %>
+
   <%= f.group :registration_info, label: "Registration info" do %>
     <%= f.text_field :registration_info %>
   <% end %>

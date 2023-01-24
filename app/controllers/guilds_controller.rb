@@ -85,6 +85,7 @@ class GuildsController < ApplicationController
       :banner,
       :avatar,
       :badge,
+      :alignment,
       :registration_info,
       :tag
     )

@@ -33,7 +33,7 @@ class GuildsControllerTest < ActionDispatch::IntegrationTest
 
     test "guest should not create guild" do
       assert_difference("Guild.count", 0) do
-        post guilds_url, params: {guild: {name: @guild.name, description: @guild.description, tag: @guild.tag}}
+        post guilds_url, params: {guild: {name: @guild.name, alignment: @guild.alignment, description: @guild.description, tag: @guild.tag}}
       end
 
       assert_response :redirect
@@ -110,7 +110,7 @@ class GuildsControllerTest < ActionDispatch::IntegrationTest
       @guild.destroy!
 
       assert_difference("Guild.count", 1) do
-        post guilds_url, params: {guild: {name: @guild.name, description: @guild.description, tag: @guild.tag}}
+        post guilds_url, params: {guild: {name: @guild.name, alignment: @guild.alignment, description: @guild.description, tag: @guild.tag}}
       end
 
       assert_response :redirect
@@ -119,7 +119,7 @@ class GuildsControllerTest < ActionDispatch::IntegrationTest
     test "logged user should not create guild if he does have guild" do
       new_guild = build :guild
       assert_difference("Guild.count", 0) do
-        post guilds_url, params: {guild: {name: new_guild.name, description: new_guild.description, tag: new_guild.tag}}
+        post guilds_url, params: {guild: {name: new_guild.name, alignment: @guild.alignment, description: new_guild.description, tag: new_guild.tag}}
       end
 
       assert_response :redirect

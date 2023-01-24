@@ -3,6 +3,7 @@
 # Table name: guilds
 #
 #  id                :bigint           not null, primary key
+#  alignment         :integer          default("grey")
 #  avatar_data       :text
 #  badge_data        :text
 #  banner_data       :text
@@ -33,6 +34,7 @@ FactoryBot.define do
     name { Faker::Lorem.characters(number: 10) }
     tag { Faker::Lorem.characters(number: 3) }
     description { Faker::Lorem.characters(number: 100) }
+    alignment { :grey }
     avatar_data { nil }
     badge_data { nil }
     banner_data { nil }

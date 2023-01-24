@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_21_111802) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_23_124519) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
   enable_extension "plpgsql"
@@ -134,6 +134,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_21_111802) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.string "tag"
+    t.integer "alignment", default: 1
     t.index ["name"], name: "index_guilds_on_name", unique: true
     t.index ["slug"], name: "index_guilds_on_slug", unique: true
     t.index ["user_id"], name: "index_guilds_on_user_id"

@@ -3,6 +3,7 @@
 # Table name: guilds
 #
 #  id                :bigint           not null, primary key
+#  alignment         :integer          default("grey")
 #  avatar_data       :text
 #  badge_data        :text
 #  banner_data       :text
@@ -67,6 +68,15 @@ class GuildTest < ActiveSupport::TestCase
     assert_empty @guild.errors[:description]
   end
 
+  test "deleting a guild should not delete its members" do
+    member = create(:user)
+    @guild.members << member
+    @guild.save
+    @guild.reload
+    @guild.destroy
+    refute_nil User.find_by(id: member.id)
+  end
+
   test "validate tag" do
     @guild.tag = nil
     @guild.valid?
@@ -84,6 +94,21 @@ class GuildTest < ActiveSupport::TestCase
     @guild.tag = "a" * 3
     @guild.valid?
     assert_empty @guild.errors[:tag]
+  end
+
+  test "validate alignment" do
+    @guild.alignment = nil
+    @guild.valid?
+    assert_empty @guild.errors[:alignment]
+    @guild.alignment = 0
+    @guild.valid?
+    assert_empty @guild.errors[:alignment]
+    @guild.alignment = 1
+    @guild.valid?
+    assert_empty @guild.errors[:alignment]
+    @guild.alignment = 2
+    @guild.valid?
+    assert_empty @guild.errors[:alignment]
   end
 
   test "validate registration_info" do

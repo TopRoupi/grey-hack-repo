@@ -3,6 +3,7 @@
 # Table name: guilds
 #
 #  id                :bigint           not null, primary key
+#  alignment         :integer          default("grey")
 #  avatar_data       :text
 #  badge_data        :text
 #  banner_data       :text
@@ -44,13 +45,14 @@ class Guild < ApplicationRecord
   validates :description, presence: true, length: {maximum: 230}
   validates :registration_info, length: {maximum: 64}
   validates :tag, length: {maximum: 3, minimum: 3}, uniqueness: true, allow_blank: true
+  enum alignment: [:white, :grey, :black], _suffix: true
 
   def all_members
     [admin].push(members.to_a).flatten
   end
 
   def display_name
-    if tag
+    if tag.empty? == false
       "#{name} [#{tag}]"
     else
       name
