@@ -33,6 +33,7 @@ class Guild < ApplicationRecord
 
   belongs_to :user
   has_many :invites, dependent: :destroy
+  has_many :announcements, dependent: :destroy
   has_many :guilds_users, dependent: :destroy
   has_many :members, through: :guilds_users, source: :user
 

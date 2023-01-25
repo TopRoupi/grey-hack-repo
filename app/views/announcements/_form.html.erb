@@ -1,0 +1,12 @@
+<turbo-frame id="<%= dom_id announcement, "form" %>">
+  <%= form_for announcement, builder: DaisyFormBuilder do |f| %>
+    <%= f.hidden_field :guild_id %>
+
+    <%= f.group :message do %>
+      <%= f.text_area :message %>
+    <% end %>
+
+    <%= f.submit class: "block ml-auto float-none" %>
+  <% end %>
+</turbo-frame>
+

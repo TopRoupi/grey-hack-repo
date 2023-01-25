@@ -9,6 +9,8 @@ class GuildsController < ApplicationController
 
   def show
     authorize @guild
+
+    @announcement = Announcement.new(guild: @guild)
   end
 
   def manager

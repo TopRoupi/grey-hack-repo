@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   resources :guilds, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   get "guilds/:id/manager", to: "guilds#manager", as: "guild_manager"
 
+  resources :announcements, only: [:create, :update, :destroy]
+
   resources :posts, except: [:index]
   get "posts", to: "home#index"
   patch "posts/:id/publish", to: "posts#publish", as: "post_publish"

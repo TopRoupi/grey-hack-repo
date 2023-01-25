@@ -1,0 +1,9 @@
+<turbo-frame id="<%= dom_id announcement %>">
+  <div class="flex">
+    <%= announcement.user.name %>
+    <% if announcement.user == current_user %>
+      <%= button_to "Delete", announcement_path(announcement), action: "delete", method: :delete, class: "link !text-red-400 ", form: {class: "block ml-auto"} %>
+    <% end %>
+  </div>
+  <%= announcement.message %>
+</turbo-frame>

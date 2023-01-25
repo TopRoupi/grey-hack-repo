@@ -23,4 +23,10 @@
   </div>
 </div>
 
-<p>work in progress, guild system have nothing yet</p>
+<div data-controller="cable-from" data-cable-from-id-value="<%= Cable.signed_stream_name(dom_id(@guild, "announcements")) %>"></div>
+
+<% if @guild.all_members.any?(current_user) %>
+  <%= render "/announcements/form", {announcement: @announcement} %>
+<% end %>
+
+<%= render "/announcements/list", {guild: @guild} %>
