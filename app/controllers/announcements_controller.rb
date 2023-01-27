@@ -2,7 +2,11 @@
 
 class AnnouncementsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_announcement, only: [:destroy, :update]
+  before_action :set_announcement, only: [:destroy, :update, :edit]
+
+  def edit
+    authorize @announcement
+  end
 
   def create
     @announcement = Announcement.new(announcement_params)
@@ -10,10 +14,9 @@ class AnnouncementsController < ApplicationController
 
     authorize @announcement
 
-    # bug: using format.html with render after saving will redirect to /announcements even if i have no redirects
     respond_to do |format|
       if @announcement.save
-        format.turbo_stream {
+        format.turbo_stream do
           render(
             turbo_stream: [
               turbo_stream.replace(
@@ -28,7 +31,7 @@ class AnnouncementsController < ApplicationController
               )
             ]
           )
-        }
+        end
         format.html { redirect_to guild_url(@announcement.guild), notice: "Announcement was successfully created." }
       else
         format.html { render "/announcements/_form", locals: {announcement: @announcement} }
@@ -40,10 +43,19 @@ class AnnouncementsController < ApplicationController
     authorize @announcement
 
     respond_to do |format|
-      if @announcement.update(p)
+      if @announcement.update(announcement_params)
+        format.turbo_stream do
+          render(
+            turbo_stream: turbo_stream.replace(
+              dom_id(@announcement)[1..-1],
+              partial: "/announcements/announcement",
+              locals: {announcement: @announcement}
+            )
+          )
+        end
         format.html { redirect_to guild_url(@announcement.guild), notice: "Announcement was successfully updated." }
       else
-        format.html { render "form", locals: {announcement: @announcement} }
+        format.html { render "edit", locals: {announcement: @announcement} }
       end
     end
   end

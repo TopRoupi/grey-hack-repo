@@ -1,9 +1,21 @@
-<turbo-frame id="<%= dom_id announcement %>">
-  <div class="flex">
-    <%= announcement.user.name %>
+<turbo-frame id="<%= dom_id announcement %>" class="block group pt-6">
+  <div class="flex justify-between mb-2">
+    <div>
+      <div class="flex">
+        <img class="h-10 w-10 mr-2 rounded-full" src="<%= user_avatar(announcement.user) %>" alt="user avatar">
+        <b><%= announcement.user.name %></b>
+      </div>
+    </div>
+    <div class="flex items-start text-beaver-500 <%= "group-hover:hidden" if announcement.user == current_user %>">
+      posted <%= time_ago_in_words(announcement.created_at) %> ago
+    </div>
     <% if announcement.user == current_user %>
-      <%= button_to "Delete", announcement_path(announcement), action: "delete", method: :delete, class: "link !text-red-400 ", form: {class: "block ml-auto"} %>
+      <div class="hidden group-hover:flex">
+        <%= link_to "Edit", edit_announcement_path(announcement), class: "link !text-blue-400" %>
+        <%= button_to "Delete", announcement_path(announcement), action: "delete", method: :delete, class: "link !text-red-400", form: {class: "ml-2"} %>
+      </div>
     <% end %>
   </div>
   <%= announcement.message %>
+  <div class="divider mt-6 mb-0"></div>
 </turbo-frame>

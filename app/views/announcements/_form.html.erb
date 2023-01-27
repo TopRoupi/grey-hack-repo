@@ -1,12 +1,15 @@
-<turbo-frame id="<%= dom_id announcement, "form" %>">
-  <%= form_for announcement, builder: DaisyFormBuilder do |f| %>
+<turbo-frame id="<%= dom_id announcement %>">
+  <%= form_for announcement, builder: DaisyFormBuilder, html: {class: "mb-4"} do |f| %>
     <%= f.hidden_field :guild_id %>
 
-    <%= f.group :message do %>
-      <%= f.text_area :message %>
-    <% end %>
+    <%= f.text_area :message, placeholder: "message", class: "mb-2" %>
 
-    <%= f.submit class: "block ml-auto float-none" %>
+    <div class="flex justify-end">
+      <% if announcement.id %>
+        <%= link_to "Cancel", guild_path(announcement.guild), class: "btn btn-error mr-2" %>
+      <% end %>
+      <%= f.submit class: "float-none" %>
+    </div>
   <% end %>
 </turbo-frame>
 
