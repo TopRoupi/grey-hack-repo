@@ -42,7 +42,7 @@ class Guild < ApplicationRecord
   include ImageUploader::Attachment(:banner)
   include ImageUploader::Attachment(:badge)
 
-  validates :name, presence: true, length: {minimum: 3, maximum: 16}, uniqueness: true
+  validates :name, presence: true, length: {minimum: 3, maximum: 32}, uniqueness: true
   validates :description, presence: true, length: {maximum: 230}
   validates :registration_info, length: {maximum: 64}
   validates :tag, length: {maximum: 3, minimum: 3}, uniqueness: true, allow_blank: true

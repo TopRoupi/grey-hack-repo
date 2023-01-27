@@ -41,7 +41,7 @@ class GuildTest < ActiveSupport::TestCase
     @guild.name = "a" * 2
     @guild.valid?
     refute_empty @guild.errors[:name]
-    @guild.name = "a" * 17
+    @guild.name = "a" * 33
     @guild.valid?
     refute_empty @guild.errors[:name]
     @guild.name = "a" * 16
