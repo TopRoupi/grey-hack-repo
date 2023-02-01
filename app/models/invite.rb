@@ -4,11 +4,11 @@
 #
 #  id            :bigint           not null, primary key
 #  accepted_date :date
-#  key           :string
+#  key           :string           not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  guild_id      :bigint
-#  user_id       :bigint
+#  guild_id      :bigint           not null
+#  user_id       :bigint           not null
 #
 # Indexes
 #

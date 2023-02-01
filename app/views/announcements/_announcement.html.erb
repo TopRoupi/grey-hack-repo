@@ -16,6 +16,16 @@
       </div>
     <% end %>
   </div>
-  <%= announcement.message %>
+  <div class="mb-3">
+    <%= announcement.message %>
+  </div>
+
+  <%= render Layout::Toggle.new() do |c| %>
+    <%= render(c.toggle(tag: :button, class: "block text-center w-full hover:bg-base-200 mb-3")) { "show comments" } %>
+    <%= render(c.toggleable) do %>
+      <%= render(Comments::Box.new(user: current_user, commentable: announcement, comments: announcement.comments)) %>
+    <% end %>
+  <% end %>
+
   <div class="divider mt-6 mb-0"></div>
 </turbo-frame>

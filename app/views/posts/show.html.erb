@@ -39,13 +39,11 @@
 
 <br>
 
+
 <% cache [@comments.map {|c| c.cache_key_with_version}, current_user, @post].flatten do %>
   <div class="text-2xl text-center block mt-20">
     Post's comments
   </div>
   <br>
-  <%= render(Comments::List.new(user: current_user, commentable: @post, comments: @comments)) %>
-  <br>
-
-  <%= render(Comments::Form::Component.new(user: current_user)) %>
+  <%= render(Comments::Box.new(user: current_user, commentable: @post, comments: @comments)) %>
 <% end %>

@@ -22,6 +22,7 @@
 class Announcement < ApplicationRecord
   belongs_to :user
   belongs_to :guild
+  has_many :comments, as: :commentable, dependent: :destroy
 
   validates :message, presence: true, length: {minimum: 4, maximum: 700}
 end

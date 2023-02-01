@@ -2,7 +2,10 @@
   <%= form_for announcement, builder: DaisyFormBuilder, html: {class: "mb-4"} do |f| %>
     <%= f.hidden_field :guild_id %>
 
-    <%= f.text_area :message, placeholder: "message", class: "mb-2" %>
+
+    <%= f.group :message do %>
+      <%= f.text_area :message, class: "mb-2" %>
+    <% end %>
 
     <div class="flex justify-end">
       <% if announcement.id %>

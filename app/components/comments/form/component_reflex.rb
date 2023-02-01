@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Comments::Form::ComponentReflex < ApplicationReflex
-  before_reflex :set_commentable
+  before_reflex :set_commentable, except: [:cancel_edit, :respond]
   before_reflex :set_comment, only: [:destroy, :edit, :update, :cancel_edit]
 
   def create
@@ -26,12 +26,12 @@ class Comments::Form::ComponentReflex < ApplicationReflex
   def respond
     comment = Comment.find(element.dataset["comment-id"])
 
-    cable_ready.scroll_into_view(selector: dom_id(Comment.new))
-    update_comment_form(form: Comment.new, comment: Comment.new, responding: comment)
+    cable_ready.scroll_into_view(selector: dom_id(comment.commentable, "comment_form"))
+    update_comment_form(commentable: comment.commentable, comment: Comment.new, responding: comment)
   end
 
   def cancel_respond
-    update_comment_form(form: Comment.new, comment: Comment.new)
+    update_comment_form
   end
 
   def destroy
@@ -56,12 +56,12 @@ class Comments::Form::ComponentReflex < ApplicationReflex
         .broadcast
       morph :nothing
     else
-      update_comment_form(form: @comment, comment: @comment)
+      update_comment_form(comment: @comment)
     end
   end
 
   def edit
-    update_comment_form(form: @comment, comment: @comment, responding: @comment.response)
+    update_comment_form(selector: dom_id(@comment), comment: @comment, responding: @comment.response)
   end
 
   def cancel_edit
@@ -74,8 +74,8 @@ class Comments::Form::ComponentReflex < ApplicationReflex
   private
 
   def set_commentable
-    # todo: make it work with other commentable types
-    @commentable = Post.friendly.find(params[:id])
+    @commentable_class = element.dataset["commentable-class"].constantize
+    @commentable = @commentable_class.find_signed(element.dataset["commentable-id"])
   end
 
   def set_comment
@@ -86,8 +86,8 @@ class Comments::Form::ComponentReflex < ApplicationReflex
     morph(dom_id(@commentable, "comments"), render(Comments::List.new(user: current_user, commentable: @commentable)))
   end
 
-  def update_comment_form(form: Comment.new, comment: Comment.new, responding: nil)
-    morph(dom_id(form), render(Comments::Form::Component.new(user: current_user, comment: comment, responding: responding)))
+  def update_comment_form(commentable: @commentable, selector: dom_id(commentable, "comment_form"), comment: Comment.new, responding: nil)
+    morph(selector, render(Comments::Form::Component.new(user: current_user, comment: comment, responding: responding, commentable: commentable)))
   end
 
   def comment_params

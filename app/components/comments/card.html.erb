@@ -1,4 +1,4 @@
-<div id="<%= dom_id @comment %>" class="px-2 py-1 group hover:bg-base-100 rounded">
+<div id="<%= dom_id @comment %>" class="px-2 py-1 group/comment hover:bg-base-100 rounded">
   <% if @comment.response_id %>
     <p class="text-beaver-400 whitespace-nowrap text-ellipsis overflow-hidden">
       response to 
@@ -18,7 +18,7 @@
         <% if @comment.user.supporter? %>
           <%= supporter_badge class: "ml-2" %>
         <% end %>
-        <div class="ml-auto block group-hover:block sm:hidden">
+        <div class="ml-auto block group-hover/comment:block sm:hidden">
           <button class="hover:underline cursor-pointer text-primary-content mr-2"
                 data-reflex="click->Comments::Form::ComponentReflex#respond"
                 data-comment-id="<%= @comment.id %>">
@@ -27,12 +27,16 @@
           <% if @user == @comment.user %>
             <button class="text-blue-400 mr-2"
                   data-reflex="click->Comments::Form::ComponentReflex#edit"
-                  data-comment-id="<%= @comment.id %>">
+                  data-comment-id="<%= @comment.id %>"
+                  data-commentable-class="<%= @comment.commentable.class %>"
+                  data-commentable-id= "<%= @comment.commentable.signed_id %>">
                   <%= octicon "pencil", height: 15, class: "fill-current" %>
             </button>
             <button class="text-red-400"
                   data-reflex="click->Comments::Form::ComponentReflex#destroy"
-                  data-comment-id="<%= @comment.id %>">
+                  data-comment-id="<%= @comment.id %>"
+                  data-commentable-class="<%= @comment.commentable.class %>"
+                  data-commentable-id= "<%= @comment.commentable.signed_id %>">
                   <%= octicon "trash", height: 15, class: "fill-current" %>
             </button>
           <% end %>

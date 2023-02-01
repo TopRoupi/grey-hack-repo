@@ -1,0 +1,4 @@
+<%= render(Comments::List.new(user: @user, commentable: @commentable, comments: @comments)) %>
+<br>
+
+<%= render(Comments::Form::Component.new(user: @user, commentable: @commentable)) %>

@@ -1,10 +1,10 @@
 <% if @user %>
-  <div id="<%= dom_id(@comment) %>" class="">
+  <div id="<%= dom_id(@commentable, "comment_form") %>" class="">
     <% if @responding %>
       <p class="mb-2 text-beaver-400">
         reponding to <b><%= @responding&.user.name %></b>
         <% if @comment.id.nil? %>
-          <%= content_tag :button, class: "block float-right p-1", data: {reflex: "click->Comments::Form::ComponentReflex#cancel_respond"} do%>
+          <%= content_tag :button, class: "block float-right p-1", data: {reflex: "click->Comments::Form::ComponentReflex#cancel_respond", commentable_id: @commentable.signed_id, commentable_class: @commentable.class.to_s} do%>
             <%= octicon "x", class: "fill-current" %>
           <% end %>
         <% end %>
@@ -27,7 +27,7 @@
             <% if @comment.id %>
               <%= content_tag(:button, class: "btn btn-error mr-2", data: {reflex: "click->Comments::Form::ComponentReflex#cancel_edit", "comment-id": @comment.id}) { "Cancel" } %>
             <% end %>
-            <%= f.submit data: {action: "click->comments--form--component##{@comment.created_at ? "update" : "create"}", "comment-id": @comment.id} %>
+            <%= f.submit data: {action: "click->comments--form--component##{@comment.created_at ? "update" : "create"}", "comment-id": @comment.id, "commentable-id": @commentable.signed_id, "commentable-class": @commentable.class.to_s} %>
           </div>
         <% end %>
       </div>

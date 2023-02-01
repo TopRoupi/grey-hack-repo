@@ -6,7 +6,6 @@
 #
 #  id          :bigint           not null, primary key
 #  description :string
-#  lib         :boolean
 #  published   :boolean          default(FALSE), not null
 #  readme      :string
 #  slug        :string

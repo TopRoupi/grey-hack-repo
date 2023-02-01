@@ -7,7 +7,6 @@
 #  id                  :bigint           not null, primary key
 #  content             :string
 #  highlighted_content :string
-#  lib                 :boolean
 #  name                :string
 #  old_content         :binary
 #  scriptable_type     :string
