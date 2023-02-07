@@ -31,6 +31,7 @@ import Alert from "./alert_controller"
 import ProfilePreview from "./profile_preview_controller"
 import TabHighlight from "./tab_highlight_controller"
 import Encoder from "./encoder_controller"
+import ImagePreview from "./image_preview_controller"
 application.register("avatar-preview", AvatarPreview)
 application.register("attachments", Attachments)
 application.register("decipher", Decipher)
@@ -41,6 +42,7 @@ application.register("alert", Alert)
 application.register("profile-preview", ProfilePreview)
 application.register("tab-highlight", TabHighlight)
 application.register("encoder", Encoder)
+application.register("image-preview", ImagePreview)
 
 import { Tabs, Alert as Toast, Dropdown, Modal, Toggle } from "tailwindcss-stimulus-components"
 

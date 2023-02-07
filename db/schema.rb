@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_24_123931) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_07_132628) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,6 +58,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_24_123931) do
     t.bigint "guild_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "media_data"
     t.index ["guild_id"], name: "index_announcements_on_guild_id"
     t.index ["user_id"], name: "index_announcements_on_user_id"
   end

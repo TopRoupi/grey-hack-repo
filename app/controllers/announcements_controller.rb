@@ -77,6 +77,10 @@ class AnnouncementsController < ApplicationController
   end
 
   def announcement_params
-    params.require(:announcement).permit(:message, :guild_id)
+    params.require(:announcement).permit(
+      :message,
+      :guild_id,
+      :media
+    )
   end
 end

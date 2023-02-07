@@ -3,6 +3,7 @@
 # Table name: announcements
 #
 #  id         :bigint           not null, primary key
+#  media_data :text
 #  message    :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -23,6 +24,8 @@ class Announcement < ApplicationRecord
   belongs_to :user
   belongs_to :guild
   has_many :comments, as: :commentable, dependent: :destroy
+
+  include ImageUploader::Attachment(:media)
 
   validates :message, presence: true, length: {minimum: 4, maximum: 700}
 end

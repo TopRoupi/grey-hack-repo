@@ -6,8 +6,13 @@ class Daisy::Form::GroupComponent < ViewComponent::Form::FieldComponent
     @required = options[:required]
     @label = options[:label]
     @class = options[:class]
+    @labelless = options[:labelless]
 
     super(form, object_name, method_name, {}, &block)
+  end
+
+  def labelless?
+    !@labelless.nil?
   end
 
   def required?

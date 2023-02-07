@@ -2,16 +2,27 @@
   <%= form_for announcement, builder: DaisyFormBuilder, html: {class: "mb-4"} do |f| %>
     <%= f.hidden_field :guild_id %>
 
-
-    <%= f.group :message do %>
-      <%= f.text_area :message, class: "mb-2" %>
+    <%= f.group :message, labelless: true do %>
+      <%= f.text_area :message, class: "mb-2", placeholder: "message" %>
     <% end %>
 
-    <div class="flex justify-end">
-      <% if announcement.id %>
-        <%= link_to "Cancel", guild_path(announcement.guild), class: "btn btn-error mr-2" %>
-      <% end %>
-      <%= f.submit class: "float-none" %>
+    <div class="flex items-center">
+      <div class="flex w-full" data-controller="image-preview">
+        <%= f.group :media, labelless: true, class: "!my-auto !w-1/2" do %>
+          <%= f.hidden_field :media, value: f.object.cached_media_data %>
+
+          <%= f.file_field :media, data: {action: "change->image-preview#update_preview"} %>
+        <% end %>
+
+        <%= content_tag(:img, src: f.object.media_url, class: "w-10 h-10 my-auto ml-2", data: {image_preview_target: "preview"}) {} %>
+      </div>
+
+      <div class="flex w-fit ml-auto">
+        <% if announcement.id %>
+          <%= link_to "Cancel", guild_path(announcement.guild), class: "btn btn-error mr-2" %>
+        <% end %>
+        <%= f.submit class: "float-none" %>
+      </div>
     </div>
   <% end %>
 </turbo-frame>

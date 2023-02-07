@@ -20,6 +20,34 @@
     <%= announcement.message %>
   </div>
 
+
+  <%= render(Layout::Modal.new(tag: :div)) do |c| %>
+    <% c.button(class: "h-64 w-full hover:cursor-pointer group/media") do %>
+      <%= content_tag(
+        :div,
+        class: "rounded-lg w-full mb-2 bg-cover h-64 relative",
+        style: "background-image: url('#{announcement.media_url}')"
+      ) do %>
+        <div class="w-full h-64 bg-black hidden group-hover/media:block absolute opacity-70"></div>
+        <div class="w-full h-64 hidden group-hover/media:block absolute z-10">
+          <span class="w-fit mx-auto text-center block" style="margin-top: 116px">
+            Show image
+          </span>
+        </div>
+      <% end %>
+    <% end %>
+    <% c.dialog do |cc| %>
+      <% cc.header {"media"} %>
+      <% cc.body do %>
+        <%= content_tag(
+          :img,
+          src: announcement.media_url,
+          class: "my-auto rounded-lg w-full mb-2 object-cover"
+        ) {} %>
+      <% end %>
+    <% end %>
+  <% end %>
+
   <%= render Layout::Toggle.new() do |c| %>
     <%= render(c.toggle(tag: :button, class: "block text-center w-full hover:bg-base-200 mb-3")) { "show comments" } %>
     <%= render(c.toggleable) do %>
