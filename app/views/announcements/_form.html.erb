@@ -11,7 +11,7 @@
         <%= f.group :media, labelless: true, class: "!my-auto !w-1/2" do %>
           <%= f.hidden_field :media, value: f.object.cached_media_data %>
 
-          <%= f.file_field :media, data: {action: "change->image-preview#update_preview"} %>
+          <%= f.file_field :media, data: {action: "change->image-preview#updatePreview"} %>
         <% end %>
 
         <%= content_tag(:img, src: f.object.media_url, class: "w-10 h-10 my-auto ml-2", data: {image_preview_target: "preview"}) {} %>

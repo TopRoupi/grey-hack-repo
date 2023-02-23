@@ -1,8 +1,8 @@
 <turbo-frame id="<%= dom_id announcement %>" class="block group pt-6">
-  <div class="flex justify-between mb-2">
+  <div class="flex justify-between mb-3">
     <div>
       <div class="flex">
-        <img class="h-10 w-10 mr-2 rounded-full" src="<%= user_avatar(announcement.user) %>" alt="user avatar">
+        <img class="h-12 w-12 mr-2 rounded-full" src="<%= user_avatar(announcement.user) %>" alt="user avatar">
         <b><%= announcement.user.name %></b>
       </div>
     </div>
@@ -21,12 +21,12 @@
   </div>
 
 
-  <%= render(Layout::Modal.new(tag: :div)) do |c| %>
-    <% c.button(class: "h-64 w-full hover:cursor-pointer group/media") do %>
+  <%= render(Layout::Modal.new(tag: :div, class: "flex justify-center bg-black rounded")) do |c| %>
+    <% c.button(class: "h-64 hover:cursor-pointer group/media") do %>
       <%= content_tag(
         :div,
-        class: "rounded-lg w-full mb-2 bg-cover h-64 relative",
-        style: "background-image: url('#{announcement.media_url}')"
+        class: "rounded-lg w-full mb-2 bg-cover h-64 relative bg-center w-64",
+        style: "background-image: url('#{announcement.media_url}'); max-height: 300px;"
       ) do %>
         <div class="w-full h-64 bg-black hidden group-hover/media:block absolute opacity-70"></div>
         <div class="w-full h-64 hidden group-hover/media:block absolute z-10">
@@ -42,14 +42,18 @@
         <%= content_tag(
           :img,
           src: announcement.media_url,
-          class: "my-auto rounded-lg w-full mb-2 object-cover"
+          class: "my-auto rounded-lg mx-auto mb-2 object-cover"
         ) {} %>
       <% end %>
     <% end %>
   <% end %>
 
   <%= render Layout::Toggle.new() do |c| %>
-    <%= render(c.toggle(tag: :button, class: "block text-center w-full hover:bg-base-200 mb-3")) { "show comments" } %>
+    <%= render(c.toggle(tag: :button, class: "flex items-center text-center w-fit px-4 py-2 rounded ml-auto hover:bg-base-200 mt-3 mb-3")) do %>
+      <%= octicon :comment, class: "fill-current mr-2" %>
+      <%= announcement.comments.size %>
+       comments
+    <% end %>
     <%= render(c.toggleable) do %>
       <%= render(Comments::Box.new(user: current_user, commentable: announcement, comments: announcement.comments)) %>
     <% end %>

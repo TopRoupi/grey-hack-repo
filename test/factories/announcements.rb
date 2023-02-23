@@ -22,7 +22,7 @@
 #
 FactoryBot.define do
   factory :announcement do
-    message { "MyString" }
+    message { "fefjeifjeijfei" }
     association :guild
     association :user
   end

@@ -4,10 +4,13 @@ export default class extends ApplicationController {
   static targets = ["preview"]
 
   connect() {
-    this.update_preview()
+    this.updatePreview()
+    if (this.previewTarget.getAttribute("src") == null) {
+      this.previewTarget.classList.add("hidden")
+    }
   }
 
-  update_preview(e) {
+  updatePreview(e) {
     if (e == undefined) {
       return
     }
@@ -20,5 +23,7 @@ export default class extends ApplicationController {
     }
 
     reader.readAsDataURL(e.target.files[0])
+
+    previewElement.classList.remove("hidden")
   }
 }
