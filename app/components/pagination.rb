@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Pagination < ApplicationComponent
-  def initialize(pagy:, reflex: false)
+  def initialize(pagy:, reflex: false, html: {})
+    @sys_params = html
     @pagy = pagy
     @reflex = reflex
   end

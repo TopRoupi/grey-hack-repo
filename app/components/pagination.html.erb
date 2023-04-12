@@ -1,4 +1,4 @@
-<%= render Layout::LinkGroup.new() do |c| %>
+<%= render Layout::LinkGroup.new(**@sys_params) do |c| %>
   <% c.link(link: path_to(request.url, @pagy.vars[:page_param] => @pagy.prev), disabled: @pagy.prev.nil?) do %>
     <%= octicon "arrow-left", class: "fill-current" %>
   <% end %>

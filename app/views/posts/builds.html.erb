@@ -113,6 +113,13 @@
     <% end %>
 
     <% if @selected_build.nil? %>
+
+      <% c.row do |cc| %>
+        <% cc.column(colspan: 999, class: "p-0") do %>
+          <%= render(Pagination.new(pagy: @pagy)) if @pagy %>
+        <% end %>
+      <% end %>
+
       <% c.foot do |cc| %>
         <% cc.column(colspan: 999) do %>
           <button class="btn btn-info btn-thin px-2 float-right" data-reflex="click->FileableForm::Reflex#add_build" data-post-id="<%= @post.signed_id %>">

@@ -18,7 +18,12 @@ class Layout::LinkGroup < ApplicationComponent
     content_tag(:a, **kwargs) { name || block.call }
   }
 
-  def initialize(gap: 1)
+  def initialize(tag: :div, gap: 1, **sys_params)
+    @sys_params = sys_params
     @gap = gap
+    @tag = tag
+
+    @sys_params[:class] ||= ""
+    @sys_params[:class] += " btn-group flex-nowrap w-full gap-#{@gap}"
   end
 end

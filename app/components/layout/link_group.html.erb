@@ -1,5 +1,5 @@
-<div class="btn-group flex-nowrap w-full gap-<%= @gap %>">
+<%= content_tag(@tag, @sys_params) do %>
   <% links.each do |link| %>
     <%= link %>
   <% end %>
-</div>
+<% end %>

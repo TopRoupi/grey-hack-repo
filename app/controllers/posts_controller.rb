@@ -41,10 +41,11 @@ class PostsController < ApplicationController
     authorize @post
 
     @builds = @post.builds.order(created_at: :desc)
+    @pagy, @builds = pagy @builds
+
     @selected_build = @post.builds.find_by(id: params[:build_id]) if params[:build_id]
 
     @selected_file = params[:file_type].constantize.find_by(id: params[:file_id]) if params[:file_type] && params[:file_id]
-
 
     redirect_to post_builds_path if @selected_build&.published == true
   end
