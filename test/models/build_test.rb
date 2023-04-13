@@ -4,13 +4,14 @@
 #
 # Table name: builds
 #
-#  id         :bigint           not null, primary key
-#  message    :string
-#  name       :string
-#  published  :boolean          default(FALSE), not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  post_id    :bigint           not null
+#  id                         :bigint           not null, primary key
+#  message                    :string
+#  name                       :string
+#  preprocessed_export_string :text
+#  published                  :boolean          default(FALSE), not null
+#  created_at                 :datetime         not null
+#  updated_at                 :datetime         not null
+#  post_id                    :bigint           not null
 #
 # Indexes
 #

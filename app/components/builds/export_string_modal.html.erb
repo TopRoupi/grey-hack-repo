@@ -3,7 +3,7 @@
   <% c.dialog do |cc| %>
     <% cc.header { @build.name + " export string"} %>
     <% cc.body do %>
-      <textarea disabled=true" class="w-full break-all overflow-x-auto bg-beaver-1000 h-60"><%= @build.export_string %></textarea>
+      <textarea disabled=true" class="w-full break-all overflow-x-auto bg-beaver-1000 h-60"><%= @build.preprocessed_export_string %></textarea>
       <a class="link" href="https://www.greyrepo.xyz/posts/folder-parser" data-turbo-frame="_top">How to use it</a>
     <% end %>
   <% end %>

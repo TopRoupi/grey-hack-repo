@@ -25,7 +25,7 @@ class Script < ApplicationRecord
   validates :content, presence: true, length: {minimum: 10, maximum: 160_000}
   validates :name, presence: true, length: {minimum: 2, maximum: 24}
 
-  after_commit :touch_scriptable, on: [:create, :destroy]
+  after_commit :touch_scriptable, on: [:create, :update, :destroy]
 
   def name_with_path
     scriptable.path_list.map(&:path)[1..].push(name).join("/")

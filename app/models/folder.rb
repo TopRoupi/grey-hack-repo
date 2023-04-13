@@ -23,7 +23,7 @@ class Folder < ApplicationRecord
   validates_with Validator::FileValidator
   validates :name, presence: true, length: {minimum: 2, maximum: 24}
 
-  after_commit :touch_foldable, on: [:create, :destroy]
+  after_commit :touch_foldable, on: [:create, :update, :destroy]
 
   def touch_foldable
     foldable.touch unless foldable.destroyed?

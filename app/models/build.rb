@@ -4,13 +4,14 @@
 #
 # Table name: builds
 #
-#  id         :bigint           not null, primary key
-#  message    :string
-#  name       :string
-#  published  :boolean          default(FALSE), not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  post_id    :bigint           not null
+#  id                         :bigint           not null, primary key
+#  message                    :string
+#  name                       :string
+#  preprocessed_export_string :text
+#  published                  :boolean          default(FALSE), not null
+#  created_at                 :datetime         not null
+#  updated_at                 :datetime         not null
+#  post_id                    :bigint           not null
 #
 # Indexes
 #
@@ -41,12 +42,20 @@ class Build < ApplicationRecord
   validates :name, presence: true, length: {minimum: 3, maximum: 16}
   validates :message, length: {maximum: 255}
 
+  after_commit :save_preprocessed_export_string, on: [:create, :update]
+
   scope :published, -> { where(published: true) }
   scope :unpublished, -> { where(published: false) }
 
   def update_post_published_status
     post.update(published: post.builds.published.any?)
   rescue FrozenError
+  end
+
+  def save_preprocessed_export_string
+    return if preprocessed_export_string == export_string
+
+    update preprocessed_export_string: export_string
   end
 
   def ready_to_publish?
