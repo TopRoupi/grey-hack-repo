@@ -518,7 +518,7 @@ DEPENDENCIES
   sprockets-rails
   stackprof (~> 0.2.19)
   standardrb
-  stimulus_reflex (~> 3.5.0.pre.pre9)
+  stimulus_reflex (~> 3.5.0.pre.rc2)
   stripe (>= 5.0, < 6.0)
   tailwindcss-rails (~> 2.0)
   turbo-rails (~> 0.5.9)
