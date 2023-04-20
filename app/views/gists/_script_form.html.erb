@@ -12,7 +12,7 @@
       <% end %>
 
       <div class="rounded-t bg-base-200 p-2 flex items-center">
-        <%= f.text_field :name, class: "!py-0 !px-2 w-fit", data: {code_editor_target: "name", action: "debounced:input->code-editor#reset"}%>
+        <%= f.text_field :name, class: "!py-0 !px-2 !w-fit", data: {code_editor_target: "name", action: "debounced:input->code-editor#reset"}%>
         <div data-code-editor-target="tabs">
           <% c.tabs.each do |tb| %>
             <%= tb %>

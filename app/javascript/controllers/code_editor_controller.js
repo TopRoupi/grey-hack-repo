@@ -75,7 +75,8 @@ export default class extends ApplicationController {
     const languages = {
       "src": "greyscript",
       "md": "markdown",
-      "txt": "text"
+      "txt": "text",
+      "html": "html"
     }
 
     const extension = this.nameTarget.value.split(".").pop()
