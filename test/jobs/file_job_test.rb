@@ -20,12 +20,11 @@ class FileJobTest < ActiveJob::TestCase
   test "set files attachment after update" do
     @build.save
     perform_enqueued_jobs
-    @build.reload
 
     build_old_files = @build.files_attachment
 
-    @build.scripts.first.content = "new content...."
-    @build.save
+    @build.scripts.first.update content: "AAAAAAAAAAAAAAAAAAAAAAA"
+
     assert_enqueued_jobs 1, only: FileJob
     perform_enqueued_jobs only: FileJob
     assert_performed_jobs 2, only: FileJob

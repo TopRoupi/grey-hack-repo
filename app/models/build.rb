@@ -30,19 +30,16 @@ class BuildValidator < ActiveModel::Validator
 end
 
 class Build < ApplicationRecord
-  attr_accessor :updated # required to prevent the set_files/Filejob from infinite looping
   belongs_to :post
   include Fileable
   has_one_attached :files
-
-  after_commit :set_files, on: [:update]
-  after_commit :update_post_published_status, on: [:destroy]
 
   validates_with BuildValidator
   validates :name, presence: true, length: {minimum: 3, maximum: 16}
   validates :message, length: {maximum: 255}
 
-  after_commit :save_preprocessed_export_string, on: [:create, :update]
+  after_commit :update_post_published_status, on: [:destroy]
+  after_commit :posprocess_build, on: [:create, :update]
 
   scope :published, -> { where(published: true) }
   scope :unpublished, -> { where(published: false) }
@@ -52,10 +49,8 @@ class Build < ApplicationRecord
   rescue FrozenError
   end
 
-  def save_preprocessed_export_string
-    return if preprocessed_export_string == export_string
-
-    update preprocessed_export_string: export_string
+  def posprocess_build
+    Builds::AfterUpdate.call(self)
   end
 
   def ready_to_publish?
@@ -69,24 +64,16 @@ class Build < ApplicationRecord
     result
   end
 
-  def set_files
-    FileJob.perform_later(self, file_name: "#{post.title} | #{name}") unless @updated
-  end
-
   def export_string
-    Rails.cache.fetch("build_#{id}_#{updated_at}_export_string", expires_in: 12.hours) do
-      children_index_table do |obj, parent|
-        output = {}
-        output[:parent] = parent.to_s
-        output[:type] = obj.instance_of?(Script) ? "script" : "folder"
-        output[:name] = obj.name
-        output[:content] = GreyParser::Compressor.compress(obj.content) if obj.respond_to? :content
+    children_index_table do |obj, parent|
+      output = {}
+      output[:parent] = parent.to_s
+      output[:type] = obj.instance_of?(Script) ? "script" : "folder"
+      output[:name] = obj.name
+      output[:content] = GreyParser::Compressor.compress(obj.content) if obj.respond_to? :content
 
-        output
-      end.to_json
-    rescue
-      "ERROR COMPRESSING"
-    end
+      output
+    end.to_json
   end
 
   def self.parse_string(string, name = nil)

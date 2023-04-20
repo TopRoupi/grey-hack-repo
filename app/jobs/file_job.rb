@@ -12,7 +12,6 @@ class FileJob < ApplicationJob
       create_files(zipfile, build, only_content: true)
     end
 
-    build.updated = true
     build.files.attach(io: File.open(@files_path), filename: "#{file_name}.zip")
 
     clear_files
