@@ -52,9 +52,10 @@ gem "rubyzip", "~> 2.3", require: "zip" # required by FileJob
 gem "pay", "~> 3.0"
 gem "stripe", ">= 5.0", "< 6.0"
 # assets bundling
-gem "jsbundling-rails", "~> 1.0"
+# gem "jsbundling-rails", "~> 1.0"
 gem "sprockets-rails"
-gem "tailwindcss-rails", "~> 2.0"
+# gem "tailwindcss-rails", "~> 2.0"
+gem "vite_rails"
 # gem "cssbundling-rails", "~> 1.0"
 # apm provider
 gem "newrelic_rpm", "~> 8.4"

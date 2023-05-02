@@ -145,6 +145,7 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     down (5.4.0)
       addressable (~> 2.8)
+    dry-cli (1.0.0)
     dry-core (1.0.0)
       concurrent-ruby (~> 1.0)
       zeitwerk (~> 2.6)
@@ -200,8 +201,6 @@ GEM
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     jmespath (1.6.2)
-    jsbundling-rails (1.1.1)
-      railties (>= 6.0.0)
     jwt (2.7.0)
     listen (3.8.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
@@ -289,6 +288,8 @@ GEM
     rack-mini-profiler (2.3.4)
       rack (>= 1.2.0)
     rack-protection (3.0.6)
+      rack
+    rack-proxy (0.7.6)
       rack
     rack-test (2.1.0)
       rack (>= 1.3)
@@ -418,8 +419,6 @@ GEM
       railties (>= 5.2, < 8)
       redis (>= 4.0, < 6.0)
     stripe (5.55.0)
-    tailwindcss-rails (2.0.27-x86_64-linux)
-      railties (>= 6.0.0)
     thor (1.2.1)
     thread-local (1.1.0)
     timeout (0.3.2)
@@ -441,6 +440,13 @@ GEM
       activesupport (>= 6.0.0, < 7.1)
       view_component (>= 2.34.0, < 3.0)
       zeitwerk (~> 2.5)
+    vite_rails (3.0.14)
+      railties (>= 5.1, < 8)
+      vite_ruby (~> 3.0, >= 3.2.2)
+    vite_ruby (3.3.1)
+      dry-cli (>= 0.7, < 2)
+      rack-proxy (~> 0.6, >= 0.6.1)
+      zeitwerk (~> 2.2)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.0)
@@ -483,7 +489,6 @@ DEPENDENCIES
   hiredis (~> 0.6.3)
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
-  jsbundling-rails (~> 1.0)
   listen (~> 3.3)
   meta-tags (~> 2.16)
   newrelic_rpm (~> 8.4)
@@ -520,11 +525,11 @@ DEPENDENCIES
   standardrb
   stimulus_reflex (~> 3.5.0.pre.rc2)
   stripe (>= 5.0, < 6.0)
-  tailwindcss-rails (~> 2.0)
   turbo-rails (~> 0.5.9)
   tzinfo-data
   view_component (~> 2.49)
   view_component-form
+  vite_rails
   web-console (>= 4.1.0)
   webdrivers
 

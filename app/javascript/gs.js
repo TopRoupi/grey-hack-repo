@@ -1,5 +1,3 @@
-var module = module ? module : {}; // shim for browser use
-
 // const decimalDigits = "[0-9](_?[0-9])*";
 // const frac = `\\.(${decimalDigits})`;
 // const decimalInteger = "0|[1-9](_?[0-9])*|0[0-7]*[89][0-9]*";
@@ -32,8 +30,4 @@ function hljsDefineGreyScript(hljs) {
   }
 }
 
-module.exports = function(hljs) {
-  hljs.registerLanguage("greyscript", hljsDefineGreyScript);
-};
-
-module.exports.definer = hljsDefineGreyScript;
+export default hljsDefineGreyScript

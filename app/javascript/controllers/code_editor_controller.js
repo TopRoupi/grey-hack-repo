@@ -6,8 +6,8 @@ import {withLineNumbers} from "codejar/linenumbers"
 import hljs from "highlight.js"
 import "highlight.js/styles/base16/brewer.css"
 // define custom highligher
-var hljsDefineGreyScript = require("../gs");
-var hljsDefineText = require("../txt");
+import hljsDefineGreyScript from "../gs"
+import hljsDefineText from "../txt"
 hljsDefineGreyScript(hljs);
 hljsDefineText(hljs);
 import { Remarkable } from "remarkable";
