@@ -43,7 +43,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       refute_includes stars, not_listed_post
       refute_includes stars, private_post
 
-
       get user_path(@user, gists: "kk")
       gists = assigns(:gists)
       anonymous_gist = create :gist, :as_anonymous, user: @user
@@ -96,8 +95,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       refute_includes posts, not_listed_post
       refute_includes posts, public_post
 
-      # TODO: fix mini test not maintaining login after the first request
-      sign_in @user
       get user_path(@user, category: "not_listed")
       posts = assigns(:posts)
 
