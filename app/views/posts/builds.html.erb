@@ -21,7 +21,7 @@
 
   <%= render(Layout::ConfirmationDialog.new()) do |c| %>
     <% c.title { "Publish post " + @post.title } %>
-    <% c.button(class: "mb-5 btn btn-success btn-thin mx-auto w-fit block py-1 px-2") { "Publish post" } %>
+    <% c.button(class: "mb-5 btn btn-success btn-thin mx-auto w-fit block py-1 px-2", id: "publish-post") { "Publish post" } %>
     <% c.action(tag: :a, href: post_publish_path(@post), style: "success", data: {turbo_method: :patch}){ "Publish" } %>
   <% end %>
 <% end %>
@@ -67,7 +67,7 @@
             <% if build.published == false %>
               <% if build.ready_to_publish? %>
                 <%= render(Layout::Modal.new(tag: :div)) do |c| %>
-                  <% c.button(class: "btn btn-success btn-thin p-2 mr-2") { "Publish" } %>
+                  <% c.button(class: "btn btn-success btn-thin p-2 mr-2", id: "publish-#{build.id}") { "Publish" } %>
                   <% c.dialog(size: :medium) do |cc| %>
                     <% cc.header { "Publish " + build.name } %>
                     <% cc.body do %>
@@ -87,6 +87,7 @@
                 </span>
               <% end %>
               <%= link_to selected ? post_builds_path(@post) : path_to(request.url, build_id: build.id), class: "btn btn-info btn-thin p-2 mr-2" do %>
+                <span class="sr-only">edit build</span>
                 <%= octicon "pencil", height: 16, class: "fill-current" %>
               <% end %>
             <% end %>

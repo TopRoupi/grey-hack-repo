@@ -46,11 +46,12 @@
           <% end %>
           <%= link_to "Manage builds", post_builds_path(post), class: "btn btn-info btn-thin p-2 mr-2" %>
           <%= link_to edit_post_path(post), class: "btn btn-info btn-thin p-2 mr-2 flex items-center" do %>
+            <span class="sr-only">Edit</span>
             <%= octicon "pencil", height: 16, class: "fill-current" %>
           <% end %>
           <%= render(Layout::ConfirmationDialog.new(class: "flex")) do |c| %>
             <% c.title { "Delete " + post.title } %>
-            <% c.button(class: "btn btn-danger btn-thin p-2 flex items-center") do %>
+            <% c.button(class: "btn btn-danger btn-thin p-2 flex items-center", id: "delete_post_#{post.id}") do %>
               <%= octicon "trash", height: 16, class: "fill-current" %>
             <% end %>
             <% c.action(tag: :a, style: "danger", data: {turbo_method: :delete, turbo_frame: "_top"}, href: post_path(post)) { "Delete" } %>

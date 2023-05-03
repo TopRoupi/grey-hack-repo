@@ -10,7 +10,7 @@
       <% end %>
     </div>
     <div class="w-full overflow-hidden sm:w-1/2 sm:my-3 sm:px-3">
-      <%= f.group :category do %>
+      <%= f.group :category_id, label: "Category" do %>
         <%= f.select :category_id,
           options_from_collection_for_select(Category.all, :id, :name), disabled: "", prompt: 'Select a category' %>
       <% end %>

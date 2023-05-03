@@ -23,22 +23,48 @@ class PostsTest < ApplicationSystemTestCase
     fill_in "Title", with: @post.title
     fill_in "Summary", with: @post.summary
     find("trix-editor").click.set(@post.readme)
-    click_on "Main build"
-    click_on "select"
-    click_on "Add script"
-    click_on "Edit"
-    fill_in "Name", with: "script"
-    fill_in "Content", with: "script content ..........."
     select("Tools", from: "Category")
     click_on "Create Post"
 
     assert_text "Post was successfully created"
+
+    visit my_posts_url(@post)
+
+    click_on "Not Published", match: :first
+
+    click_on "Manage builds", match: :first
+
+    click_on "Add Build", match: :first
+
+    click_on "edit build", match: :first
+
+    click_on "Add script", match: :first
+
+    click_on "draft_script.src", match: :first
+
+    fill_in "Name", with: "script.src"
+
+    find(".code-editor").click.set("script content ....")
+
+    click_on "Update Script", match: :first
+
+    assert_text "Script updated"
+
+    find("#publish-#{Build.last.id}").click
+
+    click_on "Publish", match: :first
+
+    find("#publish-post").click
+
+    click_on "Publish", match: :first
+
+    assert_text "Post #{@post.title} published"
   end
 
   test "updating a Post" do
     @post.user = @user
     @post.save
-    visit posts_url
+    visit my_posts_url
     click_on "Edit", match: :first
 
     fill_in "Title", with: @post.title
@@ -50,10 +76,10 @@ class PostsTest < ApplicationSystemTestCase
   test "destroying a Post" do
     @post.user = @user
     @post.save
-    visit posts_url
-    page.accept_confirm do
-      click_on "Destroy", match: :first
-    end
+    visit my_posts_url
+
+    find("#delete_post_#{@post.id}").click
+    click_on "Delete"
 
     assert_text "Post was successfully destroyed"
   end
