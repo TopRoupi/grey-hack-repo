@@ -49,7 +49,7 @@ gem "devise", "~> 4.8"
 gem "noticed", "~> 1.5"
 gem "friendly_id", "~> 5.4.0"
 gem "rubyzip", "~> 2.3", require: "zip" # required by FileJob
-gem "pay", "~> 3.0"
+gem "pay", "~> 6.3"
 gem "stripe", ">= 5.0", "< 6.0"
 # assets bundling
 # gem "jsbundling-rails", "~> 1.0"
