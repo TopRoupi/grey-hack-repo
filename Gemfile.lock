@@ -418,7 +418,7 @@ GEM
       rack (>= 2, < 4)
       railties (>= 5.2, < 8)
       redis (>= 4.0, < 6.0)
-    stripe (5.55.0)
+    stripe (8.5.0)
     thor (1.2.1)
     thread-local (1.1.0)
     timeout (0.3.2)
@@ -524,7 +524,7 @@ DEPENDENCIES
   stackprof (~> 0.2.19)
   standardrb
   stimulus_reflex (~> 3.5.0.pre.rc2)
-  stripe (>= 5.0, < 6.0)
+  stripe (>= 8.0, < 9.0)
   turbo-rails (~> 0.5.9)
   tzinfo-data
   view_component (~> 2.49)
