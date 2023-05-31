@@ -5,7 +5,8 @@ module ScriptsHelper
     langs = {
       src: "greyscript",
       txt: "text",
-      md: "markdown"
+      md: "markdown",
+      html: "html"
     }
 
     langs[extension] || "text"

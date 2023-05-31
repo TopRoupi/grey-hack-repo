@@ -2,11 +2,11 @@ import ApplicationController from "./application_controller"
 import hljs from "highlight.js"
 import "highlight.js/styles/base16/brewer.css"
 // define custom highligher
-
 import hljsDefineGreyScript from "../gs"
 import hljsDefineText from "../txt"
-hljsDefineGreyScript(hljs);
-hljsDefineText(hljs);
+hljs.registerLanguage("greyscript", hljsDefineGreyScript);
+hljs.registerLanguage("text", hljsDefineText);
+
 import {CodeLineNumbers} from "code-line-numbers";
 
 /*

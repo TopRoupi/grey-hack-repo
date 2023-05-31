@@ -8,8 +8,8 @@ import "highlight.js/styles/base16/brewer.css"
 // define custom highligher
 import hljsDefineGreyScript from "../gs"
 import hljsDefineText from "../txt"
-hljsDefineGreyScript(hljs);
-hljsDefineText(hljs);
+hljs.registerLanguage("greyscript", hljsDefineGreyScript);
+hljs.registerLanguage("text", hljsDefineText);
 import { Remarkable } from "remarkable";
 var md = new Remarkable();
 
