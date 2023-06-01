@@ -8,7 +8,11 @@ class GistsController < ApplicationController
     authorize Gist
 
     @gists = Gist.order(created_at: :desc)
+
+    @scripts_count = Script.group(:scriptable_id).where(scriptable_id: @gists.map(&:id)).count.to_h
+
     @gists = @gists.search(params[:query]["name"]) if params[:query]
+
     @pagy, @gists = pagy @gists
   end
 

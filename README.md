@@ -1,32 +1,27 @@
 ![](https://i.imgur.com/ywT99ea.png)
 
-# Description
-
-scripts repository for the [greyhack](https://store.steampowered.com/app/605230/Grey_Hack/) game
-
-## Main Features
-
-project files can be parsed to a string, and then used inside the game to quickly build all the files, without copy and pasting.
-
-feature preview:
-[![IMAGE ALT TEXT](http://img.youtube.com/vi/oUzte-doaPo/0.jpg)](http://www.youtube.com/watch?v=oUzte-doaPo "Video Title")
-
 # Repo website
 
 https://www.greyrepo.xyz
+
+# Description
+
+scripts repository for the [greyhack](https://store.steampowered.com/app/605230/Grey_Hack/) game
 
 # REQUIREMENTS
 
 * Ruby version
 
   ```
-  3.1.1
+  3.2.0
   ```
 
 * System dependencies
 
   ```
-  Postgresql 12
+  Postgresql
+  redis
+  stripe cli
   ```
 
 * Configuration
@@ -45,15 +40,15 @@ https://www.greyrepo.xyz
 * Database setup
 
   ```sh
-  rails db:create
-  rails db:migrate
-  rails db:seed
+    rails db:create
+    rails db:migrate
+    rails db:seed
   ```
 
 * How to run the test suite
 
   ```sh
-  rails test
+    rails test
   ```
 
 * Run linters
@@ -71,17 +66,18 @@ https://www.greyrepo.xyz
     PGPASSWORD=PASSWORD pg_restore -c -C -F c -v -U USERNAME -h HOSTNAME -p PORT -d DATABASE backup.psql
   ```
 
-# todo list (in no particular order)
+* Development setup
 
-add import feature to post scripts, upload a folder/zip in your computer and convert its .src files into a Fileable. (DONE)
 
-add a build/releases system to posts/fileable, to replace the script_v1.src script_v2.src in the posts files. (DONE)
+  ```sh
+    podman pull docker.io/library/postgres
+    podman run -dt --name my-postgres -e POSTGRES_PASSWORD=postgres -v "/home/me/postgres_docker:/var/lib/postgresql/data:Z" -p 5432:5432 postgres
 
-add a guild system.
+    psql -h localhost -U postgres -p 5432 -d postgres
 
-add a banks repo system.
+    podman pull docker.io/redis
+    podman run -d --name redis_server -p 6379:6379 redis
+  ```
 
-add a ips repo system.
 
-maybe add a better way to rank posts popularity by downloads/scripts copies/views
 
