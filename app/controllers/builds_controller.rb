@@ -12,10 +12,10 @@ class BuildsController < ApplicationController
     build_params[:published] = true
 
     if @build.update(build_params)
-      redirect_to post_builds_path(@build.post)
+      redirect_to post_builds_path(@build.post), notice: "Build #{@build.name} published"
       DiscordJob.perform_later(@build)
     else
-      render "builds/_invite_form", locals: {build: @build}
+      render "builds/_publish_form", locals: {build: @build}
     end
   end
 

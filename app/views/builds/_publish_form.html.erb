@@ -4,6 +4,6 @@
       <%= f.text_area :message %>
     <% end %>
 
-    <%= f.submit "Publish", class: "block ml-auto float-none btn btn-success" %>
+    <%= f.submit "Publish", class: "block ml-auto float-none btn btn-success", data: {turbo_frame: "_top"} %>
   <% end %>
 </turbo-frame>

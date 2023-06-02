@@ -71,7 +71,7 @@
                   <% c.dialog(size: :medium) do |cc| %>
                     <% cc.header { "Publish " + build.name } %>
                     <% cc.body do %>
-                      <%= render '/builds/invite_form', build: build %>
+                      <%= render '/builds/publish_form', build: build %>
                     <% end %>
                   <% end %>
                 <% end %>
