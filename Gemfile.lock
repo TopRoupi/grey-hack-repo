@@ -84,6 +84,10 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.4)
       public_suffix (>= 2.0.2, < 6.0)
+    ahoy_matey (4.2.1)
+      activesupport (>= 5.2)
+      device_detector
+      safely_block (>= 0.2.1)
     amoeba (3.2.0)
       activerecord (>= 4.2.0)
     ast (2.4.2)
@@ -105,6 +109,11 @@ GEM
       aws-eventstream (~> 1, >= 1.0.2)
     bcrypt (3.1.18)
     bindex (0.8.1)
+    blazer (2.6.5)
+      activerecord (>= 5)
+      chartkick (>= 3.2)
+      railties (>= 5)
+      safely_block (>= 0.1.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
     builder (3.2.4)
@@ -124,6 +133,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    chartkick (5.0.2)
     clockwork (3.0.2)
       activesupport
       tzinfo
@@ -132,6 +142,7 @@ GEM
     content_disposition (1.0.0)
     crass (1.0.6)
     date (3.3.3)
+    device_detector (1.1.0)
     devise (4.9.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -362,6 +373,7 @@ GEM
       ffi (~> 1.12)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
+    safely_block (0.4.0)
     selenium-webdriver (4.8.6)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -471,9 +483,11 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  ahoy_matey
   amoeba (~> 3.2)
   annotate!
   aws-sdk-s3 (~> 1.112)
+  blazer
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)

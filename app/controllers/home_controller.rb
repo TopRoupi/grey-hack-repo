@@ -4,6 +4,8 @@ class HomeController < ApplicationController
   include SortablePosts
 
   def index
+    ahoy.track "viewed home"
+
     set_posts
     @posts = @posts.search(params[:query]["title"]) if params[:query]
 

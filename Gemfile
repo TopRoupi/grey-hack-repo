@@ -33,6 +33,8 @@ gem "octicons_helper", "~> 16.3"
 gem "pagy", "~> 5.10"
 gem "diffy", "~> 3.4"
 # back end gems
+gem "ahoy_matey"
+gem "blazer"
 gem "shrine", "~> 3.3"
 gem "clockwork", "~> 3.0"
 gem "dry-transaction", "~> 0.15.0"

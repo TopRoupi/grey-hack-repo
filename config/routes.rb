@@ -42,7 +42,8 @@ Rails.application.routes.draw do
 
   authenticate :user, ->(user) { user.admin? } do
     mount PgHero::Engine, at: "pghero"
-    mount Sidekiq::Web => "/sidekiq"
+    mount Sidekiq::Web, at: "sidekiq"
+    mount Blazer::Engine, at: "blazer"
   end
 
   get "/sitemap.xml", to: "sitemap#index", format: "xml", as: :sitemap
