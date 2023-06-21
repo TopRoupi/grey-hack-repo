@@ -24,7 +24,6 @@ RUN apk add --update --no-cache \
       openssl \
       pkgconfig \
       postgresql-dev \
-      python \
       tzdata \
       yarn 
 
@@ -33,15 +32,11 @@ RUN gem install bundler -v 2.4.4
 
 WORKDIR /app
 
-COPY Gemfile Gemfile.lock ./
+COPY . ./ 
 
 RUN bundle check || bundle install
 
-COPY package.json yarn.lock ./
-
 RUN yarn install --check-files
-
-COPY . ./ 
 
 ENTRYPOINT ["./entrypoints/docker-entrypoint.sh"]
 
