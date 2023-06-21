@@ -2,6 +2,12 @@ FROM ruby:3.2.0-alpine
 
 ENV BUNDLER_VERSION=2.4.4
 
+ENV BUILD_ENV=true
+
+ENV RAILS_ENV=production
+
+ENV SECRET_KEY_BASE=dummy
+
 RUN apk add --update --no-cache \
       binutils-gold \
       build-base \
@@ -37,6 +43,8 @@ COPY . ./
 RUN bundle check || bundle install
 
 RUN yarn install --check-files
+
+# RUN ./bin/rails assets:precompile
 
 ENTRYPOINT ["./entrypoints/docker-entrypoint.sh"]
 

@@ -272,7 +272,7 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  if Rails.env != "test"
+  if Rails.env != "test" && ENV["BUILD_ENV"].nil?
     g_id = Rails.application.credentials[Rails.env.to_sym][:github_id]
     g_secret = Rails.application.credentials[Rails.env.to_sym][:github_secret]
 
