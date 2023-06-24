@@ -42,20 +42,20 @@ workers 1
 
 preload_app!
 
-# x = nil
-# on_worker_boot do
-#   x = Sidekiq.configure_embed do |config|
-#     # config.logger.level = Logger::DEBUG
-#     config.queues = %w[default greyrepo_production_default greyrepo_development_default]
-#     config.concurrency = 1
-#     config.redis = {url: ENV.fetch("REDIS_URL", "redis://localhost:6379/1")}
-#   end
-#   x.run
-# end
-#
-# on_worker_shutdown do
-#   x&.stop
-# end
+x = nil
+on_worker_boot do
+  x = Sidekiq.configure_embed do |config|
+    # config.logger.level = Logger::DEBUG
+    config.queues = %w[default greyrepo_production_default greyrepo_development_default]
+    config.concurrency = 1
+    config.redis = {url: ENV.fetch("REDIS_URL", "redis://localhost:6379/1")}
+  end
+  x.run
+end
+
+on_worker_shutdown do
+  x&.stop
+end
 
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
