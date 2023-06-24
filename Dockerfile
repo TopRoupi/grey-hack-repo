@@ -1,51 +1,50 @@
-FROM ruby:3.2.0-alpine
+FROM ruby:3.2.0-slim as base
 
-ENV BUNDLER_VERSION=2.4.4
+WORKDIR /rails
 
-ENV BUILD_ENV=true
+# Set production environment
+ENV RAILS_ENV="production" \
+    BUNDLE_WITHOUT="development:test" \
+    BUNDLE_DEPLOYMENT="1"
 
-ENV RAILS_ENV=production
+# Update gems and bundler
+RUN gem update --system --no-document && \
+    gem install -N bundler
 
-ENV SECRET_KEY_BASE=dummy
+FROM base as build
 
-RUN apk add --update --no-cache \
-      binutils-gold \
-      build-base \
-      curl \
-      file \
-      g++ \
-      gcc \
-      git \
-      less \
-      libstdc++ \
-      libffi-dev \
-      libc-dev \ 
-      linux-headers \
-      libxml2-dev \
-      libxslt-dev \
-      libgcrypt-dev \
-      make \
-      netcat-openbsd \
-      nodejs \
-      openssl \
-      pkgconfig \
-      postgresql-dev \
-      tzdata \
-      yarn 
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y build-essential curl git libpq-dev libvips node-gyp pkg-config python-is-python3
 
-#TODO: use env var here
-RUN gem install bundler -v 2.4.4
+ARG NODE_VERSION=18.2.0
+ARG YARN_VERSION=1.22.19
+ENV PATH=/usr/local/node/bin:$PATH
+RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz -C /tmp/ && \
+    /tmp/node-build-master/bin/node-build "${NODE_VERSION}" /usr/local/node && \
+    npm install -g yarn@$YARN_VERSION && \
+    rm -rf /tmp/node-build-master
 
-WORKDIR /app
+COPY . .
 
-COPY . ./ 
+RUN bundle install && \
+    rm -rf ~/.bundle/ $BUNDLE_PATH/ruby/*/cache $BUNDLE_PATH/ruby/*/bundler/gems/*/.git
 
-RUN bundle check || bundle install
+RUN yarn install --frozen-lockfile
 
-RUN yarn install --check-files
+RUN SECRET_KEY_BASE=DUMMY ./bin/rails assets:precompile
 
-# RUN ./bin/rails assets:precompile
+# Final stage for app image
+FROM base
 
-ENTRYPOINT ["./entrypoints/docker-entrypoint.sh"]
+# Install packages needed for deployment
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y curl imagemagick libvips postgresql-client && \
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
+# Copy built artifacts: gems, application
+COPY --from=build /usr/local/bundle /usr/local/bundle
+COPY --from=build /rails .
 
+# Start the server by default, this can be overwritten at runtime
+EXPOSE 3000
+CMD ["./bin/rails", "server"]
