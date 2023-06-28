@@ -45,6 +45,9 @@ RUN apt-get update -qq && \
 COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build /rails .
 
-# Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
-CMD ["./bin/rails", "server"]
+
+ENTRYPOINT ["./entrypoints/docker-entrypoint.sh"]
+
+# Start the server by default, this can be overwritten at runtime
+# CMD ["./bin/rails", "server"]

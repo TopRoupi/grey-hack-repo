@@ -13,6 +13,8 @@ amazon:
   secret_access_key: <%= Rails.application.credentials.dig(:aws, :secret_access_key) %>
   region: sa-east-1
   bucket: greyhackbucket
+  upload:
+    cache_control: 'private, max-age=31536000'
 
 
 # Remember not to checkin your GCS keyfile to a repository
