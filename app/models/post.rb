@@ -40,6 +40,29 @@ end
 
 class Post < ApplicationRecord
   include ActionText::Attachable
+  include MeiliSearch::Rails
+  extend Pagy::Meilisearch
+
+  meilisearch do
+    attribute :title
+    attribute :summary
+    attribute :readme do
+      readme.body
+    end
+    attribute :dd
+
+    filterable_attributes [:dd]
+    sortable_attributes [:created_at]
+  end
+
+  def dd
+    if published
+      "true"
+    else
+      nil
+    end
+  end
+
   extend FriendlyId
   validates_with PostValidator
 
