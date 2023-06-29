@@ -98,5 +98,4 @@ gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "local_time", "~> 2.1"
 
 gem "futurism", "~> 1.1"
-
 gem "meilisearch-rails", "~> 0.9.1"
