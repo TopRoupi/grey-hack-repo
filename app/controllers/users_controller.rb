@@ -22,6 +22,7 @@ class UsersController < ApplicationController
       @stars_pagy, @starred_posts = pagy(@user.starable_posts.eager.order('"stars_posts"."created_at"': :desc).public_visibility, items: 5)
     elsif params[:gists]
       @gists_pagy, @gists = pagy(@user.gists.not_anonymous)
+      @scripts_count = Script.group(:scriptable_id).where(scriptable_id: @gists.map(&:id)).count.to_h
     else
       @category = params[:category] || "all"
 

@@ -48,6 +48,7 @@ COPY --from=build /rails .
 EXPOSE 3000
 
 ENTRYPOINT ["./entrypoints/docker-entrypoint.sh"]
+CMD ["./entrypoints/docker-entrypoint.sh"]
 
 # Start the server by default, this can be overwritten at runtime
 # CMD ["./bin/rails", "server"]
