@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  font-family: 'Cantarell', system-ui, sans-serif;
-  src: url('https://www.1001fonts.com/download/font/cantarell.regular.ttf') format('truetype');
+.bg-clip-text {
+  background-clip: text;
+  -webkit-background-clip: text;
 }
 
 .btn-danger {
