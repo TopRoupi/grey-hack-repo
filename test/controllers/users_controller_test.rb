@@ -43,10 +43,10 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       refute_includes stars, not_listed_post
       refute_includes stars, private_post
 
-      get user_path(@user, gists: "kk")
-      gists = assigns(:gists)
       anonymous_gist = create :gist, :as_anonymous, user: @user
       public_gist = create :gist, user: @user
+      get user_path(@user, gists: "kk")
+      gists = assigns(:gists)
 
       assert_includes gists, public_gist
       refute_includes gists, anonymous_gist
