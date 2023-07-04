@@ -12,12 +12,41 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%# <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <script src="https://js.stripe.com/v3/"></script>
+    <%= vite_client_tag %>
+    <%= vite_javascript_tag 'application' %>
+
+
     <script>
       function css_browser_selector(u){var ua=u.toLowerCase(),is=function(t){return ua.indexOf(t)>-1},g='gecko',w='webkit',s='safari',o='opera',m='mobile',h=document.documentElement,b=[(!(/opera|webtv/i.test(ua))&&/msie\s(\d)/.test(ua))?('ie ie'+RegExp.$1):is('firefox/2')?g+' ff2':is('firefox/3.5')?g+' ff3 ff3_5':is('firefox/3.6')?g+' ff3 ff3_6':is('firefox/3')?g+' ff3':is('gecko/')?g:is('opera')?o+(/version\/(\d+)/.test(ua)?' '+o+RegExp.$1:(/opera(\s|\/)(\d+)/.test(ua)?' '+o+RegExp.$2:'')):is('konqueror')?'konqueror':is('blackberry')?m+' blackberry':is('android')?m+' android':is('chrome')?w+' chrome':is('iron')?w+' iron':is('applewebkit/')?w+' '+s+(/version\/(\d+)/.test(ua)?' '+s+RegExp.$1:''):is('mozilla/')?g:'',is('j2me')?m+' j2me':is('iphone')?m+' iphone':is('ipod')?m+' ipod':is('ipad')?m+' ipad':is('mac')?'mac':is('darwin')?'mac':is('webtv')?'webtv':is('win')?'win'+(is('windows nt 6.0')?' vista':''):is('freebsd')?'freebsd':(is('x11')||is('linux'))?'linux':'','js']; c = b.join(' '); h.className += ' '+c; return c;}; css_browser_selector(navigator.userAgent);
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Cantarell&display=swap" rel="stylesheet"> 
-    <%= vite_client_tag %>
-    <%= vite_javascript_tag 'application' %>
+
+    <style>
+      @font-face {
+        font-family: 'FirefoxCantarell';
+        font-weight: normal;
+        font-style: normal;
+        src: url("<%= asset_path 'cantarell.regular.ttf' %>");
+      }
+
+      /* latin-ext */
+      @font-face {
+        font-family: 'ChromeCantarell';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(<%= asset_path 'B50NF7ZDq37KMUvlO015gqJrLK8.woff2' %>) format('woff2');
+        unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+      /* latin */
+      @font-face {
+        font-family: 'ChromeCantarell';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(<%= asset_path 'B50NF7ZDq37KMUvlO015jKJr.woff2' %>) format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+    </style>
   </head>
 
   <body>
