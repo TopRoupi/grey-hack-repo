@@ -1,5 +1,5 @@
 web: DB_POOL=5 bin/rails server -p 3000
-/* worker: DB_POOL=5 bundle exec sidekiq -C config/sidekiq.yml */
+worker: DB_POOL=5 bundle exec sidekiq -C config/sidekiq.yml
 stripe: stripe listen --forward-to localhost:3000/pay/webhooks/stripe
 vite: bin/vite dev
 meilisearch: meilisearch
