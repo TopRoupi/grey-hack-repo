@@ -191,6 +191,10 @@ GEM
     foreman (0.87.2)
     friendly_id (5.4.2)
       activerecord (>= 4.0.0)
+    futurism (1.1.0)
+      cable_ready (>= 4)
+      rack (~> 2.0)
+      rails (>= 5.2)
     globalid (1.1.0)
       activesupport (>= 5.0)
     hashie (5.0.0)
@@ -508,6 +512,7 @@ DEPENDENCIES
   faker!
   foreman
   friendly_id (~> 5.4.0)
+  futurism (~> 1.1)
   hiredis (~> 0.6.3)
   image_processing (~> 1.2)
   jbuilder (~> 2.7)

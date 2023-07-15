@@ -6,6 +6,7 @@ console.log("Vite ⚡️ Rails")
 
 // Example: Import a stylesheet in app/frontend/index.css
 import "~/index.css"
+import "../channels"
 
 import { Turbo } from "@hotwired/turbo-rails"
 import * as ActiveStorage from "@rails/activestorage"

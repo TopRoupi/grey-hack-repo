@@ -217,6 +217,13 @@
   resolved "https://registry.yarnpkg.com/@rails/request.js/-/request.js-0.0.6.tgz#5f0347a9f363e50ec45118c7134080490cda81d8"
   integrity sha512-dfFWaQXitYJ4kxrgGJNhDNXX54/v10YgoJqBMVe6lhqs6a4N9WD7goZJEvwin82TtK8MqUNhwfyisgKwM6dMdg==
 
+"@stimulus_reflex/futurism@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@stimulus_reflex/futurism/-/futurism-1.2.0.tgz#88355a510a94af90ad00c60029b3d6119d08e4eb"
+  integrity sha512-OeInZawLLVHnIe+uIZKFNKt1DYSbb0yUD0Wj1/938fl0iOl+tOfWNOYh+QdSiA0sJOVcZkYgpIcr1RXbUJZEnQ==
+  dependencies:
+    cable_ready "^5.0.0"
+
 "@tailwindcss/aspect-ratio@^0.4.2":
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/@tailwindcss/aspect-ratio/-/aspect-ratio-0.4.2.tgz#9ffd52fee8e3c8b20623ff0dcb29e5c21fb0a9ba"
@@ -315,6 +322,13 @@ cable_ready@5.0.0-rc2:
   version "5.0.0-rc2"
   resolved "https://registry.yarnpkg.com/cable_ready/-/cable_ready-5.0.0-rc2.tgz#ccc99dfdd46a8358d6bdcbe285bed16b99220be5"
   integrity sha512-Yq5lDy8gQ7NHJIxL0ANFYn/I6/dpLZTUxDio1MfhSyrbJ21eYlieqO/2JnLey7l+FUq1JGDHT1/6egzF5e++rw==
+  dependencies:
+    morphdom "2.6.1"
+
+cable_ready@^5.0.0:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/cable_ready/-/cable_ready-5.0.1.tgz#1cef5991cf7a064d09971ed7d87c614dec2ee1e1"
+  integrity sha512-+t9rKTgYwW5XBx113y97qC8MNEtBZZL84Isdec23HWvjMx0icOQsMzHJE75ycjevgjACTeWZqjRcCdtCHxgZ9g==
   dependencies:
     morphdom "2.6.1"
 
