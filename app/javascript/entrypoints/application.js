@@ -38,7 +38,19 @@ function toolbarDefaultHTML() {
   return toolbar.innerHTML
 }
 
-import hljs from "highlight.js"
+import hljs from "highlight.js/lib/core"
+import hljsDefineGreyScript from "../gs"
+import hljsDefineText from "../txt"
+import hljsDefineMarkdown from 'highlight.js/lib/languages/markdown'
+import hljsDefineHtml from 'highlight.js/lib/languages/xml'
+
+import "highlight.js/styles/base16/brewer.css"
+
+hljs.registerLanguage('markdown', hljsDefineMarkdown);
+hljs.registerLanguage('html', hljsDefineHtml);
+hljs.registerLanguage("greyscript", hljsDefineGreyScript);
+hljs.registerLanguage("text", hljsDefineText);
+
 window.hljs = hljs
 
 import "../controllers"
