@@ -4,6 +4,11 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   config.assets.gzip = true
+
+  config.public_file_server.headers = {
+    "Cache-Control" => "public, max-age=#{30.days.to_i}"
+  }
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
