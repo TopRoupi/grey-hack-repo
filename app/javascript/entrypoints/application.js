@@ -6,7 +6,6 @@ console.log("Vite ⚡️ Rails")
 
 // Example: Import a stylesheet in app/frontend/index.css
 import "~/index.css"
-//
 
 import { Turbo } from "@hotwired/turbo-rails"
 import * as ActiveStorage from "@rails/activestorage"
@@ -45,3 +44,5 @@ import "../controllers"
 
 window.Turbo = Turbo
 
+import LocalTime from "local-time"
+LocalTime.start()

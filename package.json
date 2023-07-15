@@ -16,6 +16,7 @@
     "debounced": "^0.0.5",
     "esbuild": "^0.13.3",
     "highlight.js": "^11.6.0",
+    "local-time": "^2.1.0",
     "remarkable": "^2.0.1",
     "stimulus-rails-nested-form": "^4.0.0",
     "stimulus_reflex": "^3.5.0-rc2",
