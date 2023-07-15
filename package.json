@@ -15,7 +15,6 @@
     "codejar": "^3.6.0",
     "daisyui": "^2.15.2",
     "debounced": "^0.0.5",
-    "esbuild": "^0.13.3",
     "highlight.js": "^11.6.0",
     "local-time": "^2.1.0",
     "remarkable": "^2.0.1",

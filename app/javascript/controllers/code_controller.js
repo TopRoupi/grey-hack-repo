@@ -1,11 +1,4 @@
 import ApplicationController from "./application_controller"
-import hljs from "highlight.js"
-import "highlight.js/styles/base16/brewer.css"
-// define custom highligher
-import hljsDefineGreyScript from "../gs"
-import hljsDefineText from "../txt"
-hljs.registerLanguage("greyscript", hljsDefineGreyScript);
-hljs.registerLanguage("text", hljsDefineText);
 
 import {CodeLineNumbers} from "code-line-numbers";
 
@@ -20,6 +13,7 @@ export default class extends ApplicationController {
   }
 
   connect() {
+    var hljs = window.hljs
     this.element.classList.add(`language-${this.languageValue}`)
     // this.element.classList.add("language-text")
     if (!this.element.getAttribute("has-line-numbers")) {

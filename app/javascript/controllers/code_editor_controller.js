@@ -3,13 +3,6 @@ import ApplicationController from "./application_controller"
 import {CodeJar} from "codejar"
 import {withLineNumbers} from "codejar/linenumbers"
 
-import hljs from "highlight.js"
-import "highlight.js/styles/base16/brewer.css"
-// define custom highligher
-import hljsDefineGreyScript from "../gs"
-import hljsDefineText from "../txt"
-hljs.registerLanguage("greyscript", hljsDefineGreyScript);
-hljs.registerLanguage("text", hljsDefineText);
 import { Remarkable } from "remarkable";
 var md = new Remarkable();
 
@@ -29,6 +22,7 @@ export default class extends ApplicationController {
   static targets = [ "editor", "name", "preview", "tabs" ]
 
   connect() {
+    var hljs = window.hljs
     this.editor_element = this.editorTarget.insertAdjacentElement("afterend", document.createElement("div"))
     this.editor_element.classList.add("language-".concat(this.getLanguage()), "code-editor")
 
