@@ -9,6 +9,7 @@
     "@rails/actiontext": "^7.0.1",
     "@rails/activestorage": "^7.0.1",
     "@rails/request.js": "^0.0.6",
+    "@stimulus_reflex/futurism": "^1.2.0",
     "autoprefixer": "^10.4.14",
     "code-line-numbers": "^0.0.12",
     "codejar": "^3.6.0",
