@@ -21,19 +21,8 @@
         </div>
       </div>
       <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-        <%= futurize partial: "layouts/navbar_notifications_dropdown", extends: :div do %>
-          <button class="btn btn-ghost mr-4">
-            <%= octicon "bell", class: "fill-current", height: 20 %>
-          </button>
-        <% end %>
-        <%= futurize partial: "layouts/navbar_user_dropdown", extends: :div do %>
-          <button class="btn btn-ghost btn-circle avatar">
-            <div class="w-8 rounded-full">
-              <span class="sr-only">Open user menu</span>
-              <img src="<%= helpers.user_avatar(User.anonymous_user) %>" alt="">
-            </div>
-          </button>
-        <% end %>
+        <%= render(Layout::NavBar::Notifications::Component.new(current_user: @current_user)) if @current_user %>
+        <%= render(Layout::NavBar::Profile::Component.new(current_user: @current_user)) %>
       </div>
     </div>
   </div>
