@@ -13,6 +13,7 @@
     "autoprefixer": "^10.4.14",
     "code-line-numbers": "^0.0.12",
     "codejar": "^3.6.0",
+    "current.js": "^0.2.0",
     "daisyui": "^2.15.2",
     "debounced": "^0.0.5",
     "highlight.js": "^11.6.0",

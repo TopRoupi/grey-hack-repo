@@ -37,8 +37,10 @@
     </div>
   <% end %>
 
-  <% @posts.each do |post| %>
-    <%= render(Posts::Card.new(post: post, current_user: @current_user)) %>
+  <% cache @posts do %>
+    <% @posts.each do |post| %>
+      <%= render(Posts::Card.new(post: post, current_user: @current_user)) %>
+    <% end %>
   <% end %>
 
   <%= render(Pagination.new(pagy: @pagy)) if @pagy %>

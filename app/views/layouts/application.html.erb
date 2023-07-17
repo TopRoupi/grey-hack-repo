@@ -35,6 +35,8 @@
         font-display: swap;
       }
     </style>
+
+    <meta name="current-user-stared-posts" content="<%= current_user ? current_user.stars.where(starable_type: "Post").pluck(:starable_id).join(" ") : []  %>">
   </head>
 
   <body>
