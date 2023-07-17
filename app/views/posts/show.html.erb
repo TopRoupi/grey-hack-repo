@@ -4,7 +4,7 @@
 
   <div class="flex justify-center text-3xl font-semibold items-end">
     <%= @post.title.capitalize %>
-    <%= render(StarsBadge.new(starable: @post, user: current_user)) %>
+    <%= render(StarsBadge.new(starable: @post)) %>
   </div>
 
   <div class="text-center flex justify-center">

@@ -1,11 +1,17 @@
-<button id="<%= dom_id @starable, "star_badge" %>"
-  <% unless @visual %>
-     data-reflex="click->StarsBadgeReflex#star"
-     data-starable-id="<%= @starable.signed_id %>"
-     data-starable-type="<%= @starable.class %>"
-   <% end %>
-     class="<%= "cursor-pointer" unless @visual %> ml-2 flex py-1 px-2 <%= "btn btn-secondary btn-xs btn-thin !py-0 !px-1" unless @transparent %> text-sm">
-  <%= octicon stared? ? "star-fill" : "star", height: 16, class: "fill-current self-center mr-2"%>
-  <%= @stars.length %>
+<button
+    data-controller="star-badge"
+    data-star-badge-starable-id-value="<%= @starable.id %>"
+    data-star-badge-starable-type-value="Post"
+    id="<%= dom_id @starable, "star_badge" %>"
+    <% unless @visual %>
+      data-reflex="click->StarsBadgeReflex#star"
+      data-action="star-badge#star"
+      data-starable-id="<%= @starable.signed_id %>"
+      data-starable-type="<%= @starable.class %>"
+    <% end %>
+      class="<%= "cursor-pointer" unless @visual %> ml-2 flex py-1 px-2 <%= "btn btn-secondary btn-xs btn-thin !py-0 !px-1" unless @transparent %> text-sm">
+      <%= octicon "star-fill", height: 16, class: "fill-current self-center mr-2 #{'hidden' unless stared?}", data: {star_badge_target: "staredIcon"}%>
+      <%= octicon "star", height: 16, class: "fill-current self-center mr-2 #{'hidden' if stared?}", data: {star_badge_target: "starIcon"}%>
+      <%= @stars.length %>
 </button>
 
