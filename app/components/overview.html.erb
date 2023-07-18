@@ -17,7 +17,6 @@
   </div>
 <% end %>
 
-<turbo-frame id="posts">
   <div class="mt-7 mb-6">
     <%= render Layout::LinkGroup.new() do |c| %>
       <% c.link(name: "Newest", link: path_to(request.url, sort: "newest"), active: params[:sort] == "newest") %>
@@ -45,4 +44,3 @@
 
   <%= render(Pagination.new(pagy: @pagy)) if @pagy %>
 
-</turbo-frame>

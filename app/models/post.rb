@@ -49,18 +49,16 @@ class Post < ApplicationRecord
     attribute :readme do
       readme.body
     end
-    attribute :dd
-
-    filterable_attributes [:dd]
-    sortable_attributes [:created_at]
-  end
-
-  def dd
-    if published
-      "true"
-    else
-      nil
+    attribute :published
+    attribute :category_id
+    attribute :created_at do
+      created_at.to_i
     end
+    attribute :visibility
+    attribute :stars_count
+
+    filterable_attributes [:created_at, :published, :category_id, :visibility]
+    sortable_attributes [:created_at, :stars_count]
   end
 
   extend FriendlyId

@@ -7,10 +7,6 @@ class Posts::Card < ApplicationComponent
     # @build = @post.builds.published.last
     # p @post.builds.published.last
     # @build = @post.builds.select(&:published).sort_by(&:created_at).last
-    puts "SFESFESSSSSSSSSSSSSSSSSSSSSSSWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwWWWWWWWWWWWWWWWWWWWWWWWWWWWWWeager"
-    p @post.builds
-    p @post.builds.published
-    p @post.builds.published.last
     @build = @post.builds.published.last
   end
 end
