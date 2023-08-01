@@ -17,6 +17,8 @@ module GreyRepo
     config.active_storage.content_types_to_serve_as_binary -= ["image/svg+xml"]
     config.autoload_paths << "#{root}/app/transactions"
 
+    config.middleware.use Rack::Deflater
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
