@@ -23,8 +23,8 @@ gem "aws-sdk-s3", "~> 1.112"
 gem "redis", "~> 4.0", require: ["redis", "redis/connection/hiredis"]
 gem "hiredis", "~> 0.6.3"
 gem "redis-session-store", "~> 0.11.4" # removing this causes sentry params filter to break even though redis sesssion store is disabled
-gem "stimulus_reflex", "= 3.5.0.rc2"
-gem "cable_ready", "= 5.0.0.rc2"
+gem "stimulus_reflex", "= 3.5.0.rc3"
+gem "cable_ready", "= 5.0.1"
 # front end gems
 gem "view_component-form"
 gem "view_component", "~> 2.49"
