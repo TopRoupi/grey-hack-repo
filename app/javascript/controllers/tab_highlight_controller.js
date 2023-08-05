@@ -16,6 +16,7 @@ export default class extends ApplicationController {
     this.highlightTarget.style.height = e.offsetHeight + "px"
     this.highlightTarget.style.width = e.offsetWidth + "px"
     this.highlightTarget.style.left = e.offsetLeft + "px"
+    this.highlightTarget.style.top = e.offsetTop + "px"
   }
 
   unhighlight() {

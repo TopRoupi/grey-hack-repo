@@ -29,6 +29,5 @@ class Layout::CoolTab < ApplicationComponent
     @sys_params[:class] ||= "relative flex"
     @sys_params[:data] ||= {}
     @sys_params[:data][:controller] = "tab-highlight"
-
   end
 end

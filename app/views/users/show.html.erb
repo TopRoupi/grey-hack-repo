@@ -34,20 +34,25 @@
           <span class="mr-3 whitespace-nowrap">bank: <%= @user.bank %></span>
         <% end %>
       </div>
-      <div class="w-full sm:ml-3 mt-1 mr-2 flex flex-row sm:flex-col justify-between sm:justify-start">
-        <%= link_to user_path(@user), class: "link !text-neutral-content" do %>
-          total posts: <b><%= @user.posts.count %></b>
+
+      <%= render(Layout::CoolTab.new(class: "w-full sm:ml-3 mt-1 mr-2 flex flex-row sm:flex-col justify-between sm:justify-start")) do |c| %>
+        <% c.hightlight(class: "rounded bg-beaver-800") %>
+        <% items_class = "px-2" %>
+
+        <% c.tab(tag: :a, href: user_path(@user), class: items_class) do %>
+          posts: <b><%= @user.posts.count %></b>
         <% end %>
-        <%= link_to path_to(request.url, stars: ""), class: "link !text-neutral-content" do %>
-          total stars: <b><%= @user.stars.count %></b>
+        <% c.tab(tag: :a, href: path_to(request.path, stars: ""), class: items_class) do %>
+          stars: <b><%= @user.stars.count %></b>
         <% end %>
-        <%= link_to path_to(request.url, gists: ""), class: "link !text-neutral-content" do %>
-          total gists: <b><%= @user.gists.not_anonymous.count %></b>
+        <% c.tab(tag: :a, href: path_to(request.path, gists: ""), class: items_class) do %>
+          gists: <b><%= @user.gists.not_anonymous.count %></b>
         <% end %>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>
+
 
 <div class="divider sm:mt-0"></div>
 
