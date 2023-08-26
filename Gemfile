@@ -33,6 +33,8 @@ gem "meta-tags", "~> 2.16"
 gem "octicons_helper", "~> 16.3"
 gem "pagy", "~> 5.10"
 gem "diffy", "~> 3.4"
+gem "local_time", "~> 2.1"
+gem "futurism", "~> 1.1"
 # back end gems
 gem "ahoy_matey"
 gem "blazer"
@@ -53,7 +55,7 @@ gem "noticed", "~> 1.5"
 gem "friendly_id", "~> 5.4.0"
 gem "rubyzip", "~> 2.3", require: "zip" # required by FileJob
 gem "pay", "~> 6.3"
-gem "stripe", ">= 8.0", "< 9.0"
+# gem "stripe", ">= 8.0", "< 9.0"
 # assets bundling
 # gem "jsbundling-rails", "~> 1.0"
 gem "sprockets-rails"
@@ -94,7 +96,3 @@ group :test do
 end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-gem "local_time", "~> 2.1"
-
-gem "futurism", "~> 1.1"
