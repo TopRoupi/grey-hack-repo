@@ -9,7 +9,7 @@ gem "rails", "~> 7.0.1"
 
 gem "pg", "~> 1.1"
 gem "puma", "~> 5.6"
-gem "turbo-rails", "~> 0.5.9"
+gem "turbo-rails", "~> 1.4.0"
 gem "jbuilder", "~> 2.7"
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
