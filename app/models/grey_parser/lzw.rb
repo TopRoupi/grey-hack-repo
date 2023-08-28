@@ -3,7 +3,7 @@
 class GreyParser::Lzw
   def self.compress(uncompressed)
     dict_size = 256
-    dictionary = Hash[ Array.new(dict_size) {|i| [i.chr("UTF-8"), i.chr("UTF-8")]} ]
+    dictionary = Array.new(dict_size) { |i| [i.chr("UTF-8"), i.chr("UTF-8")] }.to_h
 
     w = ""
     result = []
@@ -25,7 +25,7 @@ class GreyParser::Lzw
 
   def self.decompress(compressed)
     dict_size = 256
-    dictionary = Hash[ Array.new(dict_size) {|i| [i.chr("UTF-8"), i.chr("UTF-8")]} ]
+    dictionary = Array.new(dict_size) { |i| [i.chr("UTF-8"), i.chr("UTF-8")] }.to_h
 
     w = result = compressed.shift
     compressed.each do |k|

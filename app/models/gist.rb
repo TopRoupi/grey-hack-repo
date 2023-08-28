@@ -40,7 +40,6 @@ class Gist < ApplicationRecord
 
   scope :not_anonymous, -> { where(anonymous: false) }
 
-
   friendly_id :name, use: :slugged
 
   def author

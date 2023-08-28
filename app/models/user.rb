@@ -54,7 +54,6 @@ class User < ApplicationRecord
   has_one :owner_guild, class_name: "Guild", foreign_key: :user_id, dependent: :destroy
   has_one_attached :nft, dependent: :destroy
 
-
   include ImageUploader::Attachment(:banner)
 
   after_commit :set_nft, on: [:create]

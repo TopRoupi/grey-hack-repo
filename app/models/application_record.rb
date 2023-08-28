@@ -7,7 +7,7 @@ class ApplicationRecord < ActiveRecord::Base
     attributes.reject { |key| key.to_s.match(/\bid|created_at|updated_at/) }
   end
 
-  #TODO: remove this after https://github.com/rails/rails/issues/48652 is fixed
+  # TODO: remove this after https://github.com/rails/rails/issues/48652 is fixed
   def deep_dup
     self
   end
