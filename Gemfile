@@ -86,7 +86,7 @@ group :development do
   gem "spring"
   gem "stackprof", "~> 0.2.19"
   gem "standardrb"
-  gem "rubocop", "~> 1.29.1"
+  gem "rubocop", "~> 1.56.1"
 end
 
 group :test do
