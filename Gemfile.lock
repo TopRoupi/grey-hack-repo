@@ -450,8 +450,10 @@ GEM
     thor (1.2.2)
     thread-local (1.1.0)
     timeout (0.4.0)
-    turbo-rails (0.5.12)
-      rails (>= 6.0.0)
+    turbo-rails (1.4.0)
+      actionpack (>= 6.0.0)
+      activejob (>= 6.0.0)
+      railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unf (0.1.4)
@@ -558,7 +560,7 @@ DEPENDENCIES
   stackprof (~> 0.2.19)
   standardrb
   stimulus_reflex (= 3.5.0.rc3)
-  turbo-rails (~> 0.5.9)
+  turbo-rails (~> 1.4.0)
   tzinfo-data
   view_component (~> 2.49)
   view_component-form
