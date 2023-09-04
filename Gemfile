@@ -52,7 +52,7 @@ gem "discord-notifier", "~> 1.0", ">= 1.0.3"
 gem "sidekiq", "~> 7.0"
 gem "devise", "~> 4.8"
 gem "noticed", "~> 1.5"
-gem "friendly_id", "~> 5.4.0"
+gem "friendly_id", "~> 5.5.0"
 gem "rubyzip", "~> 2.3", require: "zip" # required by FileJob
 gem "pay", "~> 6.3"
 # gem "stripe", ">= 8.0", "< 9.0"
