@@ -192,7 +192,7 @@ GEM
       ffi (>= 1.0.0)
       rake
     foreman (0.87.2)
-    friendly_id (5.4.2)
+    friendly_id (5.5.0)
       activerecord (>= 4.0.0)
     futurism (1.2.0)
       cable_ready (>= 5.0)
@@ -534,7 +534,7 @@ DEPENDENCIES
   factory_bot_rails
   faker!
   foreman
-  friendly_id (~> 5.4.0)
+  friendly_id (~> 5.5.0)
   futurism (~> 1.1)
   hiredis (~> 0.6.3)
   image_processing (~> 1.2)
