@@ -359,7 +359,7 @@ GEM
       ffi (~> 1.0)
     redcarpet (3.6.0)
     redis (4.8.1)
-    redis-client (0.16.0)
+    redis-client (0.17.0)
       connection_pool
     redis-session-store (0.11.5)
       actionpack (>= 6, < 8)
@@ -412,7 +412,7 @@ GEM
     shrine (3.5.0)
       content_disposition (~> 1.0)
       down (~> 5.1)
-    sidekiq (7.1.2)
+    sidekiq (7.1.3)
       concurrent-ruby (< 2)
       connection_pool (>= 2.3.0)
       rack (>= 2.2.4)
@@ -567,7 +567,7 @@ DEPENDENCIES
   sentry-ruby (~> 5.2)
   sentry-sidekiq (~> 5.3)
   shrine (~> 3.3)
-  sidekiq (~> 7.0)
+  sidekiq (~> 7.1)
   simple_form (~> 5.1)
   simplecov
   spring
