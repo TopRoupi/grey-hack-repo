@@ -8,7 +8,7 @@ ruby "~> 3.2.0"
 gem "rails", "~> 7.0.8"
 
 gem "pg", "~> 1.5"
-gem "puma", "~> 5.6"
+gem "puma", "~> 6.3"
 gem "turbo-rails", "~> 1.4.0"
 gem "jbuilder", "~> 2.7"
 # Use Active Model has_secure_password
