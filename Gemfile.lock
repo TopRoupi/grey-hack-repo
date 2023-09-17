@@ -300,7 +300,7 @@ GEM
     parser (3.2.2.3)
       ast (~> 2.4.1)
       racc
-    pay (6.8.0)
+    pay (6.8.1)
       rails (>= 6.0.0)
     pg (1.5.4)
     pghero (3.3.4)
@@ -548,7 +548,7 @@ DEPENDENCIES
   omniauth-github
   omniauth-rails_csrf_protection
   pagy (~> 6.0)
-  pay (~> 6.3)
+  pay (~> 6.8)
   pg (~> 1.5)
   pghero (~> 3.3)
   puma (~> 6.3)
