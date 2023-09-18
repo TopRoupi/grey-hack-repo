@@ -63,7 +63,7 @@ gem "sprockets-rails"
 gem "vite_rails"
 # gem "cssbundling-rails", "~> 1.0"
 # apm provider
-gem "newrelic_rpm", "~> 9.4"
+gem "newrelic_rpm", "~> 9.5"
 gem "sentry-ruby", "~> 5.2"
 gem "sentry-rails", "~> 5.2"
 gem "sentry-sidekiq", "~> 5.3"
