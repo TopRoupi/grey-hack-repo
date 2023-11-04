@@ -18,7 +18,7 @@ gem "image_processing", "~> 1.2"
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.4", require: false
 # Active storage provider
-gem "aws-sdk-s3", "~> 1.112"
+gem "aws-sdk-s3", "~> 1.136"
 # Stimulus Reflex
 gem "redis", "~> 4.0", require: ["redis", "redis/connection/hiredis"]
 gem "hiredis", "~> 0.6.3"
