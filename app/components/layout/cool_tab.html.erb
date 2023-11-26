@@ -1,7 +1,9 @@
 <%= content_tag(@tag, @sys_params) do %>
-  <% tabs.each do |tab| %>
-    <%= tab %>
+  <%= render(Layout::BaseComponent.new(tag: :div, **@wrapper_html)) do %>
+    <% tabs.each do |tab| %>
+      <%= tab %>
+    <% end %>
+    <%= hightlight %>
   <% end %>
-  <%= hightlight %>
   <%= append %>
 <% end %>

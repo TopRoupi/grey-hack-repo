@@ -21,6 +21,7 @@ application.register("scripts--card--copy--component", ScriptsCardCopyComponent)
 application.register("fileable-form", FileableForm)
 application.register("build-explorer", BuildExplorer)
 
+import Miniexplorer from "./miniexplorer_controller.js"
 import AvatarPreview from "./avatar_preview_controller"
 import Attachments from "./attachments_controller"
 import Decipher from "./decipher_controller"
@@ -45,6 +46,7 @@ application.register("tab-highlight", TabHighlight)
 application.register("encoder", Encoder)
 application.register("image-preview", ImagePreview)
 application.register("star-badge", StarBadge)
+application.register("miniexplorer", Miniexplorer)
 
 import { Tabs, Alert as Toast, Dropdown, Modal, Toggle } from "tailwindcss-stimulus-components"
 

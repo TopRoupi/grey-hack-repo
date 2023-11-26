@@ -1,26 +1,35 @@
-<div id="<%= dom_id @fileable, "mini_files_preview" %>" class="mb-4 bg-base-100 border-2 border-base-200 p-1 card rounded-t-none overflow-x-auto">
-  <%= render(Layout::CoolTab.new(class: "relative flex items-center mx-auto sm:mx-0 w-fit sm:w-full")) do |c| %>
-    <% c.hightlight(class: "rounded bg-beaver-800") %>
+<div id="<%= dom_id @fileable, "mini_files_preview" %>" class="mb-4 bg-base-100 border-2 border-base-200 p-1 card rounded-t-none overflow-x-auto" data-controller="miniexplorer">
+  <%= render(Layout::CoolTab.new(wrapper_html: {data: {miniexplorer_target: "explorer"}}, class: "relative flex transition-all ease-in-out delay-150 items-center mx-auto sm:mx-0 w-fit sm:w-full")) do |c| %>
+      <% c.hightlight(class: "rounded bg-beaver-800") %>
 
-    <% if @fileable.instance_of? Folder %>
-      <% c.tab(class: "flex p-2 items-center mr-2", tag: :button, data: {reflex: "click->Posts::MiniFilesPreviewReflex#back", folder_id: @fileable.signed_id}) do %>
-        back
+      <% if @fileable.instance_of? Folder %>
+        <% c.tab(class: "flex p-2 items-center mr-2",
+                tag: :button,
+                data: {action: "click->miniexplorer#back", folder_id: @fileable.signed_id}
+                ) do %>
+          back
+        <% end %>
       <% end %>
-    <% end %>
 
-    <% @fileable.folders.each do |folder| %>
-      <% c.tab(class: "flex p-2 items-center mr-2", tag: :button, data: {reflex: "click->Posts::MiniFilesPreviewReflex#open", folder_id: folder.signed_id}) do %>
-        <%= octicon "file-directory-fill", height: 15, class: "fill-current text-blue-400 mr-2" %>
-        <%= folder.name %>
+      <% @fileable.folders.each do |folder| %>
+        <% c.tab(class: "flex p-2 items-center mr-2",
+                tag: :button,
+                data: {action: "click->miniexplorer#open", folder_id: folder.signed_id}
+                ) do %>
+          <%= octicon "file-directory-fill", height: 15, class: "fill-current text-blue-400 mr-2" %>
+          <%= folder.name %>
+        <% end %>
       <% end %>
-    <% end %>
 
-    <% @fileable.scripts.each do |script| %>
-      <% c.tab(class: "flex p-2 items-center mr-2", tag: :a, data: {turbo_frame: "_top"}, href: script_path(script) ) do %>
-        <%= octicon "file", height: 15, class: "fill-current mr-2" %>
-        <%= script.name %>
+      <% @fileable.scripts.each do |script| %>
+        <% c.tab(class: "flex p-2 items-center mr-2",
+                tag: :a, data: {turbo_frame: "_top"},
+                href: script_path(script)
+                ) do %>
+          <%= octicon "file", height: 15, class: "fill-current mr-2" %>
+          <%= script.name %>
+        <% end %>
       <% end %>
-    <% end %>
 
 
     <% c.append do %>

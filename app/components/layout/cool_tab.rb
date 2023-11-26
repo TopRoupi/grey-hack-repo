@@ -23,7 +23,9 @@ class Layout::CoolTab < ApplicationComponent
 
   renders_one :append
 
-  def initialize(tag: "div", **sys_params)
+  def initialize(tag: "div", wrapper_html: {}, **sys_params)
+    @wrapper_html = wrapper_html
+    @wrapper_html[:class] ||= "relative flex"
     @sys_params = sys_params
     @tag = tag
     @sys_params[:class] ||= "relative flex"
