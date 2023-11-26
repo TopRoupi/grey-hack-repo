@@ -13,7 +13,7 @@
       </div>
     <% end %>
     <%= render(Layout::Dropdown.new(direction: :left)) do |c| %>
-      <% c.button(tag: :button, class: "text-left bg-base-200 hover:bg-base-300 px-4 py-3 !block card rounded-l-none", style: "width: 136px") do %>
+      <% c.button(tag: :button, class: "h-full text-left bg-base-200 hover:bg-base-300 px-4 py-3 !block card rounded-l-none", style: "width: 136px") do %>
         <%= render Guilds::MemberGroup.new(users: guild.all_members) %>
         <%= pluralize(guild.all_members.size, "member") %>
       <% end %>

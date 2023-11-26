@@ -21,7 +21,7 @@ default: &default
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("DB_POOL") { 5 } %>
   username: postgres
-  password: 1234
+  password: postgres
   host: localhost
 
 development:
