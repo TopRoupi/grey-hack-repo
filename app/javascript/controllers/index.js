@@ -33,6 +33,7 @@ import TabHighlight from "./tab_highlight_controller"
 import Encoder from "./encoder_controller"
 import ImagePreview from "./image_preview_controller"
 import StarBadge from "./star_badge_controller"
+import Search from "./search_controller"
 application.register("avatar-preview", AvatarPreview)
 application.register("attachments", Attachments)
 application.register("decipher", Decipher)
@@ -45,6 +46,7 @@ application.register("tab-highlight", TabHighlight)
 application.register("encoder", Encoder)
 application.register("image-preview", ImagePreview)
 application.register("star-badge", StarBadge)
+application.register("search", Search)
 
 import { Tabs, Alert as Toast, Dropdown, Modal, Toggle } from "tailwindcss-stimulus-components"
 

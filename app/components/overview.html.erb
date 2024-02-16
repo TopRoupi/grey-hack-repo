@@ -10,14 +10,17 @@
   <% end %>
 <% end %>
 
-<%= form_for :query, url: request.url, method: :get, class: "mt-5", data: {reflex: "debounced:input->ApplicationReflex#refresh"}, builder: DaisyFormBuilder do |f| %>
-  <div class="flex">
-    <%= f.label(:title, class: "!mb-0 text-neutral-content flex btn btn-neutral rounded-r-none") { "Search" } %>
-    <%= f.text_field :title, value: params[:query] && params[:query]["title"], style: "height: 48px;", class: "rounded-l-none" %>
-  </div>
-<% end %>
+<turbo-frame id="search">
+  <% if params[:sort] == "newest" %>
+    <%= form_for :query, url: request.url, method: :get, class: "mt-5", data: {controller: "search", action: "debounced:input->search#refresh"}, builder: DaisyFormBuilder do |f| %>
+      <div class="flex">
+        <%= f.label(:title, class: "!mb-0 text-neutral-content flex btn btn-neutral rounded-r-none") { "Search" } %>
+        <%= f.text_field :title, value: params[:query] && params[:query]["title"], style: "height: 48px;", class: "rounded-l-none" %>
+      </div>
+    <% end %>
+  <% end %>
 
-<turbo-frame id="posts">
+
   <div class="mt-7 mb-6">
     <%= render Layout::LinkGroup.new() do |c| %>
       <% c.link(name: "Newest", link: path_to(request.url, sort: "newest"), active: params[:sort] == "newest") %>
@@ -37,12 +40,16 @@
     </div>
   <% end %>
 
-  <% cache @posts do %>
-    <% @posts.each do |post| %>
-      <%= render(Posts::Card.new(post: post, current_user: @current_user)) %>
-    <% end %>
-  <% end %>
+  <turbo-frame id="posts">
 
-  <%= render(Pagination.new(pagy: @pagy)) if @pagy %>
+    <% cache @posts do %>
+      <% @posts.each do |post| %>
+        <%= render(Posts::Card.new(post: post, current_user: @current_user)) %>
+      <% end %>
+    <% end %>
+
+    <%= render(Pagination.new(pagy: @pagy)) if @pagy %>
+
+  </turbo-frame>
 
 </turbo-frame>
