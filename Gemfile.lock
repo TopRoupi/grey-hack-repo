@@ -8,10 +8,10 @@ GIT
 
 GIT
   remote: https://github.com/faker-ruby/faker.git
-  revision: 552b91d15a26b1fb401a1b4d273ed424d7697725
+  revision: 3f7371e2eb8fe074823570a7fba5d0d9a42257f7
   branch: main
   specs:
-    faker (3.2.1)
+    faker (3.2.3)
       i18n (>= 1.8.11, < 2)
 
 GEM
@@ -137,7 +137,7 @@ GEM
     clockwork (3.0.2)
       activesupport
       tzinfo
-    concurrent-ruby (1.2.2)
+    concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
     content_disposition (1.0.0)
     crass (1.0.6)
