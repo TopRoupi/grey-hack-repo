@@ -27,7 +27,7 @@ gem "stimulus_reflex", "= 3.5.0.rc4"
 gem "cable_ready", "= 5.0.3"
 # front end gems
 gem "view_component-form"
-gem "view_component", "~> 2.49"
+gem "view_component", "~> 3.9"
 gem "simple_form", "~> 5.1"
 gem "meta-tags", "~> 2.16"
 gem "octicons_helper", "~> 19.7"
