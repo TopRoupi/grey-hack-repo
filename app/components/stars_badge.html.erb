@@ -4,7 +4,6 @@
     data-star-badge-starable-type-value="Post"
     id="<%= dom_id @starable, "star_badge" %>"
     <% unless @visual %>
-      data-reflex="click->StarsBadgeReflex#star"
       data-action="star-badge#star"
       data-starable-id="<%= @starable.signed_id %>"
       data-starable-type="<%= @starable.class %>"

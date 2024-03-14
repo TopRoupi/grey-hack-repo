@@ -452,7 +452,7 @@ GEM
       rubocop-performance (~> 1.19.0)
     standardrb (1.0.1)
       standard
-    stimulus_reflex (3.5.0.rc3)
+    stimulus_reflex (3.5.0.rc4)
       actioncable (>= 5.2, < 8)
       actionpack (>= 5.2, < 8)
       actionview (>= 5.2, < 8)
@@ -574,7 +574,7 @@ DEPENDENCIES
   sprockets-rails
   stackprof (~> 0.2.19)
   standardrb
-  stimulus_reflex (= 3.5.0.rc3)
+  stimulus_reflex (= 3.5.0.rc4)
   turbo-rails (~> 1.4.0)
   tzinfo-data
   view_component (~> 2.49)
