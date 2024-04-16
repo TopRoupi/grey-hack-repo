@@ -20,7 +20,7 @@ gem "bootsnap", ">= 1.4.4", require: false
 # Active storage provider
 gem "aws-sdk-s3", "~> 1.136"
 # Stimulus Reflex
-gem "redis", "~> 4.0", require: ["redis", "redis/connection/hiredis"]
+gem "redis", "~> 5.2", require: ["redis", "redis/connection/hiredis"]
 gem "hiredis", "~> 0.6.3"
 gem "redis-session-store", "~> 0.11.4" # removing this causes sentry params filter to break even though redis sesssion store is disabled
 gem "stimulus_reflex", "= 3.5.0.rc4"
